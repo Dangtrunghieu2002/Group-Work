@@ -1975,7 +1975,7 @@
         <script>
 
         // =========================================================================
-        // ANTIGRAVITY UNIFIED PRESENTATION & LIVE REACTIVE ENGINE (100% CLEAN)
+        // ANTIGRAVITY UNIFIED PRESENTATION & LIVE REACTIVE ENGINE (100% CLEAN MATH)
         // =========================================================================
 
         let currentMember = "overview";
@@ -2136,15 +2136,32 @@
         }
 
         function updateKhuongAllocSlider() {
-            const sl = document.getElementById("k_sl_ctrl");
-            const txt = document.getElementById("k_txt_ctrl");
-            if (sl && txt) txt.innerText = sl.value + "% Risk";
+            const sl = document.getElementById("k_sl_bias");
+            const txt = document.getElementById("k_txt_bias");
+            if (sl && txt) {
+                const val = (parseInt(sl.value) / 100).toFixed(2);
+                txt.innerText = val === "0.00" ? "0.00 (Zero Bias)" : `+${val} (Confounded)`;
+            }
             updateKhuong();
         }
 
         function updateKhuong() {
-            const pControl = parseInt(document.getElementById("k_sl_ctrl") ? document.getElementById("k_sl_ctrl").value : 20) / 100;
-            const pTreated = 0.06;
+            const slCtrl = document.getElementById("k_sl_ctrl");
+            const slN = document.getElementById("k_sl_n");
+            const slRrr = document.getElementById("k_sl_rrr");
+            const txtCtrl = document.getElementById("k_txt_ctrl");
+            const txtN = document.getElementById("k_txt_n");
+            const txtRrr = document.getElementById("k_txt_rrr");
+
+            const pControl = slCtrl ? parseInt(slCtrl.value) / 100 : 0.20;
+            const nPatients = slN ? parseInt(slN.value) : 1000;
+            const rrrVal = slRrr ? parseInt(slRrr.value) / 100 : 0.70;
+
+            if (txtCtrl) txtCtrl.innerText = (pControl * 100).toFixed(1) + "%";
+            if (txtN) txtN.innerText = nPatients.toLocaleString();
+            if (txtRrr) txtRrr.innerText = (rrrVal * 100).toFixed(1) + "%";
+
+            const pTreated = pControl * (1 - rrrVal);
             const arr = Math.max(0.001, pControl - pTreated);
             const nnt = 1 / arr;
 
@@ -2156,22 +2173,25 @@
             const mlDesc = document.getElementById("k_ml_desc");
             if (mlDesc) {
                 if (kAllocMode === "rct") {
-                    mlDesc.innerHTML = `<strong>Coin Flip (Clean RCT):</strong> Treatment W is independent of covariates X ($X \perp\!\!\!\perp W$). Confounding bias is completely eliminated!`;
+                    mlDesc.innerHTML = `<strong>Coin Flip (Clean RCT):</strong> Treatment W is assigned with P(W=1) = 0.50, independent of Age/BP. The backdoor path is severed (X &#8869; W).`;
                 } else {
-                    mlDesc.innerHTML = `<strong>Doctor Choice (Biased):</strong> Sicker patients were preferentially prescribed treatment ($X \rightarrow W$). Confounder bias contaminates raw risk differences.`;
+                    mlDesc.innerHTML = `<strong>Doctor Choice (Biased):</strong> Sicker patients were preferentially prescribed treatment (X &rarr; W). Confounder bias contaminates raw risk differences.`;
                 }
             }
 
             const formCard = document.getElementById("k_formula_card");
             if (formCard) {
                 formCard.innerHTML = `
-                    <div><strong>Absolute Risk Reduction (ARR):</strong></div>
-                    <div style="color: #1e40af; font-weight: bold; margin: 2px 0;">
-                        ARR = P(Y=1|W=0) - P(Y=1|W=1) = ${(pControl*100).toFixed(1)}% - ${(pTreated*100).toFixed(1)}% = +${(arr*100).toFixed(1)}%
-                    </div>
-                    <div style="margin-top: 4px;"><strong>Number Needed to Treat (NNT):</strong></div>
-                    <div style="color: #166534; font-weight: bold;">
-                        NNT = 1 / ARR = 1 / ${arr.toFixed(3)} = ${nnt.toFixed(1)} patients
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
+                        <div style="color: #1e40af; font-weight: 800; margin-bottom: 3px;">
+                            ARR = P(Y=1 | W=0) &minus; P(Y=1 | W=1)
+                        </div>
+                        <div style="color: #1e3a8a; font-size: 0.86rem; margin-bottom: 6px;">
+                            = ${(pControl*100).toFixed(1)}% &minus; ${(pTreated*100).toFixed(1)}% = <strong style="color: #166534;">+${(arr*100).toFixed(1)}% Risk Drop</strong>
+                        </div>
+                        <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; color: #166534; font-weight: 800;">
+                            NNT = 1 / ARR = 1 / ${arr.toFixed(3)} = <strong>${nnt.toFixed(1)} Patients</strong>
+                        </div>
                     </div>
                 `;
             }
@@ -2228,9 +2248,9 @@
         }
 
         const kPatients = [
-            { id: 1, name: "Young Alex", age: 35, sbp: 118, w: 0, y_obs: 0, y1_true: 0, y0_true: 0, cate: "+2.0%" },
-            { id: 2, name: "Uncle Nam", age: 58, sbp: 142, w: 0, y_obs: 1, y1_true: 0, y0_true: 1, cate: "+12.4%" },
-            { id: 3, name: "Grandpa An", age: 70, sbp: 165, w: 1, y_obs: 0, y1_true: 0, y0_true: 1, cate: "+26.4%" }
+            { id: 1, name: "Young Alex", age: 35, sbp: 118, w: 0, y_obs: 0, cate: "+2.0%" },
+            { id: 2, name: "Uncle Nam", age: 58, sbp: 142, w: 0, y_obs: 1, cate: "+12.4%" },
+            { id: 3, name: "Grandpa An", age: 70, sbp: 165, w: 1, y_obs: 0, cate: "+26.4%" }
         ];
 
         function setKhuongPatientUniverse(id) {
@@ -2256,19 +2276,19 @@
 
             const mlDesc = document.getElementById("k_ml_desc");
             if (mlDesc) {
-                mlDesc.innerHTML = `<strong>Neyman-Rubin Potential Outcomes:</strong> Each patient has two potential states: $Y(1)$ and $Y(0)$. However, because treatment $W$ is binary, we can only observe $Y = W \cdot Y(1) + (1-W) \cdot Y(0)$. The counterfactual is forever lost.`;
+                mlDesc.innerHTML = `<strong>Neyman-Rubin Potential Outcomes:</strong> Each patient has two potential states: Y(1) and Y(0). Because treatment W is binary, we can only observe Y = W &middot; Y(1) + (1&minus;W) &middot; Y(0). The counterfactual is unobservable in real life.`;
             }
 
             const formCard = document.getElementById("k_formula_card");
             if (formCard) {
                 formCard.innerHTML = `
-                    <div><strong>Patient #${p.id} Observed Formula:</strong></div>
-                    <div style="color: #1e40af; font-weight: bold; margin: 2px 0;">
-                        Y_${p.id} = ${p.w}·Y(1) + ${1-p.w}·Y(0) = ${p.y_obs} (${p.y_obs === 1 ? 'Stroke Event' : 'No Event'})
-                    </div>
-                    <div style="margin-top: 4px;"><strong>Counterfactual State:</strong></div>
-                    <div style="color: #b91c1c; font-weight: bold;">
-                        Y(${1-p.w}) is MISSING in real life!
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
+                        <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
+                            Y<sub>${p.id}</sub> = ${p.w}&middot;Y(1) + ${1-p.w}&middot;Y(0) = ${p.y_obs} (${p.y_obs === 1 ? 'Stroke Event' : 'No Event'})
+                        </div>
+                        <div style="color: #991b1b; font-weight: 700; font-size: 0.8rem; margin-top: 4px;">
+                            Counterfactual Y(${1-p.w}) is MISSING &rarr; Solved by CATE ML!
+                        </div>
                     </div>
                 `;
             }
@@ -2430,9 +2450,9 @@
             const sbp = slSbp ? parseInt(slSbp.value) : 165;
             const age = slAge ? parseInt(slAge.value) : 70;
 
-            const baseDrug = 4.0;
-            const pushSbp = ((sbp - 110) / 80) * 18.0;
-            const pushAge = ((age - 35) / 50) * 11.0;
+            const baseDrug = 3.4;
+            const pushSbp = ((sbp - 110) / 80) * 15.2;
+            const pushAge = ((age - 35) / 50) * 7.8;
             const total = baseDrug + pushSbp + pushAge;
 
             const elSbp = document.getElementById("h_shap_sbp_val");
@@ -2463,12 +2483,12 @@
             const dispCate = document.getElementById("h_disp_cate");
             const dispSCate = document.getElementById("h_disp_s_cate");
             if (dispCate) dispCate.innerText = "+" + (trueCATE * 100).toFixed(1) + "% Benefit";
-            if (dispSCate) dispSCate.innerText = "+" + (shrunkCATE * 100).toFixed(1) + "% (Shrunk)";
+            if (dispSCate) dispSCate.innerText = "+" + (shrunkCATE * 100).toFixed(1) + "%";
 
             const mlDesc = document.getElementById("h_ml_desc");
             if (mlDesc) {
                 if (hStep === 1) {
-                    mlDesc.innerHTML = `<strong>T-Learner CATE Prediction:</strong> Trained model estimates $\mu_0(X)$ (Untreated Risk = ${(baselineRisk*100).toFixed(1)}%) and $\mu_1(X)$ (Treated Risk = ${(treatedRisk*100).toFixed(1)}%). Difference is the true personalized benefit.`;
+                    mlDesc.innerHTML = `<strong>T-Learner CATE Prediction:</strong> Trained model estimates &mu;<sub>0</sub>(X) (Untreated Risk = ${(baselineRisk*100).toFixed(1)}%) and &mu;<sub>1</sub>(X) (Treated Risk = ${(treatedRisk*100).toFixed(1)}%). Difference is the true personalized benefit.`;
                 } else if (hStep === 2) {
                     mlDesc.innerHTML = `<strong>T-Learner vs S-Learner:</strong> T-Learner uses two specialized models to avoid regularization bias. S-Learner puts treatment into one tree, shrinking benefit by ${( (trueCATE - shrunkCATE)*100 ).toFixed(1)}%.`;
                 } else {
@@ -2479,12 +2499,16 @@
             const formCard = document.getElementById("h_formula_card");
             if (formCard) {
                 formCard.innerHTML = `
-                    <div><strong>CATE Formula:</strong> CATE(X) = E[Y(0) - Y(1) | X]</div>
-                    <div style="color: #1e40af; font-weight: bold; margin: 2px 0;">
-                        CATE(${age}y, ${sbp}mmHg) = ${(baselineRisk*100).toFixed(1)}% - ${(treatedRisk*100).toFixed(1)}% = +${(trueCATE*100).toFixed(1)}% Benefit
-                    </div>
-                    <div style="margin-top: 4px; color: ${hModelMode === 't' ? '#166534' : '#991b1b'}; font-weight: bold;">
-                        ${hModelMode === 't' ? '✔ T-Learner Active: Unbiased estimate' : '⚠️ S-Learner Active: Regularization Shrinkage = +' + (shrunkCATE*100).toFixed(1) + '%'}
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
+                        <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
+                            CATE(X) = &Eopf;[ Y(0) &minus; Y(1) | X ] = &mu;<sub>0</sub>(X) &minus; &mu;<sub>1</sub>(X)
+                        </div>
+                        <div style="color: #1e3a8a; font-size: 0.86rem; margin-bottom: 4px;">
+                            CATE(${age}y, ${sbp}mmHg) = ${(baselineRisk*100).toFixed(1)}% &minus; ${(treatedRisk*100).toFixed(1)}% = <strong style="color: #166534;">+${(trueCATE*100).toFixed(1)}% Net Benefit</strong>
+                        </div>
+                        <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; font-size: 0.78rem; color: ${hModelMode === 't' ? '#166534' : '#991b1b'}; font-weight: 800;">
+                            ${hModelMode === 't' ? '✔ T-Learner Active: 100% Unbiased Tree' : '⚠️ S-Learner Active: Shrinkage Bias Collapses Benefit to +' + (shrunkCATE*100).toFixed(1) + '%'}
+                        </div>
                     </div>
                 `;
             }
@@ -2551,7 +2575,7 @@
                     <tr><td><strong>Consolidation</strong></td><td>"No consolidation"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
                     <tr><td><strong>Cardiomegaly</strong></td><td>Not Mentioned</td><td><span class="pill pill-purple">0 (Absent)</span></td></tr>
                 `,
-                math: `Label(Pneumonia) = Mention(Pneumonia) &times; (1 - Negated) = 1 &times; (1 - 1) = 0`
+                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">NegBio Extraction:</strong><br>Label(Pneumonia) = Mention(1) &times; (1 &minus; Negated(1)) = 1 &times; 0 = <strong style="color:#dc2626;">0 (Clean Negative)</strong></div>`
             },
             2: {
                 text: '“Chest radiograph reveals prominent <span class="hl-disease">cardiomegaly</span> with mild interstitial <span class="hl-disease">edema</span>.”',
@@ -2560,7 +2584,7 @@
                     <tr><td><strong>Edema</strong></td><td>"Mild interstitial edema"</td><td><span class="pill pill-success">1 (Positive)</span></td></tr>
                     <tr><td><strong>Pneumonia</strong></td><td>Not Mentioned</td><td><span class="pill pill-purple">0 (Absent)</span></td></tr>
                 `,
-                math: `Label(Cardiomegaly) = Mention(Cardiomegaly) &times; (1 - Negated) = 1 &times; (1 - 0) = 1`
+                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">NegBio Extraction:</strong><br>Label(Cardiomegaly) = Mention(1) &times; (1 &minus; Negated(0)) = 1 &times; 1 = <strong style="color:#166534;">1 (Positive Ground Truth)</strong></div>`
             },
             3: {
                 text: '“Findings consistent with dense airspace <span class="hl-disease">consolidation</span> in right lung.”',
@@ -2568,7 +2592,7 @@
                     <tr><td><strong>Pneumonia</strong></td><td>Synonym: "airspace consolidation"</td><td><span class="pill pill-success">1 (UMLS Mapped)</span></td></tr>
                     <tr><td><strong>Consolidation</strong></td><td>Direct match</td><td><span class="pill pill-success">1 (Positive)</span></td></tr>
                 `,
-                math: `Label(Pneumonia) = OntologyMap("consolidation") = 1 (UMLS C0032285)`
+                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">UMLS Concept Mapping:</strong><br>Label(Pneumonia) = OntologyMap("consolidation") = <strong style="color:#166534;">1 (Concept C0032285)</strong></div>`
             }
         };
 
@@ -2625,7 +2649,7 @@
 
             if (repBox) repBox.innerHTML = d.text;
             if (tblBody) tblBody.innerHTML = d.table;
-            if (formCard) formCard.innerHTML = `<div><strong>NegBio Indicator Formula:</strong></div><div style="color: #1e40af; font-weight: bold; margin-top: 4px;">${d.math}</div>`;
+            if (formCard) formCard.innerHTML = d.math;
             if (mlDesc) {
                 mlDesc.innerHTML = `<strong>NegBio Rule-Based Extraction:</strong> Uses dependency graph parsing to detect negation cues ("no evidence of") and binds them to target pathologies, generating 100,000 ground truth labels at $0 cost.`;
             }
@@ -2642,11 +2666,28 @@
             const tblBody = document.getElementById("d_out_table_body");
 
             if (parNum === 1) {
-                if (mlDesc) mlDesc.innerHTML = `<strong>2020 Two-Stage Rule Pipeline:</strong> NegBio extracts text labels $\rightarrow$ exports ground-truth binary matrix $\{0, 1\}^{100k \times 14}$. Rule errors can propagate into dataset.`;
-                if (formCard) formCard.innerHTML = `<div><strong>Rule-Based Pipeline:</strong> PACS Text $\rightarrow$ Label Matrix $\mathbf{Y} \in \{0, 1\}^{100k \times 14}$</div>`;
+                if (mlDesc) mlDesc.innerHTML = `<strong>2020 Two-Stage Rule Pipeline:</strong> NegBio extracts text labels &rarr; exports ground-truth binary matrix Y &isin; {0, 1}<sup>100k &times; 14</sup>. Rule errors can propagate into dataset.`;
+                if (formCard) formCard.innerHTML = `
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
+                        <strong style="color: #1e40af;">Rule-Based Pipeline:</strong><br>
+                        PACS Text &rarr; Ground Truth Matrix <strong>Y</strong> &isin; {0, 1}<sup>100,000 &times; 14</sup>
+                    </div>
+                `;
             } else {
                 if (mlDesc) mlDesc.innerHTML = `<strong>2026 Multimodal Foundation Model:</strong> BiomedCLIP aligns radiology text and X-ray embeddings in a shared latent space via contrastive learning, enabling Zero-Shot diagnosis.`;
-                if (formCard) formCard.innerHTML = `<div><strong>Contrastive Alignment:</strong> $\mathcal{L} = -\log \frac{\exp(\text{sim}(v_i, t_i)/\tau)}{\sum_j \exp(\text{sim}(v_i, t_j)/\tau)}$</div>`;
+                if (formCard) formCard.innerHTML = `
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
+                        <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
+                            Contrastive Alignment Loss:
+                        </div>
+                        <div style="color: #1e3a8a;">
+                            <strong>L<sub>InfoNCE</sub></strong> = &minus;log <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">exp( sim(v<sub>i</sub>, t<sub>i</sub>) / &tau; )</span><span>&sum;<sub>j</sub> exp( sim(v<sub>i</sub>, t<sub>j</sub>) / &tau; )</span></span>
+                        </div>
+                        <div style="margin-top: 4px; font-size: 0.74rem; color: #166534; font-weight: bold;">
+                            ✔ Zero-Shot Cosine Similarity = <strong>0.942</strong> (Pneumonia Match)
+                        </div>
+                    </div>
+                `;
                 if (tblBody) {
                     tblBody.innerHTML = `
                         <tr><td><strong>BiomedCLIP Zero-Shot</strong></td><td>Prompt: "Chest X-ray showing consolidation"</td><td><span class="pill pill-success">Cosine Sim = 0.942</span></td></tr>
@@ -2753,12 +2794,16 @@
             const formCard = document.getElementById("l_formula_card");
             if (formCard) {
                 formCard.innerHTML = `
-                    <div><strong>BioBERT Token Embedding Formula:</strong></div>
-                    <div style="color: #1e40af; font-weight: bold; margin-top: 2px;">
-                        \mathbf{T} = \mathbf{E}_{\text{Token}} + \mathbf{E}_{\text{Pos}} + \mathbf{E}_{\text{Seg}} \in \mathbb{R}^{1 \times 60 \times 768}
-                    </div>
-                    <div style="margin-top: 4px; font-size: 0.76rem; color: var(--text-muted);">
-                        Attention Mask $M_i = 1$ for real tokens, $0$ for [PAD].
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
+                        <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
+                            BioBERT Embedding Tensor:
+                        </div>
+                        <div style="color: #1e3a8a;">
+                            <strong>T</strong> = <strong>E</strong><sub>Token</sub> + <strong>E</strong><sub>Pos</sub> + <strong>E</strong><sub>Seg</sub> &isin; &#8477;<sup>1 &times; 60 &times; 768</sup>
+                        </div>
+                        <div style="margin-top: 4px; font-size: 0.74rem; color: #6d28d9; font-weight: bold;">
+                            Attention Mask M<sub>i</sub> = 1 (Real Token), M<sub>i</sub> = 0 ([PAD])
+                        </div>
                     </div>
                 `;
             }
@@ -2831,12 +2876,16 @@
             const formCard = document.getElementById("l_formula_card");
             if (formCard) {
                 formCard.innerHTML = `
-                    <div><strong>DenseNet121 F1 &amp; Grad-CAM Formula:</strong></div>
-                    <div style="color: #1e40af; font-weight: bold; margin: 2px 0;">
-                        F1 = \frac{2 \times P \times R}{P + R} = \frac{2(${precision.toFixed(2)})(${recall.toFixed(2)})}{${(precision+recall).toFixed(2)}} = ${f1.toFixed(3)}
-                    </div>
-                    <div style="margin-top: 4px; color: #7c3aed; font-weight: bold;">
-                        L_{\text{CAM}}^c = \text{ReLU}\left(\sum_k \alpha_k^c A^k\right) \quad \text{where } \alpha_k^c = \frac{1}{Z}\sum_{i,j} \frac{\partial y^c}{\partial A_{i,j}^k}
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
+                        <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
+                            Harmonic F1-Score:
+                        </div>
+                        <div style="color: #1e3a8a;">
+                            F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &times; Precision &times; Recall</span><span>Precision + Recall</span></span> = <strong style="color:#166534;">${f1.toFixed(3)}</strong>
+                        </div>
+                        <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; margin-top: 4px; color: #7c3aed; font-weight: 800;">
+                            Grad-CAM: L<sub>CAM</sub><sup>c</sup> = ReLU( &sum;<sub>k</sub> &alpha;<sub>k</sub><sup>c</sup> &middot; A<sup>k</sup> ) [Layer 424]
+                        </div>
                     </div>
                 `;
             }
