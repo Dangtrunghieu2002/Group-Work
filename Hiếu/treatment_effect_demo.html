@@ -2234,10 +2234,11 @@
 
             const tbody = document.getElementById('k_table_pot_body');
             const mathCard = document.getElementById('k_formula_card');
+            const v3Box = document.getElementById('k_v_step3');
 
             if (id === 1) {
                 tbody.innerHTML = `
-                    <tr style="background:#eff6ff;"><td><strong>Patient #1</strong></td><td>1 (Drug Arm)</td><td><strong style="color:var(--success);">0 (Survived)</strong></td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
+                    <tr style="background:#eff6ff;"><td><strong>Patient #1 (Younger)</strong></td><td>1 (Drug Arm)</td><td><strong style="color:var(--success);">0 (Survived)</strong></td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
                     <tr><td>Patient #2</td><td>0 (Placebo Arm)</td><td>1 (Stroke)</td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
                 `;
                 mathCard.innerHTML = `
@@ -2246,10 +2247,20 @@
                     • <strong style="color:var(--success);">Factual:</strong> <span class="math-symbol">W</span><sub>1</sub> = 1 &rarr; <span class="math-symbol">Y</span><sub>1</sub>(1) = 0<br>
                     • <strong style="color:var(--danger);">Counterfactual:</strong> <span class="math-symbol">Y</span><sub>1</sub>(0) = <strong>? (Lost forever)</strong>
                 `;
+                if (v3Box) {
+                    v3Box.innerHTML = `
+                        <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.6;">
+                            <div style="font-weight: bold; color: #1e40af; margin-bottom: 4px;">🌍 Patient #1 Parallel Universe Inspection:</div>
+                            • <strong>Real World (W=1):</strong> Took medication &rarr; <span style="color:#166534; font-weight:bold;">Survived (Y=0)</span>.<br>
+                            • <strong>Parallel World (W=0):</strong> What if Patient #1 did NOT take drug? <strong style="color:#dc2626;">? (Lost Forever!)</strong><br>
+                            👉 <em>Machine learning must predict this missing parallel universe!</em>
+                        </div>
+                    `;
+                }
             } else if (id === 2) {
                 tbody.innerHTML = `
                     <tr><td>Patient #1</td><td>1 (Drug Arm)</td><td>0 (Survived)</td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
-                    <tr style="background:#fee2e2;"><td><strong>Patient #2</strong></td><td>0 (Placebo Arm)</td><td><strong style="color:var(--danger);">1 (Stroke)</strong></td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
+                    <tr style="background:#fee2e2;"><td><strong>Patient #2 (Placebo Arm)</strong></td><td>0 (Placebo Arm)</td><td><strong style="color:var(--danger);">1 (Stroke)</strong></td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
                 `;
                 mathCard.innerHTML = `
                     <strong>Neyman-Rubin Observed Outcome:</strong><br>
@@ -2257,15 +2268,35 @@
                     • <strong style="color:var(--danger);">Factual:</strong> <span class="math-symbol">W</span><sub>2</sub> = 0 &rarr; <span class="math-symbol">Y</span><sub>2</sub>(0) = 1<br>
                     • <strong style="color:var(--danger);">Counterfactual:</strong> <span class="math-symbol">Y</span><sub>2</sub>(1) = <strong>? (Lost forever)</strong>
                 `;
+                if (v3Box) {
+                    v3Box.innerHTML = `
+                        <div style="background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.6;">
+                            <div style="font-weight: bold; color: #9a3412; margin-bottom: 4px;">🌍 Patient #2 Parallel Universe Inspection:</div>
+                            • <strong>Real World (W=0):</strong> Received placebo &rarr; <span style="color:#dc2626; font-weight:bold;">Suffered Stroke (Y=1)</span>.<br>
+                            • <strong>Parallel World (W=1):</strong> Would the drug have saved Patient #2? <strong style="color:#dc2626;">? (Lost Forever!)</strong><br>
+                            👉 <em>Machine learning solves this by finding statistical twin patients!</em>
+                        </div>
+                    `;
+                }
             } else {
                 tbody.innerHTML = `
-                    <tr style="background:#f0fdf4;"><td><strong>Patient #42 (Grandpa An)</strong></td><td>1 (Treated)</td><td><strong style="color:var(--success);">0 (No Event)</strong></td><td><span class="pill pill-danger">? (Would have had stroke)</span></td></tr>
+                    <tr style="background:#f0fdf4;"><td><strong>Patient #42 (Grandpa An)</strong></td><td>1 (Treated Arm)</td><td><strong style="color:var(--success);">0 (Survived)</strong></td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
                 `;
                 mathCard.innerHTML = `
                     <strong>Individual Treatment Effect (ITE):</strong><br>
                     <span class="math-symbol">ITE</span><sub>42</sub> = <span class="math-symbol">Y</span><sub>42</sub>(0) &minus; <span class="math-symbol">Y</span><sub>42</sub>(1) = <span style="color:var(--danger);">? (Missing)</span> &minus; 0<br>
                     <em>👉 Impossible to compute directly for a single person &rarr; Machine Learning (CATE) required!</em>
                 `;
+                if (v3Box) {
+                    v3Box.innerHTML = `
+                        <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.6;">
+                            <div style="font-weight: bold; color: #166534; margin-bottom: 4px;">👴 Grandpa An (#42) Parallel Universe Inspection:</div>
+                            • <strong>Real World (W=1):</strong> Took drug &rarr; <span style="color:#166534; font-weight:bold;">Survived Healthy (Y=0)</span>.<br>
+                            • <strong>Parallel World (W=0):</strong> High BP (165) means without drug he likely suffered stroke.<br>
+                            👉 <em>Hiếu's T-Learner will estimate this counterfactual benefit at +26.4%!</em>
+                        </div>
+                    `;
+                }
             }
         }
 
@@ -2672,6 +2703,40 @@
             document.getElementById('h_shap_bmi').innerText = `${bmiPush>=0?'+':''}${bmiPush.toFixed(1)}% push`;
 
             document.getElementById('h_shap_sum').innerText = `+${(t_cate * 100).toFixed(1)}%`;
+
+            // Dynamically update Step 4 Card 3 & Card 4
+            if (document.getElementById('h_step_4') && document.getElementById('h_step_4').classList.contains('active')) {
+                const mlDesc = document.getElementById('h_ml_desc');
+                if (mlDesc) {
+                    mlDesc.innerHTML = `<strong>Transparent Medical Explanations:</strong><br>Breaks down the <strong>+${(t_cate * 100).toFixed(1)}%</strong> total benefit into exact medical receipts: SBP (${sbpPush>=0?'+':''}${sbpPush.toFixed(1)}%), Age (${agePush>=0?'+':''}${agePush.toFixed(1)}%), BMI (${bmiPush>=0?'+':''}${bmiPush.toFixed(1)}%). Zero black-box doubts!`;
+                }
+
+                const mathCard = document.getElementById('h_formula_card');
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>SHAP Additive Breakdown:</strong><br>
+                        <span class="math-symbol">Total Benefit</span> = Base Average (+14.0%) + SBP (${sbpPush>=0?'+':''}${sbpPush.toFixed(1)}%) + Age (${agePush>=0?'+':''}${agePush.toFixed(1)}%) + BMI (${bmiPush>=0?'+':''}${bmiPush.toFixed(1)}%) = <strong style="color:#166534;">+${(t_cate * 100).toFixed(1)}%</strong><br>
+                        <em>100% transparent and verifiable for doctors.</em>
+                    `;
+                }
+            }
+
+            // Dynamically update Step 1 Card 3 & Card 4
+            if (document.getElementById('h_step_1') && document.getElementById('h_step_1').classList.contains('active')) {
+                const mlDesc = document.getElementById('h_ml_desc');
+                if (mlDesc) {
+                    mlDesc.innerHTML = `<strong>Predicting Individual Stroke Risk:</strong><br>Calculates stroke risk if untreated (<strong>${(ctrlRisk * 100).toFixed(1)}%</strong>) vs if treated (<strong>${(trtRisk * 100).toFixed(1)}%</strong>). The difference is the personalized benefit (<strong>+${(t_cate * 100).toFixed(1)}%</strong>).`;
+                }
+
+                const mathCard = document.getElementById('h_formula_card');
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>Personalized Benefit (CATE):</strong><br>
+                        <span class="math-symbol">Net Benefit</span> = Untreated Risk (${(ctrlRisk * 100).toFixed(1)}%) &minus; Treated Risk (${(trtRisk * 100).toFixed(1)}%) = <strong style="color:#166534;">+${(t_cate * 100).toFixed(1)}% Risk Drop</strong><br>
+                        <em>The higher the baseline risk, the bigger the life-saving gain from medicine!</em>
+                    `;
+                }
+            }
         }
 
         let hieuPairBatchCounter = 1;
