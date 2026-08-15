@@ -792,16 +792,34 @@
                         </div>
                     </div>
 
-                    <!-- Input Step 3: Potential Outcome Patient Selector -->
+                    <!-- Input Step 3: Potential Outcome Patient Selector with Universe Cards -->
                     <div id="k_in_step3" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Select Patient to Probe Universe:</div>
-                        <div style="display: flex; gap: 4px; margin-bottom: 8px;">
-                            <button class="preset-btn active" id="k_btn_pt_1" onclick="setKhuongPatientUniverse(1)">Patient #1 (Treated)</button>
-                            <button class="preset-btn" id="k_btn_pt_2" onclick="setKhuongPatientUniverse(2)">Patient #2 (Control)</button>
-                            <button class="preset-btn" id="k_btn_pt_3" onclick="setKhuongPatientUniverse(3)">Patient #42 (Grandpa)</button>
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>Select Patient to Probe Universe:</span>
+                            <span class="pill pill-purple" style="font-size:0.7rem;">Parallel Worlds</span>
                         </div>
-                        <div style="font-size: 0.76rem; color: var(--text-muted);">
-                            Probe the missing counterfactual state in the parallel universe!
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px;">
+                            <!-- Patient 1 Card -->
+                            <div class="xray-thumb-card active" id="k_btn_pt_1" onclick="setKhuongPatientUniverse(1)">
+                                <div style="font-size: 1.25rem; margin-bottom: 2px;">🏃</div>
+                                <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Patient #1</div>
+                                <div style="font-size: 0.65rem; color: #166534; background: #dcfce7; border-radius: 4px; padding: 1px 3px; margin-top: 3px; font-weight: bold;">Treated Arm (W=1)</div>
+                            </div>
+                            <!-- Patient 2 Card -->
+                            <div class="xray-thumb-card" id="k_btn_pt_2" onclick="setKhuongPatientUniverse(2)">
+                                <div style="font-size: 1.25rem; margin-bottom: 2px;">👨</div>
+                                <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Patient #2</div>
+                                <div style="font-size: 0.65rem; color: #991b1b; background: #fee2e2; border-radius: 4px; padding: 1px 3px; margin-top: 3px; font-weight: bold;">Placebo Arm (W=0)</div>
+                            </div>
+                            <!-- Patient 42 Card -->
+                            <div class="xray-thumb-card" id="k_btn_pt_3" onclick="setKhuongPatientUniverse(3)">
+                                <div style="font-size: 1.25rem; margin-bottom: 2px;">👴</div>
+                                <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Patient #42</div>
+                                <div style="font-size: 0.65rem; color: #1e40af; background: #dbeafe; border-radius: 4px; padding: 1px 3px; margin-top: 3px; font-weight: bold;">Grandpa An (High SBP)</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 0.74rem; color: var(--text-muted); line-height: 1.4;">
+                            Neyman-Rubin: Factual outcome $Y$ observed vs Parallel universe $Y_{\text{counterfactual}}$ <strong>Lost Forever</strong>!
                         </div>
                     </div>
 
@@ -966,10 +984,22 @@
             <div class="grid-blocks">
                 <div class="card">
                     <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="h_badge_step">Step 1</span></div>
-                    <div id="h_preset_container" style="display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap;">
-                        <button class="preset-btn active" id="p_btn_1" onclick="setHieuPreset(70, 165, 31, 1)">👴 Grandpa An (High SBP 165)</button>
-                        <button class="preset-btn" id="p_btn_2" onclick="setHieuPreset(35, 118, 22, 2)">🏃 Alex (Normal SBP 118)</button>
-                        <button class="preset-btn" id="p_btn_3" onclick="setHieuPreset(58, 142, 28, 3)">👨 Uncle Nam (SBP 142)</button>
+                    <div id="h_preset_container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px;">
+                        <div class="xray-thumb-card active" id="p_btn_1" onclick="setHieuPreset(70, 165, 31, 1)">
+                            <div style="font-size: 1.25rem;">👴</div>
+                            <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Grandpa An</div>
+                            <div style="font-size: 0.65rem; color: #991b1b; background: #fee2e2; border-radius: 4px; padding: 1px 3px; font-weight: bold;">SBP: 165 mmHg</div>
+                        </div>
+                        <div class="xray-thumb-card" id="p_btn_2" onclick="setHieuPreset(35, 118, 22, 2)">
+                            <div style="font-size: 1.25rem;">🏃</div>
+                            <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Alex (Young)</div>
+                            <div style="font-size: 0.65rem; color: #166534; background: #dcfce7; border-radius: 4px; padding: 1px 3px; font-weight: bold;">SBP: 118 mmHg</div>
+                        </div>
+                        <div class="xray-thumb-card" id="p_btn_3" onclick="setHieuPreset(58, 142, 28, 3)">
+                            <div style="font-size: 1.25rem;">👨</div>
+                            <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Uncle Nam</div>
+                            <div style="font-size: 0.65rem; color: #854d0e; background: #fef9c3; border-radius: 4px; padding: 1px 3px; font-weight: bold;">SBP: 142 mmHg</div>
+                        </div>
                     </div>
                     <p style="font-size: 0.84rem; color: var(--text-muted);" id="h_scenario_desc"></p>
                 </div>
@@ -1109,9 +1139,24 @@
                         </div>
                     </div>
 
-                    <!-- View Step 3: C-for-benefit Benchmark Meter -->
+                    <!-- View Step 3: C-for-benefit Benchmark Meter & Visual Twin Matching -->
                     <div id="h_v_step3" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">C-for-benefit Benchmark Scale:</div>
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Clinical Twin Matching Architecture:</div>
+                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 6px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-around; text-align: center;">
+                            <div style="background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 4px 6px;">
+                                <div style="font-size: 1rem;">💊 🧔</div>
+                                <div style="font-size: 0.7rem; font-weight: bold; color: #166534;">Treated (W=1)</div>
+                                <div style="font-size: 0.65rem; color: #166534;">Survived (Y₁=0)</div>
+                            </div>
+                            <div style="font-weight: bold; font-size: 0.8rem; color: var(--primary);">
+                                🤝<br><span style="font-size:0.65rem; color:var(--text-muted);">Exact Match (X=x)</span>
+                            </div>
+                            <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 4px 6px;">
+                                <div style="font-size: 1rem;">🧪 🧔</div>
+                                <div style="font-size: 0.7rem; font-weight: bold; color: #991b1b;">Control (W=0)</div>
+                                <div style="font-size: 0.65rem; color: #991b1b;">Stroke (Y₀=1)</div>
+                            </div>
+                        </div>
                         <div class="disease-bar-row">
                             <span style="width: 90px;">0.50 (Random)</span>
                             <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 50%; background: #94a3b8;"></div></div>
@@ -1205,13 +1250,35 @@
 
                     <div id="l_input_cam_box" style="display: none;">
                         <div class="control-header">
-                            <span>Grad-CAM Overlay Opacity</span>
+                            <span>Grad-CAM Overlay Opacity:</span>
                             <span id="l_cam_op_txt" style="font-weight: bold; color: var(--purple);">80%</span>
                         </div>
-                        <input type="range" class="slider" id="l_cam_sl_op" min="0" max="100" value="80" oninput="updateLinhHeatmap()">
-                        <div style="display: flex; gap: 4px; margin-top: 8px;">
-                            <button class="preset-btn active" id="l_dis_btn_1" onclick="setLinhDisease('pneumonia')">Pneumonia</button>
-                            <button class="preset-btn" id="l_dis_btn_2" onclick="setLinhDisease('cardiomegaly')">Cardiomegaly</button>
+                        <input type="range" class="slider" id="l_cam_sl_op" min="0" max="100" value="80" oninput="updateLinhHeatmap()" style="margin-bottom: 8px;">
+                        
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Target Pathology Scan:</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                            <div class="xray-thumb-card active" id="l_dis_btn_1" onclick="setLinhDisease('pneumonia')">
+                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
+                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
+                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <circle cx="32" cy="48" r="9" fill="#ef4444" opacity="0.8" filter="blur(2px)"/>
+                                    </svg>
+                                </div>
+                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">🫁 Pneumonia</div>
+                            </div>
+                            <div class="xray-thumb-card" id="l_dis_btn_2" onclick="setLinhDisease('cardiomegaly')">
+                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
+                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
+                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <path d="M36,35 Q50,26 68,38 Q78,62 50,68 Q33,60 36,35" fill="#3b82f6" opacity="0.85" stroke="#93c5fd" stroke-width="1"/>
+                                    </svg>
+                                </div>
+                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">❤️ Cardiomegaly</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1376,10 +1443,26 @@
                     
                     <!-- Input Step 1: PACS 100,000 Report Case Selector -->
                     <div id="d_in_step1" style="display: block;">
-                        <div style="display: flex; gap: 4px; margin-bottom: 6px; flex-wrap: wrap;">
-                            <button class="preset-btn active" id="d_btn_rep_1" onclick="setDungReportCase(1)">Sample 1 (Negation)</button>
-                            <button class="preset-btn" id="d_btn_rep_2" onclick="setDungReportCase(2)">Sample 2 (Positive)</button>
-                            <button class="preset-btn" id="d_btn_rep_3" onclick="setDungReportCase(3)">Sample 3 (Synonym)</button>
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>Select PACS Radiology Report Sheet:</span>
+                            <span class="pill pill-purple" style="font-size:0.7rem;">100k DICOM Archive</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px;">
+                            <div class="xray-thumb-card active" id="d_btn_rep_1" onclick="setDungReportCase(1)">
+                                <div style="font-size: 1.1rem; margin-bottom: 2px;">📋</div>
+                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">Case #01</div>
+                                <div style="font-size: 0.65rem; color: #991b1b; background: #fee2e2; border-radius: 4px; padding: 1px 2px; font-weight: bold;">Negation Pattern</div>
+                            </div>
+                            <div class="xray-thumb-card" id="d_btn_rep_2" onclick="setDungReportCase(2)">
+                                <div style="font-size: 1.1rem; margin-bottom: 2px;">📋</div>
+                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">Case #02</div>
+                                <div style="font-size: 0.65rem; color: #166534; background: #dcfce7; border-radius: 4px; padding: 1px 2px; font-weight: bold;">Positive Mention</div>
+                            </div>
+                            <div class="xray-thumb-card" id="d_btn_rep_3" onclick="setDungReportCase(3)">
+                                <div style="font-size: 1.1rem; margin-bottom: 2px;">📋</div>
+                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">Case #03</div>
+                                <div style="font-size: 0.65rem; color: #854d0e; background: #fef9c3; border-radius: 4px; padding: 1px 2px; font-weight: bold;">Synonym Jargon</div>
+                            </div>
                         </div>
                         <div class="report-text-box" id="d_interactive_report_box" style="font-size: 0.82rem;">
                             "Lungs are clear. <span class="hl-negation">No evidence of</span> active <span class="hl-disease">pneumonia</span> or consolidation."
@@ -1590,10 +1673,23 @@
                     </div>
 
                     <div id="d_v_step6" style="display: none;">
-                        <div style="background: #f5f3ff; border: 1px solid #ddd6fe; border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6;">
-                            <strong>2026 Vision-Language Frontier:</strong><br>
-                            • <strong>Old (2020):</strong> Regex rules &rarr; Labels &rarr; Train CNN from scratch.<br>
-                            • <strong>New (2026):</strong> Zero-shot Biomedical Vision-Language Models (BiomedCLIP, LLaVA-Med).
+                        <div style="background: #0f172a; color: #f8fafc; border-radius: 8px; padding: 10px; font-size: 0.76rem; border: 1px solid #334155;">
+                            <div style="font-size: 0.8rem; font-weight: bold; color: #a78bfa; margin-bottom: 6px;">BiomedCLIP Dual-Encoder Architecture (2026):</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; text-align: center; margin-bottom: 6px;">
+                                <div style="background: rgba(139, 92, 246, 0.2); border: 1px dashed #a78bfa; border-radius: 6px; padding: 6px 4px;">
+                                    <div style="font-size: 1.15rem;">🩻</div>
+                                    <div style="font-weight: bold; font-size: 0.72rem; color: #c4b5fd;">Vision ViT-B/16</div>
+                                    <div style="font-size: 0.65rem; color: #94a3b8;">Image Vector v &in; &reals;<sup>512</sup></div>
+                                </div>
+                                <div style="background: rgba(59, 130, 246, 0.2); border: 1px dashed #60a5fa; border-radius: 6px; padding: 6px 4px;">
+                                    <div style="font-size: 1.15rem;">📝</div>
+                                    <div style="font-weight: bold; font-size: 0.72rem; color: #93c5fd;">Biomed Text BERT</div>
+                                    <div style="font-size: 0.65rem; color: #94a3b8;">Text Vector t &in; &reals;<sup>512</sup></div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; font-size: 0.72rem; color: #34d399; font-weight: bold;">
+                                ⚡ Contrastive Cosine Sim(v, t) &rarr; Zero-Shot Diagnosis!
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1994,7 +2090,7 @@
                 document.getElementById('h_txt_age_p').innerText = `${age} yrs`;
             }
 
-            document.querySelectorAll('#h_preset_container .preset-btn').forEach((b, idx) => {
+            document.querySelectorAll('#h_preset_container .preset-btn, #h_preset_container .xray-thumb-card').forEach((b, idx) => {
                 b.classList.toggle('active', idx === (btnId - 1));
             });
 
@@ -2402,7 +2498,7 @@
         }
 
         function setDungReportCase(caseId) {
-            document.querySelectorAll('#d_in_step1 .preset-btn').forEach((b, idx) => {
+            document.querySelectorAll('#d_in_step1 .preset-btn, #d_in_step1 .xray-thumb-card').forEach((b, idx) => {
                 b.classList.toggle('active', idx === (caseId - 1));
             });
 
