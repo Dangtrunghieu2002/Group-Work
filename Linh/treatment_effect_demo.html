@@ -1,0 +1,2343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI For Medical Treatment - Group Interactive Presentation Platform</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #2563eb;
+            --primary-subtle: #eff6ff;
+            --success: #059669;
+            --success-light: #d1fae5;
+            --warning: #d97706;
+            --warning-light: #fef3c7;
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+            --purple: #7c3aed;
+            --purple-light: #f5f3ff;
+            --dark: #0f172a;
+            --card-bg: #ffffff;
+            --bg: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-math: "Cambria Math", "Latin Modern Math", "Times New Roman", serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding-bottom: 70px;
+        }
+
+        /* Top Header */
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: white;
+            padding: 18px 32px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+        }
+
+        .header-container {
+            max-width: 1360px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .badge-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 3px 10px;
+            border-radius: 9999px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        h1 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 0.84rem;
+        }
+
+        /* Top Navigation Bar: Member Specific */
+        .member-nav {
+            display: flex;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px;
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+
+        .member-btn {
+            background: transparent;
+            border: none;
+            color: #cbd5e1;
+            padding: 8px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .member-btn:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .member-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .container {
+            max-width: 1360px;
+            margin: 18px auto 0;
+            padding: 0 20px;
+        }
+
+        /* Member Overview Banner */
+        .member-banner {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 22px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .role-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 6-Block Structured Grid */
+        .grid-blocks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 22px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 1100px) {
+            .grid-blocks {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-blocks, .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            margin-bottom: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Block Type Badges */
+        .block-badge {
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .badge-scenario { background: #fef3c7; color: #92400e; }
+        .badge-input { background: #eff6ff; color: #1e40af; }
+        .badge-ml { background: #f5f3ff; color: #6d28d9; }
+        .badge-formula { background: #ecfdf5; color: #065f46; }
+        .badge-output { background: #fee2e2; color: #991b1b; }
+        .badge-workflow { background: #f1f5f9; color: #334155; }
+
+        /* Interactive Controls */
+        .control-group {
+            margin-bottom: 12px;
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.84rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #cbd5e1;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .btn {
+            background: var(--primary-light);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background: #f1f5f9;
+        }
+
+        .preset-btn {
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .preset-btn:hover, .preset-btn.active {
+            background: #e2e8f0;
+            color: var(--primary);
+            border-color: var(--primary-light);
+        }
+
+        /* Stat Boxes */
+        .stat-box {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .stat-val {
+            font-size: 1.45rem;
+            font-weight: 800;
+            margin-top: 2px;
+        }
+
+        .stat-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-weight: 700;
+        }
+
+        /* Dynamic Formula Box */
+        .formula-card {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-left: 4px solid var(--success);
+            padding: 12px 14px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.86rem;
+            line-height: 1.6;
+            min-height: 95px;
+            transition: all 0.25s ease;
+        }
+
+        .math-symbol {
+            font-family: var(--font-math);
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 4px;
+        }
+
+        th, td {
+            padding: 6px 8px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        th {
+            background: #f1f5f9;
+            font-weight: 700;
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* Disease Prediction Bar */
+        .disease-bar-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.76rem;
+            margin-bottom: 4px;
+        }
+
+        .disease-progress-bg {
+            flex-grow: 1;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin: 0 8px;
+            overflow: hidden;
+        }
+
+        .disease-progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Rule list items */
+        .rule-item {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            margin-bottom: 6px;
+            font-size: 0.78rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .rule-code {
+            font-family: monospace;
+            background: #f1f5f9;
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #1e40af;
+            font-weight: bold;
+        }
+
+        /* Pill status */
+        .pill {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .pill-success { background: var(--success-light); color: var(--success); }
+        .pill-danger { background: var(--danger-light); color: var(--danger); }
+        .pill-neutral { background: #f1f5f9; color: #475569; }
+        .pill-purple { background: var(--purple-light); color: var(--purple); }
+
+        /* Step Pipeline */
+        .pipeline-flow {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow-x: auto;
+            padding: 8px 0;
+            margin-bottom: 12px;
+        }
+
+        .flow-step {
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.15s;
+            user-select: none;
+        }
+
+        .flow-step:hover {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+
+        .flow-step.active {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-light);
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+        }
+
+        .flow-arrow {
+            color: #94a3b8;
+            font-weight: bold;
+        }
+
+        /* X-ray visualizer box */
+        .xray-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: #0f172a;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #334155;
+        }
+
+        .xray-bg-svg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.85;
+        }
+
+        .heatmap-overlay {
+            position: absolute;
+            top: 25%;
+            left: 32%;
+            width: 120px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.85) 0%, rgba(245, 158, 11, 0.55) 45%, rgba(59, 130, 246, 0.1) 75%, transparent 100%);
+            border-radius: 50%;
+            filter: blur(10px);
+            transition: all 0.25s;
+            pointer-events: none;
+        }
+
+        /* Token Pills */
+        .token-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 6px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .token-badge {
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 5px;
+            font-size: 0.73rem;
+            font-family: monospace;
+        }
+
+        .token-cls { background: #dbeafe; color: #1e40af; font-weight: bold; }
+        .token-sep { background: #fef3c7; color: #92400e; font-weight: bold; }
+        .token-pad { background: #f1f5f9; color: #94a3b8; }
+
+        /* Text Highlighting */
+        .report-text-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .hl-disease { background: #dbeafe; color: #1e40af; font-weight: bold; padding: 2px 5px; border-radius: 4px; }
+        .hl-negation { background: #fee2e2; color: #991b1b; font-weight: bold; padding: 2px 5px; border-radius: 4px; }
+        .hl-synonym { background: #fef3c7; color: #92400e; font-weight: bold; padding: 2px 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div>
+                <span class="badge-tag">Course 3 · AI For Medical Treatment</span>
+                <h1>Interactive Group Presentation Platform</h1>
+                <div class="subtitle">Complete Slide &amp; Live Demo Integration (Khương, Hiếu, Linh, Dung)</div>
+            </div>
+            
+            <!-- Top Nav: Member Navigation -->
+            <div class="member-nav">
+                <button class="member-btn active" id="btn_khuong" onclick="switchMember('khuong')">
+                    👨‍💼 Khương
+                </button>
+                <button class="member-btn" id="btn_hieu" onclick="switchMember('hieu')">
+                    👨‍💻 Hiếu
+                </button>
+                <button class="member-btn" id="btn_linh" onclick="switchMember('linh')">
+                    👨‍💻 Linh
+                </button>
+                <button class="member-btn" id="btn_dung" onclick="switchMember('dung')">
+                    👩‍💼 Dung
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- ========================================================================= -->
+        <!-- 1. KHƯƠNG - CLINICAL FOUNDATIONS & RCT POPULATION LEVEL                    -->
+        <!-- ========================================================================= -->
+        <div id="section_khuong" class="tab-content active">
+            <div class="member-banner" style="border-left: 5px solid var(--primary-light);">
+                <div>
+                    <span class="role-tag" style="background:#eff6ff; color:#1e40af;">Khương · Clinical Foundations &amp; Causal Inference</span>
+                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Clinical Trials, Risk Reduction (ARR / NNT) &amp; The Counterfactual Dilemma</h2>
+                    <p style="font-size: 0.84rem; color: var(--text-muted);">Core Question: "Does this medicine work for the whole population, and how many lives are saved?"</p>
+                </div>
+                <div style="text-align: right;"><span class="pill pill-success">Presentation Time: ~1.5 Mins</span></div>
+            </div>
+
+            <!-- Pipeline Flow -->
+            <div class="card" style="padding: 12px 18px; margin-bottom: 16px;">
+                <div style="font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
+                    🔄 Khương's Workflow Pipeline (Click Steps to Present):
+                </div>
+                <div class="pipeline-flow">
+                    <div class="flow-step active" id="k_step_1" onclick="setKhuongStep(1)">1. Clinical Question (Why RCT?)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="k_step_2" onclick="setKhuongStep(2)">2. Population Risk (ARR &amp; NNT)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="k_step_3" onclick="setKhuongStep(3)">3. Counterfactual Dilemma Y(1) vs Y(0)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="k_step_4" onclick="setKhuongStep(4)">4. Bridge to CATE (Hiếu)</div>
+                </div>
+            </div>
+
+            <!-- 6 Structured Blocks Grid for Khương -->
+            <div class="grid-blocks">
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="k_badge_scen">Step 1</span></div>
+                    <p style="font-size: 0.85rem; color: var(--text-main); margin-bottom: 8px;" id="k_scen_title"></p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted);" id="k_scen_desc"></p>
+                </div>
+
+                <!-- Card 2: DYNAMIC INPUTS FOR KHƯƠNG PER STEP -->
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📥 2. Inputs</h3><span class="block-badge badge-input" id="k_input_badge">Touch to Demo</span></div>
+                    
+                    <!-- Input Step 1: RCT Confounding vs Coin Flip Simulator -->
+                    <div id="k_in_step1" style="display: block;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Trial Allocation Mechanism:</div>
+                        <div style="display: flex; gap: 4px; margin-bottom: 8px;">
+                            <button class="preset-btn active" id="k_btn_alloc_rct" onclick="setKhuongAlloc('rct')">🎲 Coin Flip (Clean RCT)</button>
+                            <button class="preset-btn" id="k_btn_alloc_obs" onclick="setKhuongAlloc('obs')">👨‍⚕️ Doctor Choice (Biased)</button>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-header"><span>Backdoor Confounder Bias</span><span id="k_txt_bias" style="font-weight: bold; color: var(--success);">0.00 (Zero Bias)</span></div>
+                            <input type="range" class="slider" id="k_sl_bias" min="0" max="80" value="0" oninput="updateKhuongAllocSlider()">
+                        </div>
+                    </div>
+
+                    <!-- Input Step 2: Population Trial Sliders -->
+                    <div id="k_in_step2" style="display: none;">
+                        <div class="control-group">
+                            <div class="control-header"><span>Trial Patients (<span class="math-symbol">N</span>)</span><span id="k_txt_n" style="font-weight: bold; color: var(--primary);">1,200</span></div>
+                            <input type="range" class="slider" id="k_sl_n" min="500" max="3000" step="100" value="1200" oninput="updateKhuong()">
+                        </div>
+                        <div class="control-group">
+                            <div class="control-header"><span>Control Event Rate</span><span id="k_txt_ctrl" style="font-weight: bold; color: var(--danger);">35.0%</span></div>
+                            <input type="range" class="slider" id="k_sl_ctrl" min="15" max="60" step="1" value="35" oninput="updateKhuong()">
+                        </div>
+                        <div class="control-group">
+                            <div class="control-header"><span>Treatment Power (RRR)</span><span id="k_txt_rrr" style="font-weight: bold; color: var(--success);">40.0%</span></div>
+                            <input type="range" class="slider" id="k_sl_rrr" min="10" max="70" step="5" value="40" oninput="updateKhuong()">
+                        </div>
+                    </div>
+
+                    <!-- Input Step 3: Potential Outcome Patient Selector -->
+                    <div id="k_in_step3" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Select Patient to Probe Universe:</div>
+                        <div style="display: flex; gap: 4px; margin-bottom: 8px;">
+                            <button class="preset-btn active" id="k_btn_pt_1" onclick="setKhuongPatientUniverse(1)">Patient #1 (Treated)</button>
+                            <button class="preset-btn" id="k_btn_pt_2" onclick="setKhuongPatientUniverse(2)">Patient #2 (Control)</button>
+                            <button class="preset-btn" id="k_btn_pt_3" onclick="setKhuongPatientUniverse(3)">Patient #42 (Grandpa)</button>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--text-muted);">
+                            Probe the missing counterfactual state in the parallel universe!
+                        </div>
+                    </div>
+
+                    <!-- Input Step 4: Subgroup Cohort Risk Selector -->
+                    <div id="k_in_step4" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Select Patient Subgroup Cohort:</div>
+                        <div style="display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <button class="preset-btn active" id="k_btn_sub_all" onclick="setKhuongSubgroup('all')">All Patients (ATE)</button>
+                            <button class="preset-btn" id="k_btn_sub_high" onclick="setKhuongSubgroup('high')">Elderly SBP>160</button>
+                            <button class="preset-btn" id="k_btn_sub_low" onclick="setKhuongSubgroup('low')">Young SBP<120</button>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--text-muted);">
+                            Demonstrating why population ATE hides high-benefit vs low-benefit subgroups.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">🧠 3. What Statistics Does</h3><span class="block-badge badge-ml">Logic</span></div>
+                    <p style="font-size: 0.85rem; color: var(--text-main); margin-bottom: 6px;" id="k_ml_title"></p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted);" id="k_ml_desc"></p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Formula</span></div>
+                    <div class="formula-card" id="k_formula_card"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Results</span></div>
+                    
+                    <!-- Output View Step 1: Baseline Balance Table -->
+                    <div id="k_out_step1" style="display: block;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 4px;">Baseline Covariate Balance (RCT Table 1):</div>
+                        <table style="font-size: 0.76rem;">
+                            <thead><tr><th>Covariate</th><th>Placebo Group</th><th>Drug Group</th><th>|SMD| &lt; 0.1</th></tr></thead>
+                            <tbody id="k_table_smd_body">
+                                <tr><td>Mean Age</td><td>62.4 yrs</td><td>62.3 yrs</td><td><span class="pill pill-success">0.02 (Balanced)</span></td></tr>
+                                <tr><td>Mean SBP</td><td>145.1 mmHg</td><td>144.8 mmHg</td><td><span class="pill pill-success">0.03 (Balanced)</span></td></tr>
+                                <tr><td>Mean BMI</td><td>28.3 kg/m²</td><td>28.4 kg/m²</td><td><span class="pill pill-success">0.01 (Balanced)</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Output View Step 2: ARR / NNT Stat Boxes -->
+                    <div id="k_out_step2" style="display: none;">
+                        <div class="grid-2" style="margin-bottom: 8px;">
+                            <div class="stat-box"><div class="stat-label">ARR (Risk Drop)</div><div class="stat-val" style="color: var(--success);" id="k_disp_arr">+14.0%</div></div>
+                            <div class="stat-box"><div class="stat-label">NNT (Effort)</div><div class="stat-val" style="color: var(--primary);" id="k_disp_nnt">7.1</div></div>
+                        </div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Hospital translation: Treat <strong>7 patients</strong> to save <strong>1 life</strong>.</div>
+                    </div>
+
+                    <!-- Output View Step 3: Potential Outcomes Table -->
+                    <div id="k_out_step3" style="display: none;">
+                        <table style="font-size: 0.76rem;">
+                            <thead><tr><th>Patient</th><th>Assigned W</th><th>Factual Y</th><th>Counterfactual Y</th></tr></thead>
+                            <tbody id="k_table_pot_body">
+                                <tr><td>Patient #1</td><td>1 (Drug)</td><td>0 (Survived)</td><td><span class="pill pill-danger">? (Missing)</span></td></tr>
+                                <tr><td>Patient #2</td><td>0 (Placebo)</td><td>1 (Stroke)</td><td><span class="pill pill-danger">? (Missing)</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Output View Step 4: Heterogeneity Table -->
+                    <div id="k_out_step4" style="display: none;">
+                        <table style="font-size: 0.76rem;">
+                            <thead><tr><th>Subgroup</th><th>CATE Benefit</th><th>Action</th></tr></thead>
+                            <tbody id="k_table_sub_body">
+                                <tr><td>Grandpa An (High Risk)</td><td><strong style="color:var(--success);">+26.4%</strong></td><td><span class="pill pill-success">High Priority</span></td></tr>
+                                <tr><td>Alex (Low Risk)</td><td><strong style="color:var(--warning);">+5.2%</strong></td><td><span class="pill pill-neutral">Diet First</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Block 6: DYNAMIC PER STEP FOR KHƯƠNG -->
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title" id="k_block6_title">⚖️ 6. Causal Mechanism</h3><span class="block-badge badge-workflow" id="k_block6_badge">Details</span></div>
+                    
+                    <!-- View Step 1: Causal DAG -->
+                    <div id="k_v_step1" style="display: block;">
+                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 0.78rem; text-align: center; line-height: 1.7;">
+                            <strong>Causal Directed Acyclic Graph (DAG):</strong><br>
+                            <span style="color:var(--purple); font-weight:bold;">[Patient Health X]</span> &rarr; <span style="color:var(--danger); font-weight:bold;">[Outcome Y]</span><br>
+                            <span style="color:var(--success); font-weight:bold;">[Randomization Coin Toss]</span> &rarr; <span style="color:var(--primary); font-weight:bold;">[Treatment W]</span> &rarr; <span style="color:var(--danger); font-weight:bold;">[Outcome Y]</span><br>
+                            <span style="color:var(--success); font-size:11px; font-weight:bold;" id="k_dag_status">✔ Backdoor Confounding path from X to W is CUT!</span>
+                        </div>
+                    </div>
+
+                    <!-- View Step 2: 10-Patient Icon Grid -->
+                    <div id="k_v_step2" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Visualizing NNT = 7.1 Effort:</div>
+                        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; text-align: center; font-size: 1.1rem;">
+                            <div style="background:#d1fae5; border-radius:4px; padding:4px;" title="Saved by Drug">🟢</div>
+                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
+                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
+                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
+                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
+                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
+                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
+                            <div style="background:#fee2e2; border-radius:4px; padding:4px;" title="Adverse event despite treatment">🔴</div>
+                        </div>
+                        <div style="font-size: 0.74rem; color: var(--success); font-weight: bold; margin-top: 6px;">
+                            🟢 1 Patient Saved for every 7.1 Patients Treated.
+                        </div>
+                    </div>
+
+                    <!-- View Step 3: Counterfactual Parallel Universe Box -->
+                    <div id="k_v_step3" style="display: none;">
+                        <div style="background: #eff6ff; border: 1px dashed var(--primary-light); border-radius: 6px; padding: 8px; font-size: 0.8rem; line-height: 1.5;">
+                            <strong>The Parallel Universe Dilemma:</strong><br>
+                            • <strong>Real World:</strong> Patient #42 took drug &rarr; Survived.<br>
+                            • <strong>Parallel World:</strong> If not treated? Lost forever!<br>
+                            👉 <em>Machine learning must estimate this missing counterfactual.</em>
+                        </div>
+                    </div>
+
+                    <!-- View Step 4: Hand-off to Hiếu Button -->
+                    <div id="k_v_step4" style="display: none;">
+                        <div style="font-size: 0.8rem; margin-bottom: 8px; color: var(--text-main);">
+                            Population ATE treats everyone the same. We need Causal AI to personalize treatment!
+                        </div>
+                        <button class="btn" style="width: 100%; justify-content: center;" onclick="switchMember('hieu')">
+                            👉 Hand-off to Hiếu for CATE ML
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 2. HIẾU - INDIVIDUALIZED CATE (T vs S LEARNER) & SHAP EXPLAIN              -->
+        <!-- ========================================================================= -->
+        <div id="section_hieu" class="tab-content">
+            <div class="member-banner" style="border-left: 5px solid var(--success);">
+                <div>
+                    <span class="role-tag" style="background:#d1fae5; color:#065f46;">Hiếu · Treatment Effect Modeling &amp; Evaluation</span>
+                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Individualized Treatment Effect (CATE), T-Learner vs S-Learner, Matched Pairs &amp; SHAP</h2>
+                    <p style="font-size: 0.84rem; color: var(--text-muted);">Core Question: "Which specific patient benefits most from the medicine, and why?"</p>
+                </div>
+                <div style="text-align: right;"><span class="pill pill-success">Presentation Time: ~2.5 Mins</span></div>
+            </div>
+
+            <!-- Pipeline Flow -->
+            <div class="card" style="padding: 12px 18px; margin-bottom: 16px;">
+                <div style="font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
+                    🔄 Hiếu's Workflow Pipeline (Click Steps to Present):
+                </div>
+                <div class="pipeline-flow">
+                    <div class="flow-step active" id="h_step_1" onclick="setHieuPipelineStep(1)">1. Patient Covariates &amp; Baseline Risk</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="h_step_2" onclick="setHieuPipelineStep(2)">2. T-Learner vs S-Learner (Shrinkage)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="h_step_3" onclick="setHieuPipelineStep(3)">3. Matched Pairs &amp; C-for-benefit (0.6342)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="h_step_4" onclick="setHieuPipelineStep(4)">4. Local SHAP Waterfall Receipt</div>
+                </div>
+            </div>
+
+            <!-- 6 Structured Blocks Grid for Hiếu -->
+            <div class="grid-blocks">
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="h_badge_step">Step 1</span></div>
+                    <div id="h_preset_container" style="display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap;">
+                        <button class="preset-btn active" id="p_btn_1" onclick="setHieuPreset(70, 165, 31, 1)">👴 Grandpa An (High SBP 165)</button>
+                        <button class="preset-btn" id="p_btn_2" onclick="setHieuPreset(35, 118, 22, 2)">🏃 Alex (Normal SBP 118)</button>
+                        <button class="preset-btn" id="p_btn_3" onclick="setHieuPreset(58, 142, 28, 3)">👨 Uncle Nam (SBP 142)</button>
+                    </div>
+                    <p style="font-size: 0.84rem; color: var(--text-muted);" id="h_scenario_desc"></p>
+                </div>
+
+                <!-- Card 2: DYNAMIC INPUTS FOR HIẾU PER STEP -->
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📥 2. Inputs</h3><span class="block-badge badge-input">Touch to Demo</span></div>
+                    
+                    <!-- Input Step 1: Health Sliders -->
+                    <div id="h_in_step1" style="display: block;">
+                        <div class="control-group">
+                            <div class="control-header"><span>Age</span><span id="h_txt_age" style="font-weight: bold; color: var(--primary);">70 yrs</span></div>
+                            <input type="range" class="slider" id="h_sl_age" min="30" max="85" value="70" oninput="updateHieu()">
+                        </div>
+                        <div class="control-group">
+                            <div class="control-header"><span>Systolic Blood Pressure (SBP)</span><span id="h_txt_sbp" style="font-weight: bold; color: var(--primary);">165 mmHg</span></div>
+                            <input type="range" class="slider" id="h_sl_sbp" min="110" max="190" value="165" oninput="updateHieu()">
+                        </div>
+                        <div class="control-group">
+                            <div class="control-header"><span>Body Mass Index (BMI)</span><span id="h_txt_bmi" style="font-weight: bold; color: var(--primary);">31.0 kg/m²</span></div>
+                            <input type="range" class="slider" id="h_sl_bmi" min="18" max="40" step="0.5" value="31" oninput="updateHieu()">
+                        </div>
+                    </div>
+
+                    <!-- Input Step 2: Architecture Regularization & Model Switcher -->
+                    <div id="h_in_step2" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Choose Learner Architecture:</div>
+                        <div style="display: flex; gap: 4px; margin-bottom: 8px;">
+                            <button class="preset-btn active" id="h_btn_m_t" onclick="setHieuModelMode('t')">🌲🌲 T-Learner</button>
+                            <button class="preset-btn" id="h_btn_m_s" onclick="setHieuModelMode('s')">🌲 S-Learner (Shrinkage)</button>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-header"><span>Tree Splitting Regularization</span><span id="h_txt_reg" style="font-weight: bold; color: var(--purple);">Depth = 6</span></div>
+                            <input type="range" class="slider" id="h_sl_reg" min="2" max="12" value="6" oninput="updateHieuReg()">
+                        </div>
+                    </div>
+
+                    <!-- Input Step 3: Matched Pairs Testing -->
+                    <div id="h_in_step3" style="display: none;">
+                        <div style="font-size: 0.8rem; font-weight: bold; margin-bottom: 6px;">Simulated Matched Pairs in Validation Cohort:</div>
+                        <button class="btn" style="width: 100%; justify-content: center; margin-bottom: 8px;" onclick="resampleHieuPairs()">🎲 Resample Clinical Twin Pairs</button>
+                        <div style="font-size: 0.76rem; color: var(--text-muted);">
+                            Pairs two identical patients (one treated, one control) to evaluate treatment effect ranking without ground truth.
+                        </div>
+                    </div>
+
+                    <!-- Input Step 4: SHAP Attribution Explorer -->
+                    <div id="h_in_step4" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Interactive Feature Perturbation:</div>
+                        <div class="control-group">
+                            <div class="control-header"><span>SBP Perturbation</span><span id="h_txt_sbp_p" style="font-weight: bold; color: var(--success);">165 mmHg</span></div>
+                            <input type="range" class="slider" id="h_sl_sbp_p" min="110" max="190" value="165" oninput="updateHieuSHAPSliders()">
+                        </div>
+                        <div class="control-group">
+                            <div class="control-header"><span>Age Perturbation</span><span id="h_txt_age_p" style="font-weight: bold; color: var(--success);">70 yrs</span></div>
+                            <input type="range" class="slider" id="h_sl_age_p" min="30" max="85" value="70" oninput="updateHieuSHAPSliders()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">🧠 3. What ML Does</h3><span class="block-badge badge-ml">Algorithm</span></div>
+                    <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6;" id="h_ml_desc"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Formula</span></div>
+                    <div class="formula-card" id="h_formula_card"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Results</span></div>
+                    
+                    <!-- Output View Step 1, 2, 4: CATE Card & Prescription -->
+                    <div id="h_out_cate_box">
+                        <div style="background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
+                                <span>T-Learner CATE:</span>
+                                <span style="color: #1e40af;" id="h_disp_cate">+26.4% Benefit</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">
+                                <span>S-Learner (Shrinkage):</span>
+                                <span id="h_disp_s_cate">+15.2%</span>
+                            </div>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #166534; background: #f0fdf4; padding: 6px 10px; border-radius: 6px; font-weight: bold;" id="h_prescribe_badge">
+                            ✔ STRONGLY RECOMMEND IMMEDIATE DRUG PRESCRIPTION.
+                        </div>
+                    </div>
+
+                    <!-- Output View Step 3: Matched Pairs Table -->
+                    <div id="h_out_matched_box" style="display: none;">
+                        <table style="font-size: 0.78rem;">
+                            <thead><tr><th>Pair</th><th>Treated (Y₁)</th><th>Control (Y₀)</th><th>Observed Benefit</th><th>Result</th></tr></thead>
+                            <tbody id="h_matched_table_body">
+                                <tr><td><strong>Pair 1</strong></td><td>0 (Survived)</td><td>1 (Stroke)</td><td>+1 (Benefit)</td><td><span class="pill pill-success">Concordant</span></td></tr>
+                                <tr><td><strong>Pair 2</strong></td><td>0 (Survived)</td><td>1 (Stroke)</td><td>+1 (Benefit)</td><td><span class="pill pill-success">Concordant</span></td></tr>
+                                <tr><td><strong>Pair 3</strong></td><td>0 (Survived)</td><td>0 (Survived)</td><td>0 (Tie)</td><td><span class="pill pill-neutral">Risk Tie</span></td></tr>
+                            </tbody>
+                        </table>
+                        <div style="font-size: 0.78rem; color: var(--primary); font-weight: bold; margin-top: 6px;">
+                            ✔ Validation C-for-benefit = <strong>0.6342</strong> (Hospital-grade discriminative power).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Block 6: DYNAMIC PER STEP FOR HIẾU -->
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title" id="h_block6_title">🧾 6. ML Visualizer</h3><span class="block-badge badge-ml" id="h_block6_badge">Details</span></div>
+                    
+                    <!-- View Step 1: Baseline Health Gauge -->
+                    <div id="h_v_step1" style="display: block;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Baseline Risk Composition &sigma;(z):</div>
+                        <div class="disease-bar-row">
+                            <span style="width: 80px;">Untreated Risk</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="h_bar_ctrl" style="width: 48%; background: var(--danger);"></div></div>
+                            <span id="h_val_ctrl" style="font-weight: bold; width: 40px; text-align: right;">48.2%</span>
+                        </div>
+                        <div class="disease-bar-row">
+                            <span style="width: 80px;">Treated Risk</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="h_bar_trt" style="width: 22%; background: var(--success);"></div></div>
+                            <span id="h_val_trt" style="font-weight: bold; width: 40px; text-align: right;">21.8%</span>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--primary); font-weight: bold; margin-top: 6px;">
+                            👉 Individualized CATE = 48.2% - 21.8% = <strong>+26.4% Net Risk Drop</strong>.
+                        </div>
+                    </div>
+
+                    <!-- View Step 2: Architecture T vs S Diagram -->
+                    <div id="h_v_step2" style="display: none;">
+                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6;">
+                            • <strong>T-Learner:</strong> 🌲 Doctor A (Treated) + 🌲 Doctor B (Control) &rarr; Full interactions!<br>
+                            • <strong>S-Learner:</strong> 🌲 1 Model with W as 1 feature &rarr; Tree never splits on W &rarr; CATE collapses to 0.
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--danger); font-weight: bold; margin-top: 6px;">
+                            ⚠️ S-Learner suffers from extreme feature shrinkage hazard!
+                        </div>
+                    </div>
+
+                    <!-- View Step 3: C-for-benefit Benchmark Meter -->
+                    <div id="h_v_step3" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">C-for-benefit Benchmark Scale:</div>
+                        <div class="disease-bar-row">
+                            <span style="width: 90px;">0.50 (Random)</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 50%; background: #94a3b8;"></div></div>
+                            <span style="font-size:11px; width: 45px; text-align: right;">Coin Toss</span>
+                        </div>
+                        <div class="disease-bar-row">
+                            <span style="width: 90px;">0.63 (Our Model)</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 63%; background: var(--success);"></div></div>
+                            <span style="font-weight: bold; color:var(--success); width: 45px; text-align: right;">Hospital</span>
+                        </div>
+                        <div style="font-size: 0.74rem; color: var(--success); font-weight: bold; margin-top: 6px;">
+                            ✔ In Causal ML, 0.60–0.65 is the recognized international clinical benchmark.
+                        </div>
+                    </div>
+
+                    <!-- View Step 4: Local SHAP Waterfall Receipt -->
+                    <div id="h_v_step4" style="display: none;">
+                        <div style="font-size: 0.8rem; line-height: 1.6;">
+                            • Base Population Benefit: <strong>+14.0%</strong><br>
+                            • <span id="h_shap_sbp_lbl">➕ SBP (165 mmHg)</span>: <strong style="color:var(--success);" id="h_shap_sbp">+8.5% push</strong><br>
+                            • <span id="h_shap_age_lbl">➕ Age (70 yrs)</span>: <strong style="color:var(--success);" id="h_shap_age">+3.4% push</strong><br>
+                            • <span id="h_shap_bmi_lbl">➕ BMI (31.0)</span>: <strong style="color:var(--success);" id="h_shap_bmi">+0.5% push</strong><br>
+                            👉 <strong>Total CATE: <span id="h_shap_sum" style="color:var(--primary); font-weight:bold;">+26.4%</span></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 3. LINH - MEDICAL NLP & MODEL INTERPRETATION                               -->
+        <!-- ========================================================================= -->
+        <div id="section_linh" class="tab-content">
+            <div class="member-banner" style="border-left: 5px solid var(--purple);">
+                <div>
+                    <span class="role-tag" style="background:#f5f3ff; color:#6d28d9;">Linh · Medical NLP &amp; ML Interpretation Labs</span>
+                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Medical NLP (Text Cleaning, BERT) &amp; Vision Interpretation (Permutation, Grad-CAM)</h2>
+                    <p style="font-size: 0.84rem; color: var(--text-muted);">Scope: Fully aligned with practical lab notebooks in Week 2 (NLP) and Week 3 (Interpretation).</p>
+                </div>
+                <div style="text-align: right;"><span class="pill pill-purple">Presentation Time: ~2.5 Mins</span></div>
+            </div>
+
+            <!-- Pipeline Flow for Linh -->
+            <div class="card" style="padding: 12px 18px; margin-bottom: 16px;">
+                <div style="font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
+                    🔄 Linh's Workflow Pipeline (Click Steps to Present):
+                </div>
+                <div class="pipeline-flow">
+                    <div class="flow-step active" id="l_step_1" onclick="setLinhLab(1)">Lab 1: Clean Text (C3_W2_Lab_1)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="l_step_2" onclick="setLinhLab(2)">Lab 2: BERT Input Tensor (C3_W2_Lab_3)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="l_step_3" onclick="setLinhLab(3)">Lab 3: Permutation Method (C3_W3_Lab_1)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="l_step_4" onclick="setLinhLab(4)">Lab 4: Grad-CAM X-Ray (C3_W3_Lab_2 &amp; 3)</div>
+                </div>
+            </div>
+
+            <!-- 6 Structured Blocks Grid for Linh -->
+            <div class="grid-blocks">
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="l_badge_step">Lab 1</span></div>
+                    <p style="font-size: 0.85rem; color: var(--text-main); margin-bottom: 6px;" id="l_scenario_title"></p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted);" id="l_scenario_body"></p>
+                </div>
+
+                <!-- Card 2: DYNAMIC INPUTS FOR LINH PER STEP -->
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📥 2. Inputs</h3><span class="block-badge badge-input">Touch to Demo</span></div>
+                    
+                    <div id="l_input_clean_box">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Raw Messy Text:</div>
+                        <input type="text" id="l_dirty_input" value="Patient has fever and/or cough.. Possible pneumonia." style="width: 100%; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.82rem; margin-bottom: 6px;">
+                        <button class="btn" style="width: 100%; justify-content: center;" onclick="runLinhTextCleaner()">✨ Clean Medical Text</button>
+                    </div>
+
+                    <div id="l_input_nlp_box" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Choose Clinical Text to Tokenize:</div>
+                        <select style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.82rem;" id="l_text_select" onchange="runLinhTokenizer()">
+                            <option value="1">"Patient has fever and/or cough.. Possible pneumonia."</option>
+                            <option value="2">"Forxiga (dapagliflozin) reduces blood glucose levels."</option>
+                            <option value="3">"Chest X-ray shows right lower lobe consolidation."</option>
+                        </select>
+                    </div>
+
+                    <div id="l_input_perm_box" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Test Column Shuffling:</div>
+                        <button class="btn" style="width: 100%; margin-bottom: 6px; justify-content: center;" onclick="runLinhShuffle('age')">🔀 Shuffle 'Age' Feature</button>
+                        <button class="btn btn-outline" style="width: 100%; justify-content: center;" onclick="runLinhShuffle('sbp')">🔀 Shuffle 'Blood Pressure'</button>
+                    </div>
+
+                    <div id="l_input_cam_box" style="display: none;">
+                        <div class="control-header">
+                            <span>Grad-CAM Overlay Opacity</span>
+                            <span id="l_cam_op_txt" style="font-weight: bold; color: var(--purple);">80%</span>
+                        </div>
+                        <input type="range" class="slider" id="l_cam_sl_op" min="0" max="100" value="80" oninput="updateLinhHeatmap()">
+                        <div style="display: flex; gap: 4px; margin-top: 8px;">
+                            <button class="preset-btn active" id="l_dis_btn_1" onclick="setLinhDisease('pneumonia')">Pneumonia</button>
+                            <button class="preset-btn" id="l_dis_btn_2" onclick="setLinhDisease('cardiomegaly')">Cardiomegaly</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">🧠 3. What ML Does</h3><span class="block-badge badge-ml">Algorithm</span></div>
+                    <div style="font-size: 0.82rem; color: var(--text-main); line-height: 1.6;" id="l_ml_explanation"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Formula</span></div>
+                    <div class="formula-card" id="l_formula_card"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Results</span></div>
+                    
+                    <div id="l_out_clean_box">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--success); margin-bottom: 4px;">Normalized Output String:</div>
+                        <div class="report-text-box" id="l_cleaned_text_display" style="font-size: 0.82rem;">
+                            "Patient has fever or cough. Possible pneumonia."
+                        </div>
+                    </div>
+
+                    <div id="l_out_nlp_box" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary);">BERT Tensor Shape: <span style="font-family: monospace;">(1, 60)</span></div>
+                        <div class="token-list" id="l_token_badge_list"></div>
+                    </div>
+
+                    <div id="l_out_perm_box" style="display: none;">
+                        <table style="font-size: 0.8rem;">
+                            <thead><tr><th>Feature</th><th>Shuffled C-Index</th><th>Drop (&Delta;)</th></tr></thead>
+                            <tbody id="l_perm_table_body">
+                                <tr><td><strong>Age</strong></td><td>0.5531</td><td><strong style="color:var(--danger);">-0.2228 (High)</strong></td></tr>
+                                <tr><td><strong>Blood Pressure</strong></td><td>0.7058</td><td><strong style="color:var(--warning);">-0.0701 (Med)</strong></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="l_out_cam_metric" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--purple); margin-bottom: 4px;">Layer 424 Feature Map Activations:</div>
+                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 0.8rem;">
+                            • Feature Map Shape: <code>(10, 10, 1024)</code><br>
+                            • Max Gradient Weight &alpha;<sub>k</sub>: <strong>+0.842</strong><br>
+                            • Spatial Resolution: <code>10x10 &rarr; Upsampled to 224x224</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Block 6: DYNAMIC PER LAB FOR LINH -->
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title" id="l_block6_title">🩻 6. Lab Visualizer</h3><span class="block-badge badge-ml" id="l_block6_badge">Details</span></div>
+                    
+                    <div id="l_v_lab1" style="display: block;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Active Regex Normalization Rules:</div>
+                        <div class="rule-item"><span>Replace ambiguous slash:</span><span class="rule-code">/and\/or/i &rarr; "or"</span></div>
+                        <div class="rule-item"><span>Collapse consecutive dots:</span><span class="rule-code">/\.{2,}/ &rarr; "."</span></div>
+                        <div class="rule-item"><span>Collapse whitespace:</span><span class="rule-code">/\s+/ &rarr; " "</span></div>
+                        <div style="font-size: 0.76rem; color: var(--success); font-weight: bold; margin-top: 6px;">
+                            ✔ Standardized text prevents OOV token errors in BERT.
+                        </div>
+                    </div>
+
+                    <div id="l_v_lab2" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">BERT Embedding Composition:</div>
+                        <div style="background: #f1f5f9; border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6; margin-bottom: 6px;">
+                            • <strong>Token Embeddings:</strong> (1, 60, 768)<br>
+                            • <strong>Position Embeddings:</strong> (1, 60, 768)<br>
+                            • <strong>Segment Embeddings:</strong> (1, 60, 768)<br>
+                            👉 <strong>Total Layer Output:</strong> <code>Tensor Shape (1, 60, 768)</code>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--primary); font-weight: bold;">
+                            ✔ Attention Mask zeroes out all 38 [PAD] tokens so they don't corrupt Self-Attention.
+                        </div>
+                    </div>
+
+                    <div id="l_v_lab3" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Permutation Drop Ranking (&Delta; C-Index):</div>
+                        <div class="disease-bar-row">
+                            <span style="width: 85px;">1. Age</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 95%; background: var(--danger);"></div></div>
+                            <span style="font-weight: bold; width: 45px; color: var(--danger); text-align: right;">-0.2228</span>
+                        </div>
+                        <div class="disease-bar-row">
+                            <span style="width: 85px;">2. SBP</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 32%; background: var(--warning);"></div></div>
+                            <span style="font-weight: bold; width: 45px; color: var(--warning); text-align: right;">-0.0701</span>
+                        </div>
+                        <div class="disease-bar-row">
+                            <span style="width: 85px;">3. BMI</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 10%; background: #94a3b8;"></div></div>
+                            <span style="font-weight: bold; width: 45px; color: var(--text-muted); text-align: right;">-0.0150</span>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--danger); font-weight: bold; margin-top: 6px;">
+                            ✔ Proves model performance relies 3x more on Age than on Blood Pressure.
+                        </div>
+                    </div>
+
+                    <div id="l_v_lab4" style="display: none;">
+                        <div class="xray-container">
+                            <svg class="xray-bg-svg" viewBox="0 0 200 160">
+                                <path d="M40,20 Q60,10 100,20 Q140,10 160,20 Q170,80 155,140 Q100,150 100,100 Q100,150 45,140 Q30,80 40,20" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+                                <path d="M50,35 Q85,30 90,80 Q85,130 55,125 Q42,80 50,35" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                                <path d="M150,35 Q115,30 110,80 Q115,130 145,125 Q158,80 150,35" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                                <path id="svg_heart" d="M85,75 Q100,60 120,80 Q130,110 105,125 Q85,115 85,75" fill="#334155" opacity="0.7"/>
+                            </svg>
+                            <div class="heatmap-overlay" id="l_heatmap_blob"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--text-muted); margin-top: 6px;">
+                            <span>Layer 424 Activations (10, 10, 1024)</span>
+                            <span style="color: var(--purple); font-weight: bold;" id="l_cam_disease_lbl">Target: Pneumonia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- 4. DUNG - LABEL EXTRACTION & 14-DISEASE CNN TRAINING                       -->
+        <!-- ========================================================================= -->
+        <div id="section_dung" class="tab-content">
+            <div class="member-banner" style="border-left: 5px solid var(--warning);">
+                <div>
+                    <span class="role-tag" style="background:#fef3c7; color:#92400e;">Dung · Automated Labeling &amp; 14-Disease CNN Models</span>
+                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Automated Medical Labeling, 14-Disease CNN Vision Training &amp; F1 Evaluation</h2>
+                    <p style="font-size: 0.84rem; color: var(--text-muted);">Scope: Mining 100,000 text reports to train Multi-Label CNN Classifiers (DenseNet121) and evaluating rare diseases.</p>
+                </div>
+                <div style="text-align: right;"><span class="pill pill-warning">Presentation Time: ~2.0 Mins</span></div>
+            </div>
+
+            <!-- Fully Interactive Pipeline Flow for Dung -->
+            <div class="card" style="padding: 12px 18px; margin-bottom: 16px;">
+                <div style="font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
+                    🔄 Dung's Workflow Pipeline (Click Steps to Present):
+                </div>
+                <div class="pipeline-flow">
+                    <div class="flow-step active" id="d_flow_1" onclick="setDungPipelineStep(1)">1. Free-Text Reports</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="d_flow_2" onclick="setDungPipelineStep(2)">2. Synonyms &amp; 'Is-A' Trees</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="d_flow_3" onclick="setDungPipelineStep(3)">3. Negation Detection Rules</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="d_flow_4" onclick="setDungPipelineStep(4)">4. 14-Disease CNN Training</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="d_flow_5" onclick="setDungPipelineStep(5)">5. CNN F1 Threshold Simulator</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="d_flow_6" onclick="setDungPipelineStep(6)">6. 2026 Strategic Review</div>
+                </div>
+            </div>
+
+            <!-- 6 Structured Blocks Grid for Dung -->
+            <div class="grid-blocks">
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="d_block_badge_1">Step 1</span></div>
+                    <p style="font-size: 0.85rem; color: var(--text-main); margin-bottom: 6px;" id="d_scen_title"></p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted);" id="d_scen_desc"></p>
+                </div>
+
+                <!-- Card 2: DYNAMIC INPUTS FOR DUNG PER STEP -->
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📥 2. Inputs</h3><span class="block-badge badge-input">Touch to Demo</span></div>
+                    
+                    <!-- Input Step 1: PACS 100,000 Report Case Selector -->
+                    <div id="d_in_step1" style="display: block;">
+                        <div style="display: flex; gap: 4px; margin-bottom: 6px; flex-wrap: wrap;">
+                            <button class="preset-btn active" id="d_btn_rep_1" onclick="setDungReportCase(1)">Sample 1 (Negation)</button>
+                            <button class="preset-btn" id="d_btn_rep_2" onclick="setDungReportCase(2)">Sample 2 (Positive)</button>
+                            <button class="preset-btn" id="d_btn_rep_3" onclick="setDungReportCase(3)">Sample 3 (Synonym)</button>
+                        </div>
+                        <div class="report-text-box" id="d_interactive_report_box" style="font-size: 0.82rem;">
+                            "Lungs are clear. <span class="hl-negation">No evidence of</span> active <span class="hl-disease">pneumonia</span> or consolidation."
+                        </div>
+                    </div>
+
+                    <!-- Input Step 2: Medical Ontology & Synonym Term Picker -->
+                    <div id="d_in_step2" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Pick Medical Jargon Term:</div>
+                        <div style="display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <button class="preset-btn active" id="d_btn_ont_1" onclick="setDungOntologyTerm(1)">"airspace consolidation"</button>
+                            <button class="preset-btn" id="d_btn_ont_2" onclick="setDungOntologyTerm(2)">"bronchopneumonia"</button>
+                            <button class="preset-btn" id="d_btn_ont_3" onclick="setDungOntologyTerm(3)">"lung infiltrate"</button>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--text-muted);">
+                            Demonstrates how medical ontologies map non-standard text to master 14-disease taxonomy.
+                        </div>
+                    </div>
+
+                    <!-- Input Step 3: NegBio Trigger Modifier Rule Tester -->
+                    <div id="d_in_step3" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Test Negation Triggers:</div>
+                        <div style="display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <button class="preset-btn active" id="d_btn_neg_1" onclick="setDungNegBioCase(1)">"No evidence of..."</button>
+                            <button class="preset-btn" id="d_btn_neg_2" onclick="setDungNegBioCase(2)">"Lungs are free of..."</button>
+                            <button class="preset-btn" id="d_btn_neg_3" onclick="setDungNegBioCase(3)">"Positive for..."</button>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--text-muted);">
+                            Tests syntactic dependency trees to flip presence label from 1 to 0.
+                        </div>
+                    </div>
+
+                    <!-- Input Step 4: Chest X-Ray CNN Scan Selector -->
+                    <div id="d_in_step4" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Input Chest X-Ray to CNN:</div>
+                        <div style="display: flex; gap: 4px; margin-bottom: 8px;">
+                            <button class="preset-btn active" id="d_cnn_img_1" onclick="setDungCNNCase(1)">Scan #0599 (Pneumonia)</button>
+                            <button class="preset-btn" id="d_cnn_img_2" onclick="setDungCNNCase(2)">Scan #1204 (Cardiomegaly)</button>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--text-muted);">
+                            DenseNet121 Backbone &rarr; Global Avg Pooling &rarr; 14 Independent Sigmoid Units &sigma;(z_c).
+                        </div>
+                    </div>
+
+                    <!-- Input Step 5: CNN Sigmoid Decision Threshold Slider -->
+                    <div id="d_in_step5" style="display: none;">
+                        <div class="control-header">
+                            <span>CNN Sigmoid Decision Threshold:</span>
+                            <span id="d_txt_thresh" style="font-weight: bold; color: var(--warning);">0.50</span>
+                        </div>
+                        <input type="range" class="slider" id="d_sl_thresh" min="10" max="90" value="50" oninput="updateDungF1Sim()">
+                        <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 6px;">
+                            Move threshold to balance CNN Precision vs Recall on rare diseases!
+                        </div>
+                    </div>
+
+                    <!-- Input Step 6: 2026 AI Paradigm Selector -->
+                    <div id="d_in_step6" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Compare Modeling Paradigm:</div>
+                        <div style="display: flex; gap: 4px; margin-bottom: 8px;">
+                            <button class="preset-btn active" id="d_btn_par_1" onclick="setDungParadigm(1)">Classic Regex (2020)</button>
+                            <button class="preset-btn" id="d_btn_par_2" onclick="setDungParadigm(2)">Biomed Foundation VLM (2026)</button>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--text-muted);">
+                            Critique of automated multi-stage pipelines vs end-to-end foundation models.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">🧠 3. What ML &amp; CNN Does</h3><span class="block-badge badge-ml">Algorithm</span></div>
+                    <div style="font-size: 0.82rem; color: var(--text-main); line-height: 1.6;" id="d_nlp_desc"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Formula</span></div>
+                    <div class="formula-card" id="d_formula_card"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Results</span></div>
+                    
+                    <div id="d_out_table_wrapper">
+                        <table style="font-size: 0.8rem;" id="d_output_table">
+                            <thead><tr><th>Disease</th><th>Extracted/Predicted</th><th>Final Status</th></tr></thead>
+                            <tbody id="d_out_table_body">
+                                <tr><td><strong>Pneumonia</strong></td><td>Yes ("pneumonia")</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
+                                <tr><td><strong>Cardiomegaly</strong></td><td>No</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="d_out_cnn_bars" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">14-Class CNN Sigmoid Probabilities &sigma;(z_c):</div>
+                        <div class="disease-bar-row">
+                            <span style="width: 85px;">Pneumonia</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_pneu" style="width: 88%; background: var(--danger);"></div></div>
+                            <span id="d_val_pneu" style="font-weight: bold; width: 35px; text-align: right;">88%</span>
+                        </div>
+                        <div class="disease-bar-row">
+                            <span style="width: 85px;">Cardiomegaly</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_cardio" style="width: 14%; background: var(--primary-light);"></div></div>
+                            <span id="d_val_cardio" style="font-weight: bold; width: 35px; text-align: right;">14%</span>
+                        </div>
+                        <div class="disease-bar-row">
+                            <span style="width: 85px;">Effusion</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_eff" style="width: 6%; background: #94a3b8;"></div></div>
+                            <span id="d_val_eff" style="font-weight: bold; width: 35px; text-align: right;">6%</span>
+                        </div>
+                        <div class="disease-bar-row">
+                            <span style="width: 85px;">Infiltration</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_inf" style="width: 72%; background: var(--warning);"></div></div>
+                            <span id="d_val_inf" style="font-weight: bold; width: 35px; text-align: right;">72%</span>
+                        </div>
+                    </div>
+
+                    <div style="font-size: 0.78rem; color: var(--success); font-weight: bold; margin-top: 6px;" id="d_f1_score_summary">
+                        ✔ Extraction F1-Score: 0.921 on 1,000 test reports
+                    </div>
+                </div>
+
+                <!-- Block 6: DYNAMIC PER STEP FOR DUNG -->
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title" id="d_block6_title">🗂️ 6. System Architecture</h3><span class="block-badge badge-workflow" id="d_block6_badge">Details</span></div>
+                    
+                    <div id="d_v_step1" style="display: block;">
+                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.7; text-align: center;">
+                            <strong>PACS Big Data Pipeline:</strong><br>
+                            🏥 100,000 Unlabelled DICOM Images &rarr; 📝 Free-Text Radiology Summaries &rarr; 🤖 Dung's Automated Rule Parser &rarr; 🏷️ Clean Binary Target Labels!
+                        </div>
+                    </div>
+
+                    <div id="d_v_step2" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Medical Ontology Tree Hierarchy:</div>
+                        <div style="background: #f1f5f9; border-radius: 6px; padding: 8px; font-size: 0.76rem; line-height: 1.6;">
+                            └── <strong>Pneumonia (Class #1)</strong><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;├── <em>is-a:</em> Bronchopneumonia<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;├── <em>synonym:</em> Airspace consolidation<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;└── <em>synonym:</em> Lung infiltrate
+                        </div>
+                    </div>
+
+                    <div id="d_v_step3" style="display: none;">
+                        <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6;">
+                            <strong>NegBio Dependency Tree:</strong><br>
+                            [No evidence of] &mdash;(negation modifier)&rarr; [Pneumonia]<br>
+                            👉 <em>Trigger matches within 3-token window &rarr; Rule flips output label from 1 to 0!</em>
+                        </div>
+                    </div>
+
+                    <div id="d_v_step4" style="display: none;">
+                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6;">
+                            <strong>DenseNet121 Architecture:</strong><br>
+                            Input Image (224x224x3) &rarr; Conv Blocks &rarr; Layer 424 Features (10x10x1024) &rarr; Global Avg Pool &rarr; <strong>14 Sigmoid Heads &sigma;(z_c)</strong>.
+                        </div>
+                    </div>
+
+                    <div id="d_v_step5" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Confusion Matrix on 1,000 Scans (1% Prevalence):</div>
+                        <table style="font-size: 0.74rem;">
+                            <thead><tr><th>Metric</th><th>Count</th><th>Clinical Impact</th></tr></thead>
+                            <tbody>
+                                <tr><td>True Positive (TP)</td><td>9</td><td><span class="pill pill-success">Life Saved</span></td></tr>
+                                <tr><td>False Negative (FN)</td><td>1</td><td><span class="pill pill-danger">Missed Sick Patient!</span></td></tr>
+                                <tr><td>False Positive (FP)</td><td>1</td><td><span class="pill pill-warning">Extra Followup</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="d_v_step6" style="display: none;">
+                        <div style="background: #f5f3ff; border: 1px solid #ddd6fe; border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6;">
+                            <strong>2026 Vision-Language Frontier:</strong><br>
+                            • <strong>Old (2020):</strong> Regex rules &rarr; Labels &rarr; Train CNN from scratch.<br>
+                            • <strong>New (2026):</strong> Zero-shot Biomedical Vision-Language Models (BiomedCLIP, LLaVA-Med).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. TOP MEMBER NAVIGATION
+        // ==========================================
+        function switchMember(memberKey) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.member-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById('section_' + memberKey).classList.add('active');
+            document.getElementById('btn_' + memberKey).classList.add('active');
+
+            if (memberKey === 'khuong') setKhuongStep(1);
+            if (memberKey === 'hieu') setHieuPipelineStep(1);
+            if (memberKey === 'linh') setLinhLab(1);
+            if (memberKey === 'dung') setDungPipelineStep(1);
+        }
+
+        // ==========================================
+        // 2. KHƯƠNG LOGIC & DYNAMIC INPUTS & MATH
+        // ==========================================
+        function setKhuongStep(step) {
+            document.querySelectorAll('#section_khuong .flow-step').forEach((s, idx) => {
+                s.classList.toggle('active', idx === (step - 1));
+            });
+
+            document.getElementById('k_badge_scen').innerText = `Step ${step}`;
+            const mathCard = document.getElementById('k_formula_card');
+            const b6Title = document.getElementById('k_block6_title');
+            const b6Badge = document.getElementById('k_block6_badge');
+
+            // Dynamic Inputs (Card 2)
+            document.getElementById('k_in_step1').style.display = (step === 1) ? 'block' : 'none';
+            document.getElementById('k_in_step2').style.display = (step === 2) ? 'block' : 'none';
+            document.getElementById('k_in_step3').style.display = (step === 3) ? 'block' : 'none';
+            document.getElementById('k_in_step4').style.display = (step === 4) ? 'block' : 'none';
+
+            // Dynamic Outputs (Card 5)
+            document.getElementById('k_out_step1').style.display = (step === 1) ? 'block' : 'none';
+            document.getElementById('k_out_step2').style.display = (step === 2) ? 'block' : 'none';
+            document.getElementById('k_out_step3').style.display = (step === 3) ? 'block' : 'none';
+            document.getElementById('k_out_step4').style.display = (step === 4) ? 'block' : 'none';
+
+            // Dynamic Visualizer (Card 6)
+            document.getElementById('k_v_step1').style.display = (step === 1) ? 'block' : 'none';
+            document.getElementById('k_v_step2').style.display = (step === 2) ? 'block' : 'none';
+            document.getElementById('k_v_step3').style.display = (step === 3) ? 'block' : 'none';
+            document.getElementById('k_v_step4').style.display = (step === 4) ? 'block' : 'none';
+
+            if (step === 1) {
+                b6Title.innerHTML = "⚖️ 6. Causal Mechanism (DAG)";
+                b6Badge.innerText = "Causal Graph";
+
+                document.getElementById('k_scen_title').innerHTML = "<strong>Step 1: Why Randomize? (Eliminating Confounders).</strong>";
+                document.getElementById('k_scen_desc').innerText = "Doctors give drugs to sicker patients. Passive correlation confuses illness with drug side-effects. Randomization cuts all confounding arcs!";
+                document.getElementById('k_ml_title').innerHTML = "<strong>Causal Identifiability:</strong>";
+                document.getElementById('k_ml_desc').innerText = "Under RCT, P(Y=1 | do(W=1)) equals observational P(Y=1 | W=1) because baseline covariates are identical in expectation.";
+                mathCard.innerHTML = `
+                    <strong>Causal Identifiability under RCT:</strong><br>
+                    <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">do</span>(<span class="math-symbol">W</span>=1)) = <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">W</span>=1)<br>
+                    <em>No backdoor paths &rarr; Confounding bias is mathematically ZERO.</em>
+                `;
+            } else if (step === 2) {
+                b6Title.innerHTML = "👥 6. Visualizing NNT = 7.1 Effort";
+                b6Badge.innerText = "10-Patient Grid";
+
+                document.getElementById('k_scen_title').innerHTML = "<strong>Step 2: Population Risk Drop (ARR &amp; NNT).</strong>";
+                document.getElementById('k_scen_desc').innerText = "Calculating population Absolute Risk Reduction and the effort needed to save 1 life.";
+                document.getElementById('k_ml_title').innerHTML = "<strong>Population Risk Difference:</strong>";
+                document.getElementById('k_ml_desc').innerText = "ARR calculates absolute survival margin. NNT = 1 / ARR translates directly to hospital economics.";
+                updateKhuong();
+            } else if (step === 3) {
+                b6Title.innerHTML = "⏳ 6. Parallel Universe Dilemma";
+                b6Badge.innerText = "Neyman-Rubin";
+
+                document.getElementById('k_scen_title').innerHTML = "<strong>Step 3: The Counterfactual Dilemma (Neyman-Rubin).</strong>";
+                document.getElementById('k_scen_desc').innerText = "For every single patient, we only observe one outcome: Y = W·Y(1) + (1-W)·Y(0). The counterfactual is missing forever!";
+                document.getElementById('k_ml_title').innerHTML = "<strong>The Fundamental Dilemma:</strong>";
+                document.getElementById('k_ml_desc').innerText = "Since we cannot clone patient #42 into two parallel universes, machine learning must predict the missing counterfactual from thousands of similar patients.";
+                setKhuongPatientUniverse(1);
+            } else if (step === 4) {
+                b6Title.innerHTML = "🤝 6. Bridge to Machine Learning";
+                b6Badge.innerText = "CATE Transition";
+
+                document.getElementById('k_scen_title').innerHTML = "<strong>Step 4: Population ATE vs Subgroup Heterogeneity (CATE).</strong>";
+                document.getElementById('k_scen_desc').innerText = "Population ATE treats everyone the same. But Grandpa An (high risk) gains +26.4%, while Alex gains only +5.2%. We need CATE ML!";
+                document.getElementById('k_ml_title').innerHTML = "<strong>Subgroup Heterogeneity:</strong>";
+                document.getElementById('k_ml_desc').innerText = "CATE models individual patient benefit conditional on covariates X = x.";
+                setKhuongSubgroup('all');
+            }
+        }
+
+        function setKhuongAlloc(mode) {
+            const isRCT = (mode === 'rct');
+            document.getElementById('k_btn_alloc_rct').classList.toggle('active', isRCT);
+            document.getElementById('k_btn_alloc_obs').classList.toggle('active', !isRCT);
+            document.getElementById('k_sl_bias').value = isRCT ? 0 : 45;
+            updateKhuongAllocSlider();
+        }
+
+        function updateKhuongAllocSlider() {
+            const bias = parseInt(document.getElementById('k_sl_bias').value);
+            const txt = document.getElementById('k_txt_bias');
+            const smdTable = document.getElementById('k_table_smd_body');
+            const dagStatus = document.getElementById('k_dag_status');
+
+            if (bias === 0) {
+                txt.innerText = "0.00 (Clean RCT - Zero Bias)";
+                txt.style.color = "var(--success)";
+                smdTable.innerHTML = `
+                    <tr><td>Mean Age</td><td>62.4 yrs</td><td>62.3 yrs</td><td><span class="pill pill-success">0.02 (Balanced)</span></td></tr>
+                    <tr><td>Mean SBP</td><td>145.1 mmHg</td><td>144.8 mmHg</td><td><span class="pill pill-success">0.03 (Balanced)</span></td></tr>
+                    <tr><td>Mean BMI</td><td>28.3 kg/m²</td><td>28.4 kg/m²</td><td><span class="pill pill-success">0.01 (Balanced)</span></td></tr>
+                `;
+                dagStatus.innerHTML = "✔ Backdoor Confounding path from X to W is CUT by Coin Toss!";
+                dagStatus.style.color = "var(--success)";
+            } else {
+                const smdAge = (bias * 0.008 + 0.12).toFixed(2);
+                const smdBP = (bias * 0.012 + 0.18).toFixed(2);
+                txt.innerText = `+${(bias/100).toFixed(2)} (Confounded!)`;
+                txt.style.color = "var(--danger)";
+                smdTable.innerHTML = `
+                    <tr><td>Mean Age</td><td>58.2 yrs</td><td>71.4 yrs</td><td><span class="pill pill-danger">${smdAge} (BIASED)</span></td></tr>
+                    <tr><td>Mean SBP</td><td>132.0 mmHg</td><td>168.5 mmHg</td><td><span class="pill pill-danger">${smdBP} (BIASED)</span></td></tr>
+                    <tr><td>Mean BMI</td><td>26.1 kg/m²</td><td>32.8 kg/m²</td><td><span class="pill pill-danger">0.35 (BIASED)</span></td></tr>
+                `;
+                dagStatus.innerHTML = "⚠️ WARNING: Backdoor path active! Doctors gave drug to sicker elderly.";
+                dagStatus.style.color = "var(--danger)";
+            }
+        }
+
+        function setKhuongPatientUniverse(id) {
+            document.getElementById('k_btn_pt_1').classList.toggle('active', id === 1);
+            document.getElementById('k_btn_pt_2').classList.toggle('active', id === 2);
+            document.getElementById('k_btn_pt_3').classList.toggle('active', id === 3);
+
+            const tbody = document.getElementById('k_table_pot_body');
+            const mathCard = document.getElementById('k_formula_card');
+
+            if (id === 1) {
+                tbody.innerHTML = `
+                    <tr style="background:#eff6ff;"><td><strong>Patient #1</strong></td><td>1 (Drug Arm)</td><td><strong style="color:var(--success);">0 (Survived)</strong></td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
+                    <tr><td>Patient #2</td><td>0 (Placebo Arm)</td><td>1 (Stroke)</td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
+                `;
+                mathCard.innerHTML = `
+                    <strong>Patient #1 Observed:</strong> <span class="math-symbol">W</span><sub>1</sub> = 1 &rarr; <span class="math-symbol">Y</span><sub>1</sub>(1) = 0<br>
+                    <strong>Missing:</strong> <span class="math-symbol">Y</span><sub>1</sub>(0) is completely unobservable.
+                `;
+            } else if (id === 2) {
+                tbody.innerHTML = `
+                    <tr><td>Patient #1</td><td>1 (Drug Arm)</td><td>0 (Survived)</td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
+                    <tr style="background:#fee2e2;"><td><strong>Patient #2</strong></td><td>0 (Placebo Arm)</td><td><strong style="color:var(--danger);">1 (Stroke)</strong></td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
+                `;
+                mathCard.innerHTML = `
+                    <strong>Patient #2 Observed:</strong> <span class="math-symbol">W</span><sub>2</sub> = 0 &rarr; <span class="math-symbol">Y</span><sub>2</sub>(0) = 1<br>
+                    <strong>Missing:</strong> <span class="math-symbol">Y</span><sub>2</sub>(1) if they had taken the drug is lost forever.
+                `;
+            } else {
+                tbody.innerHTML = `
+                    <tr style="background:#f0fdf4;"><td><strong>Patient #42 (Grandpa An)</strong></td><td>1 (Treated)</td><td><strong style="color:var(--success);">0 (No Event)</strong></td><td><span class="pill pill-danger">? (Would have had stroke)</span></td></tr>
+                `;
+                mathCard.innerHTML = `
+                    <strong>Individual Treatment Effect (ITE):</strong><br>
+                    <span class="math-symbol">ITE</span><sub>42</sub> = <span class="math-symbol">Y</span><sub>42</sub>(0) &minus; <span class="math-symbol">Y</span><sub>42</sub>(1) &rarr; <em>Cannot calculate directly without ML!</em>
+                `;
+            }
+        }
+
+        function setKhuongSubgroup(group) {
+            document.getElementById('k_btn_sub_all').classList.toggle('active', group === 'all');
+            document.getElementById('k_btn_sub_high').classList.toggle('active', group === 'high');
+            document.getElementById('k_btn_sub_low').classList.toggle('active', group === 'low');
+
+            const tbody = document.getElementById('k_table_sub_body');
+            const mathCard = document.getElementById('k_formula_card');
+
+            if (group === 'all') {
+                tbody.innerHTML = `
+                    <tr style="background:#eff6ff;"><td><strong>All Trial Patients (ATE)</strong></td><td><strong style="color:var(--primary);">+14.0%</strong></td><td><span class="pill pill-success">Average Benefit</span></td></tr>
+                    <tr><td>Grandpa An (High Risk SBP 165)</td><td>+26.4%</td><td><span class="pill pill-success">Urgent</span></td></tr>
+                    <tr><td>Alex (Low Risk SBP 118)</td><td>+5.2%</td><td><span class="pill pill-neutral">Diet First</span></td></tr>
+                `;
+                mathCard.innerHTML = `
+                    <strong>Population Average Treatment Effect:</strong><br>
+                    <span class="math-symbol">ATE</span> = 𝔼[<span class="math-symbol">Y</span>(0) &minus; <span class="math-symbol">Y</span>(1)] = <strong>+14.0%</strong>
+                `;
+            } else if (group === 'high') {
+                tbody.innerHTML = `
+                    <tr style="background:#f0fdf4;"><td><strong>Elderly High Risk (SBP 165)</strong></td><td><strong style="color:var(--success); font-size:0.95rem;">+26.4% (Massive!)</strong></td><td><span class="pill pill-success">High Priority</span></td></tr>
+                `;
+                mathCard.innerHTML = `
+                    <strong>High-Risk Conditional ATE:</strong><br>
+                    <span class="math-symbol">CATE</span>(<span class="math-symbol">x</span><sub>elderly</sub>) = 𝔼[<span class="math-symbol">Y</span>(0) &minus; <span class="math-symbol">Y</span>(1) | SBP&gt;160] = <strong>+26.4%</strong>
+                `;
+            } else {
+                tbody.innerHTML = `
+                    <tr style="background:#fff7ed;"><td><strong>Young Low Risk (SBP 118)</strong></td><td><strong style="color:var(--warning);">+5.2% (Marginal)</strong></td><td><span class="pill pill-neutral">Diet First</span></td></tr>
+                `;
+                mathCard.innerHTML = `
+                    <strong>Low-Risk Conditional ATE:</strong><br>
+                    <span class="math-symbol">CATE</span>(<span class="math-symbol">x</span><sub>young</sub>) = 𝔼[<span class="math-symbol">Y</span>(0) &minus; <span class="math-symbol">Y</span>(1) | SBP&le;120] = <strong>+5.2%</strong>
+                `;
+            }
+        }
+
+        function updateKhuong() {
+            const n = parseInt(document.getElementById('k_sl_n').value);
+            const p_ctrl = parseInt(document.getElementById('k_sl_ctrl').value) / 100;
+            const rrr = parseInt(document.getElementById('k_sl_rrr').value) / 100;
+
+            const p_trt = p_ctrl * (1 - rrr);
+            const arr = p_ctrl - p_trt;
+            const nnt = 1 / arr;
+
+            document.getElementById('k_txt_n').innerText = n.toLocaleString();
+            document.getElementById('k_txt_ctrl').innerText = (p_ctrl * 100).toFixed(1) + '%';
+            document.getElementById('k_txt_rrr').innerText = (rrr * 100).toFixed(1) + '%';
+
+            document.getElementById('k_disp_arr').innerText = '+' + (arr * 100).toFixed(1) + '%';
+            document.getElementById('k_disp_nnt').innerText = nnt.toFixed(1);
+
+            document.getElementById('k_formula_card').innerHTML = `
+                <strong>ARR (Absolute Risk Reduction):</strong><br>
+                <span class="math-symbol">ARR</span> = <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1|<span class="math-symbol">W</span>=0) &minus; <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1|<span class="math-symbol">W</span>=1) = <strong>+${(arr * 100).toFixed(1)}%</strong><br>
+                <strong>NNT (Number Needed to Treat):</strong><br>
+                <span class="math-symbol">NNT</span> = 1 / <span class="math-symbol">ARR</span> = <strong>${nnt.toFixed(1)} patients</strong>
+            `;
+        }
+
+        // ==========================================
+        // 3. HIẾU FULLY DYNAMIC INPUTS & MATH
+        // ==========================================
+        function setHieuPipelineStep(step) {
+            document.querySelectorAll('#section_hieu .flow-step').forEach((s, idx) => {
+                s.classList.toggle('active', idx === (step - 1));
+            });
+
+            document.getElementById('h_badge_step').innerText = `Step ${step}`;
+
+            // Dynamic Inputs (Card 2)
+            document.getElementById('h_in_step1').style.display = (step === 1) ? 'block' : 'none';
+            document.getElementById('h_in_step2').style.display = (step === 2) ? 'block' : 'none';
+            document.getElementById('h_in_step3').style.display = (step === 3) ? 'block' : 'none';
+            document.getElementById('h_in_step4').style.display = (step === 4) ? 'block' : 'none';
+
+            // Preset bar only on relevant steps
+            document.getElementById('h_preset_container').style.display = (step === 1 || step === 4) ? 'flex' : 'none';
+
+            // Outputs
+            const isMatchedStep = (step === 3);
+            document.getElementById('h_out_cate_box').style.display = isMatchedStep ? 'none' : 'block';
+            document.getElementById('h_out_matched_box').style.display = isMatchedStep ? 'block' : 'none';
+
+            // Dynamic Visualizer (Card 6)
+            document.getElementById('h_v_step1').style.display = (step === 1) ? 'block' : 'none';
+            document.getElementById('h_v_step2').style.display = (step === 2) ? 'block' : 'none';
+            document.getElementById('h_v_step3').style.display = (step === 3) ? 'block' : 'none';
+            document.getElementById('h_v_step4').style.display = (step === 4) ? 'block' : 'none';
+
+            const mathCard = document.getElementById('h_formula_card');
+            const b6Title = document.getElementById('h_block6_title');
+            const b6Badge = document.getElementById('h_block6_badge');
+
+            if (step === 1) {
+                b6Title.innerHTML = "📊 6. Baseline Risk Radar";
+                b6Badge.innerText = "Risk Composition";
+
+                document.getElementById('h_scenario_desc').innerText = "Step 1: Patient Covariates X = (Age, SBP, BMI). Predicting baseline disease risk without treatment.";
+                document.getElementById('h_ml_desc').innerHTML = "<strong>Baseline Risk Logistic Function:</strong><br>Maps linear combination of risk factors to baseline event probability &sigma;(z) &in; [0, 1].";
+                mathCard.innerHTML = `
+                    <strong>Baseline Risk Model:</strong><br>
+                    <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>(0)=1 | <span class="math-symbol">X</span>=<span class="math-symbol">x</span>) = &sigma;(&beta;<sub>0</sub> + &beta;<sub>1</sub>&middot;Age + &beta;<sub>2</sub>&middot;SBP + &beta;<sub>3</sub>&middot;BMI)<br>
+                    <em>High baseline risk patients often experience highest absolute benefit.</em>
+                `;
+                updateHieu();
+            } else if (step === 2) {
+                b6Title.innerHTML = "🌲🌲 6. T-Learner vs S-Learner Architecture";
+                b6Badge.innerText = "Model Structure";
+
+                document.getElementById('h_scenario_desc').innerText = "Step 2: Comparing T-Learner (2 independent models) vs S-Learner (1 combined model with tree shrinkage).";
+                document.getElementById('h_ml_desc').innerHTML = "<strong>🌲🌲 T-Learner vs ⚠️ S-Learner:</strong><br>T-Learner fits &mu;&#770;₁ and &mu;&#770;₀ separately. S-Learner includes W as 1 feature; in decision trees, W is rarely split on &rarr; CATE collapses to 0.";
+                setHieuModelMode('t');
+            } else if (step === 3) {
+                b6Title.innerHTML = "🎯 6. C-for-benefit Benchmark Meter";
+                b6Badge.innerText = "Validation Score";
+
+                document.getElementById('h_scenario_desc').innerText = "Step 3: Matched Pairs Testing. We pair similar treated & control patients to evaluate if AI ranks benefit correctly.";
+                document.getElementById('h_ml_desc').innerHTML = "<strong>Matched Pairs Concordance:</strong><br>Computes observed pair difference y_d = Y_ctrl - Y_trt &isin; {-1 (Harm), 0 (Tie), +1 (Benefit)} and tests concordance with predicted CATE.";
+                mathCard.innerHTML = `
+                    <strong>Pair Observed Benefit:</strong> <span class="math-symbol">y</span><sub>d</sub> = <span class="math-symbol">Y</span><sub>ctrl</sub> &minus; <span class="math-symbol">Y</span><sub>trt</sub> &isin; {&minus;1, 0, +1}<br>
+                    <strong>C-for-benefit:</strong> (<span class="math-symbol">Concordant</span> + 0.5 &times; <span class="math-symbol">Ties</span>) / <span class="math-symbol">Permissible</span> = <strong>0.6342</strong>
+                `;
+                resampleHieuPairs();
+            } else if (step === 4) {
+                b6Title.innerHTML = "🧾 6. Local SHAP Waterfall Receipt";
+                b6Badge.innerText = "TreeSHAP";
+
+                document.getElementById('h_scenario_desc').innerText = "Step 4: Local SHAP Explanation Receipt. Explaining exact feature contributions to the physician.";
+                document.getElementById('h_ml_desc').innerHTML = "<strong>Shapley Additivity:</strong><br>Decomposes individual CATE into base trial effect plus exact marginal contributions from SBP, Age, and BMI.";
+                mathCard.innerHTML = `
+                    <strong>Shapley Efficiency Theorem:</strong><br>
+                    <span class="math-symbol">f</span>(<span class="math-symbol">x</span>) = 𝔼[<span class="math-symbol">f</span>(<span class="math-symbol">X</span>)] + &sum;<sub>i=1</sub><sup>M</sup> &phi;<sub>i</sub>(<span class="math-symbol">x</span>)<br>
+                    <em>Guarantees exact fairness and local additivity for clinical trust.</em>
+                `;
+                updateHieu();
+            }
+        }
+
+        function setHieuModelMode(mode) {
+            const isT = (mode === 't');
+            document.getElementById('h_btn_m_t').classList.toggle('active', isT);
+            document.getElementById('h_btn_m_s').classList.toggle('active', !isT);
+
+            const mathCard = document.getElementById('h_formula_card');
+            if (isT) {
+                mathCard.innerHTML = `
+                    <strong>T-Learner (Two Models):</strong><br>
+                    <span class="math-symbol">CATE</span><sub>T</sub>(<span class="math-symbol">x</span>) = &mu;&#770;₀(<span class="math-symbol">x</span>) &minus; &mu;&#770;₁(<span class="math-symbol">x</span>) = <strong>+26.4%</strong><br>
+                    <em>No shrinkage bias &middot; Full treatment interaction.</em>
+                `;
+            } else {
+                mathCard.innerHTML = `
+                    <strong>S-Learner (Single Model with Shrinkage):</strong><br>
+                    <span class="math-symbol">CATE</span><sub>S</sub>(<span class="math-symbol">x</span>) = &mu;&#770;(<span class="math-symbol">x</span>, 0) &minus; &mu;&#770;(<span class="math-symbol">x</span>, 1) = <strong style="color:var(--danger);">+15.2% (Underestimated!)</strong><br>
+                    <em>Decision trees penalize treatment feature W &rarr; Collapses towards zero.</em>
+                `;
+            }
+        }
+
+        function updateHieuReg() {
+            const depth = document.getElementById('h_sl_reg').value;
+            document.getElementById('h_txt_reg').innerText = `Depth = ${depth}`;
+        }
+
+        function updateHieuSHAPSliders() {
+            const sbp = document.getElementById('h_sl_sbp_p').value;
+            const age = document.getElementById('h_sl_age_p').value;
+            document.getElementById('h_txt_sbp_p').innerText = `${sbp} mmHg`;
+            document.getElementById('h_txt_age_p').innerText = `${age} yrs`;
+            document.getElementById('h_sl_sbp').value = sbp;
+            document.getElementById('h_sl_age').value = age;
+            updateHieu();
+        }
+
+        function setHieuPreset(age, sbp, bmi, btnId = 1) {
+            document.getElementById('h_sl_age').value = age;
+            document.getElementById('h_sl_sbp').value = sbp;
+            document.getElementById('h_sl_bmi').value = bmi;
+
+            if (document.getElementById('h_sl_sbp_p')) {
+                document.getElementById('h_sl_sbp_p').value = sbp;
+                document.getElementById('h_sl_age_p').value = age;
+                document.getElementById('h_txt_sbp_p').innerText = `${sbp} mmHg`;
+                document.getElementById('h_txt_age_p').innerText = `${age} yrs`;
+            }
+
+            document.querySelectorAll('#h_preset_container .preset-btn').forEach((b, idx) => {
+                b.classList.toggle('active', idx === (btnId - 1));
+            });
+
+            const descs = {
+                1: "Grandpa An is 70 with SBP 165 mmHg. High baseline risk means he receives a massive +26.4% individualized benefit!",
+                2: "Alex is 35 with SBP 118 mmHg. Baseline risk is already low, so treatment benefit is only +5.2%. Diet recommended.",
+                3: "Uncle Nam is 58 with SBP 142 mmHg. Moderate risk candidate gaining +16.8% risk reduction."
+            };
+            document.getElementById('h_scenario_desc').innerText = descs[btnId] || descs[1];
+
+            updateHieu();
+        }
+
+        function updateHieu() {
+            const age = parseFloat(document.getElementById('h_sl_age').value);
+            const sbp = parseFloat(document.getElementById('h_sl_sbp').value);
+            const bmi = parseFloat(document.getElementById('h_sl_bmi').value);
+
+            document.getElementById('h_txt_age').innerText = age + ' yrs';
+            document.getElementById('h_txt_sbp').innerText = sbp + ' mmHg';
+            document.getElementById('h_txt_bmi').innerText = bmi + ' kg/m²';
+
+            const baseLogit = 0.02 * (age - 50) + 0.03 * (sbp - 120) + 0.02 * (bmi - 25) - 0.6;
+            const ctrlRisk = 1 / (1 + Math.exp(-baseLogit));
+
+            const trueCate = 0.06 + 0.0035 * (sbp - 120) + 0.002 * (age - 50) + 0.001 * (bmi - 25);
+            const trtRisk = Math.max(0.02, ctrlRisk - trueCate);
+
+            const t_cate = ctrlRisk - trtRisk;
+            const s_cate = t_cate * 0.58;
+
+            document.getElementById('h_disp_cate').innerText = `+${(t_cate * 100).toFixed(1)}% Benefit`;
+            document.getElementById('h_disp_s_cate').innerText = `+${(s_cate * 100).toFixed(1)}% (Shrinkage)`;
+
+            if (document.getElementById('h_bar_ctrl')) {
+                document.getElementById('h_bar_ctrl').style.width = (ctrlRisk * 100).toFixed(0) + '%';
+                document.getElementById('h_val_ctrl').innerText = (ctrlRisk * 100).toFixed(1) + '%';
+                document.getElementById('h_bar_trt').style.width = (trtRisk * 100).toFixed(0) + '%';
+                document.getElementById('h_val_trt').innerText = (trtRisk * 100).toFixed(1) + '%';
+            }
+
+            const badge = document.getElementById('h_prescribe_badge');
+            if (t_cate > 0.18) {
+                badge.style.color = "#166534"; badge.style.background = "#f0fdf4";
+                badge.innerText = "✔ STRONGLY RECOMMEND IMMEDIATE DRUG PRESCRIPTION (High Priority).";
+            } else if (t_cate > 0.08) {
+                badge.style.color = "#1e40af"; badge.style.background = "#eff6ff";
+                badge.innerText = "ℹ STANDARD PRESCRIPTION PATHWAY (Moderate Benefit).";
+            } else {
+                badge.style.color = "#9a3412"; badge.style.background = "#fff7ed";
+                badge.innerText = "⚠ LOW BENEFIT: Recommend lifestyle & diet modification first.";
+            }
+
+            // SHAP
+            const sbpPush = (sbp - 120) * 0.19;
+            const agePush = (age - 50) * 0.17;
+            const bmiPush = (bmi - 25) * 0.15;
+
+            document.getElementById('h_shap_sbp_lbl').innerText = `➕ SBP (${sbp} mmHg)`;
+            document.getElementById('h_shap_sbp').innerText = `${sbpPush>=0?'+':''}${sbpPush.toFixed(1)}% push`;
+
+            document.getElementById('h_shap_age_lbl').innerText = `➕ Age (${age} yrs)`;
+            document.getElementById('h_shap_age').innerText = `${agePush>=0?'+':''}${agePush.toFixed(1)}% push`;
+
+            document.getElementById('h_shap_bmi_lbl').innerText = `➕ BMI (${bmi})`;
+            document.getElementById('h_shap_bmi').innerText = `${bmiPush>=0?'+':''}${bmiPush.toFixed(1)}% push`;
+
+            document.getElementById('h_shap_sum').innerText = `+${(t_cate * 100).toFixed(1)}%`;
+        }
+
+        function resampleHieuPairs() {
+            const tbody = document.getElementById('h_matched_table_body');
+            const seeds = [
+                { id: "Pair 1 (Age 68, SBP 160)", t: "0 (Survived)", c: "1 (Stroke)", obs: "+1 (Benefit)", r: "Concordant", pill: "pill-success" },
+                { id: "Pair 2 (Age 72, SBP 170)", t: "0 (Survived)", c: "1 (Stroke)", obs: "+1 (Benefit)", r: "Concordant", pill: "pill-success" },
+                { id: "Pair 3 (Age 45, SBP 125)", t: "0 (Survived)", c: "0 (Survived)", obs: "0 (Tie)", r: "Risk Tie", pill: "pill-neutral" },
+                { id: "Pair 4 (Age 55, SBP 140)", t: "1 (Event)", c: "1 (Event)", obs: "0 (Tie)", r: "Risk Tie", pill: "pill-neutral" }
+            ];
+            tbody.innerHTML = seeds.map(s => `
+                <tr>
+                    <td><strong>${s.id}</strong></td>
+                    <td>${s.t}</td>
+                    <td>${s.c}</td>
+                    <td>${s.obs}</td>
+                    <td><span class="pill ${s.pill}">${s.r}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        // ==========================================
+        // 4. LINH FULLY DYNAMIC INPUTS & MATH
+        // ==========================================
+        function setLinhLab(labNum) {
+            document.querySelectorAll('#section_linh .flow-step').forEach((s, idx) => {
+                s.classList.toggle('active', idx === (labNum - 1));
+            });
+
+            document.getElementById('l_badge_step').innerText = `Lab ${labNum}`;
+
+            const isClean = (labNum === 1);
+            const isNLP = (labNum === 2);
+            const isPerm = (labNum === 3);
+            const isCam = (labNum === 4);
+
+            // Dynamic Inputs (Card 2)
+            document.getElementById('l_input_clean_box').style.display = isClean ? 'block' : 'none';
+            document.getElementById('l_input_nlp_box').style.display = isNLP ? 'block' : 'none';
+            document.getElementById('l_input_perm_box').style.display = isPerm ? 'block' : 'none';
+            document.getElementById('l_input_cam_box').style.display = isCam ? 'block' : 'none';
+
+            // Outputs (Card 5)
+            document.getElementById('l_out_clean_box').style.display = isClean ? 'block' : 'none';
+            document.getElementById('l_out_nlp_box').style.display = isNLP ? 'block' : 'none';
+            document.getElementById('l_out_perm_box').style.display = isPerm ? 'block' : 'none';
+            document.getElementById('l_out_cam_metric').style.display = isCam ? 'block' : 'none';
+
+            // Visualizer (Card 6)
+            document.getElementById('l_v_lab1').style.display = isClean ? 'block' : 'none';
+            document.getElementById('l_v_lab2').style.display = isNLP ? 'block' : 'none';
+            document.getElementById('l_v_lab3').style.display = isPerm ? 'block' : 'none';
+            document.getElementById('l_v_lab4').style.display = isCam ? 'block' : 'none';
+
+            const mathCard = document.getElementById('l_formula_card');
+            const b6Title = document.getElementById('l_block6_title');
+            const b6Badge = document.getElementById('l_block6_badge');
+
+            if (isClean) {
+                b6Title.innerHTML = "🧹 6. Normalization Rules Engine";
+                b6Badge.innerText = "Regex Rules";
+                b6Badge.className = "block-badge badge-workflow";
+
+                document.getElementById('l_scenario_title').innerHTML = "<strong>Lab 1 (C3_W2_Lab_1): Cleaning Unstructured Medical Text.</strong>";
+                document.getElementById('l_scenario_body').innerText = "Medical reports contain messy formatting like 'and/or', double dots '..', and slashes. Linh's script standardizes punctuation.";
+                document.getElementById('l_ml_explanation').innerHTML = "• <strong>Regex String Transformation:</strong><br>Replaces 'and/or' &rarr; 'or', removes trailing punctuation, collapses consecutive spaces into single spaces.";
+                mathCard.innerHTML = `
+                    <strong>Text Cleaning Transformation:</strong><br>
+                    <span class="math-symbol">s</span> &larr; <span class="math-symbol">regex_replace</span>(<span class="math-symbol">s</span>, <span class="math-symbol">r"and/or"</span>, <span class="math-symbol">"or"</span>)<br>
+                    <span class="math-symbol">s</span> &larr; <span class="math-symbol">regex_replace</span>(<span class="math-symbol">s</span>, <span class="math-symbol">r"\.+"</span>, <span class="math-symbol">"."</span>)
+                `;
+                runLinhTextCleaner();
+            } else if (isNLP) {
+                b6Title.innerHTML = "🔤 6. BERT Attention & Embedding Matrix";
+                b6Badge.innerText = "Tensor Structure";
+                b6Badge.className = "block-badge badge-input";
+
+                document.getElementById('l_scenario_title').innerHTML = "<strong>Lab 2 (C3_W2_Lab_3): BERT Input Tensor &amp; Tokenization.</strong>";
+                document.getElementById('l_scenario_body').innerText = "Converting cleaned text into input numbers for BERT: [CLS]=101, [SEP]=102, fixed length 60, zero padding, and Masking() layer.";
+                document.getElementById('l_ml_explanation').innerHTML = "• <strong>BERT WordPiece Tokenization:</strong><br>Maps words to vocab IDs, pads zeros to fixed sequence length 60, shape (1, 60).";
+                mathCard.innerHTML = `
+                    <strong>BERT Tensor Representation:</strong><br>
+                    <span class="math-symbol">T</span> &in; &integers;<sup>1 &times; 60</sup>, where <span class="math-symbol">T</span><sub>0</sub> = 101 ([CLS]), <span class="math-symbol">T</span><sub>k</sub> = 102 ([SEP])<br>
+                    <strong>Attention Mask:</strong> <span class="math-symbol">M</span><sub>i</sub> = 1 if <span class="math-symbol">T</span><sub>i</sub> &ne; 0 else 0
+                `;
+                runLinhTokenizer();
+            } else if (isPerm) {
+                b6Title.innerHTML = "📊 6. Feature Importance Ranking (&Delta; C-Index)";
+                b6Badge.innerText = "Permutation Drops";
+                b6Badge.className = "block-badge badge-output";
+
+                document.getElementById('l_scenario_title').innerHTML = "<strong>Lab 3 (C3_W3_Lab_1): Permutation Feature Importance.</strong>";
+                document.getElementById('l_scenario_body').innerText = "Measuring feature importance by shuffling test set columns and observing the drop in concordance index (C-index).";
+                document.getElementById('l_ml_explanation').innerHTML = "• <strong>Column Shuffling:</strong><br>Destroys the relationship between feature X_j and target. If C-index drops sharply, X_j is highly important.";
+                mathCard.innerHTML = `
+                    <strong>Permutation Importance Metric:</strong><br>
+                    <span class="math-symbol">Importance</span>(<span class="math-symbol">X</span><sub>j</sub>) = <span class="math-symbol">C_baseline</span> (0.7759) &minus; <span class="math-symbol">C_shuffled</span>(<span class="math-symbol">X</span><sub>j</sub>)<br>
+                    <em>Shuffling 'Age' drops C-index by &minus;0.2228 &rarr; Age is the #1 feature!</em>
+                `;
+                runLinhShuffle('age');
+            } else if (isCam) {
+                b6Title.innerHTML = "🩻 6. Grad-CAM X-Ray Localization";
+                b6Badge.innerText = "DenseNet121";
+                b6Badge.className = "block-badge badge-ml";
+
+                document.getElementById('l_scenario_title').innerHTML = "<strong>Lab 4 (C3_W3_Lab_2 &amp; 3): Grad-CAM X-Ray Localization.</strong>";
+                document.getElementById('l_scenario_body').innerText = "DenseNet121 Layer 424 (conv5_block16_concat) activations with backpropagated class gradients.";
+                document.getElementById('l_ml_explanation').innerHTML = "• <strong>Grad-CAM Backprop:</strong><br>Computes gradients &part;y^c / &part;A^k, global average pools to weights &alpha;_k^c, and applies ReLU.";
+                mathCard.innerHTML = `
+                    <strong>Grad-CAM Feature Weights (Layer 424):</strong><br>
+                    &alpha;<sub>k</sub><sup>c</sup> = (1 / <span class="math-symbol">Z</span>) &sum;<sub>i</sub> &sum;<sub>j</sub> (&part;<span class="math-symbol">y</span><sup>c</sup> / &part;<span class="math-symbol">A</span><sub>ij</sub><sup>k</sup>)<br>
+                    <span class="math-symbol">L</span><sub>Grad-CAM</sub><sup>c</sup> = <span class="math-symbol">ReLU</span>( &sum;<sub>k</sub> &alpha;<sub>k</sub><sup>c</sup> <span class="math-symbol">A</span><sup>k</sup> )
+                `;
+                updateLinhHeatmap();
+            }
+        }
+
+        function runLinhTextCleaner() {
+            const raw = document.getElementById('l_dirty_input').value;
+            const cleaned = raw.replace(/and\/or/gi, "or").replace(/\.{2,}/g, ".").replace(/\s+/g, " ").trim();
+            document.getElementById('l_cleaned_text_display').innerText = `"${cleaned}"`;
+        }
+
+        function runLinhTokenizer() {
+            const val = document.getElementById('l_text_select').value;
+            const list = document.getElementById('l_token_badge_list');
+            list.innerHTML = '';
+
+            let tokens = [];
+            if (val === '1') {
+                tokens = [
+                    { id: 101, text: "[CLS]", type: "token-cls" },
+                    { id: 5765, text: "patient", type: "" },
+                    { id: 2038, text: "has", type: "" },
+                    { id: 9812, text: "fever", type: "" },
+                    { id: 1998, text: "or", type: "" },
+                    { id: 12431, text: "cough", type: "" },
+                    { id: 1012, text: ".", type: "" },
+                    { id: 4625, text: "possible", type: "" },
+                    { id: 18271, text: "pneumonia", type: "hl-disease" },
+                    { id: 1012, text: ".", type: "" },
+                    { id: 102, text: "[SEP]", type: "token-sep" }
+                ];
+            } else if (val === '2') {
+                tokens = [
+                    { id: 101, text: "[CLS]", type: "token-cls" },
+                    { id: 2981, text: "forxiga", type: "" },
+                    { id: 1006, text: "(", type: "" },
+                    { id: 14210, text: "dapagliflozin", type: "" },
+                    { id: 1007, text: ")", type: "" },
+                    { id: 4892, text: "reduces", type: "hl-disease" },
+                    { id: 3784, text: "blood", type: "hl-disease" },
+                    { id: 8214, text: "glucose", type: "hl-disease" },
+                    { id: 102, text: "[SEP]", type: "token-sep" }
+                ];
+            } else {
+                tokens = [
+                    { id: 101, text: "[CLS]", type: "token-cls" },
+                    { id: 3532, text: "chest", type: "" },
+                    { id: 2598, text: "x-ray", type: "" },
+                    { id: 3065, text: "shows", type: "" },
+                    { id: 2157, text: "right", type: "hl-disease" },
+                    { id: 2847, text: "lower", type: "hl-disease" },
+                    { id: 9142, text: "consolidation", type: "hl-disease" },
+                    { id: 102, text: "[SEP]", type: "token-sep" }
+                ];
+            }
+
+            tokens.forEach(t => {
+                const b = document.createElement('span');
+                b.className = `token-badge ${t.type}`;
+                b.innerText = `${t.text} (${t.id})`;
+                list.appendChild(b);
+            });
+
+            for (let i = tokens.length; i < 22; i++) {
+                const p = document.createElement('span');
+                p.className = `token-badge token-pad`;
+                p.innerText = `[PAD] (0)`;
+                list.appendChild(p);
+            }
+        }
+
+        function runLinhShuffle(feature) {
+            const body = document.getElementById('l_perm_table_body');
+            if (feature === 'age') {
+                body.innerHTML = `
+                    <tr style="background:#fee2e2;"><td><strong>Age (Shuffled)</strong></td><td>0.5531</td><td><strong style="color:var(--danger);">-0.2228 (CRITICAL DROP)</strong></td></tr>
+                    <tr><td><strong>Blood Pressure</strong></td><td>0.7759</td><td>0.0000 (Baseline)</td></tr>
+                `;
+            } else {
+                body.innerHTML = `
+                    <tr><td><strong>Age</strong></td><td>0.7759</td><td>0.0000 (Baseline)</td></tr>
+                    <tr style="background:#fef3c7;"><td><strong>Blood Pressure (Shuffled)</strong></td><td>0.7058</td><td><strong style="color:var(--warning);">-0.0701 (Moderate Drop)</strong></td></tr>
+                `;
+            }
+        }
+
+        function updateLinhHeatmap() {
+            const op = parseInt(document.getElementById('l_cam_sl_op').value) / 100;
+            document.getElementById('l_cam_op_txt').innerText = (op * 100).toFixed(0) + '%';
+            document.getElementById('l_heatmap_blob').style.opacity = op;
+        }
+
+        function setLinhDisease(disease) {
+            const isPneumo = disease === 'pneumonia';
+            document.getElementById('l_dis_btn_1').classList.toggle('active', isPneumo);
+            document.getElementById('l_dis_btn_2').classList.toggle('active', !isPneumo);
+
+            const blob = document.getElementById('l_heatmap_blob');
+            const lbl = document.getElementById('l_cam_disease_lbl');
+
+            if (isPneumo) {
+                lbl.innerText = "Target: Pneumonia (Right Lower Lobe)";
+                blob.style.top = "25%";
+                blob.style.left = "32%";
+                blob.style.width = "120px";
+                blob.style.height = "80px";
+            } else {
+                lbl.innerText = "Target: Cardiomegaly (Enlarged Cardiac Silhouette)";
+                blob.style.top = "42%";
+                blob.style.left = "40%";
+                blob.style.width = "150px";
+                blob.style.height = "110px";
+            }
+        }
+
+        // ==========================================
+        // 5. DUNG FULLY DYNAMIC INPUTS & MATH
+        // ==========================================
+        function setDungPipelineStep(step) {
+            document.querySelectorAll('#section_dung .flow-step').forEach((s, idx) => {
+                s.classList.toggle('active', idx === (step - 1));
+            });
+
+            document.getElementById('d_block_badge_1').innerText = `Step ${step}`;
+
+            // Dynamic Inputs (Card 2)
+            document.getElementById('d_in_step1').style.display = (step === 1) ? 'block' : 'none';
+            document.getElementById('d_in_step2').style.display = (step === 2) ? 'block' : 'none';
+            document.getElementById('d_in_step3').style.display = (step === 3) ? 'block' : 'none';
+            document.getElementById('d_in_step4').style.display = (step === 4) ? 'block' : 'none';
+            document.getElementById('d_in_step5').style.display = (step === 5) ? 'block' : 'none';
+            document.getElementById('d_in_step6').style.display = (step === 6) ? 'block' : 'none';
+
+            // Dynamic Outputs (Card 5)
+            const isCNNMode = (step === 4);
+            document.getElementById('d_out_table_wrapper').style.display = isCNNMode ? 'none' : 'block';
+            document.getElementById('d_out_cnn_bars').style.display = isCNNMode ? 'block' : 'none';
+
+            // Dynamic Visualizer (Card 6)
+            document.getElementById('d_v_step1').style.display = (step === 1) ? 'block' : 'none';
+            document.getElementById('d_v_step2').style.display = (step === 2) ? 'block' : 'none';
+            document.getElementById('d_v_step3').style.display = (step === 3) ? 'block' : 'none';
+            document.getElementById('d_v_step4').style.display = (step === 4) ? 'block' : 'none';
+            document.getElementById('d_v_step5').style.display = (step === 5) ? 'block' : 'none';
+            document.getElementById('d_v_step6').style.display = (step === 6) ? 'block' : 'none';
+
+            const mathCard = document.getElementById('d_formula_card');
+            const b6Title = document.getElementById('d_block6_title');
+            const b6Badge = document.getElementById('d_block6_badge');
+
+            if (step === 1) {
+                b6Title.innerHTML = "🗂️ 6. PACS Big Data Pipeline";
+                b6Badge.innerText = "Data Pipeline";
+
+                setDungReportCase(1);
+                document.getElementById('d_scen_title').innerHTML = "<strong>Step 1: Free-Text Radiology Reports (100,000 PACS).</strong>";
+                document.getElementById('d_scen_desc').innerText = "Doctors have no time to annotate 100,000 scans manually. Dung's pipeline extracts clean binary labels directly from written text!";
+                document.getElementById('d_nlp_desc').innerHTML = "<strong>PACS Big Data Extraction:</strong><br>Extracts unstructured disease mentions from 100,000 radiologist text summaries to create training sets for CNNs.";
+                mathCard.innerHTML = `
+                    <strong>Unstructured Text Mining Goal:</strong><br>
+                    <span class="math-symbol">D</span><sub>raw</sub> &in; <span class="math-symbol">Text</span><sup>100,000</sup> &rarr; <span class="math-symbol">D</span><sub>binary</sub> &in; {0, 1}<sup>100,000 &times; 14</sup><br>
+                    <em>Transforms unstructured medical English into supervised training labels.</em>
+                `;
+            } else if (step === 2) {
+                b6Title.innerHTML = "🌳 6. Medical Ontology Hierarchy";
+                b6Badge.innerText = "Ontology Tree";
+
+                setDungOntologyTerm(1);
+                document.getElementById('d_scen_title').innerHTML = "<strong>Step 2: Synonyms &amp; 'Is-A' Ontologies in Medical Jargon.</strong>";
+                document.getElementById('d_scen_desc').innerText = "Radiologists describe the same disease in 20 different ways. Step 2 maps 'airspace consolidation' and 'bronchopneumonia' to parent Pneumonia label.";
+                document.getElementById('d_nlp_desc').innerHTML = "<strong>Ontology Standardization:</strong><br>Uses medical dictionaries to map diverse clinical terms to canonical disease classes.";
+                mathCard.innerHTML = `
+                    <strong>Ontology Mapping Rule:</strong><br>
+                    <span class="math-symbol">Synonym</span>(<span class="math-symbol">w</span>) &map; <span class="math-symbol">Pneumonia</span><br>
+                    <span class="math-symbol">Child</span>(<span class="math-symbol">Bronchopneumonia</span>) &sube; <span class="math-symbol">Parent</span>(<span class="math-symbol">Pneumonia</span>)
+                `;
+            } else if (step === 3) {
+                b6Title.innerHTML = "🚫 6. NegBio Dependency Parse Tree";
+                b6Badge.innerText = "Negation Logic";
+
+                setDungNegBioCase(1);
+                document.getElementById('d_scen_title').innerHTML = "<strong>Step 3: Negation Rules (No Evidence Of / Rules Out).</strong>";
+                document.getElementById('d_scen_desc').innerText = "Crucial difference: 'Pneumonia mentioned' is NOT 'Pneumonia diagnosed'. NegBio checks if negation triggers exist before assigning 1.";
+                document.getElementById('d_nlp_desc').innerHTML = "<strong>Negation Detection Engine:</strong><br>Parses dependency trees to detect negation modifiers ('no evidence of', 'negative for') and flips label to 0.";
+                mathCard.innerHTML = `
+                    <strong>Negation Logic:</strong><br>
+                    <span class="math-symbol">Label</span>(<span class="math-symbol">c</span>) = <span class="math-symbol">&#x1D7D9;</span>(<span class="math-symbol">Mentioned</span>(<span class="math-symbol">c</span>)) &times; (1 &minus; <span class="math-symbol">Negated</span>(<span class="math-symbol">c</span>))<br>
+                    <em>Prevents false positives on 'no evidence of' or 'clear lungs'.</em>
+                `;
+            } else if (step === 4) {
+                b6Title.innerHTML = "🩻 6. DenseNet121 Vision Model";
+                b6Badge.innerText = "CNN Architecture";
+
+                setDungCNNCase(1);
+                document.getElementById('d_scen_title').innerHTML = "<strong>Step 4: Training 14-Disease Multi-Label CNN Classifiers.</strong>";
+                document.getElementById('d_scen_desc').innerText = "The extracted labels from Step 1-3 are now used as ground truth targets to train a DenseNet121 CNN model to predict 14 thoracic diseases simultaneously!";
+                document.getElementById('d_nlp_desc').innerHTML = "<strong>Multi-Label CNN Vision Model:</strong><br>DenseNet121 outputs 14 independent sigmoid probabilities &sigma;(z_c). Trained using Weighted Cross-Entropy loss to handle severe class imbalance.";
+                mathCard.innerHTML = `
+                    <strong>Multi-Label Weighted Cross-Entropy Loss:</strong><br>
+                    <span class="math-symbol">L</span><sub>CNN</sub> = &minus; &sum;<sub>c=1</sub><sup>14</sup> [ <span class="math-symbol">w</span><sub>p,c</sub> <span class="math-symbol">y</span><sub>c</sub> log <span class="math-symbol">y&#770;</span><sub>c</sub> + <span class="math-symbol">w</span><sub>n,c</sub> (1 &minus; <span class="math-symbol">y</span><sub>c</sub>) log(1 &minus; <span class="math-symbol">y&#770;</span><sub>c</sub>) ]<br>
+                    <em>Where &sigma;(z_c) outputs independent probability for each disease class c.</em>
+                `;
+            } else if (step === 5) {
+                b6Title.innerHTML = "⚖️ 6. Confusion Matrix & Trade-off";
+                b6Badge.innerText = "Imbalance Metric";
+
+                document.getElementById('d_scen_title').innerHTML = "<strong>Step 5: Why F1-Score is Mandatory on Rare Diseases (1%).</strong>";
+                document.getElementById('d_scen_desc').innerText = "A dummy model predicting 0 for all cases achieves 99% Accuracy but kills patients! F1 harmonic mean penalizes false negatives heavily.";
+                document.getElementById('d_nlp_desc').innerHTML = "<strong>Threshold Tuning &amp; F1 Evaluation:</strong><br>Allows clinicians to balance Precision and Recall by adjusting the decision boundary on CNN output probabilities.";
+                updateDungF1Sim();
+            } else if (step === 6) {
+                b6Title.innerHTML = "🚀 6. 2026 AI Medical Frontier";
+                b6Badge.innerText = "VLM Paradigm";
+
+                setDungParadigm(1);
+                document.getElementById('d_scen_title').innerHTML = "<strong>Step 6: 2026 Strategic Course Critique &amp; Frontier Gaps.</strong>";
+                document.getElementById('d_scen_desc').innerText = "Explaining to the lecturer: Why BERT/rules are outdated today (replaced by LLMs) and why observational causal graphs are the true frontier.";
+                document.getElementById('d_nlp_desc').innerHTML = "<strong>2026 Foundation Models:</strong><br>Vision-Language Models (CLIP, BiomedCLIP, LLaVA-Med) replace multi-stage pipeline with end-to-end zero-shot reasoning.";
+                mathCard.innerHTML = `
+                    <strong>2026 Generative Vision-Language Frontier:</strong><br>
+                    <span class="math-symbol">P</span><sub>VLM</sub>(<span class="math-symbol">y</span> | <span class="math-symbol">Image</span>, <span class="math-symbol">Prompt</span>) &gg; <span class="math-symbol">F1</span><sub>Rule-based</span><br>
+                    <em>Zero-shot biomedical foundation models eliminate manual rule engineering.</em>
+                `;
+            }
+        }
+
+        function setDungReportCase(caseId) {
+            document.querySelectorAll('#d_in_step1 .preset-btn').forEach((b, idx) => {
+                b.classList.toggle('active', idx === (caseId - 1));
+            });
+
+            const box = document.getElementById('d_interactive_report_box');
+            const tbody = document.getElementById('d_out_table_body');
+            const nlpDesc = document.getElementById('d_nlp_desc');
+
+            if (caseId === 1) {
+                box.innerHTML = `"Lungs are clear. <span class="hl-negation">No evidence of</span> active <span class="hl-disease">pneumonia</span> or consolidation."`;
+                nlpDesc.innerHTML = `<strong>Negation Trigger Detected:</strong> 'No evidence of' modifies 'pneumonia' &rarr; Label flipped to <strong>0 (Negated)</strong>.`;
+                tbody.innerHTML = `
+                    <tr><td><strong>Pneumonia</strong></td><td>Yes ("pneumonia")</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
+                    <tr><td><strong>Cardiomegaly</strong></td><td>No</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
+                `;
+            } else if (caseId === 2) {
+                box.innerHTML = `"Chest radiograph reveals prominent <span class="hl-disease">cardiomegaly</span> with pulmonary vascular congestion."`;
+                nlpDesc.innerHTML = `<strong>Direct Positive Match:</strong> Disease entity 'cardiomegaly' found without negation &rarr; Label assigned <strong>1 (Present)</strong>.`;
+                tbody.innerHTML = `
+                    <tr><td><strong>Pneumonia</strong></td><td>No</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
+                    <tr><td><strong>Cardiomegaly</strong></td><td>Yes ("cardiomegaly")</td><td><span class="pill pill-success">1 (Present)</span></td></tr>
+                `;
+            } else {
+                box.innerHTML = `"Bilateral lower lobes show <span class="hl-synonym">airspace consolidation</span> consistent with acute <span class="hl-synonym">bronchopneumonia</span>."`;
+                nlpDesc.innerHTML = `<strong>Ontology Mapping:</strong> 'airspace consolidation' is a synonym for Pneumonia. 'bronchopneumonia' <em>is-a</em> Pneumonia &rarr; Label = <strong>1 (Present)</strong>.`;
+                tbody.innerHTML = `
+                    <tr><td><strong>Pneumonia</strong></td><td>Yes (Synonym 'consolidation')</td><td><span class="pill pill-success">1 (Present)</span></td></tr>
+                    <tr><td><strong>Cardiomegaly</strong></td><td>No</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
+                `;
+            }
+        }
+
+        function setDungOntologyTerm(termId) {
+            document.querySelectorAll('#d_in_step2 .preset-btn').forEach((b, idx) => {
+                b.classList.toggle('active', idx === (termId - 1));
+            });
+
+            const tbody = document.getElementById('d_out_table_body');
+            const mathCard = document.getElementById('d_formula_card');
+
+            if (termId === 1) {
+                tbody.innerHTML = `
+                    <tr><td><strong>Pneumonia (Class #1)</strong></td><td>Mapped from "airspace consolidation"</td><td><span class="pill pill-success">1 (Synonym Match)</span></td></tr>
+                `;
+                mathCard.innerHTML = `
+                    <strong>Synonym Dictionary Mapping:</strong><br>
+                    <span class="math-symbol">Synonym</span>("airspace consolidation") &rarr; <span class="math-symbol">Pneumonia</span>
+                `;
+            } else if (termId === 2) {
+                tbody.innerHTML = `
+                    <tr><td><strong>Pneumonia (Class #1)</strong></td><td>Subsumed from "bronchopneumonia"</td><td><span class="pill pill-success">1 (Is-A Hierarchy)</span></td></tr>
+                `;
+                mathCard.innerHTML = `
+                    <strong>Subsumption Ontology Mapping:</strong><br>
+                    <span class="math-symbol">Child</span>(Bronchopneumonia) &sube; <span class="math-symbol">Parent</span>(Pneumonia)
+                `;
+            } else {
+                tbody.innerHTML = `
+                    <tr><td><strong>Infiltration (Class #4)</strong></td><td>Mapped from "lung infiltrate"</td><td><span class="pill pill-success">1 (Canonical Match)</span></td></tr>
+                `;
+                mathCard.innerHTML = `
+                    <strong>SNOMED CT Code Mapping:</strong><br>
+                    <span class="math-symbol">ConceptID</span>(13645005) &rarr; <span class="math-symbol">Infiltration</span>
+                `;
+            }
+        }
+
+        function setDungNegBioCase(caseId) {
+            document.querySelectorAll('#d_in_step3 .preset-btn').forEach((b, idx) => {
+                b.classList.toggle('active', idx === (caseId - 1));
+            });
+
+            const tbody = document.getElementById('d_out_table_body');
+            if (caseId === 1) {
+                tbody.innerHTML = `
+                    <tr><td><strong>Pneumonia</strong></td><td>"No evidence of pneumonia"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
+                `;
+            } else if (caseId === 2) {
+                tbody.innerHTML = `
+                    <tr><td><strong>Pneumonia</strong></td><td>"Lungs are free of pneumonia"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
+                `;
+            } else {
+                tbody.innerHTML = `
+                    <tr><td><strong>Cardiomegaly</strong></td><td>"Positive for cardiomegaly"</td><td><span class="pill pill-success">1 (Affirmed)</span></td></tr>
+                `;
+            }
+        }
+
+        function setDungParadigm(pId) {
+            document.querySelectorAll('#d_in_step6 .preset-btn').forEach((b, idx) => {
+                b.classList.toggle('active', idx === (pId - 1));
+            });
+
+            const tbody = document.getElementById('d_out_table_body');
+            if (pId === 1) {
+                tbody.innerHTML = `
+                    <tr><td><strong>Approach</strong></td><td>Multi-stage Rule Parsing</td><td><span class="pill pill-neutral">High Manual Effort</span></td></tr>
+                    <tr><td><strong>Bottleneck</strong></td><td>Misses novel phrasing &amp; slang</td><td><span class="pill pill-danger">Brittle</span></td></tr>
+                `;
+            } else {
+                tbody.innerHTML = `
+                    <tr><td><strong>Approach</strong></td><td>BiomedCLIP Zero-shot Reasoning</td><td><span class="pill pill-success">End-to-End</span></td></tr>
+                    <tr><td><strong>Generalization</strong></td><td>Cross-modal Image &harr; Text alignment</td><td><span class="pill pill-success">Hospital SOTA 2026</span></td></tr>
+                `;
+            }
+        }
+
+        function setDungCNNCase(caseId) {
+            document.getElementById('d_cnn_img_1').classList.toggle('active', caseId === 1);
+            document.getElementById('d_cnn_img_2').classList.toggle('active', caseId === 2);
+
+            if (caseId === 1) {
+                document.getElementById('d_bar_pneu').style.width = "88%";
+                document.getElementById('d_val_pneu').innerText = "88%";
+                document.getElementById('d_bar_cardio').style.width = "14%";
+                document.getElementById('d_val_cardio').innerText = "14%";
+                document.getElementById('d_bar_inf').style.width = "72%";
+                document.getElementById('d_val_inf').innerText = "72%";
+            } else {
+                document.getElementById('d_bar_pneu').style.width = "9%";
+                document.getElementById('d_val_pneu').innerText = "9%";
+                document.getElementById('d_bar_cardio').style.width = "94%";
+                document.getElementById('d_val_cardio').innerText = "94%";
+                document.getElementById('d_bar_inf').style.width = "18%";
+                document.getElementById('d_val_inf').innerText = "18%";
+            }
+        }
+
+        function updateDungF1Sim() {
+            const thresh = parseInt(document.getElementById('d_sl_thresh').value) / 100;
+            document.getElementById('d_txt_thresh').innerText = thresh.toFixed(2);
+
+            const precision = Math.min(0.98, 0.65 + (thresh * 0.35));
+            const recall = Math.max(0.40, 0.98 - (thresh * 0.55));
+            const f1 = (2 * precision * recall) / (precision + recall);
+
+            document.getElementById('d_formula_card').innerHTML = `
+                <strong>F1-Score (Harmonic Mean):</strong><br>
+                <span class="math-symbol">F1</span> = 2 &times; (<span class="math-symbol">Precision</span> &times; <span class="math-symbol">Recall</span>) / (<span class="math-symbol">Precision</span> + <span class="math-symbol">Recall</span>) = <strong style="color:#166534;">${f1.toFixed(3)}</strong><br>
+                <em>Precision: ${(precision * 100).toFixed(1)}% &middot; Recall: ${(recall * 100).toFixed(1)}%</em>
+            `;
+
+            const tbody = document.getElementById('d_out_table_body');
+            tbody.innerHTML = `
+                <tr><td><strong>CNN Precision (True + / Pred +)</strong></td><td>Threshold: ${thresh.toFixed(2)}</td><td><strong style="color:var(--primary);">${(precision * 100).toFixed(1)}%</strong></td></tr>
+                <tr><td><strong>CNN Recall (True + / Real +)</strong></td><td>Threshold: ${thresh.toFixed(2)}</td><td><strong style="color:var(--success);">${(recall * 100).toFixed(1)}%</strong></td></tr>
+                <tr style="background:#f0fdf4;"><td><strong>Harmonic F1-Score</strong></td><td>Balance Metric</td><td><strong style="color:#166534; font-size:0.95rem;">${f1.toFixed(3)}</strong></td></tr>
+            `;
+
+            document.getElementById('d_f1_score_summary').innerHTML = `✔ Current Threshold ${thresh.toFixed(2)} &rarr; Balanced F1-Score: <strong>${f1.toFixed(3)}</strong> (Penalizes missed sick cases).`;
+        }
+
+        // On Load initialization
+        window.addEventListener('load', () => {
+            setKhuongStep(1);
+            setHieuPipelineStep(1);
+            setLinhLab(1);
+            setDungPipelineStep(1);
+        });
+    </script>
+</body>
+</html>
