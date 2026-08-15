@@ -655,11 +655,11 @@
                 <button class="member-btn" id="btn_hieu" onclick="switchMember('hieu')">
                     👨‍💻 Hiếu
                 </button>
-                <button class="member-btn" id="btn_linh" onclick="switchMember('linh')">
-                    👨‍💻 Linh
-                </button>
                 <button class="member-btn" id="btn_dung" onclick="switchMember('dung')">
                     👩‍💼 Dung
+                </button>
+                <button class="member-btn" id="btn_linh" onclick="switchMember('linh')">
+                    👨‍💻 Linh
                 </button>
                 <button class="member-btn" id="btn_wrapup" onclick="switchMember('wrapup')">
                     🎯 Wrap-Up &amp; Q&amp;A
@@ -678,7 +678,7 @@
                 <div>
                     <span class="role-tag" style="background:#eff6ff; color:#1e40af;">Final Master Project · AI For Medical Treatment</span>
                     <h2 style="font-size: 1.25rem; margin-top: 4px; color: var(--dark);">Group Work Architecture &amp; Course Lab References</h2>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">End-to-End Clinical Translation: Causal Inference (W1) &rarr; Individualized CATE (W1) &rarr; Medical NLP (W2) &rarr; CNN Interpretation (W3)</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">End-to-End Clinical Translation: Causal Inference (W1) &rarr; Individualized CATE (W1) &rarr; Label Mining &amp; 14-CNN (W2) &rarr; Explainability &amp; Grad-CAM (W3)</p>
                 </div>
                 <div class="timer-widget" id="timer_overview_box">
                     <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
@@ -718,18 +718,6 @@
                     <button class="btn btn-outline" style="width: 100%; font-size: 0.74rem; justify-content: center;">Start Hiếu &rarr;</button>
                 </div>
 
-                <!-- Linh -->
-                <div class="card" style="border-top: 4px solid #7c3aed; cursor: pointer; text-align: center; padding: 14px 10px;" onclick="switchMember('linh')">
-                    <div style="font-size: 1.8rem; margin-bottom: 2px;">👨‍💻</div>
-                    <div style="font-size: 0.98rem; font-weight: 800; color: #5b21b6;">Lê Khánh Linh</div>
-                    <div style="font-size: 0.74rem; font-weight: 700; color: #7c3aed; margin-top: 2px;">ID: 20225020</div>
-                    <div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 8px;">20225020@student.vgu.edu.vn</div>
-                    <div class="pill pill-purple" style="font-size: 0.68rem; display: inline-block; margin-bottom: 10px;">
-                        Part 3: Medical NLP &amp; Grad-CAM
-                    </div>
-                    <button class="btn btn-outline" style="width: 100%; font-size: 0.74rem; justify-content: center;">Start Linh &rarr;</button>
-                </div>
-
                 <!-- Dung -->
                 <div class="card" style="border-top: 4px solid #d97706; cursor: pointer; text-align: center; padding: 14px 10px;" onclick="switchMember('dung')">
                     <div style="font-size: 1.8rem; margin-bottom: 2px;">👩‍💼</div>
@@ -737,9 +725,21 @@
                     <div style="font-size: 0.74rem; font-weight: 700; color: #d97706; margin-top: 2px;">ID: 20225030</div>
                     <div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 8px;">20225030@student.vgu.edu.vn</div>
                     <div class="pill pill-warning" style="font-size: 0.68rem; display: inline-block; margin-bottom: 10px;">
-                        Part 4: Label Mining &amp; 14-CNN
+                        Part 3: Label Mining &amp; 14-CNN
                     </div>
                     <button class="btn btn-outline" style="width: 100%; font-size: 0.74rem; justify-content: center;">Start Dung &rarr;</button>
+                </div>
+
+                <!-- Linh -->
+                <div class="card" style="border-top: 4px solid #7c3aed; cursor: pointer; text-align: center; padding: 14px 10px;" onclick="switchMember('linh')">
+                    <div style="font-size: 1.8rem; margin-bottom: 2px;">👨‍💻</div>
+                    <div style="font-size: 0.98rem; font-weight: 800; color: #5b21b6;">Lê Khánh Linh</div>
+                    <div style="font-size: 0.74rem; font-weight: 700; color: #7c3aed; margin-top: 2px;">ID: 20225020</div>
+                    <div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 8px;">20225020@student.vgu.edu.vn</div>
+                    <div class="pill pill-purple" style="font-size: 0.68rem; display: inline-block; margin-bottom: 10px;">
+                        Part 4: Medical NLP &amp; Grad-CAM
+                    </div>
+                    <button class="btn btn-outline" style="width: 100%; font-size: 0.74rem; justify-content: center;">Start Linh &rarr;</button>
                 </div>
             </div>
 
@@ -757,11 +757,11 @@
                         <div style="background: #f8fafc; border-left: 3px solid #059669; padding: 8px 10px; border-radius: 4px;">
                             <strong>2. Precision CATE (Hiếu):</strong> T-Learner separate trees, Twin pairs matching (C=0.6342), and TreeSHAP.
                         </div>
-                        <div style="background: #f8fafc; border-left: 3px solid #7c3aed; padding: 8px 10px; border-radius: 4px;">
-                            <strong>3. NLP &amp; Vision Interpretation (Linh):</strong> Regex cleaner, BERT (1,60) input tensor, and Grad-CAM Layer 424.
-                        </div>
                         <div style="background: #f8fafc; border-left: 3px solid #d97706; padding: 8px 10px; border-radius: 4px;">
-                            <strong>4. Big Data Mining &amp; Vision (Dung):</strong> 100k PACS reports, NegBio rules, and 14-Disease CNN (DenseNet121).
+                            <strong>3. Big Data Mining &amp; Vision (Dung):</strong> 100k PACS reports, NegBio rules, and 14-Disease CNN (DenseNet121).
+                        </div>
+                        <div style="background: #f8fafc; border-left: 3px solid #7c3aed; padding: 8px 10px; border-radius: 4px;">
+                            <strong>4. NLP &amp; Vision Interpretation (Linh):</strong> Regex cleaner, BERT (1,60) input tensor, and Grad-CAM Layer 424.
                         </div>
                     </div>
                 </div>
@@ -1309,231 +1309,12 @@
         </div>
 
         <!-- ========================================================================= -->
-        <!-- 3. LINH - MEDICAL NLP & MODEL INTERPRETATION                               -->
-        <!-- ========================================================================= -->
-        <div id="section_linh" class="tab-content">
-            <div class="member-banner" style="border-left: 5px solid var(--purple);">
-                <div>
-                    <span class="role-tag" style="background:#f5f3ff; color:#6d28d9;">Linh · Medical NLP &amp; ML Interpretation Labs</span>
-                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Medical NLP (Text Cleaning, BERT) &amp; Vision Interpretation (Permutation, Grad-CAM)</h2>
-                    <p style="font-size: 0.84rem; color: var(--text-muted);">Scope: Fully aligned with practical lab notebooks in Week 2 (NLP) and Week 3 (Interpretation).</p>
-                </div>
-                <div class="timer-widget" id="timer_linh_box">
-                    <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
-                        ⏱️ Speaker Timer (5 Mins)
-                    </div>
-                    <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
-                        <span class="timer-display" id="timer_linh_txt">05:00</span>
-                        <button class="timer-control-btn" onclick="toggleTimer('linh')" id="timer_linh_btn" title="Pause / Resume">⏸️</button>
-                        <button class="timer-control-btn" onclick="resetTimer('linh')" title="Reset to 05:00">🔄</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pipeline Flow for Linh -->
-            <div class="card" style="padding: 12px 18px; margin-bottom: 16px;">
-                <div style="font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
-                    🔄 Linh's Workflow Pipeline (Click Steps to Present):
-                </div>
-                <div class="pipeline-flow">
-                    <div class="flow-step active" id="l_step_1" onclick="setLinhLab(1)">Lab 1: Clean Text (C3_W2_Lab_1)</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="l_step_2" onclick="setLinhLab(2)">Lab 2: BERT Input Tensor (C3_W2_Lab_3)</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="l_step_3" onclick="setLinhLab(3)">Lab 3: Permutation Method (C3_W3_Lab_1)</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="l_step_4" onclick="setLinhLab(4)">Lab 4: Grad-CAM X-Ray (C3_W3_Lab_2 &amp; 3)</div>
-                </div>
-            </div>
-
-            <!-- 6 Structured Blocks Grid for Linh -->
-            <div class="grid-blocks">
-                <div class="card">
-                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="l_badge_step">Lab 1</span></div>
-                    <p style="font-size: 0.85rem; color: var(--text-main); margin-bottom: 6px;" id="l_scenario_title"></p>
-                    <p style="font-size: 0.82rem; color: var(--text-muted);" id="l_scenario_body"></p>
-                </div>
-
-                <!-- Card 2: DYNAMIC INPUTS FOR LINH PER STEP -->
-                <div class="card">
-                    <div class="card-header"><h3 class="card-title">📥 2. Inputs</h3><span class="block-badge badge-input">Touch to Demo</span></div>
-                    
-                    <div id="l_input_clean_box">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Raw Messy Text:</div>
-                        <input type="text" id="l_dirty_input" value="Patient has fever and/or cough.. Possible pneumonia." style="width: 100%; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.82rem; margin-bottom: 6px;">
-                        <button class="btn" style="width: 100%; justify-content: center;" onclick="runLinhTextCleaner()">✨ Clean Medical Text</button>
-                    </div>
-
-                    <div id="l_input_nlp_box" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Choose Clinical Text to Tokenize:</div>
-                        <select style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.82rem;" id="l_text_select" onchange="runLinhTokenizer()">
-                            <option value="1">"Patient has fever and/or cough.. Possible pneumonia."</option>
-                            <option value="2">"Forxiga (dapagliflozin) reduces blood glucose levels."</option>
-                            <option value="3">"Chest X-ray shows right lower lobe consolidation."</option>
-                        </select>
-                    </div>
-
-                    <div id="l_input_perm_box" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Test Column Shuffling:</div>
-                        <button class="btn" style="width: 100%; margin-bottom: 6px; justify-content: center;" onclick="runLinhShuffle('age')">🔀 Shuffle 'Age' Feature</button>
-                        <button class="btn btn-outline" style="width: 100%; justify-content: center;" onclick="runLinhShuffle('sbp')">🔀 Shuffle 'Blood Pressure'</button>
-                    </div>
-
-                    <div id="l_input_cam_box" style="display: none;">
-                        <div class="control-header">
-                            <span>Grad-CAM Overlay Opacity:</span>
-                            <span id="l_cam_op_txt" style="font-weight: bold; color: var(--purple);">80%</span>
-                        </div>
-                        <input type="range" class="slider" id="l_cam_sl_op" min="0" max="100" value="80" oninput="updateLinhHeatmap()" style="margin-bottom: 8px;">
-                        
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Target Pathology Scan:</div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                            <div class="xray-thumb-card active" id="l_dis_btn_1" onclick="setLinhDisease('pneumonia')">
-                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
-                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
-                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
-                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <circle cx="32" cy="48" r="9" fill="#ef4444" opacity="0.8" filter="blur(2px)"/>
-                                    </svg>
-                                </div>
-                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">🫁 Pneumonia</div>
-                            </div>
-                            <div class="xray-thumb-card" id="l_dis_btn_2" onclick="setLinhDisease('cardiomegaly')">
-                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
-                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
-                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
-                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <path d="M36,35 Q50,26 68,38 Q78,62 50,68 Q33,60 36,35" fill="#3b82f6" opacity="0.85" stroke="#93c5fd" stroke-width="1"/>
-                                    </svg>
-                                </div>
-                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">❤️ Cardiomegaly</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header"><h3 class="card-title">🧠 3. What ML Does</h3><span class="block-badge badge-ml">Algorithm</span></div>
-                    <div style="font-size: 0.82rem; color: var(--text-main); line-height: 1.6;" id="l_ml_explanation"></div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Formula</span></div>
-                    <div class="formula-card" id="l_formula_card"></div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Results</span></div>
-                    
-                    <div id="l_out_clean_box">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--success); margin-bottom: 4px;">Normalized Output String:</div>
-                        <div class="report-text-box" id="l_cleaned_text_display" style="font-size: 0.82rem;">
-                            "Patient has fever or cough. Possible pneumonia."
-                        </div>
-                    </div>
-
-                    <div id="l_out_nlp_box" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary);">BERT Tensor Shape: <span style="font-family: monospace;">(1, 60)</span></div>
-                        <div class="token-list" id="l_token_badge_list"></div>
-                    </div>
-
-                    <div id="l_out_perm_box" style="display: none;">
-                        <table style="font-size: 0.8rem;">
-                            <thead><tr><th>Feature</th><th>Shuffled C-Index</th><th>Drop (&Delta;)</th></tr></thead>
-                            <tbody id="l_perm_table_body">
-                                <tr><td><strong>Age</strong></td><td>0.5531</td><td><strong style="color:var(--danger);">-0.2228 (High)</strong></td></tr>
-                                <tr><td><strong>Blood Pressure</strong></td><td>0.7058</td><td><strong style="color:var(--warning);">-0.0701 (Med)</strong></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div id="l_out_cam_metric" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--purple); margin-bottom: 4px;">Layer 424 Feature Map Activations:</div>
-                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 0.8rem;">
-                            • Feature Map Shape: <code>(10, 10, 1024)</code><br>
-                            • Max Gradient Weight &alpha;<sub>k</sub>: <strong>+0.842</strong><br>
-                            • Spatial Resolution: <code>10x10 &rarr; Upsampled to 224x224</code>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Block 6: DYNAMIC PER LAB FOR LINH -->
-                <div class="card">
-                    <div class="card-header"><h3 class="card-title" id="l_block6_title">🩻 6. Lab Visualizer</h3><span class="block-badge badge-ml" id="l_block6_badge">Details</span></div>
-                    
-                    <div id="l_v_lab1" style="display: block;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Active Regex Normalization Rules:</div>
-                        <div class="rule-item"><span>Replace ambiguous slash:</span><span class="rule-code">/and\/or/i &rarr; "or"</span></div>
-                        <div class="rule-item"><span>Collapse consecutive dots:</span><span class="rule-code">/\.{2,}/ &rarr; "."</span></div>
-                        <div class="rule-item"><span>Collapse whitespace:</span><span class="rule-code">/\s+/ &rarr; " "</span></div>
-                        <div style="font-size: 0.76rem; color: var(--success); font-weight: bold; margin-top: 6px;">
-                            ✔ Standardized text prevents OOV token errors in BERT.
-                        </div>
-                    </div>
-
-                    <div id="l_v_lab2" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">BERT Embedding Composition:</div>
-                        <div style="background: #f1f5f9; border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6; margin-bottom: 6px;">
-                            • <strong>Token Embeddings:</strong> (1, 60, 768)<br>
-                            • <strong>Position Embeddings:</strong> (1, 60, 768)<br>
-                            • <strong>Segment Embeddings:</strong> (1, 60, 768)<br>
-                            👉 <strong>Total Layer Output:</strong> <code>Tensor Shape (1, 60, 768)</code>
-                        </div>
-                        <div style="font-size: 0.76rem; color: var(--primary); font-weight: bold;">
-                            ✔ Attention Mask zeroes out all 38 [PAD] tokens so they don't corrupt Self-Attention.
-                        </div>
-                    </div>
-
-                    <div id="l_v_lab3" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Permutation Drop Ranking (&Delta; C-Index):</div>
-                        <div class="disease-bar-row">
-                            <span style="width: 85px;">1. Age</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 95%; background: var(--danger);"></div></div>
-                            <span style="font-weight: bold; width: 45px; color: var(--danger); text-align: right;">-0.2228</span>
-                        </div>
-                        <div class="disease-bar-row">
-                            <span style="width: 85px;">2. SBP</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 32%; background: var(--warning);"></div></div>
-                            <span style="font-weight: bold; width: 45px; color: var(--warning); text-align: right;">-0.0701</span>
-                        </div>
-                        <div class="disease-bar-row">
-                            <span style="width: 85px;">3. BMI</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 10%; background: #94a3b8;"></div></div>
-                            <span style="font-weight: bold; width: 45px; color: var(--text-muted); text-align: right;">-0.0150</span>
-                        </div>
-                        <div style="font-size: 0.76rem; color: var(--danger); font-weight: bold; margin-top: 6px;">
-                            ✔ Proves model performance relies 3x more on Age than on Blood Pressure.
-                        </div>
-                    </div>
-
-                    <div id="l_v_lab4" style="display: none;">
-                        <div class="xray-container">
-                            <svg class="xray-bg-svg" viewBox="0 0 200 160">
-                                <path d="M40,20 Q60,10 100,20 Q140,10 160,20 Q170,80 155,140 Q100,150 100,100 Q100,150 45,140 Q30,80 40,20" fill="#1e293b" stroke="#475569" stroke-width="2"/>
-                                <path d="M50,35 Q85,30 90,80 Q85,130 55,125 Q42,80 50,35" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-                                <path d="M150,35 Q115,30 110,80 Q115,130 145,125 Q158,80 150,35" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-                                <path id="svg_heart" d="M85,75 Q100,60 120,80 Q130,110 105,125 Q85,115 85,75" fill="#334155" opacity="0.7"/>
-                            </svg>
-                            <div class="heatmap-overlay" id="l_heatmap_blob"></div>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--text-muted); margin-top: 6px;">
-                            <span>Layer 424 Activations (10, 10, 1024)</span>
-                            <span style="color: var(--purple); font-weight: bold;" id="l_cam_disease_lbl">Target: Pneumonia</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ========================================================================= -->
-        <!-- 4. DUNG - LABEL EXTRACTION & 14-DISEASE CNN TRAINING                       -->
+        <!-- 3. DUNG - LABEL EXTRACTION & 14-DISEASE CNN TRAINING                       -->
         <!-- ========================================================================= -->
         <div id="section_dung" class="tab-content">
             <div class="member-banner" style="border-left: 5px solid var(--warning);">
                 <div>
-                    <span class="role-tag" style="background:#fef3c7; color:#92400e;">Dung · Automated Labeling &amp; 14-Disease CNN Models</span>
+                    <span class="role-tag" style="background:#fef3c7; color:#92400e;">Part 3: Dung · Automated Labeling &amp; 14-Disease CNN Models</span>
                     <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Automated Medical Labeling, 14-Disease CNN Vision Training &amp; F1 Evaluation</h2>
                     <p style="font-size: 0.84rem; color: var(--text-muted);">Scope: Mining 100,000 text reports to train Multi-Label CNN Classifiers (DenseNet121) and evaluating rare diseases.</p>
                 </div>
@@ -1838,6 +1619,225 @@
         </div>
 
         <!-- ========================================================================= -->
+        <!-- 4. LINH - MEDICAL NLP & MODEL INTERPRETATION                               -->
+        <!-- ========================================================================= -->
+        <div id="section_linh" class="tab-content">
+            <div class="member-banner" style="border-left: 5px solid var(--purple);">
+                <div>
+                    <span class="role-tag" style="background:#f5f3ff; color:#6d28d9;">Part 4: Linh · Medical NLP &amp; ML Interpretation Labs</span>
+                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Medical NLP (Text Cleaning, BERT) &amp; Vision Interpretation (Permutation, Grad-CAM)</h2>
+                    <p style="font-size: 0.84rem; color: var(--text-muted);">Scope: Fully aligned with practical lab notebooks in Week 2 (NLP) and Week 3 (Interpretation).</p>
+                </div>
+                <div class="timer-widget" id="timer_linh_box">
+                    <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
+                        ⏱️ Speaker Timer (5 Mins)
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
+                        <span class="timer-display" id="timer_linh_txt">05:00</span>
+                        <button class="timer-control-btn" onclick="toggleTimer('linh')" id="timer_linh_btn" title="Pause / Resume">⏸️</button>
+                        <button class="timer-control-btn" onclick="resetTimer('linh')" title="Reset to 05:00">🔄</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pipeline Flow for Linh -->
+            <div class="card" style="padding: 12px 18px; margin-bottom: 16px;">
+                <div style="font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
+                    🔄 Linh's Workflow Pipeline (Click Steps to Present):
+                </div>
+                <div class="pipeline-flow">
+                    <div class="flow-step active" id="l_step_1" onclick="setLinhLab(1)">Lab 1: Clean Text (C3_W2_Lab_1)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="l_step_2" onclick="setLinhLab(2)">Lab 2: BERT Input Tensor (C3_W2_Lab_3)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="l_step_3" onclick="setLinhLab(3)">Lab 3: Permutation Method (C3_W3_Lab_1)</div>
+                    <span class="flow-arrow">&rarr;</span>
+                    <div class="flow-step" id="l_step_4" onclick="setLinhLab(4)">Lab 4: Grad-CAM X-Ray (C3_W3_Lab_2 &amp; 3)</div>
+                </div>
+            </div>
+
+            <!-- 6 Structured Blocks Grid for Linh -->
+            <div class="grid-blocks">
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="l_badge_step">Lab 1</span></div>
+                    <p style="font-size: 0.85rem; color: var(--text-main); margin-bottom: 6px;" id="l_scenario_title"></p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted);" id="l_scenario_body"></p>
+                </div>
+
+                <!-- Card 2: DYNAMIC INPUTS FOR LINH PER STEP -->
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📥 2. Inputs</h3><span class="block-badge badge-input">Touch to Demo</span></div>
+                    
+                    <div id="l_input_clean_box">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Raw Messy Text:</div>
+                        <input type="text" id="l_dirty_input" value="Patient has fever and/or cough.. Possible pneumonia." style="width: 100%; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.82rem; margin-bottom: 6px;">
+                        <button class="btn" style="width: 100%; justify-content: center;" onclick="runLinhTextCleaner()">✨ Clean Medical Text</button>
+                    </div>
+
+                    <div id="l_input_nlp_box" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Choose Clinical Text to Tokenize:</div>
+                        <select style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.82rem;" id="l_text_select" onchange="runLinhTokenizer()">
+                            <option value="1">"Patient has fever and/or cough.. Possible pneumonia."</option>
+                            <option value="2">"Forxiga (dapagliflozin) reduces blood glucose levels."</option>
+                            <option value="3">"Chest X-ray shows right lower lobe consolidation."</option>
+                        </select>
+                    </div>
+
+                    <div id="l_input_perm_box" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Test Column Shuffling:</div>
+                        <button class="btn" style="width: 100%; margin-bottom: 6px; justify-content: center;" onclick="runLinhShuffle('age')">🔀 Shuffle 'Age' Feature</button>
+                        <button class="btn btn-outline" style="width: 100%; justify-content: center;" onclick="runLinhShuffle('sbp')">🔀 Shuffle 'Blood Pressure'</button>
+                    </div>
+
+                    <div id="l_input_cam_box" style="display: none;">
+                        <div class="control-header">
+                            <span>Grad-CAM Overlay Opacity:</span>
+                            <span id="l_cam_op_txt" style="font-weight: bold; color: var(--purple);">80%</span>
+                        </div>
+                        <input type="range" class="slider" id="l_cam_sl_op" min="0" max="100" value="80" oninput="updateLinhHeatmap()" style="margin-bottom: 8px;">
+                        
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Target Pathology Scan:</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                            <div class="xray-thumb-card active" id="l_dis_btn_1" onclick="setLinhDisease('pneumonia')">
+                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
+                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
+                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <circle cx="32" cy="48" r="9" fill="#ef4444" opacity="0.8" filter="blur(2px)"/>
+                                    </svg>
+                                </div>
+                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">🫁 Pneumonia</div>
+                            </div>
+                            <div class="xray-thumb-card" id="l_dis_btn_2" onclick="setLinhDisease('cardiomegaly')">
+                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
+                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
+                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <path d="M36,35 Q50,26 68,38 Q78,62 50,68 Q33,60 36,35" fill="#3b82f6" opacity="0.85" stroke="#93c5fd" stroke-width="1"/>
+                                    </svg>
+                                </div>
+                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">❤️ Cardiomegaly</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">🧠 3. What ML Does</h3><span class="block-badge badge-ml">Algorithm</span></div>
+                    <div style="font-size: 0.82rem; color: var(--text-main); line-height: 1.6;" id="l_ml_explanation"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Formula</span></div>
+                    <div class="formula-card" id="l_formula_card"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Results</span></div>
+                    
+                    <div id="l_out_clean_box">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--success); margin-bottom: 4px;">Normalized Output String:</div>
+                        <div class="report-text-box" id="l_cleaned_text_display" style="font-size: 0.82rem;">
+                            "Patient has fever or cough. Possible pneumonia."
+                        </div>
+                    </div>
+
+                    <div id="l_out_nlp_box" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary);">BERT Tensor Shape: <span style="font-family: monospace;">(1, 60)</span></div>
+                        <div class="token-list" id="l_token_badge_list"></div>
+                    </div>
+
+                    <div id="l_out_perm_box" style="display: none;">
+                        <table style="font-size: 0.8rem;">
+                            <thead><tr><th>Feature</th><th>Shuffled C-Index</th><th>Drop (&Delta;)</th></tr></thead>
+                            <tbody id="l_perm_table_body">
+                                <tr><td><strong>Age</strong></td><td>0.5531</td><td><strong style="color:var(--danger);">-0.2228 (High)</strong></td></tr>
+                                <tr><td><strong>Blood Pressure</strong></td><td>0.7058</td><td><strong style="color:var(--warning);">-0.0701 (Med)</strong></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="l_out_cam_metric" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--purple); margin-bottom: 4px;">Layer 424 Feature Map Activations:</div>
+                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 0.8rem;">
+                            • Feature Map Shape: <code>(10, 10, 1024)</code><br>
+                            • Max Gradient Weight &alpha;<sub>k</sub>: <strong>+0.842</strong><br>
+                            • Spatial Resolution: <code>10x10 &rarr; Upsampled to 224x224</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Block 6: DYNAMIC PER LAB FOR LINH -->
+                <div class="card">
+                    <div class="card-header"><h3 class="card-title" id="l_block6_title">🩻 6. Lab Visualizer</h3><span class="block-badge badge-ml" id="l_block6_badge">Details</span></div>
+                    
+                    <div id="l_v_lab1" style="display: block;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Active Regex Normalization Rules:</div>
+                        <div class="rule-item"><span>Replace ambiguous slash:</span><span class="rule-code">/and\/or/i &rarr; "or"</span></div>
+                        <div class="rule-item"><span>Collapse consecutive dots:</span><span class="rule-code">/\.{2,}/ &rarr; "."</span></div>
+                        <div class="rule-item"><span>Collapse whitespace:</span><span class="rule-code">/\s+/ &rarr; " "</span></div>
+                        <div style="font-size: 0.76rem; color: var(--success); font-weight: bold; margin-top: 6px;">
+                            ✔ Standardized text prevents OOV token errors in BERT.
+                        </div>
+                    </div>
+
+                    <div id="l_v_lab2" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">BERT Embedding Composition:</div>
+                        <div style="background: #f1f5f9; border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6; margin-bottom: 6px;">
+                            • <strong>Token Embeddings:</strong> (1, 60, 768)<br>
+                            • <strong>Position Embeddings:</strong> (1, 60, 768)<br>
+                            • <strong>Segment Embeddings:</strong> (1, 60, 768)<br>
+                            👉 <strong>Total Layer Output:</strong> <code>Tensor Shape (1, 60, 768)</code>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--primary); font-weight: bold;">
+                            ✔ Attention Mask zeroes out all 38 [PAD] tokens so they don't corrupt Self-Attention.
+                        </div>
+                    </div>
+
+                    <div id="l_v_lab3" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Permutation Drop Ranking (&Delta; C-Index):</div>
+                        <div class="disease-bar-row">
+                            <span style="width: 85px;">1. Age</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 95%; background: var(--danger);"></div></div>
+                            <span style="font-weight: bold; width: 45px; color: var(--danger); text-align: right;">-0.2228</span>
+                        </div>
+                        <div class="disease-bar-row">
+                            <span style="width: 85px;">2. SBP</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 32%; background: var(--warning);"></div></div>
+                            <span style="font-weight: bold; width: 45px; color: var(--warning); text-align: right;">-0.0701</span>
+                        </div>
+                        <div class="disease-bar-row">
+                            <span style="width: 85px;">3. BMI</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 10%; background: #94a3b8;"></div></div>
+                            <span style="font-weight: bold; width: 45px; color: var(--text-muted); text-align: right;">-0.0150</span>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--danger); font-weight: bold; margin-top: 6px;">
+                            ✔ Proves model performance relies 3x more on Age than on Blood Pressure.
+                        </div>
+                    </div>
+
+                    <div id="l_v_lab4" style="display: none;">
+                        <div class="xray-container">
+                            <svg class="xray-bg-svg" viewBox="0 0 200 160">
+                                <path d="M40,20 Q60,10 100,20 Q140,10 160,20 Q170,80 155,140 Q100,150 100,100 Q100,150 45,140 Q30,80 40,20" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+                                <path d="M50,35 Q85,30 90,80 Q85,130 55,125 Q42,80 50,35" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                                <path d="M150,35 Q115,30 110,80 Q115,130 145,125 Q158,80 150,35" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+                                <path id="svg_heart" d="M85,75 Q100,60 120,80 Q130,110 105,125 Q85,115 85,75" fill="#334155" opacity="0.7"/>
+                            </svg>
+                            <div class="heatmap-overlay" id="l_heatmap_blob"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--text-muted); margin-top: 6px;">
+                            <span>Layer 424 Activations (10, 10, 1024)</span>
+                            <span style="color: var(--purple); font-weight: bold;" id="l_cam_disease_lbl">Target: Pneumonia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
         <!-- 5. GROUP CONCLUSION & WRAP-UP (EASIEST & CLEAREST)                        -->
         <!-- ========================================================================= -->
         <div id="section_wrapup" class="tab-content">
@@ -1884,23 +1884,23 @@
                     </p>
                 </div>
 
-                <div class="card" style="border-top: 4px solid #7c3aed; padding: 14px 12px; text-align: center;">
-                    <div style="font-size: 1.8rem; margin-bottom: 2px;">📝 🩻</div>
-                    <div style="font-weight: 800; font-size: 0.95rem; color: #5b21b6;">3. NLP &amp; Vision</div>
-                    <div style="font-size: 0.74rem; font-weight: 700; color: #7c3aed; margin-bottom: 6px;">Linh</div>
-                    <p style="font-size: 0.78rem; color: var(--text-main); line-height: 1.5;">
-                        <strong>"Can doctors trust it?"</strong><br>
-                        👉 <span style="color: #166534; font-weight: bold;">YES!</span> BERT reads notes, and Grad-CAM lights up pneumonia in red heatmaps.
-                    </p>
-                </div>
-
                 <div class="card" style="border-top: 4px solid #d97706; padding: 14px 12px; text-align: center;">
                     <div style="font-size: 1.8rem; margin-bottom: 2px;">🏥 🤖</div>
-                    <div style="font-weight: 800; font-size: 0.95rem; color: #92400e;">4. Big Hospital Data</div>
+                    <div style="font-weight: 800; font-size: 0.95rem; color: #92400e;">3. Big Hospital Data</div>
                     <div style="font-size: 0.74rem; font-weight: 700; color: #d97706; margin-bottom: 6px;">Dung</div>
                     <p style="font-size: 0.78rem; color: var(--text-main); line-height: 1.5;">
                         <strong>"How to scale up?"</strong><br>
                         👉 <span style="color: #166534; font-weight: bold;">Auto-Labeling!</span> Mined 100k reports to train a <strong>92% accurate</strong> 14-disease CNN.
+                    </p>
+                </div>
+
+                <div class="card" style="border-top: 4px solid #7c3aed; padding: 14px 12px; text-align: center;">
+                    <div style="font-size: 1.8rem; margin-bottom: 2px;">📝 🩻</div>
+                    <div style="font-weight: 800; font-size: 0.95rem; color: #5b21b6;">4. NLP &amp; Vision</div>
+                    <div style="font-size: 0.74rem; font-weight: 700; color: #7c3aed; margin-bottom: 6px;">Linh</div>
+                    <p style="font-size: 0.78rem; color: var(--text-main); line-height: 1.5;">
+                        <strong>"Can doctors trust it?"</strong><br>
+                        👉 <span style="color: #166534; font-weight: bold;">YES!</span> BERT reads notes, and Grad-CAM lights up pneumonia in red heatmaps.
                     </p>
                 </div>
             </div>
