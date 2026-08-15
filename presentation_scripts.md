@@ -4,10 +4,10 @@
 > **Course:** M9 - Introduction to Machine Learning (Group Project)  
 > **Topic:** AI for Medical Treatment: From Clinical Foundations to Precision Medicine & Deep Vision  
 > **Speakers:**  
-> 1. **Trần Thị Bảo Khương (ID: 20225027)** — Part 1: Clinical Trials, RCTs & The Causal Dilemma  
-> 2. **Đặng Trung Hiếu (ID: 20225003)** — Part 2: Individualized CATE, T-Learner vs S-Learner & SHAP Receipts  
-> 3. **Lê Ngọc Thuỳ Dung (ID: 20225030)** — Part 3: 100k PACS Label Mining & 14-Disease DenseNet121  
-> 4. **Lê Khánh Linh (ID: 20225020)** — Part 4: Medical NLP (BioBERT) & Vision Explainability (Grad-CAM)  
+> 1. **Trần Thị Bảo Khương (ID: 20225027)** — Part 1: Clinical Trials, RCTs & The Causal Dilemma (2 Chapters)  
+> 2. **Đặng Trung Hiếu (ID: 20225003)** — Part 2: Individualized CATE, T-Learner vs S-Learner & SHAP Receipts (3 Chapters)  
+> 3. **Lê Ngọc Thuỳ Dung (ID: 20225030)** — Part 3: 100,000 PACS Big Data Label Mining & 2026 Multimodal VLM (2 Chapters)  
+> 4. **Lê Khánh Linh (ID: 20225020)** — Part 4: Medical NLP (BioBERT), 14-CNN DenseNet121 Training, F1 Tuning & Grad-CAM (2 Chapters)  
 
 ---
 
@@ -132,7 +132,7 @@
 > *$0.60\text{--}0.65$ is the internationally recognized gold standard for causal treatment models (equivalent to ~0.80 AUC in standard classification).*  
 >  
 > *Finally, in **Card 6**, we provide doctors with an **Itemized SHAP Push Receipt**:  
-> • Baseline Drug: $+4.0\%$  
+> • Baseline Drug: $+3.4\%$  
 > • SBP 165 push: $+15.2\%$  
 > • Age 70 push: $+7.8\%$  
 > • Total CATE: **$+26.4\%$**.*  
@@ -143,18 +143,18 @@
 
 ---
 
-## 👩‍💼 Part 3: 100k PACS Big Data Mining & 14-Disease Vision CNN
+## 👩‍💼 Part 3: 100k PACS Big Data Mining & 2026 Multimodal VLM
 **Speaker:** Lê Ngọc Thuỳ Dung (ID: 20225030)  
 **Time Allocation:** 4.5 Minutes  
-**Focus:** PACS Radiology Mining, NegBio Rule Parsing, 14-Disease DenseNet121 CNN & F1 Harmonic Mean Optimization.
+**Focus:** 100,000 PACS Radiology Mining, NegBio Dependency Graph Parsing, UMLS Ontologies & 2026 BiomedCLIP VLM.
 
 ---
 
-### Chapter 1: Mining 100,000 Unstructured PACS Reports (1.5 mins)
+### Chapter 1: Mining 100,000 Unstructured PACS Reports (2.5 mins)
 
 **[👉 Screen Action: Click tab "Dung" &bull; Flow Step 1 "100k PACS Labeling" is active]**
 
-> *"Thank you Hiếu. To train deep learning models in healthcare, we cannot afford to pay radiologists millions of dollars to manually label hundreds of thousands of X-rays.*  
+> *"Thank you Hiếu. To power deep learning models in healthcare, we cannot afford to pay radiologists millions of dollars to manually label hundreds of thousands of X-rays.*  
 >  
 > *Instead, our system connects directly to hospital **PACS (Picture Archiving and Communication Systems)** to mine free-text radiology notes into a structured binary label matrix ($Y \in \{0, 1\}^{100,000 \times 14}$). Let us examine how NegBio parses complex medical syntax."*
 
@@ -168,44 +168,22 @@
 
 ---
 
-### Chapter 2: 14-Disease DenseNet121 Vision CNN & F1 Tuning (2 mins)
+### Chapter 2: 2026 Frontier: Multimodal Vision-Language Models (2.0 mins)
 
-**[👉 Screen Action: Click Flow Step 2 "14-CNN & F1 Tuning"]**
+**[👉 Screen Action: Click Flow Step 2 "2026 Multimodal VLM" &bull; Click `2026: Vision-Language Model` button]**
 
-> *"Next, we feed the Chest X-Rays and mined labels into a **14-Disease DenseNet121 CNN architecture**."*
-
-**[👉 Screen Action: Click `Scan #0599 (Pneumonia)` image &bull; then click `Scan #1042 (Cardiomegaly)` image]**
-
-> *"Notice our multi-label sigmoid design:*  
-> *• When we feed **Scan #0599**, the network identifies right lower lobe consolidation, outputting **$88\%$ Pneumonia** and **$72\%$ Infiltration** simultaneously.*  
-> *• When we feed **Scan #1042**, the network isolates an enlarged cardiac silhouette ($>55\%$ CTR), outputting **$94\%$ Cardiomegaly** with clean lungs.*  
+> *"Looking forward to 2026, the medical AI frontier is evolving from two-stage rule parsing toward **End-to-End Vision-Language Foundation Models like BiomedCLIP**.*  
 >  
-> *Because rare chest pathologies represent less than $1\%$ of hospital data, a naive model predicting 0 for all cases achieves $99\%$ accuracy while killing sick patients!"*
-
-**[👉 Screen Action: Drag "Operating Decision Threshold" slider from 0.50 to 0.70 & back to 0.50]**
-
-> *"To solve class imbalance, our math engine in **Card 4** evaluates the **F1-Score Harmonic Mean**:*  
-> $$F1 = \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} = 0.923$$  
-> *By tuning the decision threshold to $0.50$, we achieve an optimal balance, ensuring zero dangerous false negatives for high-mortality conditions."*
+> *Instead of hand-engineered regex patterns, contrastive embeddings align radiological text directly with image patches, enabling zero-shot disease classification with a cosine similarity of $0.942$.*  
+>  
+> *However, how does a neural network train on these Chest X-Rays, and can clinicians trust where the AI looks? I now hand over to **Linh** to demonstrate our 14-Disease CNN training, F1 optimization, and Grad-CAM explainability labs."*
 
 ---
 
-### Chapter 3: 2026 Frontier: Vision-Language Models (VLM) (1 min)
-
-**[👉 Screen Action: Click Flow Step 3 "2026 Frontier Vision" &bull; Click `2026: Vision-Language Model` button]**
-
-> *"Looking forward to 2026, the frontier is shifting from two-stage rule parsing to **Multimodal Vision-Language Models like BiomedCLIP**.*  
->  
-> *Instead of hand-engineered regex patterns, contrastive embeddings align radiological text directly with image patches, enabling zero-shot disease classification.*  
->  
-> *However, can clinicians trust these deep networks without opening the black box? I now hand over to **Linh** to demonstrate our Natural Language & Vision Explainability labs."*
-
----
-
-## 👨‍💻 Part 4: Medical NLP (BioBERT) & Explainability Labs (Grad-CAM)
+## 👨‍💻 Part 4: Medical NLP, 14-CNN Training & Grad-CAM Explainability
 **Speaker:** Lê Khánh Linh (ID: 20225020)  
-**Time Allocation:** 4.5 Minutes  
-**Focus:** BioBERT WordPiece Tokenizer & Attention Mask, Layer 424 Grad-CAM Localization, and Permutation Feature Importance.
+**Time Allocation:** 5.0 Minutes  
+**Focus:** BioBERT WordPiece Tokenizer & Attention Mask, 14-Disease DenseNet121 Multi-Label CNN, F1 Tuning ($0.923$), and Layer 424 Grad-CAM Localization.
 
 ---
 
@@ -229,29 +207,35 @@
 
 ---
 
-### Chapter 2: Grad-CAM Localization & Permutation Importance (2.5 mins)
+### Chapter 2: 14-CNN DenseNet121, F1 Tuning & Layer 424 Grad-CAM (3 mins)
 
-**[👉 Screen Action: Click Flow Step 2 "Grad-CAM & Permutation"]**
+**[👉 Screen Action: Click Flow Step 2 "14-CNN & Grad-CAM Lab"]**
 
-> *"Finally, we address the critical question asked by every doctor: **'Can we trust what the AI sees?'**  
+> *"Now, let us examine how our **14-Disease DenseNet121 CNN architecture** processes Chest X-Rays and opens its black box for clinicians."*
+
+**[👉 Screen Action: Click `Scan #0599 (🫁 Pneumonia)` &bull; then `Scan #1042 (❤️ Cardiomegaly)`]**
+
+> *"Notice our multi-label sigmoid predictions:*  
+> *• For **Scan #0599**, the network identifies right lower lobe consolidation, outputting **$88\%$ Pneumonia**.*  
+> *• For **Scan #1042**, it detects an enlarged cardiac silhouette ($>55\%$ CTR), outputting **$94\%$ Cardiomegaly**.*  
 >  
-> *We implement **Grad-CAM (Gradient-Weighted Class Activation Mapping)** on the final convolutional layer (Layer 424) of our DenseNet121 model."*
+> *Because rare chest pathologies represent less than $1\%$ of hospital data, a naive model predicting 0 for all cases achieves $99\%$ accuracy while killing sick patients!"*
 
-**[👉 Screen Action: Click `🫁 Pneumonia` &bull; Adjust Opacity Slider to 85% &bull; Then click `❤️ Cardiomegaly`]**
+**[👉 Screen Action: Drag "CNN Decision Threshold" slider to 0.70 & back to 0.50]**
 
-> *"Watch the heatmap in **Card 6 (Visualizer)**:*  
-> *• When evaluating for **Pneumonia**, the backpropagated gradients $\alpha_k^{\text{pneu}}$ isolate the exact inflammatory opacity in the **right lower lung field** ($🟢 \rightarrow 🔴$).*  
-> *• When evaluating for **Cardiomegaly**, the gradients dynamically shift to outline the **expanded cardiac silhouette borders**.*  
+> *"To solve class imbalance, our math engine in **Card 4** optimizes the **F1-Score Harmonic Mean**:*  
+> $$F1 = \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} = 0.923$$  
+> *By tuning the decision threshold to $0.50$, we achieve an optimal balance, ensuring zero dangerous false negatives for high-mortality conditions."*
+
+**[👉 Screen Action: Drag "Grad-CAM Opacity" to 85% &bull; Click `🔀 Shuffle Age`]**
+
+> *"Crucially, we implement **Grad-CAM (Gradient-Weighted Class Activation Mapping)** on Layer 424 of DenseNet121:*  
+> *• For **Pneumonia**, backpropagated gradients $\alpha_k^{\text{pneu}}$ illuminate the exact inflammatory opacity in the **right lower lung field** in red heat ($🟢 \rightarrow 🔴$).*  
+> *• For **Cardiomegaly**, the gradients dynamically shift to outline the **expanded cardiac silhouette**.*  
 >  
-> *This ensures the AI is diagnosing real pathology rather than cheating on hospital metal markers or image artifacts."*
-
-**[👉 Screen Action: Click `🔀 Shuffle Age` in Card 2]**
-
-> *"To explain tabular risk factors, we perform **Permutation Feature Importance**.*  
+> *Finally, Permutation Importance proves that shuffling Age causes a massive **$-0.2228$ C-Index drop**—confirming Age is the \#1 biological risk driver.*  
 >  
-> *As shown in **Card 5**, when we randomly shuffle Patient Age across the test set, model discrimination drops by **$-0.2228$ C-Index**—proving that Age is the \#1 biological driver of stroke risk, followed by Blood Pressure.*  
->  
-> *Through BioBERT, Grad-CAM, and Permutation Importance, our clinical pipeline is **100% transparent, accountable, and clinician-ready**.*  
+> *Through BioBERT, DenseNet121, F1 tuning, and Grad-CAM, our vision pipeline is **100% transparent, accountable, and clinician-ready**.*  
 >  
 > *Let us now conclude with our Wrap-Up and Q&A session."*
 
@@ -265,8 +249,8 @@
 > *"To summarize our work:*  
 > 1. **Khương** established causal foundations, showing how RCT coin flips cut confounding bias and why ATE population averages fail individual patients.  
 > 2. **Hiếu** built precision CATE models using T-Learners to protect against tree shrinkage, validating benefit on twin cohorts ($C=0.6342$) with SHAP receipts.  
-> 3. **Dung** auto-labeled 100,000 PACS reports with NegBio and trained a 14-disease DenseNet121 vision CNN optimized for F1 harmonic balance.  
-> 4. **Linh** opened the black box, proving token attention structures and visual Grad-CAM pathology localization.  
+> 3. **Dung** auto-labeled 100,000 PACS reports with NegBio and UMLS ontologies, detailing the 2026 Multimodal VLM paradigm.  
+> 4. **Linh** opened the black box, training 14-disease DenseNet121 CNNs with F1 harmonic tuning, BioBERT attention tensors, and Layer 424 Grad-CAM pathology heatmaps.  
 >  
 > *Together, this bridges the gap between raw medical big data and individualized, lifesaving clinical decisions.*  
 >  
@@ -283,6 +267,6 @@
 | **Q3. Why is T-Learner preferred over S-Learner in medicine?** | **Hiếu** | *"S-Learner suffers from shrinkage bias—decision trees split on Age/BP and ignore treatment $W$. T-Learner trains 2 separate models to capture 100% of treatment interactions."* |
 | **Q4. Does Grad-CAM guarantee medical correctness?** | **Linh** | *"No. Grad-CAM shows WHERE the network looked, acting as a vital safety filter so clinicians can verify the AI isn't hallucinating on image artifacts."* |
 | **Q5. Why use rule-based NLP if Large Language Models (LLMs) exist?** | **Dung / Linh** | *"Hospital PACS contain millions of records behind firewalls. Rule-based NegBio is 100% HIPAA-compliant, zero-cost, runs locally at lightning speed, and requires zero GPUs."* |
-| **Q6. If rule labels contain noise, how does the CNN reach 92% F1?** | **Dung** | *"Big data scale filters out noise. Across 100,000 X-rays, random label errors cancel out, allowing the deep CNN to learn true physical visual disease features."* |
+| **Q6. If rule labels contain noise, how does the CNN reach 92% F1?** | **Dung / Linh** | *"Big data scale filters out noise. Across 100,000 X-rays, random label errors cancel out, allowing the deep CNN to learn true physical visual disease features."* |
 
 ---

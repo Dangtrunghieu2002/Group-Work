@@ -984,9 +984,9 @@
             <!-- 6 Structured Blocks Grid for Khương -->
             <div class="grid-blocks">
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="k_badge_scen">Chapter 1</span></div>
-                    <p style="font-size: 0.84rem; color: var(--text-main); font-weight: 600; margin-bottom: 8px;" id="k_scen_title"></p>
-                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.35;" id="k_scen_desc"></p>
+                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="k_badge_step">Chapter 1</span></div>
+                    <p style="font-size: 0.84rem; color: var(--text-main); font-weight: 600; margin-bottom: 8px;" id="k_scenario_title"></p>
+                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.35;" id="k_scenario_body"></p>
                 </div>
 
                 <!-- Card 2: DYNAMIC INPUTS FOR KHƯƠNG -->
@@ -1381,10 +1381,10 @@
                             <span id="h_c_meter_lbl" style="font-weight: bold; color:var(--success); width: 60px; text-align: right;">0.6342</span>
                         </div>
                         <div style="background: #eff6ff; border-radius: 6px; padding: 6px 8px; font-size: 0.74rem; color: #1e40af; margin-top: 6px;">
-                            • <span id="h_shap_sbp_lbl">➕ SBP (165 mmHg)</span>: <strong style="color:var(--success);" id="h_shap_sbp">+8.5%</strong> &nbsp;|&nbsp;
-                            • <span id="h_shap_age_lbl">➕ Age (70 yrs)</span>: <strong style="color:var(--success);" id="h_shap_age">+3.4%</strong> &nbsp;|&nbsp;
-                            • <span id="h_shap_bmi_lbl">➕ BMI (31.0)</span>: <strong style="color:var(--success);" id="h_shap_bmi">+0.5%</strong><br>
-                            👉 <strong>Total CATE: <span id="h_shap_sum" style="color:var(--primary); font-weight:bold;">+26.4%</span></strong>
+                            • <span id="h_shap_sbp_lbl">➕ SBP (165 mmHg)</span>: <strong style="color:var(--success);" id="h_shap_sbp_val">+15.2%</strong> &nbsp;|&nbsp;
+                            • <span id="h_shap_age_lbl">➕ Age (70 yrs)</span>: <strong style="color:var(--success);" id="h_shap_age_val">+7.8%</strong> &nbsp;|&nbsp;
+                            • <span id="h_shap_bmi_lbl">➕ Drug Baseline</span>: <strong style="color:var(--success);" id="h_shap_bmi_val">+3.4%</strong><br>
+                            👉 <strong>Total CATE: <span id="h_shap_sum" style="color:var(--primary); font-weight:bold;">+26.4% Net Benefit</span></strong>
                         </div>
                     </div>
                 </div>
@@ -1400,14 +1400,14 @@
             </div>
         </div>
         <!-- ========================================================================= -->
-        <!-- 3. DUNG - LABEL EXTRACTION & 14-DISEASE CNN TRAINING                       -->
+        <!-- 3. DUNG - 100K PACS BIG DATA MINING & 2026 MULTIMODAL VLM                 -->
         <!-- ========================================================================= -->
         <div id="section_dung" class="tab-content">
             <div class="member-banner" style="border-left: 5px solid var(--warning);">
                 <div>
-                    <span class="role-tag" style="background:#fef3c7; color:#92400e;">Part 3: Dung · Automated Labeling &amp; 14-Disease CNN Models</span>
-                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Automated Medical Labeling, 14-Disease CNN Vision Training &amp; F1 Evaluation</h2>
-                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.35;">Scope: Mining 100,000 text reports to train Multi-Label CNN Classifiers (DenseNet121) and evaluating rare diseases.</p>
+                    <span class="role-tag" style="background:#fef3c7; color:#92400e;">Part 3: Dung · 100k PACS Label Mining &amp; Multimodal AI</span>
+                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Automated Medical PACS Mining (NegBio, Ontologies) &amp; 2026 Multimodal VLM Frontier</h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.35;">Scope: Parsing 100,000 unstructured radiology notes into binary ground-truth matrices behind hospital firewalls and transitioning to BiomedCLIP.</p>
                 </div>
                 <div class="timer-widget" id="timer_dung_box">
                     <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
@@ -1421,40 +1421,32 @@
                 </div>
             </div>
 
-            <!-- Interactive Flowchart Diagram for Dung (3 Combined Steps) -->
+            <!-- Interactive Flowchart Diagram for Dung (2 Unified Steps) -->
             <div class="card flowchart-card" style="padding: 14px 16px; margin-bottom: 16px;">
                 <div class="flowchart-header">
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span class="flowchart-icon">🗺️</span>
                         <div>
-                            <div style="font-size: 0.82rem; font-weight: 800; color: #92400e; text-transform: uppercase; letter-spacing: 0.03em;">Dung's 100k PACS Label Mining &amp; 14-CNN Architecture (3 Unified Chapters)</div>
-                            <div style="font-size: 0.72rem; color: var(--text-muted);">Unstructured Radiology Notes &rarr; Multi-Label DenseNet121 &rarr; 2026 Frontier Vision</div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #92400e; text-transform: uppercase; letter-spacing: 0.03em;">Dung's Big Data Label Mining &amp; 2026 Frontier Pipeline (2 Unified Chapters)</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">Unstructured PACS Radiology Notes &rarr; Automated NegBio Mining &rarr; 2026 BiomedCLIP VLM</div>
                         </div>
                     </div>
-                    <span class="pill pill-warning" style="font-size: 0.68rem;">3 Core Chapters</span>
+                    <span class="pill pill-warning" style="font-size: 0.68rem;">2 Core Chapters</span>
                 </div>
                 <div class="flowchart-track">
                     <div class="flow-step active" id="d_flow_1" onclick="setDungPipelineStep(1)">
                         <div class="flow-step-num">01</div>
                         <div class="flow-step-content">
                             <div class="flow-step-title">100k PACS Labeling</div>
-                            <div class="flow-step-sub">NegBio &amp; Medical Ontologies</div>
+                            <div class="flow-step-sub">NegBio, Regex &amp; UMLS Ontologies</div>
                         </div>
                     </div>
                     <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
                     <div class="flow-step" id="d_flow_2" onclick="setDungPipelineStep(2)">
                         <div class="flow-step-num">02</div>
                         <div class="flow-step-content">
-                            <div class="flow-step-title">14-CNN &amp; F1 Tuning</div>
-                            <div class="flow-step-sub">DenseNet121 &amp; Imbalance Optimization</div>
-                        </div>
-                    </div>
-                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
-                    <div class="flow-step" id="d_flow_3" onclick="setDungPipelineStep(3)">
-                        <div class="flow-step-num">03</div>
-                        <div class="flow-step-content">
-                            <div class="flow-step-title">2026 Frontier Vision</div>
-                            <div class="flow-step-sub">BiomedCLIP Zero-Shot &amp; Critique</div>
+                            <div class="flow-step-title">2026 Multimodal VLM</div>
+                            <div class="flow-step-sub">BiomedCLIP Zero-Shot &amp; Text-Image Alignment</div>
                         </div>
                     </div>
                 </div>
@@ -1500,65 +1492,15 @@
                         </div>
                     </div>
 
-                    <!-- Input Step 2: 14-CNN Scan Selector & Threshold Slider -->
+                    <!-- Input Step 2: Paradigm Selector -->
                     <div id="d_in_step2" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
-                            <span>Select Input Chest X-Ray Scan (224×224):</span>
-                            <span class="pill pill-purple" style="font-size:0.7rem;">Click Image to Feed CNN</span>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
-                            <!-- Scan 1: Pneumonia Image Card -->
-                            <div class="xray-thumb-card active" id="d_cnn_img_1" onclick="setDungCNNCase(1)">
-                                <div class="xray-thumb-svg-wrap">
-                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
-                                        <!-- Ribcage & Thoracic Cavity -->
-                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
-                                        <!-- Right Lung Field -->
-                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <!-- Left Lung Field -->
-                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <!-- Heart Shadow -->
-                                        <path d="M42,38 Q50,30 60,40 Q65,55 52,62 Q42,58 42,38" fill="#334155" opacity="0.7"/>
-                                        <!-- Pneumonia Opacity Consolidation in Right Lower Lobe -->
-                                        <circle cx="32" cy="48" r="10" fill="#ef4444" opacity="0.75" filter="blur(2px)"/>
-                                    </svg>
-                                    <span style="position: absolute; bottom: 3px; right: 5px; font-size: 0.65rem; background: rgba(0,0,0,0.75); color: #fca5a5; padding: 1px 4px; border-radius: 3px; font-weight: bold;">Opacity Alert</span>
-                                </div>
-                                <div style="font-size: 0.78rem; font-weight: bold; color: var(--dark);">Scan #0599</div>
-                                <div style="font-size: 0.72rem; color: #dc2626; font-weight: 700;">🫁 Pneumonia Scan</div>
-                            </div>
-
-                            <!-- Scan 2: Cardiomegaly Image Card -->
-                            <div class="xray-thumb-card" id="d_cnn_img_2" onclick="setDungCNNCase(2)">
-                                <div class="xray-thumb-svg-wrap">
-                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
-                                        <!-- Ribcage & Thoracic Cavity -->
-                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
-                                        <!-- Right Lung Field -->
-                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <!-- Left Lung Field -->
-                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <!-- Enlarged Cardiomegaly Silhouette (>55% CTR) -->
-                                        <path d="M35,36 Q50,26 68,38 Q78,62 50,68 Q33,60 35,36" fill="#3b82f6" opacity="0.8" stroke="#93c5fd" stroke-width="1"/>
-                                    </svg>
-                                    <span style="position: absolute; bottom: 3px; right: 5px; font-size: 0.65rem; background: rgba(0,0,0,0.75); color: #93c5fd; padding: 1px 4px; border-radius: 3px; font-weight: bold;">CTR &gt; 55%</span>
-                                </div>
-                                <div style="font-size: 0.78rem; font-weight: bold; color: var(--dark);">Scan #1042</div>
-                                <div style="font-size: 0.72rem; color: #2563eb; font-weight: 700;">❤️ Cardiomegaly</div>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="control-header"><span>Operating Decision Threshold</span><span id="d_txt_thresh" style="font-weight: bold; color: var(--primary);">0.50</span></div>
-                            <input type="range" class="slider" id="d_sl_thresh" min="5" max="95" value="50" oninput="updateDungF1Sim()">
-                        </div>
-                    </div>
-
-                    <!-- Input Step 3: Paradigm Selector -->
-                    <div id="d_in_step3" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Select Paradigm Architecture:</div>
-                        <div style="display: flex; gap: 4px;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Select AI Paradigm Architecture:</div>
+                        <div style="display: flex; gap: 4px; margin-bottom: 8px;">
                             <button class="preset-btn active" id="d_btn_par_1" onclick="setDungParadigm(1)">2020: Rule-Based Pipeline</button>
                             <button class="preset-btn" id="d_btn_par_2" onclick="setDungParadigm(2)">2026: Vision-Language Model</button>
+                        </div>
+                        <div style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.4;">
+                            Explore how hospital systems transition from rule-mined CNN training to Zero-Shot Multimodal VLM alignment.
                         </div>
                     </div>
                 </div>
@@ -1585,24 +1527,6 @@
                             <tbody id="d_out_table_body"></tbody>
                         </table>
                     </div>
-
-                    <div id="d_out_cnn_bars" style="display: none;">
-                        <div class="disease-bar-row">
-                            <span style="width: 100px;">Pneumonia:</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_pneu" style="width: 88%; background: var(--primary);"></div></div>
-                            <span id="d_val_pneu" style="font-weight: bold; color:var(--primary); width: 45px; text-align: right;">88%</span>
-                        </div>
-                        <div class="disease-bar-row">
-                            <span style="width: 100px;">Cardiomegaly:</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_cardio" style="width: 14%; background: var(--danger);"></div></div>
-                            <span id="d_val_cardio" style="font-weight: bold; color:var(--danger); width: 45px; text-align: right;">14%</span>
-                        </div>
-                        <div class="disease-bar-row">
-                            <span style="width: 100px;">Infiltration:</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_inf" style="width: 72%; background: var(--warning);"></div></div>
-                            <span id="d_val_inf" style="font-weight: bold; color:var(--warning); width: 45px; text-align: right;">72%</span>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Card 6: VISUALIZER -->
@@ -1620,20 +1544,6 @@
                     </div>
 
                     <div id="d_v_step2" style="display: none;">
-                        <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 6px; padding: 8px; margin-bottom: 6px;">
-                            <div style="font-weight: bold; color: #1e40af; font-size: 0.78rem; text-align: center;">
-                                🧠 DenseNet121 Layer 424 Multi-Label Model
-                            </div>
-                            <div style="font-size: 0.72rem; color: #1e3a8a; margin-top: 2px;">
-                                14 Independent Sigmoids + Weighted Cross-Entropy Loss to counter 1% rare disease imbalance.
-                            </div>
-                        </div>
-                        <div style="font-size: 0.75rem; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; padding: 6px 8px; color: #166534;" id="d_f1_score_summary">
-                            ✔ Threshold 0.50 &rarr; Balanced F1-Score: <strong>0.923</strong>.
-                        </div>
-                    </div>
-
-                    <div id="d_v_step3" style="display: none;">
                         <div style="background: #0f172a; color: white; border-radius: 6px; padding: 8px; font-size: 0.74rem;">
                             <div style="color: #60a5fa; font-weight: bold; margin-bottom: 2px;">2026 Multimodal Foundation Model:</div>
                             <div style="color: #cbd5e1; line-height: 1.4; margin-bottom: 4px;">
@@ -1650,21 +1560,21 @@
             <!-- Narrative Transition Bridge to Part 4 -->
             <div style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 1.5px solid #fde047; border-radius: 8px; padding: 12px 16px; margin-top: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(217,119,6,0.06);">
                 <div>
-                    <span style="font-size: 0.72rem; font-weight: 800; color: #92400e; text-transform: uppercase;">Chapter 4 &bull; NLP Attention &amp; Vision Explainability</span>
-                    <div style="font-size: 0.88rem; font-weight: 800; color: #78350f; margin-top: 2px;">14-CNN is trained (F1=0.92) &rarr; Can doctors trust its BERT text attention &amp; Grad-CAM heatmaps?</div>
+                    <span style="font-size: 0.72rem; font-weight: 800; color: #92400e; text-transform: uppercase;">Chapter 4 &bull; NLP Attention &amp; 14-CNN Vision Labs</span>
+                    <div style="font-size: 0.88rem; font-weight: 800; color: #78350f; margin-top: 2px;">100k Labels mined &rarr; Hand off to Linh for BioBERT NLP, 14-CNN Training &amp; Grad-CAM Vision!</div>
                 </div>
                 <button class="btn" style="background:#d97706; color:#fff;" onclick="switchMember('linh')">Continue to Part 4: Linh &rarr;</button>
             </div>
         </div>
         <!-- ========================================================================= -->
-        <!-- 4. LINH - MEDICAL NLP & MODEL INTERPRETATION                               -->
+        <!-- 4. LINH - MEDICAL NLP & 14-CNN GRAD-CAM VISION LABS                        -->
         <!-- ========================================================================= -->
         <div id="section_linh" class="tab-content">
             <div class="member-banner" style="border-left: 5px solid var(--purple);">
                 <div>
-                    <span class="role-tag" style="background:#f5f3ff; color:#6d28d9;">Part 4: Linh · Medical NLP &amp; ML Interpretation Labs</span>
-                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Medical NLP (Text Cleaning, BERT) &amp; Vision Interpretation (Permutation, Grad-CAM)</h2>
-                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.35;">Scope: Deep tokenization with attention tensors, feature permutation ranking, and Layer 424 Grad-CAM X-Ray visual explainability.</p>
+                    <span class="role-tag" style="background:#f5f3ff; color:#6d28d9;">Part 4: Linh · Medical NLP &amp; 14-CNN Vision Labs</span>
+                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">BioBERT Attention, 14-Disease DenseNet121 CNN Training, F1 Tuning &amp; Grad-CAM Localization</h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.35;">Scope: WordPiece token tensors (1, 60), 14-disease multi-label CNN training with F1 threshold optimization, and Layer 424 Grad-CAM visual heatmaps.</p>
                 </div>
                 <div class="timer-widget" id="timer_linh_box">
                     <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
@@ -1684,8 +1594,8 @@
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span class="flowchart-icon">🗺️</span>
                         <div>
-                            <div style="font-size: 0.82rem; font-weight: 800; color: #5b21b6; text-transform: uppercase; letter-spacing: 0.03em;">Linh's NLP Attention &amp; Vision Explainability Pipeline (2 Unified Chapters)</div>
-                            <div style="font-size: 0.72rem; color: var(--text-muted);">BioBERT Attention Tensors &rarr; Grad-CAM X-Ray Localization &amp; Permutation</div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #5b21b6; text-transform: uppercase; letter-spacing: 0.03em;">Linh's NLP Attention &amp; 14-CNN Vision Lab (2 Unified Chapters)</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">BioBERT Attention Tensors &rarr; 14-CNN Training, F1 Tuning &amp; Layer 424 Grad-CAM</div>
                         </div>
                     </div>
                     <span class="pill pill-purple" style="font-size: 0.68rem;">2 Core Chapters</span>
@@ -1702,8 +1612,8 @@
                     <div class="flow-step" id="l_step_2" onclick="setLinhLab(2)">
                         <div class="flow-step-num">02</div>
                         <div class="flow-step-content">
-                            <div class="flow-step-title">Grad-CAM &amp; Permutation</div>
-                            <div class="flow-step-sub">Layer 424 Heatmaps &amp; Feature Importance</div>
+                            <div class="flow-step-title">14-CNN &amp; Grad-CAM Lab</div>
+                            <div class="flow-step-sub">DenseNet121, F1 Tuning &amp; Heatmaps</div>
                         </div>
                     </div>
                 </div>
@@ -1734,18 +1644,15 @@
                         <button class="btn" style="width: 100%; justify-content: center;" onclick="runLinhTextCleaner()">✨ Clean Medical Text</button>
                     </div>
 
-                    <!-- Input Step 2: Grad-CAM Opacity, Disease & Shuffle -->
+                    <!-- Input Step 2: 14-CNN Scan Selector, Threshold & Grad-CAM Sliders -->
                     <div id="l_input_cam_box" style="display: none;">
-                        <div class="control-header">
-                            <span>Grad-CAM Overlay Opacity:</span>
-                            <span id="l_cam_op_txt" style="font-weight: bold; color: var(--purple);">80%</span>
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>Select Chest X-Ray Scan (224×224):</span>
+                            <span class="pill pill-purple" style="font-size:0.7rem;">Click Scan to Feed CNN</span>
                         </div>
-                        <input type="range" class="slider" id="l_cam_sl_op" min="0" max="100" value="80" oninput="updateLinhHeatmap()" style="margin-bottom: 8px;">
-                        
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Target Pathology Scan:</div>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
                             <div class="xray-thumb-card active" id="l_dis_btn_1" onclick="setLinhDisease('pneumonia')">
-                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
+                                <div class="xray-thumb-svg-wrap" style="height: 52px;">
                                     <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
                                         <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
                                         <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
@@ -1753,10 +1660,10 @@
                                         <circle cx="32" cy="48" r="9" fill="#ef4444" opacity="0.8" filter="blur(2px)"/>
                                     </svg>
                                 </div>
-                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">🫁 Pneumonia</div>
+                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">Scan #0599 (🫁 Pneumonia)</div>
                             </div>
                             <div class="xray-thumb-card" id="l_dis_btn_2" onclick="setLinhDisease('cardiomegaly')">
-                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
+                                <div class="xray-thumb-svg-wrap" style="height: 52px;">
                                     <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
                                         <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
                                         <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
@@ -1764,21 +1671,40 @@
                                         <path d="M36,35 Q50,26 68,38 Q78,62 50,68 Q33,60 36,35" fill="#3b82f6" opacity="0.85" stroke="#93c5fd" stroke-width="1"/>
                                     </svg>
                                 </div>
-                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">❤️ Cardiomegaly</div>
+                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">Scan #1042 (❤️ Cardiomegaly)</div>
                             </div>
                         </div>
 
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Test Column Shuffling:</div>
+                        <!-- F1 Decision Threshold Slider -->
+                        <div class="control-group" style="margin-bottom: 6px;">
+                            <div class="control-header" style="font-size:0.75rem;">
+                                <span>CNN Decision Threshold:</span>
+                                <span id="l_txt_thresh" style="font-weight: bold; color: var(--primary);">0.50</span>
+                            </div>
+                            <input type="range" class="slider" id="l_sl_thresh" min="5" max="95" value="50" oninput="updateLinhF1Thresh()">
+                        </div>
+
+                        <!-- Grad-CAM Opacity Slider -->
+                        <div class="control-group" style="margin-bottom: 6px;">
+                            <div class="control-header" style="font-size:0.75rem;">
+                                <span>Grad-CAM Overlay Opacity:</span>
+                                <span id="l_cam_op_txt" style="font-weight: bold; color: var(--purple);">80%</span>
+                            </div>
+                            <input type="range" class="slider" id="l_cam_sl_op" min="0" max="100" value="80" oninput="updateLinhHeatmap()">
+                        </div>
+                        
+                        <!-- Permutation Shuffling Buttons -->
+                        <div style="font-size: 0.74rem; font-weight: bold; margin-bottom: 3px;">Test Feature Importance:</div>
                         <div style="display: flex; gap: 4px;">
-                            <button class="btn" id="l_btn_shuf_age" style="flex: 1; font-size: 0.74rem; justify-content: center;" onclick="runLinhShuffle('age')">🔀 Shuffle Age</button>
-                            <button class="btn btn-outline" id="l_btn_shuf_sbp" style="flex: 1; font-size: 0.74rem; justify-content: center;" onclick="runLinhShuffle('sbp')">🔀 Shuffle BP</button>
+                            <button class="btn" id="l_btn_shuf_age" style="flex: 1; font-size: 0.72rem; padding: 4px; justify-content: center;" onclick="runLinhShuffle('age')">🔀 Shuffle Age</button>
+                            <button class="btn btn-outline" id="l_btn_shuf_sbp" style="flex: 1; font-size: 0.72rem; padding: 4px; justify-content: center;" onclick="runLinhShuffle('sbp')">🔀 Shuffle BP</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 3: WHAT NLP / ML DOES -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">🧠 3. What NLP/ML Does</h3><span class="block-badge badge-ml">Explainability</span></div>
+                    <div class="card-header"><h3 class="card-title">🧠 3. What NLP/ML Does</h3><span class="block-badge badge-ml">CNN &amp; Explainability</span></div>
                     <div style="font-size: 0.85rem; line-height: 1.5; color: var(--text-main);" id="l_ml_explanation"></div>
                 </div>
 
@@ -1790,7 +1716,7 @@
 
                 <!-- Card 5: EXPECTED OUTPUT -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Attention/Weights</span></div>
+                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Predictions &amp; Weights</span></div>
                     
                     <div id="l_out_clean_box" style="display: block;">
                         <div style="font-size: 0.76rem; font-weight: bold; margin-bottom: 4px; color: var(--text-muted);">Standardized Clean Text:</div>
@@ -1802,8 +1728,20 @@
                     </div>
 
                     <div id="l_out_cam_metric" style="display: none;">
+                        <div style="font-size: 0.74rem; font-weight: bold; margin-bottom: 4px; color: var(--text-muted);">14-Disease Sigmoid Predictions:</div>
+                        <div class="disease-bar-row" style="margin-bottom: 4px;">
+                            <span style="width: 85px; font-size:0.74rem;">Pneumonia:</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="l_bar_pneu" style="width: 88%; background: var(--primary);"></div></div>
+                            <span id="l_val_pneu" style="font-weight: bold; color:var(--primary); width: 40px; text-align: right; font-size:0.74rem;">88%</span>
+                        </div>
+                        <div class="disease-bar-row" style="margin-bottom: 6px;">
+                            <span style="width: 85px; font-size:0.74rem;">Cardiomegaly:</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="l_bar_cardio" style="width: 14%; background: var(--danger);"></div></div>
+                            <span id="l_val_cardio" style="font-weight: bold; color:var(--danger); width: 40px; text-align: right; font-size:0.74rem;">14%</span>
+                        </div>
+
                         <div style="font-size: 0.74rem; font-weight: bold; margin-bottom: 4px; color: var(--text-muted);">Permutation Importance (&Delta; C-Index):</div>
-                        <table class="table" style="font-size: 0.74rem;">
+                        <table class="table" style="font-size: 0.72rem;">
                             <thead><tr><th>Feature</th><th>C-Index</th><th>Drop</th></tr></thead>
                             <tbody id="l_perm_table_body">
                                 <tr><td><strong>Age</strong></td><td>0.7759</td><td>0.0000 (Baseline)</td></tr>
@@ -1837,9 +1775,12 @@
                             </svg>
                             <div class="heatmap-overlay" id="l_heatmap_blob"></div>
                         </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--text-muted); margin-top: 6px;">
-                            <span>Layer 424 Activations (10, 10, 1024)</span>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.74rem; color: var(--text-muted); margin-top: 6px;">
+                            <span>DenseNet121 Layer 424 Activations</span>
                             <span style="color: var(--purple); font-weight: bold;" id="l_cam_disease_lbl">Target: Pneumonia</span>
+                        </div>
+                        <div style="font-size: 0.74rem; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; padding: 4px 8px; color: #166534; margin-top: 4px;" id="l_f1_score_summary">
+                            ✔ Threshold 0.50 &rarr; Balanced F1-Score: <strong>0.923</strong>.
                         </div>
                     </div>
                 </div>
@@ -1851,6 +1792,9 @@
                     <span style="font-size: 0.72rem; font-weight: 800; color: #6d28d9; text-transform: uppercase;">Final Synthesis &bull; Grand Conclusion</span>
                     <div style="font-size: 0.88rem; font-weight: 800; color: #4c1d95; margin-top: 2px;">All 4 pillars complete &rarr; Review key takeaways &amp; plain-language answers!</div>
                 </div>
+                <button class="btn" style="background:#7c3aed; color:#fff;" onclick="switchMember('wrapup')">View Wrap-Up &amp; Q&amp;A &rarr;</button>
+            </div>
+        </div>
                 <button class="btn" style="background:#7c3aed; color:#fff;" onclick="switchMember('wrapup')">View Wrap-Up &amp; Q&amp;A &rarr;</button>
             </div>
         </div>
@@ -1899,22 +1843,22 @@
                 </div>
 
                 <div class="card" style="border-top: 4px solid #d97706; padding: 14px 12px; text-align: center;">
-                    <div style="font-size: 1.8rem; margin-bottom: 2px;">🏥 🤖</div>
-                    <div style="font-weight: 800; font-size: 0.95rem; color: #92400e;">3. Big Hospital Data</div>
+                    <div style="font-size: 1.8rem; margin-bottom: 2px;">🏥 📑</div>
+                    <div style="font-weight: 800; font-size: 0.95rem; color: #92400e;">3. Big Data Label Mining</div>
                     <div style="font-size: 0.74rem; font-weight: 700; color: #d97706; margin-bottom: 6px;">Dung</div>
                     <p style="font-size: 0.78rem; color: var(--text-main); line-height: 1.5;">
-                        <strong>"How to scale up?"</strong><br>
-                        👉 <span style="color: #166534; font-weight: bold;">Auto-Labeling!</span> Mined 100k reports to train a <strong>92% accurate</strong> 14-disease CNN.
+                        <strong>"How to label 100k notes?"</strong><br>
+                        👉 <span style="color: #166534; font-weight: bold;">NegBio &amp; Ontologies!</span> Auto-mined 100k PACS notes ($0 cost) + 2026 Multimodal VLM.
                     </p>
                 </div>
 
                 <div class="card" style="border-top: 4px solid #7c3aed; padding: 14px 12px; text-align: center;">
-                    <div style="font-size: 1.8rem; margin-bottom: 2px;">📝 🩻</div>
-                    <div style="font-weight: 800; font-size: 0.95rem; color: #5b21b6;">4. NLP &amp; Vision</div>
+                    <div style="font-size: 1.8rem; margin-bottom: 2px;">🫁 🩻</div>
+                    <div style="font-weight: 800; font-size: 0.95rem; color: #5b21b6;">4. 14-CNN &amp; Grad-CAM Lab</div>
                     <div style="font-size: 0.74rem; font-weight: 700; color: #7c3aed; margin-bottom: 6px;">Linh</div>
                     <p style="font-size: 0.78rem; color: var(--text-main); line-height: 1.5;">
-                        <strong>"Can doctors trust it?"</strong><br>
-                        👉 <span style="color: #166534; font-weight: bold;">YES!</span> BERT reads notes, and Grad-CAM lights up pneumonia in red heatmaps.
+                        <strong>"14-CNN &amp; Explainability?"</strong><br>
+                        👉 <span style="color: #166534; font-weight: bold;">DenseNet121 &amp; Grad-CAM!</span> F1=0.923 tuning + Layer 424 heatmaps &amp; BioBERT.
                     </p>
                 </div>
             </div>
@@ -2029,1398 +1973,912 @@
     </div>
 
         <script>
-        // ==========================================
-        // 0. COUNTDOWN TIMER ENGINE (5 MINS / SPEAKER)
-        // ==========================================
-        const presenterTimers = {
-            overview: { remaining: 1200, interval: null, running: false, initial: 1200, started: false },
-            khuong:   { remaining: 300,  interval: null, running: false, initial: 300, started: false },
-            hieu:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
-            dung:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
-            linh:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
-            wrapup:   { remaining: 600,  interval: null, running: false, initial: 600, started: false }
+
+        // =========================================================================
+        // ANTIGRAVITY UNIFIED PRESENTATION & LIVE REACTIVE ENGINE (100% CLEAN)
+        // =========================================================================
+
+        let currentMember = "overview";
+        let kStep = 1;
+        let hStep = 1;
+        let dStep = 1;
+        let lStep = 1;
+
+        // Presenter 5-Minute Timers State
+        const timerState = {
+            khuong: { remaining: 300, interval: null, running: false },
+            hieu: { remaining: 300, interval: null, running: false },
+            dung: { remaining: 300, interval: null, running: false },
+            linh: { remaining: 300, interval: null, running: false }
         };
 
-        function formatTimeDisplay(sec) {
-            const m = Math.floor(sec / 60);
-            const s = sec % 60;
-            return `${m < 10 ? "0" + m : m}:${s < 10 ? "0" + s : s}`;
+        function formatTimer(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = seconds % 60;
+            return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
         }
 
-        function updateTimerDisplay(memberKey) {
-            const state = presenterTimers[memberKey];
-            const txtEl = document.getElementById(`timer_${memberKey}_txt`);
-            const btnEl = document.getElementById(`timer_${memberKey}_btn`);
-            if (!txtEl) return;
-
-            if (state.remaining <= 0) {
-                txtEl.innerText = "00:00 ⚠️";
-                txtEl.classList.remove("warning");
-                txtEl.classList.add("danger");
-                if (btnEl) btnEl.innerText = "▶️";
-                return;
-            }
-
-            txtEl.innerText = formatTimeDisplay(state.remaining);
-            if (state.remaining <= 60) {
-                txtEl.classList.remove("warning");
-                txtEl.classList.add("danger");
-            } else if (state.remaining <= 120) {
-                txtEl.classList.remove("danger");
-                txtEl.classList.add("warning");
-            } else {
-                txtEl.classList.remove("warning", "danger");
-            }
-
-            if (btnEl) {
-                btnEl.innerText = state.running ? "⏸️" : "▶️";
-            }
-        }
-
-        function startTimer(memberKey) {
-            const state = presenterTimers[memberKey];
-            if (!state || state.running) return;
-
-            Object.keys(presenterTimers).forEach(k => {
-                if (k !== memberKey && presenterTimers[k].running) {
-                    pauseTimer(k);
-                }
-            });
-
-            state.running = true;
-            state.started = true;
-            updateTimerDisplay(memberKey);
-
-            state.interval = setInterval(() => {
-                if (state.remaining > 0) {
-                    state.remaining--;
-                    updateTimerDisplay(memberKey);
+        function startTimer(member) {
+            const st = timerState[member];
+            if (!st || st.running) return;
+            st.running = true;
+            const btn = document.getElementById(`timer_${member}_btn`);
+            if (btn) btn.innerText = "⏸️";
+            st.interval = setInterval(() => {
+                if (st.remaining > 0) {
+                    st.remaining--;
+                    const txt = document.getElementById(`timer_${member}_txt`);
+                    if (txt) {
+                        txt.innerText = formatTimer(st.remaining);
+                        if (st.remaining <= 60) txt.classList.add("warning");
+                    }
                 } else {
-                    pauseTimer(memberKey);
-                    updateTimerDisplay(memberKey);
+                    clearInterval(st.interval);
+                    st.running = false;
+                    if (btn) btn.innerText = "⏹️";
                 }
             }, 1000);
         }
 
-        function pauseTimer(memberKey) {
-            const state = presenterTimers[memberKey];
-            if (!state) return;
-            if (state.interval) {
-                clearInterval(state.interval);
-                state.interval = null;
+        function pauseTimer(member) {
+            const st = timerState[member];
+            if (!st || !st.running) return;
+            clearInterval(st.interval);
+            st.running = false;
+            const btn = document.getElementById(`timer_${member}_btn`);
+            if (btn) btn.innerText = "▶️";
+        }
+
+        function toggleTimer(member) {
+            const st = timerState[member];
+            if (!st) return;
+            if (st.running) pauseTimer(member);
+            else startTimer(member);
+        }
+
+        function resetTimer(member) {
+            const st = timerState[member];
+            if (!st) return;
+            pauseTimer(member);
+            st.remaining = 300;
+            const txt = document.getElementById(`timer_${member}_txt`);
+            if (txt) {
+                txt.innerText = "05:00";
+                txt.classList.remove("warning");
             }
-            state.running = false;
-            updateTimerDisplay(memberKey);
+            const btn = document.getElementById(`timer_${member}_btn`);
+            if (btn) btn.innerText = "▶️";
         }
 
-        function toggleTimer(memberKey) {
-            const state = presenterTimers[memberKey];
-            if (!state) return;
-            if (state.running) {
-                pauseTimer(memberKey);
-            } else {
-                startTimer(memberKey);
-            }
-        }
-
-        function resetTimer(memberKey) {
-            const state = presenterTimers[memberKey];
-            if (!state) return;
-            pauseTimer(memberKey);
-            state.remaining = state.initial;
-            updateTimerDisplay(memberKey);
-            startTimer(memberKey);
-        }
-
-        // ==========================================
-        // 1. TOP MEMBER NAVIGATION
-        // ==========================================
-        function switchMember(memberKey) {
-            document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
-            document.querySelectorAll(".member-btn").forEach(el => el.classList.remove("active"));
-
-            const sec = document.getElementById("section_" + memberKey);
-            const btn = document.getElementById("btn_" + memberKey);
-            if (sec) sec.classList.add("active");
-            if (btn) btn.classList.add("active");
-
-            if (!presenterTimers[memberKey].started || (!presenterTimers[memberKey].running && presenterTimers[memberKey].remaining > 0)) {
-                startTimer(memberKey);
-            }
-
-            if (memberKey === "khuong") setKhuongStep(1);
-            if (memberKey === "hieu") setHieuPipelineStep(1);
-            if (memberKey === "dung") setDungPipelineStep(1);
-            if (memberKey === "linh") setLinhLab(1);
-            if (memberKey === "wrapup") selectWrapUpQ(1);
-        }
-
-        // ==========================================
-        // 2. KHƯƠNG LOGIC (2 COMBINED CHAPTERS)
-        // ==========================================
-        function setKhuongStep(step) {
-            document.querySelectorAll("#section_khuong .flow-step").forEach((s, idx) => {
-                s.classList.toggle("active", idx === (step - 1));
+        function switchMember(memberId) {
+            ['khuong', 'hieu', 'dung', 'linh'].forEach(m => {
+                if (m !== memberId) pauseTimer(m);
             });
 
-            const badge = document.getElementById("k_badge_scen");
-            if (badge) badge.innerText = `Chapter ${step}`;
+            currentMember = memberId;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
 
-            const in1 = document.getElementById("k_in_step1");
-            const in2 = document.getElementById("k_in_step2");
-            if (in1) in1.style.display = (step === 1) ? "block" : "none";
-            if (in2) in2.style.display = (step === 2) ? "block" : "none";
+            const targetBtn = document.getElementById(`btn_${memberId}`);
+            const targetSection = document.getElementById(`section_${memberId}`);
+            if (targetBtn) targetBtn.classList.add('active');
+            if (targetSection) targetSection.classList.add('active');
 
-            const out1 = document.getElementById("k_out_step1");
-            const out2 = document.getElementById("k_out_step2");
-            if (out1) out1.style.display = (step === 1) ? "block" : "none";
-            if (out2) out2.style.display = (step === 2) ? "block" : "none";
+            if (['khuong', 'hieu', 'dung', 'linh'].includes(memberId)) {
+                startTimer(memberId);
+            }
 
-            const v1 = document.getElementById("k_v_step1");
-            const v2 = document.getElementById("k_v_step2");
-            if (v1) v1.style.display = (step === 1) ? "block" : "none";
-            if (v2) v2.style.display = (step === 2) ? "block" : "none";
+            if (memberId === 'khuong') setKhuongStep(kStep);
+            if (memberId === 'hieu') setHieuPipelineStep(hStep);
+            if (memberId === 'dung') setDungPipelineStep(dStep);
+            if (memberId === 'linh') setLinhLab(lStep);
+        }
 
+        // =========================================================================
+        // 1. KHƯƠNG - CLINICAL RCT & POTENTIAL OUTCOMES LOGIC
+        // =========================================================================
+        let kAllocMode = 'rct';
+        let kActivePatient = 1;
+        let kSubgroupMode = 'all';
+
+        function setKhuongStep(step) {
+            kStep = step;
+            for (let i = 1; i <= 2; i++) {
+                const s = document.getElementById(`k_step_${i}`);
+                if (s) s.classList.toggle('active', i === step);
+            }
+
+            const badge = document.getElementById("k_badge_step");
+            const scTitle = document.getElementById("k_scenario_title");
+            const scBody = document.getElementById("k_scenario_body");
+            const inStep1 = document.getElementById("k_in_step1");
+            const inStep2 = document.getElementById("k_in_step2");
+            const outStep1 = document.getElementById("k_out_step1");
+            const outStep2 = document.getElementById("k_out_step2");
+            const vStep1 = document.getElementById("k_v_step1");
+            const vStep2 = document.getElementById("k_v_step2");
             const b6Title = document.getElementById("k_block6_title");
-            const b6Badge = document.getElementById("k_block6_badge");
 
             if (step === 1) {
-                if (b6Title) b6Title.innerHTML = "👥 6. Visualizing Population RCT Impact";
-                if (b6Badge) b6Badge.innerText = "Cohort Visual";
-
-                const st = document.getElementById("k_scen_title");
-                const sd = document.getElementById("k_scen_desc");
-                const ml = document.getElementById("k_ml_desc");
-                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> Eliminate doctor prescribing bias &amp; measure population efficacy.";
-                if (sd) sd.innerHTML = "💡 <strong>Trial Setup:</strong> 1,000 patients randomized 1:1 via coin toss (W &isin; {0, 1}).";
-                if (ml) ml.innerHTML = "• <strong>Backdoor Path Cut:</strong> P(Y=1 | do(W=1)) = P(Y=1 | W=1).<br>• Covariates (Age, BP, BMI) are identical in expectation across arms.";
+                if (badge) badge.innerText = "Chapter 1";
+                if (scTitle) scTitle.innerText = "Testing Drug Efficacy in a Clinical Cohort";
+                if (scBody) scBody.innerText = "Demonstrating how randomized coin flips cut confounding bias and compute Population Absolute Risk Reduction (ARR).";
+                if (inStep1) inStep1.style.display = "block";
+                if (inStep2) inStep2.style.display = "none";
+                if (outStep1) outStep1.style.display = "block";
+                if (outStep2) outStep2.style.display = "none";
+                if (vStep1) vStep1.style.display = "block";
+                if (vStep2) vStep2.style.display = "none";
+                if (b6Title) b6Title.innerText = "👥 6. Visualizing Trial Impact";
                 updateKhuong();
-                updateKhuongAllocSlider();
             } else {
-                if (b6Title) b6Title.innerHTML = "⏳ 6. Parallel Universe Dilemma &amp; CATE";
-                if (b6Badge) b6Badge.innerText = "Neyman-Rubin";
-
-                const st = document.getElementById("k_scen_title");
-                const sd = document.getElementById("k_scen_desc");
-                const ml = document.getElementById("k_ml_desc");
-                if (st) st.innerHTML = "🎯 <strong>The Dilemma:</strong> Each patient lives only 1 reality.";
-                if (sd) sd.innerHTML = "💡 <strong>Insight:</strong> +14% ATE treats all equally, but Grandpa An benefits 5x more than Alex!";
-                if (ml) ml.innerHTML = "• <strong>Missing Counterfactual:</strong> For Patient #42, Y(0) is lost in parallel universe.<br>• <strong>Precision Need:</strong> Machine learning must predict individual CATE from clinical twins.";
-                setKhuongPatientUniverse(1);
-                setKhuongSubgroup("all");
+                if (badge) badge.innerText = "Chapter 2";
+                if (scTitle) scTitle.innerText = "The Parallel Universe Dilemma (Missing Counterfactuals)";
+                if (scBody) scBody.innerText = "Under the Neyman-Rubin model, we only observe one world per patient. The other outcome Y(0) is fundamentally missing.";
+                if (inStep1) inStep1.style.display = "none";
+                if (inStep2) inStep2.style.display = "block";
+                if (outStep1) outStep1.style.display = "none";
+                if (outStep2) outStep2.style.display = "block";
+                if (vStep1) vStep1.style.display = "none";
+                if (vStep2) vStep2.style.display = "block";
+                if (b6Title) b6Title.innerText = "🌌 6. The Missing Parallel Universe";
+                updateKhuongParallelUniverse();
             }
         }
 
         function setKhuongAlloc(mode) {
-            const isRCT = (mode === "rct");
-            const bR = document.getElementById("k_btn_alloc_rct");
-            const bO = document.getElementById("k_btn_alloc_obs");
-            const sl = document.getElementById("k_sl_bias");
-            if (bR) bR.classList.toggle("active", isRCT);
-            if (bO) bO.classList.toggle("active", !isRCT);
-            if (sl) sl.value = isRCT ? 0 : 45;
-            updateKhuongAllocSlider();
+            kAllocMode = mode;
+            const btnRct = document.getElementById("k_btn_alloc_rct");
+            const btnObs = document.getElementById("k_btn_alloc_obs");
+            if (btnRct) btnRct.classList.toggle("active", mode === "rct");
+            if (btnObs) btnObs.classList.toggle("active", mode === "obs");
+            updateKhuong();
         }
 
         function updateKhuongAllocSlider() {
-            const sl = document.getElementById("k_sl_bias");
-            if (!sl) return;
-            const bias = parseInt(sl.value);
-            const txt = document.getElementById("k_txt_bias");
-            const smdTable = document.getElementById("k_table_smd_body");
-            const dagStatus = document.getElementById("k_dag_status");
-            const mathCard = document.getElementById("k_formula_card");
-            const mlDesc = document.getElementById("k_ml_desc");
-
-            if (bias === 0) {
-                if (txt) { txt.innerText = "0.00 (Clean RCT - Zero Bias)"; txt.style.color = "var(--success)"; }
-                if (smdTable) {
-                    smdTable.innerHTML = `
-                        <tr><td>Mean Age</td><td>62.4 yrs</td><td>62.3 yrs</td><td><span class="pill pill-success">0.02 (Balanced)</span></td></tr>
-                        <tr><td>Mean SBP</td><td>145.1 mmHg</td><td>144.8 mmHg</td><td><span class="pill pill-success">0.03 (Balanced)</span></td></tr>
-                        <tr><td>Mean BMI</td><td>28.3 kg/m²</td><td>28.4 kg/m²</td><td><span class="pill pill-success">0.01 (Balanced)</span></td></tr>
-                    `;
-                }
-                if (dagStatus) {
-                    dagStatus.innerHTML = "✔ Backdoor Confounding path from X to W is CUT by Coin Toss!";
-                    dagStatus.style.color = "var(--success)";
-                }
-                if (mlDesc) mlDesc.innerHTML = "• <strong>Backdoor Path Cut:</strong> P(Y=1 | do(W=1)) = P(Y=1 | W=1).<br>• Covariates (Age, BP, BMI) are identical in expectation across arms.";
-                if (mathCard && document.getElementById("k_step_1") && document.getElementById("k_step_1").classList.contains("active")) {
-                    mathCard.innerHTML = `
-                        <strong>Causal Identifiability under RCT:</strong><br>
-                        <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">do</span>(<span class="math-symbol">W</span>=1)) = <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">W</span>=1)<br>
-                        <em style="color:#166534; font-weight:bold;">✔ Confounding bias is mathematically ZERO under RCT.</em>
-                    `;
-                }
-            } else {
-                const smdAge = (bias * 0.008 + 0.12).toFixed(2);
-                const smdBP = (bias * 0.012 + 0.18).toFixed(2);
-                if (txt) { txt.innerText = `+${(bias/100).toFixed(2)} (Confounded!)`; txt.style.color = "var(--danger)"; }
-                if (smdTable) {
-                    smdTable.innerHTML = `
-                        <tr><td>Mean Age</td><td>58.2 yrs</td><td>71.4 yrs</td><td><span class="pill pill-danger">${smdAge} (BIASED)</span></td></tr>
-                        <tr><td>Mean SBP</td><td>132.0 mmHg</td><td>168.5 mmHg</td><td><span class="pill pill-danger">${smdBP} (BIASED)</span></td></tr>
-                        <tr><td>Mean BMI</td><td>26.1 kg/m²</td><td>32.8 kg/m²</td><td><span class="pill pill-danger">0.35 (BIASED)</span></td></tr>
-                    `;
-                }
-                if (dagStatus) {
-                    dagStatus.innerHTML = "⚠️ WARNING: Backdoor path active! Doctors gave drug to sicker elderly.";
-                    dagStatus.style.color = "var(--danger)";
-                }
-                if (mlDesc) mlDesc.innerHTML = `• ⚠️ <strong>Backdoor Path Active:</strong> Doctors gave drug to sicker patients (SMD=${smdBP}).<br>• Observational risk difference contains +${(bias/100).toFixed(2)} confounding error!`;
-                if (mathCard && document.getElementById("k_step_1") && document.getElementById("k_step_1").classList.contains("active")) {
-                    mathCard.innerHTML = `
-                        <strong>Confounded Observational Association:</strong><br>
-                        <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">W</span>=1) = <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">do</span>(<span class="math-symbol">W</span>=1)) + <span style="color:#991b1b; font-weight:bold;">Bias (+${(bias/100).toFixed(2)})</span><br>
-                        <em style="color:#991b1b; font-weight:bold;">⚠️ Doctors cannot distinguish drug effect from patient sickness!</em>
-                    `;
-                }
-            }
+            const sl = document.getElementById("k_sl_ctrl");
+            const txt = document.getElementById("k_txt_ctrl");
+            if (sl && txt) txt.innerText = sl.value + "% Risk";
+            updateKhuong();
         }
 
         function updateKhuong() {
-            const slN = document.getElementById("k_sl_n");
-            const slCtrl = document.getElementById("k_sl_ctrl");
-            const slRrr = document.getElementById("k_sl_rrr");
-            if (!slN || !slCtrl || !slRrr) return;
-
-            const n = parseInt(slN.value);
-            const p_ctrl = parseInt(slCtrl.value) / 100;
-            const rrr = parseInt(slRrr.value) / 100;
-
-            const p_trt = p_ctrl * (1 - rrr);
-            const arr = p_ctrl - p_trt;
+            const pControl = parseInt(document.getElementById("k_sl_ctrl") ? document.getElementById("k_sl_ctrl").value : 20) / 100;
+            const pTreated = 0.06;
+            const arr = Math.max(0.001, pControl - pTreated);
             const nnt = 1 / arr;
 
-            const tN = document.getElementById("k_txt_n");
-            const tC = document.getElementById("k_txt_ctrl");
-            const tR = document.getElementById("k_txt_rrr");
-            if (tN) tN.innerText = n.toLocaleString();
-            if (tC) tC.innerText = (p_ctrl * 100).toFixed(1) + "%";
-            if (tR) tR.innerText = (rrr * 100).toFixed(1) + "%";
+            const dispArr = document.getElementById("k_disp_arr");
+            const dispNnt = document.getElementById("k_disp_nnt");
+            if (dispArr) dispArr.innerText = "+" + (arr * 100).toFixed(1) + "%";
+            if (dispNnt) dispNnt.innerText = nnt.toFixed(1);
 
-            const dArr = document.getElementById("k_disp_arr");
-            const dNnt = document.getElementById("k_disp_nnt");
-            if (dArr) dArr.innerText = "+" + (arr * 100).toFixed(1) + "%";
-            if (dNnt) dNnt.innerText = nnt.toFixed(1);
+            const mlDesc = document.getElementById("k_ml_desc");
+            if (mlDesc) {
+                if (kAllocMode === "rct") {
+                    mlDesc.innerHTML = `<strong>Coin Flip (Clean RCT):</strong> Treatment W is independent of covariates X ($X \perp\!\!\!\perp W$). Confounding bias is completely eliminated!`;
+                } else {
+                    mlDesc.innerHTML = `<strong>Doctor Choice (Biased):</strong> Sicker patients were preferentially prescribed treatment ($X \rightarrow W$). Confounder bias contaminates raw risk differences.`;
+                }
+            }
 
-            const transVal = document.getElementById("k_trans_nnt_val");
-            if (transVal) transVal.innerText = Math.ceil(nnt) + " patients";
-
-            const mathCard = document.getElementById("k_formula_card");
-            if (mathCard && document.getElementById("k_step_1") && document.getElementById("k_step_1").classList.contains("active")) {
-                mathCard.innerHTML = `
-                    <strong>ARR &amp; NNT Formulas:</strong><br>
-                    <span class="math-symbol">ARR</span> = <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1|<span class="math-symbol">W</span>=0) &minus; <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1|<span class="math-symbol">W</span>=1) = <strong style="color:#166534;">+${(arr * 100).toFixed(1)}%</strong><br>
-                    <span class="math-symbol">NNT</span> = 1 / <span class="math-symbol">ARR</span> = <strong style="color:#166534;">${nnt.toFixed(1)} patients</strong>
+            const formCard = document.getElementById("k_formula_card");
+            if (formCard) {
+                formCard.innerHTML = `
+                    <div><strong>Absolute Risk Reduction (ARR):</strong></div>
+                    <div style="color: #1e40af; font-weight: bold; margin: 2px 0;">
+                        ARR = P(Y=1|W=0) - P(Y=1|W=1) = ${(pControl*100).toFixed(1)}% - ${(pTreated*100).toFixed(1)}% = +${(arr*100).toFixed(1)}%
+                    </div>
+                    <div style="margin-top: 4px;"><strong>Number Needed to Treat (NNT):</strong></div>
+                    <div style="color: #166534; font-weight: bold;">
+                        NNT = 1 / ARR = 1 / ${arr.toFixed(3)} = ${nnt.toFixed(1)} patients
+                    </div>
                 `;
             }
 
+            const smdTable = document.getElementById("k_table_smd_body");
+            if (smdTable) {
+                if (kAllocMode === "rct") {
+                    smdTable.innerHTML = `
+                        <tr><td><strong>Age</strong></td><td>62.1 yrs</td><td>61.9 yrs</td><td><span class="pill pill-success">0.02 (Balanced)</span></td></tr>
+                        <tr><td><strong>Systolic BP</strong></td><td>145 mmHg</td><td>144 mmHg</td><td><span class="pill pill-success">0.01 (Balanced)</span></td></tr>
+                    `;
+                } else {
+                    smdTable.innerHTML = `
+                        <tr><td><strong>Age</strong></td><td>68.4 yrs</td><td>54.2 yrs</td><td><span class="pill pill-danger">+0.48 (Biased!)</span></td></tr>
+                        <tr><td><strong>Systolic BP</strong></td><td>162 mmHg</td><td>132 mmHg</td><td><span class="pill pill-danger">+0.45 (Biased!)</span></td></tr>
+                    `;
+                }
+            }
+
+            const dagStatus = document.getElementById("k_dag_status");
+            const txtBias = document.getElementById("k_txt_bias");
+            if (dagStatus) {
+                if (kAllocMode === "rct") {
+                    dagStatus.innerHTML = "✔ Backdoor Confounding path from X to W is <strong>CUT by Coin Toss</strong>!";
+                    dagStatus.style.background = "#f0fdf4";
+                    dagStatus.style.color = "#166534";
+                    dagStatus.style.borderColor = "#86efac";
+                    if (txtBias) txtBias.innerText = "0.00 (Unbiased)";
+                } else {
+                    dagStatus.innerHTML = "⚠️ Warning: Backdoor Path Active! Doctors gave drug to older, sicker patients.";
+                    dagStatus.style.background = "#fee2e2";
+                    dagStatus.style.color = "#991b1b";
+                    dagStatus.style.borderColor = "#fca5a5";
+                    if (txtBias) txtBias.innerText = "+0.45 (Confounded!)";
+                }
+            }
+
             const subTitle = document.getElementById("k_nnt_sub_title");
-            if (subTitle) subTitle.innerText = `Visualizing NNT = ${nnt.toFixed(1)} Effort (Cohort of ${Math.ceil(nnt)}):`;
+            if (subTitle) subTitle.innerText = `Visualizing NNT = ${nnt.toFixed(1)} Effort (1 Life Saved per ${Math.round(nnt)} Patients):`;
 
             const footerTxt = document.getElementById("k_nnt_footer_txt");
             if (footerTxt) footerTxt.innerText = `🟢 1 Patient Saved for every ${nnt.toFixed(1)} Patients Treated.`;
 
             const grid = document.getElementById("k_nnt_grid_container");
             if (grid) {
-                const count = Math.min(25, Math.max(2, Math.ceil(nnt)));
-                grid.style.gridTemplateColumns = `repeat(${Math.min(count, 5)}, 1fr)`;
-                let html = `<div style="background:#d1fae5; border-radius:4px; padding:4px;" title="Saved by Drug">🟢</div>`;
-                for (let i = 1; i < count - 1; i++) {
-                    html += `<div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>`;
+                const total = Math.min(15, Math.max(4, Math.round(nnt)));
+                let dots = '<div style="background:#d1fae5; border-radius:4px; padding:4px;">🟢</div>';
+                for (let i = 1; i < total - 1; i++) {
+                    dots += '<div style="background:#f1f5f9; border-radius:4px; padding:4px;">⚪</div>';
                 }
-                if (count > 1) {
-                    html += `<div style="background:#fee2e2; border-radius:4px; padding:4px;" title="Adverse event despite treatment">🔴</div>`;
-                }
-                grid.innerHTML = html;
+                dots += '<div style="background:#fee2e2; border-radius:4px; padding:4px;">🔴</div>';
+                grid.innerHTML = dots;
             }
         }
+
+        const kPatients = [
+            { id: 1, name: "Young Alex", age: 35, sbp: 118, w: 0, y_obs: 0, y1_true: 0, y0_true: 0, cate: "+2.0%" },
+            { id: 2, name: "Uncle Nam", age: 58, sbp: 142, w: 0, y_obs: 1, y1_true: 0, y0_true: 1, cate: "+12.4%" },
+            { id: 3, name: "Grandpa An", age: 70, sbp: 165, w: 1, y_obs: 0, y1_true: 0, y0_true: 1, cate: "+26.4%" }
+        ];
 
         function setKhuongPatientUniverse(id) {
-            const b1 = document.getElementById("k_btn_pt_1");
-            const b2 = document.getElementById("k_btn_pt_2");
-            const b3 = document.getElementById("k_btn_pt_3");
-            if (b1) b1.classList.toggle("active", id === 1);
-            if (b2) b2.classList.toggle("active", id === 2);
-            if (b3) b3.classList.toggle("active", id === 3);
-
-            const tbody = document.getElementById("k_table_pot_body");
-            const mathCard = document.getElementById("k_formula_card");
-            const v3Box = document.getElementById("k_v3_universe_box");
-
-            const p1Bg = (id === 1) ? "style=\"background:#eff6ff; font-weight:bold;\"" : "";
-            const p2Bg = (id === 2) ? "style=\"background:#fff7ed; font-weight:bold;\"" : "";
-            const p3Bg = (id === 3) ? "style=\"background:#f0fdf4; font-weight:bold;\"" : "";
-
-            if (tbody) {
-                tbody.innerHTML = `
-                    <tr ${p1Bg}><td><strong>Patient #1 (Young)</strong></td><td>1 (Drug)</td><td><strong style="color:var(--success);">0 (Survived)</strong></td><td><span class="pill pill-danger">? (Lost)</span></td><td><strong>0</strong></td></tr>
-                    <tr ${p2Bg}><td><strong>Patient #2 (Control)</strong></td><td>0 (Placebo)</td><td><span class="pill pill-danger">? (Lost)</span></td><td><strong style="color:var(--danger);">1 (Stroke)</strong></td><td><strong>1</strong></td></tr>
-                    <tr ${p3Bg}><td><strong>Patient #42 (Grandpa An)</strong></td><td>1 (Drug)</td><td><strong style="color:var(--success);">0 (Survived)</strong></td><td><span class="pill pill-danger">? (Lost)</span></td><td><strong>0</strong></td></tr>
-                `;
+            kActivePatient = id;
+            for (let i = 1; i <= 3; i++) {
+                const b = document.getElementById(`k_btn_pt_${i}`);
+                if (b) b.classList.toggle("active", i === id);
             }
-
-            if (id === 1) {
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>Patient #1 Observed Formula:</strong><br>
-                        <span class="math-symbol">Y</span><sub>1</sub> = <span class="math-symbol">W</span><sub>1</sub>&middot;<span class="math-symbol">Y</span>(1) + (1&minus;<span class="math-symbol">W</span>)&middot;<span class="math-symbol">Y</span>(0) = <strong>0 (Survived)</strong><br>
-                        <em style="color:#1e40af;">Missing Counterfactual Y(0) is lost in parallel universe.</em>
-                    `;
-                }
-                if (v3Box) {
-                    v3Box.innerHTML = `
-                        <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 6px; padding: 8px; font-size: 0.76rem; line-height: 1.4;">
-                            <div style="font-weight: bold; color: #1e40af; margin-bottom: 2px;">🌍 Patient #1 Universe:</div>
-                            • Real World [W=1]: Y(1)=0 (Survived) &nbsp;|&nbsp; Parallel World [W=0]: Y(0)=? (Lost).
-                        </div>
-                    `;
-                }
-            } else if (id === 2) {
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>Patient #2 Observed Formula:</strong><br>
-                        <span class="math-symbol">Y</span><sub>2</sub> = 0&middot;<span class="math-symbol">Y</span>(1) + 1&middot;<span class="math-symbol">Y</span>(0) = <strong>1 (Stroke)</strong><br>
-                        <em style="color:#9a3412;">Would the drug have saved Patient #2? AI predicts this via twins!</em>
-                    `;
-                }
-                if (v3Box) {
-                    v3Box.innerHTML = `
-                        <div style="background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 6px; padding: 8px; font-size: 0.76rem; line-height: 1.4;">
-                            <div style="font-weight: bold; color: #9a3412; margin-bottom: 2px;">🌍 Patient #2 Universe:</div>
-                            • Real World [W=0]: Y(0)=1 (Stroke) &nbsp;|&nbsp; Parallel World [W=1]: Y(1)=? (Lost).
-                        </div>
-                    `;
-                }
-            } else {
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>Patient #42 (Grandpa An) Individual Effect:</strong><br>
-                        <span class="math-symbol">ITE</span><sub>42</sub> = <span class="math-symbol">Y</span><sub>42</sub>(0) &minus; <span class="math-symbol">Y</span><sub>42</sub>(1) = <span style="color:var(--danger);">? (Missing Y₀)</span> &minus; 0<br>
-                        <em style="color:#166534; font-weight:bold;">👉 T-Learner in Part 2 estimates this exact benefit as +26.4%!</em>
-                    `;
-                }
-                if (v3Box) {
-                    v3Box.innerHTML = `
-                        <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 8px; font-size: 0.76rem; line-height: 1.4;">
-                            <div style="font-weight: bold; color: #166534; margin-bottom: 2px;">👴 Grandpa An Universe:</div>
-                            • Real World [W=1]: Y(1)=0 (Healthy) &nbsp;|&nbsp; Estimated CATE Gain = +26.4%!
-                        </div>
-                    `;
-                }
-            }
+            updateKhuongParallelUniverse();
         }
 
-        function setKhuongSubgroup(group) {
-            const bA = document.getElementById("k_btn_sub_all");
-            const bH = document.getElementById("k_btn_sub_high");
-            const bL = document.getElementById("k_btn_sub_low");
-            if (bA) bA.classList.toggle("active", group === "all");
-            if (bH) bH.classList.toggle("active", group === "high");
-            if (bL) bL.classList.toggle("active", group === "low");
-
-            const tbody = document.getElementById("k_table_sub_body");
-            if (!tbody) return;
-
-            if (group === "all") {
-                tbody.innerHTML = `
-                    <tr style="background:#eff6ff;"><td><strong>All Trial Patients (ATE)</strong></td><td><strong style="color:var(--primary);">+14.0%</strong></td><td><span class="pill pill-success">Average</span></td></tr>
-                    <tr><td>Grandpa An (High Risk SBP 165)</td><td>+26.4%</td><td><span class="pill pill-success">High Priority</span></td></tr>
-                    <tr><td>Alex (Low Risk SBP 118)</td><td>+5.2%</td><td><span class="pill pill-neutral">Diet First</span></td></tr>
-                `;
-            } else if (group === "high") {
-                tbody.innerHTML = `
-                    <tr style="background:#f0fdf4;"><td><strong>Elderly High Risk (SBP 165)</strong></td><td><strong style="color:var(--success);">+26.4% (Massive!)</strong></td><td><span class="pill pill-success">High Priority</span></td></tr>
-                `;
-            } else {
-                tbody.innerHTML = `
-                    <tr style="background:#fff7ed;"><td><strong>Young Low Risk (SBP 118)</strong></td><td><strong style="color:var(--warning);">+5.2% (Marginal)</strong></td><td><span class="pill pill-neutral">Diet First</span></td></tr>
-                `;
-            }
-        }
-
-        // ==========================================
-        // 3. HIẾU LOGIC (3 COMBINED CHAPTERS)
-        // ==========================================
-        function setHieuPipelineStep(step) {
-            document.querySelectorAll("#section_hieu .flow-step").forEach((s, idx) => {
-                s.classList.toggle("active", idx === (step - 1));
+        function setKhuongSubgroup(grp) {
+            kSubgroupMode = grp;
+            ['all', 'high', 'low'].forEach(g => {
+                const b = document.getElementById(`k_btn_sub_${g}`);
+                if (b) b.classList.toggle("active", g === grp);
             });
+            updateKhuongParallelUniverse();
+        }
+
+        function updateKhuongParallelUniverse() {
+            const p = kPatients.find(x => x.id === kActivePatient) || kPatients[2];
+
+            const mlDesc = document.getElementById("k_ml_desc");
+            if (mlDesc) {
+                mlDesc.innerHTML = `<strong>Neyman-Rubin Potential Outcomes:</strong> Each patient has two potential states: $Y(1)$ and $Y(0)$. However, because treatment $W$ is binary, we can only observe $Y = W \cdot Y(1) + (1-W) \cdot Y(0)$. The counterfactual is forever lost.`;
+            }
+
+            const formCard = document.getElementById("k_formula_card");
+            if (formCard) {
+                formCard.innerHTML = `
+                    <div><strong>Patient #${p.id} Observed Formula:</strong></div>
+                    <div style="color: #1e40af; font-weight: bold; margin: 2px 0;">
+                        Y_${p.id} = ${p.w}·Y(1) + ${1-p.w}·Y(0) = ${p.y_obs} (${p.y_obs === 1 ? 'Stroke Event' : 'No Event'})
+                    </div>
+                    <div style="margin-top: 4px;"><strong>Counterfactual State:</strong></div>
+                    <div style="color: #b91c1c; font-weight: bold;">
+                        Y(${1-p.w}) is MISSING in real life!
+                    </div>
+                `;
+            }
+
+            const potTable = document.getElementById("k_table_pot_body");
+            if (potTable) {
+                potTable.innerHTML = kPatients.map(pt => `
+                    <tr style="${pt.id === kActivePatient ? 'background: #eff6ff; font-weight: bold;' : ''}">
+                        <td>${pt.name} (${pt.age}y)</td>
+                        <td>${pt.w === 1 ? '<span class="pill pill-success">W=1 (Treated)</span>' : '<span class="pill pill-purple">W=0 (Control)</span>'}</td>
+                        <td>${pt.w === 1 ? '<strong>0 (Observed)</strong>' : '<span style="color:#dc2626; font-style:italic;">? (Missing)</span>'}</td>
+                        <td>${pt.w === 0 ? '<strong>' + pt.y_obs + ' (Observed)</strong>' : '<span style="color:#dc2626; font-style:italic;">? (Missing)</span>'}</td>
+                        <td>${pt.y_obs === 1 ? '🔴 Stroke' : '🟢 Healthy'}</td>
+                    </tr>
+                `).join('');
+            }
+
+            const subTable = document.getElementById("k_table_sub_body");
+            if (subTable) {
+                subTable.innerHTML = `
+                    <tr style="${kSubgroupMode === 'high' ? 'background:#dcfce7; font-weight:bold;' : ''}">
+                        <td><strong>High Risk (Elderly, SBP > 160)</strong></td>
+                        <td><span style="color:#166534; font-weight:800;">+26.4% ARR</span></td>
+                        <td><span class="pill pill-danger">Highest Priority</span></td>
+                    </tr>
+                    <tr style="${kSubgroupMode === 'low' ? 'background:#dcfce7; font-weight:bold;' : ''}">
+                        <td><strong>Low Risk (Young, SBP < 120)</strong></td>
+                        <td><span style="color:#2563eb; font-weight:800;">+2.0% ARR</span></td>
+                        <td><span class="pill pill-purple">Lifestyle First</span></td>
+                    </tr>
+                `;
+            }
+
+            const uBox = document.getElementById("k_v3_universe_box");
+            if (uBox) {
+                uBox.innerHTML = `
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <div style="background: ${p.w === 1 ? '#dcfce7' : '#eff6ff'}; border: 1.5px solid ${p.w === 1 ? '#86efac' : '#bfdbfe'}; border-radius: 6px; padding: 8px; text-align: center;">
+                            <div style="font-size: 0.72rem; font-weight: bold; color: var(--text-muted);">REALITY (Observed W=${p.w})</div>
+                            <div style="font-size: 1.1rem; margin: 4px 0;">${p.y_obs === 1 ? '🔴 Stroke Event' : '🟢 Saved / Healthy'}</div>
+                            <div style="font-size: 0.68rem; color: #166534; font-weight: bold;">Factual Outcome</div>
+                        </div>
+                        <div style="background: #fef2f2; border: 1.5px dashed #fca5a5; border-radius: 6px; padding: 8px; text-align: center;">
+                            <div style="font-size: 0.72rem; font-weight: bold; color: #991b1b;">PARALLEL UNIVERSE (W=${1-p.w})</div>
+                            <div style="font-size: 1.1rem; margin: 4px 0; color: #991b1b;">❓ Missing World</div>
+                            <div style="font-size: 0.68rem; color: #991b1b; font-weight: bold;">CATE ML Solves This!</div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // =========================================================================
+        // 2. HIẾU - INDIVIDUALIZED CATE & SHAP LOGIC
+        // =========================================================================
+        let hModelMode = 't';
+        let hTwinBatch = 1;
+
+        function setHieuPipelineStep(step) {
+            hStep = step;
+            for (let i = 1; i <= 3; i++) {
+                const s = document.getElementById(`h_step_${i}`);
+                if (s) s.classList.toggle('active', i === step);
+            }
 
             const badge = document.getElementById("h_badge_step");
-            if (badge) badge.innerText = `Chapter ${step}`;
-
+            const scDesc = document.getElementById("h_scenario_desc");
             const in1 = document.getElementById("h_in_step1");
             const in2 = document.getElementById("h_in_step2");
             const in3 = document.getElementById("h_in_step3");
-            if (in1) in1.style.display = (step === 1) ? "block" : "none";
-            if (in2) in2.style.display = (step === 2) ? "block" : "none";
-            if (in3) in3.style.display = (step === 3) ? "block" : "none";
-
             const outCate = document.getElementById("h_out_cate_box");
-            const outMatch = document.getElementById("h_out_matched_box");
-            if (outCate) outCate.style.display = (step === 1 || step === 2) ? "block" : "none";
-            if (outMatch) outMatch.style.display = (step === 3) ? "block" : "none";
-
+            const outMatched = document.getElementById("h_out_matched_box");
             const v1 = document.getElementById("h_v_step1");
             const v2 = document.getElementById("h_v_step2");
             const v3 = document.getElementById("h_v_step3");
-            if (v1) v1.style.display = (step === 1) ? "block" : "none";
-            if (v2) v2.style.display = (step === 2) ? "block" : "none";
-            if (v3) v3.style.display = (step === 3) ? "block" : "none";
-
-            const mathCard = document.getElementById("h_formula_card");
             const b6Title = document.getElementById("h_block6_title");
-            const b6Badge = document.getElementById("h_block6_badge");
 
             if (step === 1) {
-                if (b6Title) b6Title.innerHTML = "📊 6. Untreated vs Treated Risk Comparison";
-                if (b6Badge) b6Badge.innerText = "Risk Comparison";
-
-                const sd = document.getElementById("h_scenario_desc");
-                const ml = document.getElementById("h_ml_desc");
-                if (sd) sd.innerHTML = "🎯 <strong>Goal:</strong> Personalized Risk Profiling.<br>💡 <strong>Profile:</strong> Grandpa An (Age 70, SBP 165) vs Alex (Age 35, SBP 118).";
-                if (ml) ml.innerHTML = "• Untreated risk: <strong>48.2%</strong> &rarr; Treated risk: <strong>21.8%</strong>.<br>• Net Gain (CATE) = <strong style=\"color:#166534;\">+26.4% Risk Drop</strong> for Grandpa An.";
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>Personalized Benefit (CATE):</strong><br>
-                        <span class="math-symbol">CATE</span>(An) = 48.2% &minus; 21.8% = <strong style="color:#166534;">+26.4% Benefit</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ 5x higher benefit than young low-risk patients.</em>
-                    `;
-                }
+                if (badge) badge.innerText = "Chapter 1";
+                if (scDesc) scDesc.innerText = "Precision CATE profiling: Estimating stroke risk drop conditioned on individual Age, SBP, and BMI.";
+                if (in1) in1.style.display = "block";
+                if (in2) in2.style.display = "none";
+                if (in3) in3.style.display = "none";
+                if (outCate) outCate.style.display = "block";
+                if (outMatched) outMatched.style.display = "none";
+                if (v1) v1.style.display = "block";
+                if (v2) v2.style.display = "none";
+                if (v3) v3.style.display = "none";
+                if (b6Title) b6Title.innerText = "📊 6. Individual Risk Bars";
                 updateHieu();
             } else if (step === 2) {
-                if (b6Title) b6Title.innerHTML = "🌲🌲 6. Why 2 Doctors (T-Learner) Beat 1 (S-Learner)";
-                if (b6Badge) b6Badge.innerText = "Model Battle";
-
-                setHieuModelMode("t");
-            } else if (step === 3) {
-                if (b6Title) b6Title.innerHTML = "🎯 6. Twin Matching &amp; SHAP Receipts";
-                if (b6Badge) b6Badge.innerText = "Validation Score";
-
-                const sd = document.getElementById("h_scenario_desc");
-                const ml = document.getElementById("h_ml_desc");
-                if (sd) sd.innerHTML = "🎯 <strong>Goal:</strong> Validate CATE with matched twins &amp; explain exact reasons to doctors.";
-                if (ml) ml.innerHTML = "• <strong>Twin Test:</strong> Scores AI concordance without parallel clones (C=0.6342).<br>• <strong>SHAP:</strong> Breaks down +26.4% into itemized SBP, Age, and BMI receipts.";
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>C-for-benefit Metric:</strong><br>
-                        <span class="math-symbol">C</span> = (Concordant + 0.5&times;Ties) / Permissible = <strong style="color:#1e40af;">0.6342</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Hospital Gold Standard (&asymp; 0.80 standard AUC).</em>
-                    `;
-                }
+                if (badge) badge.innerText = "Chapter 2";
+                if (scDesc) scDesc.innerText = "Architecture Battle: Comparing T-Learner (2 Specialized Trees) against S-Learner (Shrinkage Bias).";
+                if (in1) in1.style.display = "none";
+                if (in2) in2.style.display = "block";
+                if (in3) in3.style.display = "none";
+                if (outCate) outCate.style.display = "block";
+                if (outMatched) outMatched.style.display = "none";
+                if (v1) v1.style.display = "none";
+                if (v2) v2.style.display = "block";
+                if (v3) v3.style.display = "none";
+                if (b6Title) b6Title.innerText = "🌲 6. Model Structure Comparison";
+                updateHieuReg();
+            } else {
+                if (badge) badge.innerText = "Chapter 3";
+                if (scDesc) scDesc.innerText = "Matched Twin Pairs Validation (C=0.6342) and Itemized TreeSHAP Push Receipts.";
+                if (in1) in1.style.display = "none";
+                if (in2) in2.style.display = "none";
+                if (in3) in3.style.display = "block";
+                if (outCate) outCate.style.display = "none";
+                if (outMatched) outMatched.style.display = "block";
+                if (v1) v1.style.display = "none";
+                if (v2) v2.style.display = "none";
+                if (v3) v3.style.display = "block";
+                if (b6Title) b6Title.innerText = "🧾 6. TreeSHAP Push Receipt";
                 resampleHieuPairs();
             }
         }
 
-        let currentHieuModelMode = "t";
+        function setHieuPreset(age, sbp, bmi, presetIdx) {
+            const slAge = document.getElementById("h_sl_age");
+            const slSbp = document.getElementById("h_sl_sbp");
+            const slBmi = document.getElementById("h_sl_bmi");
+            if (slAge) slAge.value = age;
+            if (slSbp) slSbp.value = sbp;
+            if (slBmi) slBmi.value = bmi;
+
+            for (let i = 1; i <= 3; i++) {
+                const b = document.getElementById(`p_btn_${i}`);
+                if (b) b.classList.toggle("active", i === presetIdx);
+            }
+            updateHieu();
+        }
 
         function setHieuModelMode(mode) {
-            currentHieuModelMode = mode;
-            const isT = (mode === "t");
-            const depth = parseInt(document.getElementById("h_sl_reg")?.value || 6);
-            const bT = document.getElementById("h_btn_m_t");
-            const bS = document.getElementById("h_btn_m_s");
-            if (bT) bT.classList.toggle("active", isT);
-            if (bS) bS.classList.toggle("active", !isT);
-
-            const scenDesc = document.getElementById("h_scenario_desc");
-            const mlDesc = document.getElementById("h_ml_desc");
-            const mathCard = document.getElementById("h_formula_card");
-            const outBox = document.getElementById("h_out_cate_box");
-            const vBox = document.getElementById("h_v_step2");
-            const b6Title = document.getElementById("h_block6_title");
-            const b6Badge = document.getElementById("h_block6_badge");
-
-            const s_benefit = (4.0 + (depth * 1.87)).toFixed(1);
-
-            if (isT) {
-                if (scenDesc) scenDesc.innerHTML = `🎯 <strong>Active Model:</strong> T-Learner (2 Specialized Trees).<br>💡 <strong>Advantage:</strong> Doctor 1 learns Treated (21.8%), Doctor 2 learns Control (48.2%) without shrinkage bias!`;
-                if (mlDesc) mlDesc.innerHTML = `• <strong>Doctor 1 (Treated):</strong> Risk = 21.8% &nbsp;|&nbsp; <strong>Doctor 2 (Control):</strong> Risk = 48.2%.<br>👉 Subtracting predictions captures 100% of true drug benefit (<strong>+26.4%</strong>).`;
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>T-Learner (2 Specialized Trees):</strong><br>
-                        <span class="math-symbol">CATE</span><sub>T</sub> = &mu;&#770;₀(Control) &minus; &mu;&#770;₁(Treated) = <strong style="color:#166534;">+26.4% Net Risk Drop</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Captures 100% of drug interactions without any shrinkage!</em>
-                    `;
-                }
-                if (outBox) {
-                    outBox.innerHTML = `
-                        <div style="background: #f0fdf4; border: 2px solid #86efac; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
-                            <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
-                                <span style="color: #166534;">🌲🌲 T-Learner CATE (Active):</span>
-                                <span style="color: #166534; font-size: 1rem;">+26.4% Benefit</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
-                                <span>S-Learner (Alternative):</span>
-                                <span>+${s_benefit}% (Shrunk)</span>
-                            </div>
-                        </div>
-                        <div style="font-size: 0.8rem; color: #166534; background: #f0fdf4; padding: 6px 10px; border-radius: 6px; font-weight: bold;">
-                            ✔ STRONGLY RECOMMEND DRUG: Full +26.4% benefit recognized for Grandpa An!
-                        </div>
-                    `;
-                }
-                if (b6Title) b6Title.innerHTML = "🌲🌲 6. T-Learner (2 Separate Trees)";
-                if (b6Badge) b6Badge.innerText = "T-Learner Active";
-                if (vBox) {
-                    vBox.innerHTML = `
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px; text-align: center;">
-                            <div style="background: #dcfce7; border: 1.5px solid #86efac; border-radius: 6px; padding: 6px;">
-                                <div style="font-weight: bold; color: #166534; font-size: 0.78rem;">🌲 Doctor 1 (Treated)</div>
-                                <div style="font-size: 0.82rem; font-weight: bold; color: #166534; margin-top: 2px;">Risk = 21.8%</div>
-                            </div>
-                            <div style="background: #fee2e2; border: 1.5px solid #fca5a5; border-radius: 6px; padding: 6px;">
-                                <div style="font-weight: bold; color: #991b1b; font-size: 0.78rem;">🌲 Doctor 2 (Control)</div>
-                                <div style="font-size: 0.82rem; font-weight: bold; color: #991b1b; margin-top: 2px;">Risk = 48.2%</div>
-                            </div>
-                        </div>
-                        <div style="background: #f0fdf4; border-left: 3px solid #166534; padding: 6px 8px; font-size: 0.76rem; color: #166534;">
-                            👉 <strong>T-Learner CATE</strong> = 48.2% &minus; 21.8% = <strong>+26.4% Net Risk Drop</strong> (100% Unbiased).
-                        </div>
-                    `;
-                }
-            } else {
-                if (scenDesc) scenDesc.innerHTML = `⚠️ <strong>Active Model:</strong> S-Learner (1 Overloaded Tree).<br>💡 <strong>Hazard:</strong> Tree splits on Age/BP first and ignores Drug Treatment W (*Shrinkage Bias*).`;
-                if (mlDesc) mlDesc.innerHTML = `• Single tree &mu;&#770;(x, W) puts Age, BP, BMI, and Drug into 1 model.<br>⚠️ <strong>Shrinkage:</strong> Benefit collapses from +26.4% down to <strong>+${s_benefit}%</strong>!`;
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>S-Learner (1 Overloaded Tree with Shrinkage):</strong><br>
-                        <span class="math-symbol">CATE</span><sub>S</sub> = Tree(Untreated) &minus; Tree(Treated) = <strong style="color:var(--danger);">+${s_benefit}% (Shrunk!)</strong><br>
-                        <em style="color:#991b1b; font-weight:bold;">⚠️ Tree penalizes treatment W &rarr; Grandpa An's gain is severely underestimated!</em>
-                    `;
-                }
-                if (outBox) {
-                    outBox.innerHTML = `
-                        <div style="background: #fff7ed; border: 2px solid #fdba74; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
-                            <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
-                                <span style="color: #9a3412;">⚠️ S-Learner CATE (Active):</span>
-                                <span style="color: #9a3412; font-size: 1rem;">+${s_benefit}% (Shrunk!)</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
-                                <span>T-Learner (True Benefit):</span>
-                                <span>+26.4% (Missed by ${(26.4 - parseFloat(s_benefit)).toFixed(1)}%)</span>
-                            </div>
-                        </div>
-                        <div style="font-size: 0.8rem; color: #9a3412; background: #fff7ed; padding: 6px 10px; border-radius: 6px; font-weight: bold;">
-                            ⚠️ UNDERESTIMATED BENEFIT: Risk of withholding medicine due to shrinkage bias!
-                        </div>
-                    `;
-                }
-                if (b6Title) b6Title.innerHTML = "⚠️ 6. S-Learner Tree (Shrinkage Hazard)";
-                if (b6Badge) b6Badge.innerText = "S-Learner Active";
-                if (vBox) {
-                    vBox.innerHTML = `
-                        <div style="background: #fff7ed; border: 1.5px solid #fdba74; border-radius: 6px; padding: 8px; margin-bottom: 6px;">
-                            <div style="font-weight: bold; color: #9a3412; font-size: 0.78rem; text-align: center; margin-bottom: 2px;">
-                                🌲 Single Overloaded Tree (Depth = ${depth})
-                            </div>
-                            <div style="font-size: 0.72rem; color: #7c2d12; line-height: 1.4;">
-                                [Root: SBP &gt; 160] &rarr; [Split: Age &gt; 65] &rarr; Treatment W neglected at leaves.
-                            </div>
-                        </div>
-                        <div style="background: #fee2e2; border-left: 3px solid #dc2626; padding: 6px 8px; font-size: 0.76rem; color: #991b1b;">
-                            ⚠️ <strong>Shrinkage Bias Warning:</strong> S-Learner misses ${(26.4 - parseFloat(s_benefit)).toFixed(1)}% of Grandpa An's benefit!
-                        </div>
-                    `;
-                }
-            }
+            hModelMode = mode;
+            const btnT = document.getElementById("h_btn_m_t");
+            const btnS = document.getElementById("h_btn_m_s");
+            if (btnT) btnT.classList.toggle("active", mode === "t");
+            if (btnS) btnS.classList.toggle("active", mode === "s");
+            updateHieu();
         }
 
         function updateHieuReg() {
             const sl = document.getElementById("h_sl_reg");
-            if (!sl) return;
-            const depth = sl.value;
             const txt = document.getElementById("h_txt_reg");
-            if (txt) txt.innerText = `Depth = ${depth}`;
-            setHieuModelMode(currentHieuModelMode);
+            if (sl && txt) txt.innerText = `Depth = ${sl.value}`;
+            updateHieu();
         }
 
         function updateHieuSHAPSliders() {
-            const slS = document.getElementById("h_sl_sbp_p");
-            const slA = document.getElementById("h_sl_age_p");
-            if (!slS || !slA) return;
-            const sbp = slS.value;
-            const age = slA.value;
+            const slSbp = document.getElementById("h_sl_sbp_p");
+            const slAge = document.getElementById("h_sl_age_p");
+            const txtSbp = document.getElementById("h_txt_sbp_p");
+            const txtAge = document.getElementById("h_txt_age_p");
+            if (slSbp && txtSbp) txtSbp.innerText = slSbp.value + " mmHg";
+            if (slAge && txtAge) txtAge.innerText = slAge.value + " yrs";
 
-            const tS = document.getElementById("h_txt_sbp_p");
-            const tA = document.getElementById("h_txt_age_p");
-            if (tS) tS.innerText = `${sbp} mmHg`;
-            if (tA) tA.innerText = `${age} yrs`;
+            const sbp = slSbp ? parseInt(slSbp.value) : 165;
+            const age = slAge ? parseInt(slAge.value) : 70;
 
-            const mS = document.getElementById("h_sl_sbp");
-            const mA = document.getElementById("h_sl_age");
-            if (mS) mS.value = sbp;
-            if (mA) mA.value = age;
-            updateHieu();
-        }
+            const baseDrug = 4.0;
+            const pushSbp = ((sbp - 110) / 80) * 18.0;
+            const pushAge = ((age - 35) / 50) * 11.0;
+            const total = baseDrug + pushSbp + pushAge;
 
-        function setHieuPreset(age, sbp, bmi, btnId = 1) {
-            const slA = document.getElementById("h_sl_age");
-            const slS = document.getElementById("h_sl_sbp");
-            const slB = document.getElementById("h_sl_bmi");
-            if (slA) slA.value = age;
-            if (slS) slS.value = sbp;
-            if (slB) slB.value = bmi;
-
-            const slSp = document.getElementById("h_sl_sbp_p");
-            const slAp = document.getElementById("h_sl_age_p");
-            const tSp = document.getElementById("h_txt_sbp_p");
-            const tAp = document.getElementById("h_txt_age_p");
-            if (slSp) slSp.value = sbp;
-            if (slAp) slAp.value = age;
-            if (tSp) tSp.innerText = `${sbp} mmHg`;
-            if (tAp) tAp.innerText = `${age} yrs`;
-
-            document.querySelectorAll("#h_preset_container .xray-thumb-card").forEach((b, idx) => {
-                b.classList.toggle("active", idx === (btnId - 1));
-            });
-
-            updateHieu();
+            const elSbp = document.getElementById("h_shap_sbp_val");
+            const elAge = document.getElementById("h_shap_age_val");
+            const elSum = document.getElementById("h_shap_sum");
+            if (elSbp) elSbp.innerText = `+${pushSbp.toFixed(1)}%`;
+            if (elAge) elAge.innerText = `+${pushAge.toFixed(1)}%`;
+            if (elSum) elSum.innerText = `+${total.toFixed(1)}% Net Benefit`;
         }
 
         function updateHieu() {
-            const slA = document.getElementById("h_sl_age");
-            const slS = document.getElementById("h_sl_sbp");
-            const slB = document.getElementById("h_sl_bmi");
-            if (!slA || !slS || !slB) return;
+            const age = parseInt(document.getElementById("h_sl_age") ? document.getElementById("h_sl_age").value : 70);
+            const sbp = parseInt(document.getElementById("h_sl_sbp") ? document.getElementById("h_sl_sbp").value : 165);
+            const bmi = parseFloat(document.getElementById("h_sl_bmi") ? document.getElementById("h_sl_bmi").value : 31.0);
 
-            const age = parseFloat(slA.value);
-            const sbp = parseFloat(slS.value);
-            const bmi = parseFloat(slB.value);
+            const txtAge = document.getElementById("h_txt_age");
+            const txtSbp = document.getElementById("h_txt_sbp");
+            const txtBmi = document.getElementById("h_txt_bmi");
+            if (txtAge) txtAge.innerText = age + " yrs";
+            if (txtSbp) txtSbp.innerText = sbp + " mmHg";
+            if (txtBmi) txtBmi.innerText = bmi.toFixed(1) + " kg/m²";
 
-            const tA = document.getElementById("h_txt_age");
-            const tS = document.getElementById("h_txt_sbp");
-            const tB = document.getElementById("h_txt_bmi");
-            if (tA) tA.innerText = age + " yrs";
-            if (tS) tS.innerText = sbp + " mmHg";
-            if (tB) tB.innerText = bmi + " kg/m²";
-
-            const baseLogit = 0.02 * (age - 50) + 0.03 * (sbp - 120) + 0.02 * (bmi - 25) - 0.6;
-            const ctrlRisk = 1 / (1 + Math.exp(-baseLogit));
-
-            const trueCate = 0.06 + 0.0035 * (sbp - 120) + 0.002 * (age - 50) + 0.001 * (bmi - 25);
-            const trtRisk = Math.max(0.02, ctrlRisk - trueCate);
-
-            const t_cate = ctrlRisk - trtRisk;
-            const s_cate = t_cate * 0.58;
+            const baselineRisk = Math.min(0.85, Math.max(0.04, ((age - 30) * 0.007) + ((sbp - 100) * 0.0035) + ((bmi - 20) * 0.005)));
+            const treatedRisk = Math.max(0.02, baselineRisk * 0.45);
+            const trueCATE = baselineRisk - treatedRisk;
+            const shrunkCATE = trueCATE * 0.58;
 
             const dispCate = document.getElementById("h_disp_cate");
             const dispSCate = document.getElementById("h_disp_s_cate");
-            if (dispCate) dispCate.innerText = `+${(t_cate * 100).toFixed(1)}% Benefit`;
-            if (dispSCate) dispSCate.innerText = `+${(s_cate * 100).toFixed(1)}%`;
+            if (dispCate) dispCate.innerText = "+" + (trueCATE * 100).toFixed(1) + "% Benefit";
+            if (dispSCate) dispSCate.innerText = "+" + (shrunkCATE * 100).toFixed(1) + "% (Shrunk)";
 
-            const bC = document.getElementById("h_bar_ctrl");
-            const vC = document.getElementById("h_val_ctrl");
-            const bT = document.getElementById("h_bar_trt");
-            const vT = document.getElementById("h_val_trt");
-            if (bC) bC.style.width = (ctrlRisk * 100).toFixed(0) + "%";
-            if (vC) vC.innerText = (ctrlRisk * 100).toFixed(1) + "%";
-            if (bT) bT.style.width = (trtRisk * 100).toFixed(0) + "%";
-            if (vT) vT.innerText = (trtRisk * 100).toFixed(1) + "%";
-
-            const sbpPush = (sbp - 120) * 0.19;
-            const agePush = (age - 50) * 0.17;
-            const bmiPush = (bmi - 25) * 0.15;
-
-            const lS = document.getElementById("h_shap_sbp_lbl");
-            const vS = document.getElementById("h_shap_sbp");
-            const lA = document.getElementById("h_shap_age_lbl");
-            const vA = document.getElementById("h_shap_age");
-            const lB = document.getElementById("h_shap_bmi_lbl");
-            const vB = document.getElementById("h_shap_bmi");
-            const vSum = document.getElementById("h_shap_sum");
-
-            if (lS) lS.innerText = `➕ SBP (${sbp} mmHg)`;
-            if (vS) vS.innerText = `${sbpPush>=0?"+":""}${sbpPush.toFixed(1)}%`;
-            if (lA) lA.innerText = `➕ Age (${age} yrs)`;
-            if (vA) vA.innerText = `${agePush>=0?"+":""}${agePush.toFixed(1)}%`;
-            if (lB) lB.innerText = `➕ BMI (${bmi})`;
-            if (vB) vB.innerText = `${bmiPush>=0?"+":""}${bmiPush.toFixed(1)}%`;
-            if (vSum) vSum.innerText = `+${(t_cate * 100).toFixed(1)}%`;
-
-            if (document.getElementById("h_step_1") && document.getElementById("h_step_1").classList.contains("active")) {
-                const mlDesc = document.getElementById("h_ml_desc");
-                if (mlDesc) {
-                    mlDesc.innerHTML = `• Untreated risk: <strong>${(ctrlRisk * 100).toFixed(1)}%</strong> &rarr; Treated risk: <strong>${(trtRisk * 100).toFixed(1)}%</strong>.<br>• Net Gain (CATE) = <strong style="color:#166534;">+${(t_cate * 100).toFixed(1)}% Risk Drop</strong>.`;
+            const mlDesc = document.getElementById("h_ml_desc");
+            if (mlDesc) {
+                if (hStep === 1) {
+                    mlDesc.innerHTML = `<strong>T-Learner CATE Prediction:</strong> Trained model estimates $\mu_0(X)$ (Untreated Risk = ${(baselineRisk*100).toFixed(1)}%) and $\mu_1(X)$ (Treated Risk = ${(treatedRisk*100).toFixed(1)}%). Difference is the true personalized benefit.`;
+                } else if (hStep === 2) {
+                    mlDesc.innerHTML = `<strong>T-Learner vs S-Learner:</strong> T-Learner uses two specialized models to avoid regularization bias. S-Learner puts treatment into one tree, shrinking benefit by ${( (trueCATE - shrunkCATE)*100 ).toFixed(1)}%.`;
+                } else {
+                    mlDesc.innerHTML = `<strong>TreeSHAP Decomposition:</strong> Additive feature attribution calculates exact push percentages from SBP, Age, and Baseline drug effect.`;
                 }
-                const mathCard = document.getElementById("h_formula_card");
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>Personalized Benefit (CATE):</strong><br>
-                        <span class="math-symbol">Net Benefit</span> = ${(ctrlRisk * 100).toFixed(1)}% &minus; ${(trtRisk * 100).toFixed(1)}% = <strong style="color:#166534;">+${(t_cate * 100).toFixed(1)}% Risk Drop</strong>
-                    `;
+            }
+
+            const formCard = document.getElementById("h_formula_card");
+            if (formCard) {
+                formCard.innerHTML = `
+                    <div><strong>CATE Formula:</strong> CATE(X) = E[Y(0) - Y(1) | X]</div>
+                    <div style="color: #1e40af; font-weight: bold; margin: 2px 0;">
+                        CATE(${age}y, ${sbp}mmHg) = ${(baselineRisk*100).toFixed(1)}% - ${(treatedRisk*100).toFixed(1)}% = +${(trueCATE*100).toFixed(1)}% Benefit
+                    </div>
+                    <div style="margin-top: 4px; color: ${hModelMode === 't' ? '#166534' : '#991b1b'}; font-weight: bold;">
+                        ${hModelMode === 't' ? '✔ T-Learner Active: Unbiased estimate' : '⚠️ S-Learner Active: Regularization Shrinkage = +' + (shrunkCATE*100).toFixed(1) + '%'}
+                    </div>
+                `;
+            }
+
+            const barCtrl = document.getElementById("h_bar_ctrl");
+            const barTrt = document.getElementById("h_bar_trt");
+            const valCtrl = document.getElementById("h_val_ctrl");
+            const valTrt = document.getElementById("h_val_trt");
+            if (barCtrl) barCtrl.style.width = Math.min(100, baselineRisk * 100) + "%";
+            if (barTrt) barTrt.style.width = Math.min(100, treatedRisk * 100) + "%";
+            if (valCtrl) valCtrl.innerText = (baselineRisk * 100).toFixed(1) + "%";
+            if (valTrt) valTrt.innerText = (treatedRisk * 100).toFixed(1) + "%";
+
+            const badge = document.getElementById("h_prescribe_badge");
+            if (badge) {
+                if (trueCATE > 0.15) {
+                    badge.innerHTML = "✔ STRONGLY RECOMMEND IMMEDIATE DRUG PRESCRIPTION (High Priority).";
+                    badge.style.background = "#f0fdf4";
+                    badge.style.color = "#166534";
+                } else {
+                    badge.innerHTML = "ℹ️ Marginal Gain: Recommend lifestyle modification first.";
+                    badge.style.background = "#eff6ff";
+                    badge.style.color = "#1e40af";
                 }
             }
         }
-
-        let hieuPairBatchCounter = 1;
 
         function resampleHieuPairs() {
-            hieuPairBatchCounter++;
-            const tbody = document.getElementById("h_matched_table_body");
-            if (!tbody) return;
-
-            const pool = [
-                { desc: "High SBP Elderly", age: 72, sbp: 168, t_event: 0, c_event: 1 },
-                { desc: "Severe Hypertension", age: 68, sbp: 162, t_event: 0, c_event: 1 },
-                { desc: "Elderly High Risk", age: 75, sbp: 172, t_event: 0, c_event: 1 },
-                { desc: "Moderate SBP", age: 56, sbp: 142, t_event: 0, c_event: 0 },
-                { desc: "Normal SBP", age: 46, sbp: 124, t_event: 0, c_event: 0 }
+            hTwinBatch++;
+            const pairs = [
+                { id: 1, age: 70, sbp: 165, y1: 0, y0: 1, pred_cate: "+26.4%", conc: "Concordant (+1)" },
+                { id: 2, age: 68, sbp: 158, y1: 0, y0: 1, pred_cate: "+21.2%", conc: "Concordant (+1)" },
+                { id: 3, age: 54, sbp: 138, y1: 0, y0: 0, pred_cate: "+9.5%", conc: "Tie (+0.5)" },
+                { id: 4, age: 35, sbp: 118, y1: 0, y0: 0, pred_cate: "+2.0%", conc: "Tie (+0.5)" }
             ];
 
-            const shuffled = [...pool].sort(() => 0.5 - Math.random());
-            const selected = shuffled.slice(0, 3);
-
-            let concordant = 0, ties = 0, permissible = 0;
-
-            const rows = selected.map((p, idx) => {
-                const obsDiff = p.c_event - p.t_event;
-                let resultText = "Concordant (+1)", pillClass = "pill-success";
-
-                if (obsDiff > 0) {
-                    concordant++; permissible++;
-                    resultText = "Concordant (+1)";
-                    pillClass = "pill-success";
-                } else if (obsDiff === 0) {
-                    ties++; permissible++;
-                    resultText = "Risk Tie (0)";
-                    pillClass = "pill-neutral";
-                } else {
-                    permissible++;
-                    resultText = "Discordant (-1)";
-                    pillClass = "pill-danger";
-                }
-
-                return `
+            const tbody = document.getElementById("h_matched_table_body");
+            if (tbody) {
+                tbody.innerHTML = pairs.map(p => `
                     <tr>
-                        <td><strong>#${idx + 1} (Age ${p.age}, SBP ${p.sbp})</strong></td>
-                        <td>${p.t_event === 0 ? "<span style=\"color:#166534; font-weight:bold;\">0 (Survived)</span>" : "<span style=\"color:#991b1b;\">1</span>"}</td>
-                        <td>${p.c_event === 0 ? "0" : "<span style=\"color:#991b1b; font-weight:bold;\">1 (Stroke)</span>"}</td>
-                        <td><strong>${obsDiff > 0 ? "+1" : (obsDiff === 0 ? "0" : "-1")}</strong></td>
-                        <td><span class="pill ${pillClass}">${resultText}</span></td>
+                        <td>Twin #${p.id} (${p.age}y, ${p.sbp}mmHg)</td>
+                        <td>${p.y1 === 0 ? '🟢 No Stroke' : '🔴 Stroke'}</td>
+                        <td>${p.y0 === 1 ? '🔴 Stroke' : '🟢 No Stroke'}</td>
+                        <td><span class="pill pill-success">${p.pred_cate}</span></td>
+                        <td><span class="pill pill-purple">${p.conc}</span></td>
                     </tr>
-                `;
-            });
+                `).join('');
+            }
 
-            tbody.innerHTML = rows.join("");
-            const cScore = 0.6342;
-
-            const footer = document.getElementById("h_out_matched_footer");
-            if (footer) footer.innerHTML = `✔ Batch #${hieuPairBatchCounter} Validation C-for-benefit = <strong style="color:var(--success); font-size:0.92rem;">${cScore.toFixed(4)}</strong> (Hospital Gold Standard).`;
-
-            const mathCard = document.getElementById("h_formula_card");
-            if (mathCard && document.getElementById("h_step_3") && document.getElementById("h_step_3").classList.contains("active")) {
-                mathCard.innerHTML = `
-                    <strong>C-for-benefit Metric:</strong><br>
-                    <span class="math-symbol">C</span> = (Concordant + 0.5&times;Ties) / Permissible = <strong style="color:#1e40af;">${cScore.toFixed(4)}</strong><br>
-                    <em style="color:#166534; font-weight:bold;">✔ Evaluates AI accuracy on twin patient cohorts without parallel clones.</em>
-                `;
+            const foot = document.getElementById("h_out_matched_footer");
+            if (foot) {
+                foot.innerHTML = `✔ Batch #${hTwinBatch} Validation C-for-benefit = <strong>0.6342</strong> (Hospital Gold Standard).`;
             }
         }
 
-        // ==========================================
-        // 4. DUNG LOGIC (3 COMBINED CHAPTERS)
-        // ==========================================
+        // =========================================================================
+        // 3. DUNG - 100K PACS BIG DATA LABEL MINING & 2026 MULTIMODAL VLM
+        // =========================================================================
+        const dReports = {
+            1: {
+                text: '“Lungs are clear. <span class="hl-negation">No evidence of</span> active <span class="hl-disease">pneumonia</span> or consolidation.”',
+                table: `
+                    <tr><td><strong>Pneumonia</strong></td><td>"No evidence of active pneumonia"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
+                    <tr><td><strong>Consolidation</strong></td><td>"No consolidation"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
+                    <tr><td><strong>Cardiomegaly</strong></td><td>Not Mentioned</td><td><span class="pill pill-purple">0 (Absent)</span></td></tr>
+                `,
+                math: `Label(Pneumonia) = Mention(Pneumonia) &times; (1 - Negated) = 1 &times; (1 - 1) = 0`
+            },
+            2: {
+                text: '“Chest radiograph reveals prominent <span class="hl-disease">cardiomegaly</span> with mild interstitial <span class="hl-disease">edema</span>.”',
+                table: `
+                    <tr><td><strong>Cardiomegaly</strong></td><td>"Prominent cardiomegaly"</td><td><span class="pill pill-success">1 (Positive)</span></td></tr>
+                    <tr><td><strong>Edema</strong></td><td>"Mild interstitial edema"</td><td><span class="pill pill-success">1 (Positive)</span></td></tr>
+                    <tr><td><strong>Pneumonia</strong></td><td>Not Mentioned</td><td><span class="pill pill-purple">0 (Absent)</span></td></tr>
+                `,
+                math: `Label(Cardiomegaly) = Mention(Cardiomegaly) &times; (1 - Negated) = 1 &times; (1 - 0) = 1`
+            },
+            3: {
+                text: '“Findings consistent with dense airspace <span class="hl-disease">consolidation</span> in right lung.”',
+                table: `
+                    <tr><td><strong>Pneumonia</strong></td><td>Synonym: "airspace consolidation"</td><td><span class="pill pill-success">1 (UMLS Mapped)</span></td></tr>
+                    <tr><td><strong>Consolidation</strong></td><td>Direct match</td><td><span class="pill pill-success">1 (Positive)</span></td></tr>
+                `,
+                math: `Label(Pneumonia) = OntologyMap("consolidation") = 1 (UMLS C0032285)`
+            }
+        };
+
         function setDungPipelineStep(step) {
-            document.querySelectorAll("#section_dung .flow-step").forEach((s, idx) => {
-                s.classList.toggle("active", idx === (step - 1));
-            });
+            dStep = step;
+            for (let i = 1; i <= 2; i++) {
+                const s = document.getElementById(`d_flow_${i}`);
+                if (s) s.classList.toggle('active', i === step);
+            }
 
             const badge = document.getElementById("d_block_badge_1");
-            if (badge) badge.innerText = `Chapter ${step}`;
-
+            const scTitle = document.getElementById("d_scen_title");
+            const scDesc = document.getElementById("d_scen_desc");
             const in1 = document.getElementById("d_in_step1");
             const in2 = document.getElementById("d_in_step2");
-            const in3 = document.getElementById("d_in_step3");
-            if (in1) in1.style.display = (step === 1) ? "block" : "none";
-            if (in2) in2.style.display = (step === 2) ? "block" : "none";
-            if (in3) in3.style.display = (step === 3) ? "block" : "none";
-
-            const isCNNMode = (step === 2);
-            const tblWrap = document.getElementById("d_out_table_wrapper");
-            const cnnBars = document.getElementById("d_out_cnn_bars");
-            if (tblWrap) tblWrap.style.display = isCNNMode ? "none" : "block";
-            if (cnnBars) cnnBars.style.display = isCNNMode ? "block" : "none";
-
             const v1 = document.getElementById("d_v_step1");
             const v2 = document.getElementById("d_v_step2");
-            const v3 = document.getElementById("d_v_step3");
-            if (v1) v1.style.display = (step === 1) ? "block" : "none";
-            if (v2) v2.style.display = (step === 2) ? "block" : "none";
-            if (v3) v3.style.display = (step === 3) ? "block" : "none";
-
-            const mathCard = document.getElementById("d_formula_card");
             const b6Title = document.getElementById("d_block6_title");
-            const b6Badge = document.getElementById("d_block6_badge");
 
             if (step === 1) {
-                if (b6Title) b6Title.innerHTML = "🗂️ 6. PACS Big Data Mining Pipeline";
-                if (b6Badge) b6Badge.innerText = "Data Pipeline";
-
+                if (badge) badge.innerText = "Chapter 1";
+                if (scTitle) scTitle.innerText = "Extracting Structured Labels from 100,000 PACS Reports";
+                if (scDesc) scDesc.innerText = "Automating hospital-scale radiology text mining using NegBio syntactic parsing and UMLS ontologies.";
+                if (in1) in1.style.display = "block";
+                if (in2) in2.style.display = "none";
+                if (v1) v1.style.display = "block";
+                if (v2) v2.style.display = "none";
+                if (b6Title) b6Title.innerText = "🗂️ 6. PACS Big Data Pipeline";
                 setDungReportCase(1);
-                const st = document.getElementById("d_scen_title");
-                const sd = document.getElementById("d_scen_desc");
-                const ml = document.getElementById("d_nlp_desc");
-                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> Auto-mine 100,000 raw PACS radiology notes.";
-                if (sd) sd.innerHTML = "💡 <strong>Scale:</strong> $0 cost, HIPAA-safe local pipeline without manual radiologist effort.";
-                if (ml) ml.innerHTML = "• Free-text reports &rarr; Binary 14-disease label matrix {0, 1}<sup>100k &times; 14</sup>.<br>• Resolves negation ('no evidence of' &rarr; 0) and synonyms ('consolidation' &rarr; Pneumonia).";
-            } else if (step === 2) {
-                if (b6Title) b6Title.innerHTML = "🧠 6. DenseNet121 Architecture &amp; F1 Tuning";
-                if (b6Badge) b6Badge.innerText = "CNN Vision";
-
-                setDungCNNCase(1);
-                const st = document.getElementById("d_scen_title");
-                const sd = document.getElementById("d_scen_desc");
-                const ml = document.getElementById("d_nlp_desc");
-                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> Train 14-Disease DenseNet121 Vision Model &amp; Optimize F1.";
-                if (sd) sd.innerHTML = "💡 <strong>Imbalance:</strong> 99% accuracy is misleading on 1% rare diseases &rarr; F1 harmonic mean is mandatory.";
-                if (ml) ml.innerHTML = "• DenseNet121 outputs 14 independent sigmoid probabilities with Weighted Cross-Entropy.<br>• Decision threshold is tuned to balance Precision vs Recall.";
-                updateDungF1Sim();
-            } else if (step === 3) {
-                if (b6Title) b6Title.innerHTML = "🚀 6. 2026 AI Medical Frontier";
-                if (b6Badge) b6Badge.innerText = "VLM Paradigm";
-
-                setDungParadigm(1);
-                const st = document.getElementById("d_scen_title");
-                const sd = document.getElementById("d_scen_desc");
-                const ml = document.getElementById("d_nlp_desc");
-                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> 2026 Strategic Review &amp; Frontier Gaps.";
-                if (sd) sd.innerHTML = "💡 <strong>Frontier:</strong> Vision-Language Foundation Models (BiomedCLIP).";
-                if (ml) ml.innerHTML = "• Zero-shot text-image embeddings replace manual rule pipelines.<br>• Observational causal graphs represent the next clinical leap.";
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>2026 Generative Vision-Language Frontier:</strong><br>
-                        <span class="math-symbol">P</span><sub>VLM</sub>(<span class="math-symbol">y</span> | <span class="math-symbol">Image</span>, <span class="math-symbol">Prompt</span>) &gg; <span class="math-symbol">F1</span><sub>Rule-based</sub><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Multimodal foundation models eliminate manual rule engineering.</em>
-                    `;
-                }
-            }
-        }
-
-        function setDungReportCase(caseId) {
-            document.querySelectorAll("#d_in_step1 .xray-thumb-card").forEach((b, idx) => {
-                b.classList.toggle("active", idx === (caseId - 1));
-            });
-
-            const box = document.getElementById("d_interactive_report_box");
-            const tbody = document.getElementById("d_out_table_body");
-            const nlpDesc = document.getElementById("d_nlp_desc");
-            const mathCard = document.getElementById("d_formula_card");
-
-            if (caseId === 1) {
-                if (box) box.innerHTML = `"Lungs are clear. <span class=\"hl-negation\">No evidence of</span> active <span class=\"hl-disease\">pneumonia</span> or consolidation."`;
-                if (nlpDesc) nlpDesc.innerHTML = `• <strong>Negation Trigger Detected:</strong> 'No evidence of' modifies 'pneumonia' &rarr; Label = <strong>0 (Negated)</strong>.<br>• Prevents false positives in supervised CNN training.`;
-                if (tbody) {
-                    tbody.innerHTML = `
-                        <tr><td><strong>Pneumonia</strong></td><td>"No evidence of pneumonia"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
-                        <tr><td><strong>Cardiomegaly</strong></td><td>No mention</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
-                    `;
-                }
-                if (mathCard && document.getElementById("d_flow_1") && document.getElementById("d_flow_1").classList.contains("active")) {
-                    mathCard.innerHTML = `
-                        <strong>NegBio Rule Parsing:</strong><br>
-                        <span class="math-symbol">Label</span>(Pneumonia) = Mention(1) &times; (1 &minus; <span style="color:#991b1b; font-weight:bold;">Negated(1)</span>) = <strong style="color:#991b1b;">0 (Clean Negative)</strong>
-                    `;
-                }
-            } else if (caseId === 2) {
-                if (box) box.innerHTML = `"Chest radiograph reveals prominent <span class=\"hl-disease\">cardiomegaly</span> with pulmonary vascular congestion."`;
-                if (nlpDesc) nlpDesc.innerHTML = `• <strong>Direct Positive Mention:</strong> Disease entity 'cardiomegaly' found without negation &rarr; Label = <strong>1 (Present)</strong>.<br>• Supervised ground truth generated for class #2.`;
-                if (tbody) {
-                    tbody.innerHTML = `
-                        <tr><td><strong>Pneumonia</strong></td><td>No mention</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
-                        <tr><td><strong>Cardiomegaly</strong></td><td>"prominent cardiomegaly"</td><td><span class="pill pill-success">1 (Present)</span></td></tr>
-                    `;
-                }
-                if (mathCard && document.getElementById("d_flow_1") && document.getElementById("d_flow_1").classList.contains("active")) {
-                    mathCard.innerHTML = `
-                        <strong>Direct Entity Parsing:</strong><br>
-                        <span class="math-symbol">Label</span>(Cardiomegaly) = Mention(1) &times; (1 &minus; Negated(0)) = <strong style="color:#166534;">1 (Positive Match)</strong>
-                    `;
-                }
             } else {
-                if (box) box.innerHTML = `"Bilateral lower lobes show <span class=\"hl-synonym\">airspace consolidation</span> consistent with acute <span class=\"hl-synonym\">bronchopneumonia</span>."`;
-                if (nlpDesc) nlpDesc.innerHTML = `• <strong>Ontology Mapping:</strong> 'airspace consolidation' is a synonym for Pneumonia. 'bronchopneumonia' <em>is-a</em> Pneumonia &rarr; Label = <strong>1 (Present)</strong>.<br>• Mapped via UMLS &amp; SNOMED CT.`;
-                if (tbody) {
-                    tbody.innerHTML = `
-                        <tr><td><strong>Pneumonia</strong></td><td>Synonym "consolidation"</td><td><span class="pill pill-success">1 (Present)</span></td></tr>
-                        <tr><td><strong>Cardiomegaly</strong></td><td>No mention</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
-                    `;
-                }
-                if (mathCard && document.getElementById("d_flow_1") && document.getElementById("d_flow_1").classList.contains("active")) {
-                    mathCard.innerHTML = `
-                        <strong>Ontology Subsumption Mapping:</strong><br>
-                        <span class="math-symbol">Synonym</span>("consolidation") &map; <span class="math-symbol">Pneumonia</span> = <strong style="color:#166534;">1 (Present)</strong>
-                    `;
-                }
+                if (badge) badge.innerText = "Chapter 2";
+                if (scTitle) scTitle.innerText = "2026 Frontier: Multimodal Vision-Language Models (VLM)";
+                if (scDesc) scDesc.innerText = "Transitioning from rule-based pipelines to end-to-end foundation models (BiomedCLIP) with zero-shot classification.";
+                if (in1) in1.style.display = "none";
+                if (in2) in2.style.display = "block";
+                if (v1) v1.style.display = "none";
+                if (v2) v2.style.display = "block";
+                if (b6Title) b6Title.innerText = "🤖 6. 2026 Multimodal Alignment";
+                setDungParadigm(2);
             }
         }
 
-        function setDungCNNCase(caseId) {
-            const img1 = document.getElementById("d_cnn_img_1");
-            const img2 = document.getElementById("d_cnn_img_2");
-            if (img1) img1.classList.toggle("active", caseId === 1);
-            if (img2) img2.classList.toggle("active", caseId === 2);
+        function setDungReportCase(caseNum) {
+            for (let i = 1; i <= 3; i++) {
+                const b = document.getElementById(`d_btn_rep_${i}`);
+                if (b) b.classList.toggle("active", i === caseNum);
+            }
 
-            const nlpDesc = document.getElementById("d_nlp_desc");
-            const mathCard = document.getElementById("d_formula_card");
+            const d = dReports[caseNum];
+            const repBox = document.getElementById("d_interactive_report_box");
+            const tblBody = document.getElementById("d_out_table_body");
+            const formCard = document.getElementById("d_formula_card");
+            const mlDesc = document.getElementById("d_nlp_desc");
 
-            const bP = document.getElementById("d_bar_pneu");
-            const vP = document.getElementById("d_val_pneu");
-            const bC = document.getElementById("d_bar_cardio");
-            const vC = document.getElementById("d_val_cardio");
-            const bI = document.getElementById("d_bar_inf");
-            const vI = document.getElementById("d_val_inf");
+            if (repBox) repBox.innerHTML = d.text;
+            if (tblBody) tblBody.innerHTML = d.table;
+            if (formCard) formCard.innerHTML = `<div><strong>NegBio Indicator Formula:</strong></div><div style="color: #1e40af; font-weight: bold; margin-top: 4px;">${d.math}</div>`;
+            if (mlDesc) {
+                mlDesc.innerHTML = `<strong>NegBio Rule-Based Extraction:</strong> Uses dependency graph parsing to detect negation cues ("no evidence of") and binds them to target pathologies, generating 100,000 ground truth labels at $0 cost.`;
+            }
+        }
 
-            if (caseId === 1) {
-                if (bP) bP.style.width = "88%";
-                if (vP) vP.innerText = "88%";
-                if (bC) bC.style.width = "14%";
-                if (vC) vC.innerText = "14%";
-                if (bI) bI.style.width = "72%";
-                if (vI) vI.innerText = "72%";
-                if (nlpDesc) nlpDesc.innerHTML = "• <strong>Scan #1 Pathology:</strong> High Pneumonia probability (88%) and Infiltration (72%).<br>• Multi-label CNN recognizes co-occurring lung conditions.";
-                if (mathCard && document.getElementById("d_flow_2") && document.getElementById("d_flow_2").classList.contains("active")) {
-                    mathCard.innerHTML = `
-                        <strong>DenseNet121 Inference (Scan #1):</strong><br>
-                        <span class="math-symbol">P</span>(Pneumonia) = &sigma;(z<sub>1</sub>) = <strong style="color:#166534;">0.88</strong> &nbsp;|&nbsp; <span class="math-symbol">P</span>(Cardiomegaly) = <strong style="color:#475569;">0.14</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Successfully flags positive thoracic consolidation.</em>
-                    `;
-                }
+        function setDungParadigm(parNum) {
+            const btn1 = document.getElementById("d_btn_par_1");
+            const btn2 = document.getElementById("d_btn_par_2");
+            if (btn1) btn1.classList.toggle("active", parNum === 1);
+            if (btn2) btn2.classList.toggle("active", parNum === 2);
+
+            const mlDesc = document.getElementById("d_nlp_desc");
+            const formCard = document.getElementById("d_formula_card");
+            const tblBody = document.getElementById("d_out_table_body");
+
+            if (parNum === 1) {
+                if (mlDesc) mlDesc.innerHTML = `<strong>2020 Two-Stage Rule Pipeline:</strong> NegBio extracts text labels $\rightarrow$ CNN trains on images. Rule errors can propagate into dataset.`;
+                if (formCard) formCard.innerHTML = `<div><strong>Rule-Based Pipeline:</strong> PACS Text $\rightarrow$ Label Matrix $\mathbf{Y} \in \{0, 1\}^{100k \times 14}$</div>`;
             } else {
-                if (bP) bP.style.width = "9%";
-                if (vP) vP.innerText = "9%";
-                if (bC) bC.style.width = "94%";
-                if (vC) vC.innerText = "94%";
-                if (bI) bI.style.width = "18%";
-                if (vI) vI.innerText = "18%";
-                if (nlpDesc) nlpDesc.innerHTML = "• <strong>Scan #2 Pathology:</strong> High Cardiomegaly probability (94%), Normal lung fields.<br>• Detects enlarged heart silhouette without lung infection.";
-                if (mathCard && document.getElementById("d_flow_2") && document.getElementById("d_flow_2").classList.contains("active")) {
-                    mathCard.innerHTML = `
-                        <strong>DenseNet121 Inference (Scan #2):</strong><br>
-                        <span class="math-symbol">P</span>(Cardiomegaly) = &sigma;(z<sub>2</sub>) = <strong style="color:#166534;">0.94</strong> &nbsp;|&nbsp; <span class="math-symbol">P</span>(Pneumonia) = <strong style="color:#475569;">0.09</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Correctly isolates cardiac enlargement.</em>
+                if (mlDesc) mlDesc.innerHTML = `<strong>2026 Multimodal Foundation Model:</strong> BiomedCLIP aligns radiology text and X-ray embeddings in a shared latent space via contrastive learning, enabling Zero-Shot diagnosis.`;
+                if (formCard) formCard.innerHTML = `<div><strong>Contrastive Alignment:</strong> $\mathcal{L} = -\log \frac{\exp(\text{sim}(v_i, t_i)/\tau)}{\sum_j \exp(\text{sim}(v_i, t_j)/\tau)}$</div>`;
+                if (tblBody) {
+                    tblBody.innerHTML = `
+                        <tr><td><strong>BiomedCLIP Zero-Shot</strong></td><td>Prompt: "Chest X-ray showing consolidation"</td><td><span class="pill pill-success">Cosine Sim = 0.942</span></td></tr>
+                        <tr><td><strong>Normal Control</strong></td><td>Prompt: "Normal chest radiograph"</td><td><span class="pill pill-danger">Cosine Sim = 0.081</span></td></tr>
                     `;
                 }
             }
         }
 
-        function updateDungF1Sim() {
-            const sl = document.getElementById("d_sl_thresh");
-            if (!sl) return;
-            const thresh = parseInt(sl.value) / 100;
-            const txt = document.getElementById("d_txt_thresh");
-            if (txt) txt.innerText = thresh.toFixed(2);
+        // =========================================================================
+        // 4. LINH - MEDICAL NLP & 14-CNN GRAD-CAM VISION LABS
+        // =========================================================================
+        const lTexts = {
+            1: "Patient has fever and/or cough.. Possible pneumonia.",
+            2: "Forxiga (dapagliflozin) reduces blood glucose levels.",
+            3: "Chest X-ray shows right lower lobe consolidation."
+        };
 
-            const precision = Math.min(0.98, 0.65 + (thresh * 0.35));
-            const recall = Math.max(0.40, 0.98 - (thresh * 0.55));
-            const f1 = (2 * precision * recall) / (precision + recall);
+        let lActiveDisease = 'pneumonia';
 
-            const mathCard = document.getElementById("d_formula_card");
-            if (mathCard && document.getElementById("d_flow_2") && document.getElementById("d_flow_2").classList.contains("active")) {
-                mathCard.innerHTML = `
-                    <strong>Multi-Label Weighted Loss &amp; F1:</strong><br>
-                    <span class="math-symbol">L</span><sub>CNN</sub> = &minus; &sum; [ <span class="math-symbol">w</span><sub>p</sub> <span class="math-symbol">y</span> log <span class="math-symbol">y&#770;</span> + <span class="math-symbol">w</span><sub>n</sub> (1&minus;<span class="math-symbol">y</span>) log(1&minus;<span class="math-symbol">y&#770;</span>) ]<br>
-                    <span class="math-symbol">F1</span> = 2PR / (P+R) = <strong style="color:#166534;">${f1.toFixed(3)}</strong> &nbsp;|&nbsp; Precision: ${(precision * 100).toFixed(1)}% &middot; Recall: ${(recall * 100).toFixed(1)}%
-                `;
+        function setLinhLab(step) {
+            lStep = step;
+            for (let i = 1; i <= 2; i++) {
+                const s = document.getElementById(`l_step_${i}`);
+                if (s) s.classList.toggle('active', i === step);
             }
-
-            const summary = document.getElementById("d_f1_score_summary");
-            if (summary) summary.innerHTML = `✔ Threshold ${thresh.toFixed(2)} &rarr; Balanced F1-Score: <strong>${f1.toFixed(3)}</strong> (Penalizes missed sick cases).`;
-        }
-
-        function setDungParadigm(pId) {
-            const b1 = document.getElementById("d_btn_par_1");
-            const b2 = document.getElementById("d_btn_par_2");
-            if (b1) b1.classList.toggle("active", pId === 1);
-            if (b2) b2.classList.toggle("active", pId === 2);
-
-            const tbody = document.getElementById("d_out_table_body");
-            if (!tbody) return;
-
-            if (pId === 1) {
-                tbody.innerHTML = `
-                    <tr><td><strong>Approach</strong></td><td>Multi-stage Rule Parsing (NegBio + UMLS)</td><td><span class="pill pill-neutral">High Manual Rules</span></td></tr>
-                    <tr><td><strong>Limitation</strong></td><td>Misses novel phrasing &amp; typos</td><td><span class="pill pill-danger">Brittle</span></td></tr>
-                `;
-            } else {
-                tbody.innerHTML = `
-                    <tr><td><strong>Approach</strong></td><td>BiomedCLIP Zero-shot Multimodal Alignment</td><td><span class="pill pill-success">End-to-End SOTA</span></td></tr>
-                    <tr><td><strong>Generalization</strong></td><td>Text &harr; Vision Contrastive Embedding</td><td><span class="pill pill-success">Zero Annotation</span></td></tr>
-                `;
-            }
-        }
-
-        // ==========================================
-        // 5. LINH LOGIC (2 COMBINED CHAPTERS)
-        // ==========================================
-        function setLinhLab(labNum) {
-            document.querySelectorAll("#section_linh .flow-step").forEach((s, idx) => {
-                s.classList.toggle("active", idx === (labNum - 1));
-            });
 
             const badge = document.getElementById("l_badge_step");
-            if (badge) badge.innerText = `Chapter ${labNum}`;
-
-            const isClean = (labNum === 1);
-            const isCam = (labNum === 2);
-
+            const scTitle = document.getElementById("l_scenario_title");
+            const scBody = document.getElementById("l_scenario_body");
             const inClean = document.getElementById("l_input_clean_box");
             const inCam = document.getElementById("l_input_cam_box");
-            if (inClean) inClean.style.display = isClean ? "block" : "none";
-            if (inCam) inCam.style.display = isCam ? "block" : "none";
-
             const outClean = document.getElementById("l_out_clean_box");
             const outCam = document.getElementById("l_out_cam_metric");
-            if (outClean) outClean.style.display = isClean ? "block" : "none";
-            if (outCam) outCam.style.display = isCam ? "block" : "none";
-
-            const v1 = document.getElementById("l_v_lab1");
-            const v2 = document.getElementById("l_v_lab2");
-            if (v1) v1.style.display = isClean ? "block" : "none";
-            if (v2) v2.style.display = isCam ? "block" : "none";
-
-            const mathCard = document.getElementById("l_formula_card");
+            const vLab1 = document.getElementById("l_v_lab1");
+            const vLab2 = document.getElementById("l_v_lab2");
             const b6Title = document.getElementById("l_block6_title");
-            const b6Badge = document.getElementById("l_block6_badge");
 
-            if (isClean) {
-                if (b6Title) b6Title.innerHTML = "🔤 6. BERT Attention &amp; Embedding Matrix";
-                if (b6Badge) b6Badge.innerText = "Tensor Structure";
-
-                const st = document.getElementById("l_scenario_title");
-                const sb = document.getElementById("l_scenario_body");
-                const ml = document.getElementById("l_ml_explanation");
-                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> BioBERT Attention &amp; Token Tensor Representation.";
-                if (sb) sb.innerHTML = "💡 <strong>Lab 1 &amp; 2:</strong> Regex cleaning + WordPiece tokenizer mapping into shape (1, 60) with Attention Mask.";
-                if (ml) ml.innerHTML = "• <strong>BERT Tokenization:</strong> Maps words to vocab IDs, adds [CLS]=101, [SEP]=102, pads zeros.<br>• <strong>Attention Mask:</strong> M_i=1 for real words, 0 for padding tokens.";
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>BioBERT Tensor &amp; Mask Representation:</strong><br>
-                        <span class="math-symbol">T</span> &in; &integers;<sup>1 &times; 60</sup>, with <span class="math-symbol">T</span><sub>0</sub> = 101 ([CLS]), <span class="math-symbol">T</span><sub>k</sub> = 102 ([SEP])<br>
-                        <span class="math-symbol">Attention Mask</span>: <span class="math-symbol">M</span><sub>i</sub> = 1 if <span class="math-symbol">T</span><sub>i</sub> &ne; 0 else 0
-                    `;
-                }
+            if (step === 1) {
+                if (badge) badge.innerText = "Chapter 1";
+                if (scTitle) scTitle.innerText = "Clinical Text Preprocessing & BioBERT Attention Tokens";
+                if (scBody) scBody.innerText = "Demonstrating how regex normalization and WordPiece tokenization format raw clinical notes for BioBERT.";
+                if (inClean) inClean.style.display = "block";
+                if (inCam) inCam.style.display = "none";
+                if (outClean) outClean.style.display = "block";
+                if (outCam) outCam.style.display = "none";
+                if (vLab1) vLab1.style.display = "block";
+                if (vLab2) vLab2.style.display = "none";
+                if (b6Title) b6Title.innerText = "🔤 6. BioBERT Attention Tensor";
                 runLinhTokenizer();
             } else {
-                if (b6Title) b6Title.innerHTML = "🩻 6. Grad-CAM X-Ray Localization &amp; Permutation";
-                if (b6Badge) b6Badge.innerText = "Layer 424 Heatmap";
-
-                const st = document.getElementById("l_scenario_title");
-                const sb = document.getElementById("l_scenario_body");
-                const ml = document.getElementById("l_ml_explanation");
-                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> Grad-CAM Chest X-Ray Localization &amp; Permutation Importance.";
-                if (sb) sb.innerHTML = "💡 <strong>Lab 3 &amp; 4:</strong> Backprop class gradients through DenseNet121 Layer 424 &amp; shuffle test features.";
-                if (ml) ml.innerHTML = "• <strong>Grad-CAM:</strong> Backprops gradients &part;y^c / &part;A^k to highlight pneumonia in bright red.<br>• <strong>Permutation:</strong> Shuffling Age causes massive &minus;0.2228 C-index drop (proves Age #1 driver).";
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>Grad-CAM Activation Weights (Layer 424):</strong><br>
-                        &alpha;<sub>k</sub><sup>c</sup> = (1/Z) &sum; &part;<span class="math-symbol">y</span><sup>c</sup> / &part;<span class="math-symbol">A</span><sup>k</sup> &rarr; <span class="math-symbol">L</span><sub>CAM</sub> = <strong style="color:#7c3aed;">ReLU(&sum; &alpha;<sub>k</sub> A<sup>k</sup>)</strong>
-                    `;
-                }
-                updateLinhHeatmap();
+                if (badge) badge.innerText = "Chapter 2";
+                if (scTitle) scTitle.innerText = "14-CNN Vision Training, F1 Threshold Tuning & Layer 424 Grad-CAM";
+                if (scBody) scBody.innerText = "DenseNet121 multi-label classification, harmonic F1 tuning for rare disease safety, and Grad-CAM Layer 424 visual explainability.";
+                if (inClean) inClean.style.display = "none";
+                if (inCam) inCam.style.display = "block";
+                if (outClean) outClean.style.display = "none";
+                if (outCam) outCam.style.display = "block";
+                if (vLab1) vLab1.style.display = "none";
+                if (vLab2) vLab2.style.display = "block";
+                if (b6Title) b6Title.innerText = "🩻 6. Layer 424 Grad-CAM Visualizer";
+                setLinhDisease(lActiveDisease);
             }
-        }
-
-        function runLinhTextCleaner() {
-            const input = document.getElementById("l_dirty_input");
-            if (!input) return;
-            const raw = input.value;
-            const cleaned = raw.replace(/and\/or/gi, "or").replace(/\.{2,}/g, ".").replace(/\s+/g, " ").trim();
-            const disp = document.getElementById("l_cleaned_text_display");
-            if (disp) disp.innerText = `"${cleaned}"`;
         }
 
         function runLinhTokenizer() {
             const sel = document.getElementById("l_text_select");
-            if (!sel) return;
-            const val = sel.value;
-            const list = document.getElementById("l_token_badge_list");
-            if (!list) return;
-            list.innerHTML = "";
+            const rawVal = sel ? sel.value : "1";
+            const rawText = lTexts[rawVal] || lTexts[1];
 
-            let tokens = [];
-            if (val === "1") {
-                tokens = [
-                    { id: 101, text: "[CLS]", type: "token-cls" },
-                    { id: 5765, text: "patient", type: "" },
-                    { id: 2038, text: "has", type: "" },
-                    { id: 9812, text: "fever", type: "" },
-                    { id: 1998, text: "or", type: "" },
-                    { id: 12431, text: "cough", type: "" },
-                    { id: 1012, text: ".", type: "" },
-                    { id: 4625, text: "possible", type: "" },
-                    { id: 18271, text: "pneumonia", type: "hl-disease" },
-                    { id: 1012, text: ".", type: "" },
-                    { id: 102, text: "[SEP]", type: "token-sep" }
-                ];
-                const di = document.getElementById("l_dirty_input");
-                if (di) di.value = "Patient has fever and/or cough.. Possible pneumonia.";
-                runLinhTextCleaner();
-            } else if (val === "2") {
-                tokens = [
-                    { id: 101, text: "[CLS]", type: "token-cls" },
-                    { id: 2981, text: "forxiga", type: "" },
-                    { id: 1006, text: "(", type: "" },
-                    { id: 14210, text: "dapagliflozin", type: "" },
-                    { id: 1007, text: ")", type: "" },
-                    { id: 4892, text: "reduces", type: "hl-disease" },
-                    { id: 3784, text: "blood", type: "hl-disease" },
-                    { id: 8214, text: "glucose", type: "hl-disease" },
-                    { id: 102, text: "[SEP]", type: "token-sep" }
-                ];
-                const di = document.getElementById("l_dirty_input");
-                if (di) di.value = "Forxiga (dapagliflozin) reduces blood glucose levels.";
-                runLinhTextCleaner();
-            } else {
-                tokens = [
-                    { id: 101, text: "[CLS]", type: "token-cls" },
-                    { id: 3532, text: "chest", type: "" },
-                    { id: 2598, text: "x-ray", type: "" },
-                    { id: 3065, text: "shows", type: "" },
-                    { id: 2157, text: "right", type: "hl-disease" },
-                    { id: 2847, text: "lower", type: "hl-disease" },
-                    { id: 9142, text: "consolidation", type: "hl-disease" },
-                    { id: 102, text: "[SEP]", type: "token-sep" }
-                ];
-                const di = document.getElementById("l_dirty_input");
-                if (di) di.value = "Chest X-ray shows right lower lobe consolidation.";
-                runLinhTextCleaner();
+            const inputField = document.getElementById("l_dirty_input");
+            if (inputField) inputField.value = rawText;
+            runLinhTextCleaner();
+        }
+
+        function runLinhTextCleaner() {
+            const inputField = document.getElementById("l_dirty_input");
+            const dirty = inputField ? inputField.value : lTexts[1];
+
+            const cleaned = dirty
+                .replace(/and\/or/gi, "or")
+                .replace(/\.\.+/g, ".")
+                .replace(/\s+/g, " ")
+                .trim();
+
+            const disp = document.getElementById("l_cleaned_text_display");
+            if (disp) disp.innerText = `"${cleaned}"`;
+
+            const words = cleaned.replace(/[^a-zA-Z0-9 ]/g, "").split(" ").filter(Boolean);
+            const tokenList = document.getElementById("l_token_badge_list");
+            if (tokenList) {
+                let badges = `<span class="pill pill-purple">[CLS] (101)</span>`;
+                words.forEach((w, idx) => {
+                    const id = 1000 + (idx * 37) + (w.length * 19);
+                    badges += `<span class="pill pill-success">${w} (${id})</span>`;
+                });
+                badges += `<span class="pill pill-purple">[SEP] (102)</span>`;
+                for (let p = 0; p < Math.max(0, 8 - words.length); p++) {
+                    badges += `<span class="pill pill-warning">[PAD] (0)</span>`;
+                }
+                tokenList.innerHTML = badges;
             }
 
-            tokens.forEach(t => {
-                const b = document.createElement("span");
-                b.className = `token-badge ${t.type}`;
-                b.innerText = `${t.text} (${t.id})`;
-                list.appendChild(b);
-            });
+            const formCard = document.getElementById("l_formula_card");
+            if (formCard) {
+                formCard.innerHTML = `
+                    <div><strong>BioBERT Token Embedding Formula:</strong></div>
+                    <div style="color: #1e40af; font-weight: bold; margin-top: 2px;">
+                        \mathbf{T} = \mathbf{E}_{\text{Token}} + \mathbf{E}_{\text{Pos}} + \mathbf{E}_{\text{Seg}} \in \mathbb{R}^{1 \times 60 \times 768}
+                    </div>
+                    <div style="margin-top: 4px; font-size: 0.76rem; color: var(--text-muted);">
+                        Attention Mask $M_i = 1$ for real tokens, $0$ for [PAD].
+                    </div>
+                `;
+            }
 
-            for (let i = tokens.length; i < 20; i++) {
-                const p = document.createElement("span");
-                p.className = `token-badge token-pad`;
-                p.innerText = `[PAD] (0)`;
-                list.appendChild(p);
+            const mlDesc = document.getElementById("l_ml_explanation");
+            if (mlDesc) {
+                mlDesc.innerHTML = `<strong>BioBERT Attention Pipeline:</strong> Regex normalizes clinical noise, WordPiece handles unseen medical terms (e.g. 'dapagliflozin'), and the attention mask ensures transformers ignore zero padding.`;
             }
         }
 
-        function runLinhShuffle(feature) {
-            const body = document.getElementById("l_perm_table_body");
-            const mathCard = document.getElementById("l_formula_card");
-            if (!body) return;
+        function setLinhDisease(dis) {
+            lActiveDisease = dis;
+            const btn1 = document.getElementById("l_dis_btn_1");
+            const btn2 = document.getElementById("l_dis_btn_2");
+            if (btn1) btn1.classList.toggle("active", dis === "pneumonia");
+            if (btn2) btn2.classList.toggle("active", dis === "cardiomegaly");
 
-            if (feature === "age") {
-                body.innerHTML = `
-                    <tr style="background:#fee2e2;"><td><strong>Age (Shuffled)</strong></td><td>0.5531</td><td><strong style="color:var(--danger);">-0.2228 (CRITICAL)</strong></td></tr>
-                    <tr><td><strong>Blood Pressure</strong></td><td>0.7759</td><td>0.0000 (Baseline)</td></tr>
-                `;
-                if (mathCard && document.getElementById("l_step_2") && document.getElementById("l_step_2").classList.contains("active")) {
-                    mathCard.innerHTML = `
-                        <strong>Permutation Importance (&Delta; C-Index):</strong><br>
-                        <span class="math-symbol">Importance</span>(Age) = 0.7759 &minus; 0.5531 = <strong style="color:#991b1b;">&minus;0.2228 Drop</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Proves Patient Age is the #1 medical driver.</em>
-                    `;
+            const lbl = document.getElementById("l_cam_disease_lbl");
+            const blob = document.getElementById("l_heatmap_blob");
+            const barPneu = document.getElementById("l_bar_pneu");
+            const valPneu = document.getElementById("l_val_pneu");
+            const barCardio = document.getElementById("l_bar_cardio");
+            const valCardio = document.getElementById("l_val_cardio");
+
+            if (dis === "pneumonia") {
+                if (lbl) lbl.innerText = "Target: Pneumonia (Right Lower Lobe Consolidation)";
+                if (blob) {
+                    blob.style.top = "65px";
+                    blob.style.left = "45px";
+                    blob.style.width = "75px";
+                    blob.style.height = "60px";
+                    blob.style.background = "radial-gradient(circle, rgba(239,68,68,0.85) 0%, rgba(245,158,11,0.5) 45%, rgba(16,185,129,0) 80%)";
                 }
+                if (barPneu) barPneu.style.width = "88%";
+                if (valPneu) valPneu.innerText = "88%";
+                if (barCardio) barCardio.style.width = "14%";
+                if (valCardio) valCardio.innerText = "14%";
             } else {
-                body.innerHTML = `
-                    <tr><td><strong>Age</strong></td><td>0.7759</td><td>0.0000 (Baseline)</td></tr>
-                    <tr style="background:#fef3c7;"><td><strong>Blood Pressure (Shuffled)</strong></td><td>0.7058</td><td><strong style="color:var(--warning);">-0.0701 (Moderate)</strong></td></tr>
-                `;
-                if (mathCard && document.getElementById("l_step_2") && document.getElementById("l_step_2").classList.contains("active")) {
-                    mathCard.innerHTML = `
-                        <strong>Permutation Importance (&Delta; C-Index):</strong><br>
-                        <span class="math-symbol">Importance</span>(BP) = 0.7759 &minus; 0.7058 = <strong style="color:#d97706;">&minus;0.0701 Drop</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Blood pressure is an important secondary risk factor.</em>
-                    `;
+                if (lbl) lbl.innerText = "Target: Cardiomegaly (Enlarged Cardiac Silhouette)";
+                if (blob) {
+                    blob.style.top = "70px";
+                    blob.style.left = "80px";
+                    blob.style.width = "95px";
+                    blob.style.height = "75px";
+                    blob.style.background = "radial-gradient(circle, rgba(59,130,246,0.85) 0%, rgba(147,51,234,0.5) 50%, rgba(16,185,129,0) 85%)";
                 }
+                if (barPneu) barPneu.style.width = "12%";
+                if (valPneu) valPneu.innerText = "12%";
+                if (barCardio) barCardio.style.width = "94%";
+                if (valCardio) valCardio.innerText = "94%";
+            }
+            updateLinhF1Thresh();
+        }
+
+        function updateLinhF1Thresh() {
+            const sl = document.getElementById("l_sl_thresh");
+            const txt = document.getElementById("l_txt_thresh");
+            const thresh = sl ? parseInt(sl.value) / 100 : 0.50;
+            if (txt) txt.innerText = thresh.toFixed(2);
+
+            const precision = Math.max(0.70, Math.min(0.98, 0.75 + (thresh * 0.22)));
+            const recall = Math.max(0.65, Math.min(0.99, 0.99 - (thresh * 0.32)));
+            const f1 = (2 * precision * recall) / (precision + recall);
+
+            const f1Sum = document.getElementById("l_f1_score_summary");
+            if (f1Sum) {
+                f1Sum.innerHTML = `✔ Threshold <strong>${thresh.toFixed(2)}</strong> &rarr; Precision: <strong>${precision.toFixed(3)}</strong> | Recall: <strong>${recall.toFixed(3)}</strong> | F1-Score: <strong>${f1.toFixed(3)}</strong>`;
+            }
+
+            const formCard = document.getElementById("l_formula_card");
+            if (formCard) {
+                formCard.innerHTML = `
+                    <div><strong>DenseNet121 F1 &amp; Grad-CAM Formula:</strong></div>
+                    <div style="color: #1e40af; font-weight: bold; margin: 2px 0;">
+                        F1 = \frac{2 \times P \times R}{P + R} = \frac{2(${precision.toFixed(2)})(${recall.toFixed(2)})}{${(precision+recall).toFixed(2)}} = ${f1.toFixed(3)}
+                    </div>
+                    <div style="margin-top: 4px; color: #7c3aed; font-weight: bold;">
+                        L_{\text{CAM}}^c = \text{ReLU}\left(\sum_k \alpha_k^c A^k\right) \quad \text{where } \alpha_k^c = \frac{1}{Z}\sum_{i,j} \frac{\partial y^c}{\partial A_{i,j}^k}
+                    </div>
+                `;
+            }
+
+            const mlDesc = document.getElementById("l_ml_explanation");
+            if (mlDesc) {
+                mlDesc.innerHTML = `<strong>14-CNN DenseNet121 &amp; Grad-CAM:</strong> Evaluates multi-label sigmoid probabilities, optimizes F1 harmonic mean for rare disease balance, and computes Layer 424 gradients to display transparent visual heatmaps.`;
             }
         }
 
         function updateLinhHeatmap() {
             const sl = document.getElementById("l_cam_sl_op");
-            if (!sl) return;
-            const op = parseInt(sl.value) / 100;
             const txt = document.getElementById("l_cam_op_txt");
-            const blob = document.getElementById("l_heatmap_blob");
-            if (txt) txt.innerText = (op * 100).toFixed(0) + "%";
-            if (blob) blob.style.opacity = op;
-        }
-
-        function setLinhDisease(disease) {
-            const isPneumo = disease === "pneumonia";
-            const b1 = document.getElementById("l_dis_btn_1");
-            const b2 = document.getElementById("l_dis_btn_2");
-            if (b1) b1.classList.toggle("active", isPneumo);
-            if (b2) b2.classList.toggle("active", !isPneumo);
+            const op = sl ? parseInt(sl.value) : 80;
+            if (txt) txt.innerText = op + "%";
 
             const blob = document.getElementById("l_heatmap_blob");
-            const lbl = document.getElementById("l_cam_disease_lbl");
-            const mlDesc = document.getElementById("l_ml_explanation");
-            const mathCard = document.getElementById("l_formula_card");
-
-            if (isPneumo) {
-                if (lbl) lbl.innerText = "Target: Pneumonia (Right Lower Lobe)";
-                if (blob) {
-                    blob.style.top = "25%";
-                    blob.style.left = "32%";
-                    blob.style.width = "120px";
-                    blob.style.height = "80px";
-                }
-                if (mlDesc) mlDesc.innerHTML = "• Backprops gradients for <strong>Class #1 (Pneumonia)</strong> through Layer 424.<br>• Concentrates heat activations over right lower lung field.";
-                if (mathCard && document.getElementById("l_step_2") && document.getElementById("l_step_2").classList.contains("active")) {
-                    mathCard.innerHTML = `
-                        <strong>Grad-CAM (Target = Pneumonia):</strong><br>
-                        &alpha;<sub>k</sub><sup>pneu</sup> = (1/Z) &sum; &part;<span class="math-symbol">y</span><sup>pneu</sup> / &part;<span class="math-symbol">A</span><sup>k</sup> &rarr; <span class="math-symbol">L</span><sub>CAM</sub> = <strong style="color:#7c3aed;">ReLU(&sum; &alpha;<sub>k</sub> A<sup>k</sup>)</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Highlights right lower lobe consolidation in red.</em>
-                    `;
-                }
-            } else {
-                if (lbl) lbl.innerText = "Target: Cardiomegaly (Enlarged Cardiac Silhouette)";
-                if (blob) {
-                    blob.style.top = "42%";
-                    blob.style.left = "40%";
-                    blob.style.width = "150px";
-                    blob.style.height = "110px";
-                }
-                if (mlDesc) mlDesc.innerHTML = "• Backprops gradients for <strong>Class #2 (Cardiomegaly)</strong> through Layer 424.<br>• Concentrates heat activations over enlarged heart border.";
-                if (mathCard && document.getElementById("l_step_2") && document.getElementById("l_step_2").classList.contains("active")) {
-                    mathCard.innerHTML = `
-                        <strong>Grad-CAM (Target = Cardiomegaly):</strong><br>
-                        &alpha;<sub>k</sub><sup>cardio</sup> = (1/Z) &sum; &part;<span class="math-symbol">y</span><sup>cardio</sup> / &part;<span class="math-symbol">A</span><sup>k</sup> &rarr; <span class="math-symbol">L</span><sub>CAM</sub> = <strong style="color:#7c3aed;">ReLU(&sum; &alpha;<sub>k</sub> A<sup>k</sup>)</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Highlights enlarged cardiac silhouette in red.</em>
-                    `;
-                }
-            }
+            if (blob) blob.style.opacity = (op / 100).toString();
         }
 
-        // ==========================================
-        // 6. WRAP-UP INTERACTIVE Q&A CONSOLE
-        // ==========================================
-        function selectWrapUpQ(id) {
-            for (let i = 1; i <= 6; i++) {
-                const b = document.getElementById(`btn_q_${i}`);
-                if (b) b.classList.toggle("active", i === id);
-            }
+        function runLinhShuffle(feature) {
+            const tbody = document.getElementById("l_perm_table_body");
+            if (!tbody) return;
 
-            const disp = document.getElementById("wrapup_qa_display");
-            if (!disp) return;
-
-            if (id === 1) {
-                disp.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span class="pill pill-purple" style="font-size: 0.74rem;">👩‍💼 Khương &middot; 👨‍💻 Hiếu</span>
-                        <span class="block-badge badge-scenario">Question 1 / 6</span>
-                    </div>
-                    <h3 style="font-size: 1rem; color: #1e3a8a; margin-bottom: 8px; line-height: 1.4;">
-                        ❓ Why not just use a standard risk prediction model instead of causal inference?
-                    </h3>
-                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                            <strong>Plain Language Answer:</strong><br>
-                            A standard risk model only predicts <em>"Who is sick / at high risk?"</em> (correlation). It <strong>cannot</strong> answer <em>"Who will actually get better IF we prescribe the drug?"</em> (causality).
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.76rem; text-align: center; margin: 8px 0;">
-                            <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 8px;">
-                                <div style="font-weight: bold; color: #991b1b;">❌ Standard Risk Model</div>
-                                <div style="color: #7f1d1d; margin-top: 2px;">Prescribes drug to ALL high-risk elderly &rarr; Many suffer side effects with 0 benefit!</div>
-                            </div>
-                            <div style="background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 8px;">
-                                <div style="font-weight: bold; color: #166534;">✔ Causal CATE Model</div>
-                                <div style="color: #14532d; margin-top: 2px;">Prescribes drug ONLY to patients with high net benefit (+26.4% Grandpa An)!</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (id === 2) {
-                disp.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span class="pill pill-success" style="font-size: 0.74rem;">👨‍💻 Hiếu</span>
-                        <span class="block-badge badge-ml">Question 2 / 6</span>
-                    </div>
-                    <h3 style="font-size: 1rem; color: #065f46; margin-bottom: 8px; line-height: 1.4;">
-                        ❓ Is a C-for-benefit of 0.60–0.65 good enough for clinical practice?
-                    </h3>
-                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                            <strong>Plain Language Answer:</strong><br>
-                            <strong>Yes, absolutely!</strong> In Causal Machine Learning, <strong>0.60–0.65 is the recognized international hospital benchmark</strong> (comparable to ~0.80 AUC in standard risk ML).
-                        </div>
-                        <div style="background: #f0fdf4; border-left: 3px solid #059669; padding: 8px; font-size: 0.78rem; color: #166534; line-height: 1.5; margin-top: 6px;">
-                            🏆 <strong>The Twin Noise Factor:</strong> Because counterfactuals are unobservable, comparing statistical twin pairs has unavoidable matching noise capping practical C-for-benefit at ~0.65.
-                        </div>
-                    </div>
-                `;
-            } else if (id === 3) {
-                disp.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span class="pill pill-success" style="font-size: 0.74rem;">👨‍💻 Hiếu</span>
-                        <span class="block-badge badge-formula">Question 3 / 6</span>
-                    </div>
-                    <h3 style="font-size: 1rem; color: #065f46; margin-bottom: 8px; line-height: 1.4;">
-                        ❓ Which model is better: S-Learner or T-Learner?
-                    </h3>
-                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                            <strong>Plain Language Answer:</strong><br>
-                            <strong>T-Learner is significantly superior in medical AI.</strong> S-Learner suffers from extreme <em>Shrinkage Bias</em>, where decision trees split on Age/BP first and ignore the treatment feature W.
-                        </div>
-                    </div>
-                `;
-            } else if (id === 4) {
-                disp.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span class="pill pill-purple" style="font-size: 0.74rem;">👨‍💻 Linh</span>
-                        <span class="block-badge badge-ml">Question 4 / 6</span>
-                    </div>
-                    <h3 style="font-size: 1rem; color: #5b21b6; margin-bottom: 8px; line-height: 1.4;">
-                        ❓ Does a Grad-CAM heatmap prove that the AI model is medically correct?
-                    </h3>
-                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                            <strong>Plain Language Answer:</strong><br>
-                            <strong>No! Grad-CAM shows WHERE the AI looked, NOT that its medical diagnosis is correct.</strong> It serves as a visual debugging tool to catch shortcut cheating (e.g. looking at hospital markers instead of lung tissue).
-                        </div>
-                    </div>
-                `;
-            } else if (id === 5) {
-                disp.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span class="pill pill-warning" style="font-size: 0.74rem;">👨‍💻 Linh &middot; 👩‍💼 Dung</span>
-                        <span class="block-badge badge-workflow">Question 5 / 6</span>
-                    </div>
-                    <h3 style="font-size: 1rem; color: #92400e; margin-bottom: 8px; line-height: 1.4;">
-                        ❓ If rule-based NLP is dated compared to GPT-4, why do we still study it?
-                    </h3>
-                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                            <strong>Plain Language Answer:</strong><br>
-                            Hospital PACS systems store <strong>millions of unstructured notes</strong> behind strict firewalls. Rule-based pipelines are 100% HIPAA-safe, instant, and $0 cost for local hospital deployment.
-                        </div>
-                    </div>
+            if (feature === 'age') {
+                tbody.innerHTML = `
+                    <tr style="background:#fee2e2; font-weight:bold;"><td>Age (Shuffled)</td><td>0.5531</td><td><span class="pill pill-danger">-0.2228 (CRITICAL)</span></td></tr>
+                    <tr><td>Blood Pressure</td><td>0.7759</td><td><span class="pill pill-success">0.0000 (Baseline)</span></td></tr>
                 `;
             } else {
-                disp.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span class="pill pill-warning" style="font-size: 0.74rem;">👩‍💼 Dung</span>
-                        <span class="block-badge badge-output">Question 6 / 6</span>
-                    </div>
-                    <h3 style="font-size: 1rem; color: #92400e; margin-bottom: 8px; line-height: 1.4;">
-                        ❓ If rule labels have errors, why does CNN still achieve 92% F1?
-                    </h3>
-                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
-                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                            <strong>Plain Language Answer:</strong><br>
-                            <strong>Scale filters out noise!</strong> Across 100,000 X-rays, random label noise averages out, allowing the deep CNN to learn true physical visual representations of disease.
-                        </div>
-                    </div>
+                tbody.innerHTML = `
+                    <tr><td>Age</td><td>0.7759</td><td><span class="pill pill-success">0.0000 (Baseline)</span></td></tr>
+                    <tr style="background:#fee2e2; font-weight:bold;"><td>Blood Pressure (Shuffled)</td><td>0.6775</td><td><span class="pill pill-danger">-0.0984 (Significant)</span></td></tr>
                 `;
             }
         }
 
-        // Initialize default view
-        window.addEventListener("DOMContentLoaded", () => {
-            switchMember("overview");
+        // =========================================================================
+        // INITIALIZATION ON DOM READY
+        // =========================================================================
+        document.addEventListener("DOMContentLoaded", () => {
+            switchMember('overview');
         });
 
     </script>
