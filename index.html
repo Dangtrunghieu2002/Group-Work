@@ -558,7 +558,10 @@
             
             <!-- Top Nav: Member Navigation -->
             <div class="member-nav">
-                <button class="member-btn active" id="btn_khuong" onclick="switchMember('khuong')">
+                <button class="member-btn active" id="btn_overview" onclick="switchMember('overview')">
+                    👥 Team &amp; References
+                </button>
+                <button class="member-btn" id="btn_khuong" onclick="switchMember('khuong')">
                     👨‍💼 Khương
                 </button>
                 <button class="member-btn" id="btn_hieu" onclick="switchMember('hieu')">
@@ -577,9 +580,115 @@
     <div class="container">
 
         <!-- ========================================================================= -->
+        <!-- 0. TEAM OVERVIEW, GROUP WORK & COURSE LAB REFERENCES                      -->
+        <!-- ========================================================================= -->
+        <div id="section_overview" class="tab-content active">
+            <div class="member-banner" style="border-left: 5px solid #2563eb;">
+                <div>
+                    <span class="role-tag" style="background:#eff6ff; color:#1e40af;">Final Master Project · AI For Medical Treatment</span>
+                    <h2 style="font-size: 1.25rem; margin-top: 4px; color: var(--dark);">Group Work Architecture &amp; Course Lab References</h2>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">End-to-End Clinical Translation: Causal Inference (W1) &rarr; Individualized CATE (W1) &rarr; Medical NLP (W2) &rarr; CNN Interpretation (W3)</p>
+                </div>
+                <div style="text-align: right;"><span class="pill pill-purple">Total Time: ~20 Mins Group Deck</span></div>
+            </div>
+
+            <!-- Team Members Grid -->
+            <div class="grid-blocks" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 16px;">
+                <div class="card" style="border-top: 4px solid #2563eb; cursor: pointer;" onclick="switchMember('khuong')">
+                    <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 4px; color: #1e3a8a;">👨‍💼 Khương</div>
+                    <div style="font-size: 0.76rem; font-weight: bold; color: #2563eb; text-transform: uppercase; margin-bottom: 6px;">Clinical Foundations</div>
+                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5;">
+                        • RCT Trial Randomization &amp; Confounder DAG<br>
+                        • Population Risk: ARR (+14.0%) &amp; NNT (7.1)<br>
+                        • Neyman-Rubin Potential Outcomes &amp; ATE
+                    </p>
+                    <button class="btn btn-outline" style="margin-top: 8px; width: 100%; font-size: 0.75rem; justify-content: center;">View Khương &rarr;</button>
+                </div>
+
+                <div class="card" style="border-top: 4px solid #059669; cursor: pointer;" onclick="switchMember('hieu')">
+                    <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 4px; color: #065f46;">👨‍💻 Hiếu</div>
+                    <div style="font-size: 0.76rem; font-weight: bold; color: #059669; text-transform: uppercase; margin-bottom: 6px;">CATE &amp; Evaluation</div>
+                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5;">
+                        • Baseline Risk Modeling &sigma;(&beta;<sup>T</sup>X)<br>
+                        • T-Learner (+26.4%) vs S-Learner Shrinkage<br>
+                        • Matched Pairs Twin Test (C-for-benefit 0.6342)<br>
+                        • Local TreeSHAP Decision Receipts
+                    </p>
+                    <button class="btn btn-outline" style="margin-top: 8px; width: 100%; font-size: 0.75rem; justify-content: center;">View Hiếu &rarr;</button>
+                </div>
+
+                <div class="card" style="border-top: 4px solid #7c3aed; cursor: pointer;" onclick="switchMember('linh')">
+                    <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 4px; color: #5b21b6;">👨‍💻 Linh</div>
+                    <div style="font-size: 0.76rem; font-weight: bold; color: #7c3aed; text-transform: uppercase; margin-bottom: 6px;">Medical NLP &amp; Grad-CAM</div>
+                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5;">
+                        • Lab 1: Unstructured Regex Text Cleaning<br>
+                        • Lab 2: BERT Input Tensor (1, 60) &amp; Attention Mask<br>
+                        • Lab 3: Permutation Importance (Age &minus;0.2228)<br>
+                        • Lab 4: Grad-CAM Chest X-Ray Layer 424 Heatmaps
+                    </p>
+                    <button class="btn btn-outline" style="margin-top: 8px; width: 100%; font-size: 0.75rem; justify-content: center;">View Linh &rarr;</button>
+                </div>
+
+                <div class="card" style="border-top: 4px solid #d97706; cursor: pointer;" onclick="switchMember('dung')">
+                    <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 4px; color: #92400e;">👩‍💼 Dung</div>
+                    <div style="font-size: 0.76rem; font-weight: bold; color: #d97706; text-transform: uppercase; margin-bottom: 6px;">Label Mining &amp; 14-CNN</div>
+                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5;">
+                        • Mining 100,000 PACS Free-Text Reports<br>
+                        • UMLS/SNOMED Ontologies &amp; NegBio Parsers<br>
+                        • 14-Disease DenseNet121 CNN Multi-Label Model<br>
+                        • F1-Score 0.921 Thresholds &amp; 2026 VLM Review
+                    </p>
+                    <button class="btn btn-outline" style="margin-top: 8px; width: 100%; font-size: 0.75rem; justify-content: center;">View Dung &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Group Work Course Pipeline & Official Lab References -->
+            <div class="grid-2" style="margin-bottom: 16px;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🔄 Group Work End-to-End Pipeline</h3>
+                        <span class="block-badge badge-workflow">Workflow</span>
+                    </div>
+                    <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 0.82rem; line-height: 1.7;">
+                        <div style="margin-bottom: 6px;"><strong>1. Clinical Foundations (Khương):</strong> RCT Coin-flip &rarr; Backdoor cut &rarr; ARR +14% &rarr; NNT 7.1 &rarr; Potential Outcomes dilemma.</div>
+                        <div style="margin-bottom: 6px;"><strong>2. Precision Medicine CATE (Hiếu):</strong> Patient features X &rarr; T-Learner separate trees &rarr; Matched Pairs Twin test (0.6342) &rarr; TreeSHAP receipts.</div>
+                        <div style="margin-bottom: 6px;"><strong>3. Unstructured NLP &amp; Visual Heatmaps (Linh):</strong> Regex cleaner &rarr; BERT 1x60 input tensor &rarr; Permutation method &rarr; Grad-CAM Layer 424.</div>
+                        <div><strong>4. Big Data Mining &amp; Vision Training (Dung):</strong> 100k PACS reports &rarr; Ontology tree &rarr; NegBio negation rule &rarr; 14-Disease CNN &rarr; F1-Score 0.921.</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">📚 Course Lab Notebook References &amp; Datasets</h3>
+                        <span class="block-badge badge-formula">Official Data</span>
+                    </div>
+                    <div style="font-size: 0.78rem; line-height: 1.6;">
+                        <div style="background: #0f172a; color: #e2e8f0; border-radius: 6px; padding: 10px; font-family: monospace; overflow-x: auto;">
+                            <div style="color: #60a5fa; font-weight: bold; margin-bottom: 2px;">📁 1. Medical NLP &amp; NegBio Pipeline:</div>
+                            <span style="color: #cbd5e1;">• C3_W2_Lab_2_bioc_and_negbio.ipynb</span><br>
+                            &nbsp;&nbsp;└── <span style="color: #34d399;">data/stanford_report_test.csv</span><br><br>
+
+                            <div style="color: #60a5fa; font-weight: bold; margin-bottom: 2px;">📁 2. ML Interpretation &amp; Permutation Method:</div>
+                            <span style="color: #cbd5e1;">• C3_W3_Lab_1_permutation_method.ipynb</span><br>
+                            &nbsp;&nbsp;├── <span style="color: #fbbf24;">./pretained_model/C2M1_model.model</span><br>
+                            &nbsp;&nbsp;├── <span style="color: #34d399;">./data/X_data_normalized.csv, ./data/y_data_test.csv</span><br>
+                            &nbsp;&nbsp;└── <span style="color: #34d399;">./data/X_data_normalized_perm1.csv, perm2.csv, perm3.csv</span><br><br>
+
+                            <div style="color: #60a5fa; font-weight: bold; margin-bottom: 2px;">📁 3. Chest X-Ray Grad-CAM Localization:</div>
+                            <span style="color: #cbd5e1;">• C3_W3_Lab_2_intro_to_gradcam.ipynb &amp; C3_W3_Lab_3_gradcam_continuation</span><br>
+                            &nbsp;&nbsp;├── <span style="color: #fbbf24;">helper_utils.load_C3M3_model(path)</span> (DenseNet121 Layer 424)<br>
+                            &nbsp;&nbsp;├── <span style="color: #34d399;">data/nih_new/train-small.csv</span><br>
+                            &nbsp;&nbsp;└── <span style="color: #34d399;">data/nih_new/images-small/</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
         <!-- 1. KHƯƠNG - CLINICAL FOUNDATIONS & RCT POPULATION LEVEL                    -->
         <!-- ========================================================================= -->
-        <div id="section_khuong" class="tab-content active">
+        <div id="section_khuong" class="tab-content">
             <div class="member-banner" style="border-left: 5px solid var(--primary-light);">
                 <div>
                     <span class="role-tag" style="background:#eff6ff; color:#1e40af;">Khương · Clinical Foundations &amp; Causal Inference</span>
@@ -706,7 +815,7 @@
                             <div class="stat-box"><div class="stat-label">ARR (Risk Drop)</div><div class="stat-val" style="color: var(--success);" id="k_disp_arr">+14.0%</div></div>
                             <div class="stat-box"><div class="stat-label">NNT (Effort)</div><div class="stat-val" style="color: var(--primary);" id="k_disp_nnt">7.1</div></div>
                         </div>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);">Hospital translation: Treat <strong>7 patients</strong> to save <strong>1 life</strong>.</div>
+                        <div id="k_txt_nnt_trans" style="font-size: 0.8rem; color: var(--text-muted);">Hospital translation: Treat <strong id="k_trans_nnt_val">8 patients</strong> to save <strong>1 life</strong>.</div>
                     </div>
 
                     <!-- Output View Step 3: Potential Outcomes Table -->
@@ -748,8 +857,8 @@
 
                     <!-- View Step 2: 10-Patient Icon Grid -->
                     <div id="k_v_step2" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Visualizing NNT = 7.1 Effort:</div>
-                        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; text-align: center; font-size: 1.1rem;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;" id="k_nnt_sub_title">Visualizing NNT = 7.1 Effort:</div>
+                        <div id="k_nnt_grid_container" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; text-align: center; font-size: 1.1rem;">
                             <div style="background:#d1fae5; border-radius:4px; padding:4px;" title="Saved by Drug">🟢</div>
                             <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
                             <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
@@ -759,7 +868,7 @@
                             <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
                             <div style="background:#fee2e2; border-radius:4px; padding:4px;" title="Adverse event despite treatment">🔴</div>
                         </div>
-                        <div style="font-size: 0.74rem; color: var(--success); font-weight: bold; margin-top: 6px;">
+                        <div id="k_nnt_footer_txt" style="font-size: 0.74rem; color: var(--success); font-weight: bold; margin-top: 6px;">
                             🟢 1 Patient Saved for every 7.1 Patients Treated.
                         </div>
                     </div>
@@ -1636,12 +1745,49 @@
             document.getElementById('k_disp_arr').innerText = '+' + (arr * 100).toFixed(1) + '%';
             document.getElementById('k_disp_nnt').innerText = nnt.toFixed(1);
 
+            // Card 5 translation sync
+            const transVal = document.getElementById('k_trans_nnt_val');
+            if (transVal) {
+                transVal.innerText = Math.ceil(nnt) + ' patients';
+            }
+
+            // Card 4 Formula sync
             document.getElementById('k_formula_card').innerHTML = `
                 <strong>ARR (Absolute Risk Reduction):</strong><br>
                 <span class="math-symbol">ARR</span> = <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1|<span class="math-symbol">W</span>=0) &minus; <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1|<span class="math-symbol">W</span>=1) = <strong>+${(arr * 100).toFixed(1)}%</strong><br>
                 <strong>NNT (Number Needed to Treat):</strong><br>
                 <span class="math-symbol">NNT</span> = 1 / <span class="math-symbol">ARR</span> = <strong>${nnt.toFixed(1)} patients</strong>
             `;
+
+            // Card 6 Dynamic NNT Title, Subtitle, Dynamic Icon Grid, and Footer sync
+            const b6Title = document.getElementById('k_block6_title');
+            if (b6Title && document.getElementById('k_v_step2').style.display !== 'none') {
+                b6Title.innerHTML = `👥 6. Visualizing NNT = ${nnt.toFixed(1)} Effort`;
+            }
+
+            const subTitle = document.getElementById('k_nnt_sub_title');
+            if (subTitle) {
+                subTitle.innerText = `Visualizing NNT = ${nnt.toFixed(1)} Effort (Cohort of ${Math.ceil(nnt)}):`;
+            }
+
+            const footerTxt = document.getElementById('k_nnt_footer_txt');
+            if (footerTxt) {
+                footerTxt.innerText = `🟢 1 Patient Saved for every ${nnt.toFixed(1)} Patients Treated.`;
+            }
+
+            const grid = document.getElementById('k_nnt_grid_container');
+            if (grid) {
+                const count = Math.min(25, Math.max(2, Math.ceil(nnt)));
+                grid.style.gridTemplateColumns = `repeat(${Math.min(count, 5)}, 1fr)`;
+                let html = `<div style="background:#d1fae5; border-radius:4px; padding:4px;" title="Saved by Drug">🟢</div>`;
+                for (let i = 1; i < count - 1; i++) {
+                    html += `<div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>`;
+                }
+                if (count > 1) {
+                    html += `<div style="background:#fee2e2; border-radius:4px; padding:4px;" title="Adverse event despite treatment">🔴</div>`;
+                }
+                grid.innerHTML = html;
+            }
         }
 
         // ==========================================
