@@ -1259,7 +1259,7 @@
                     <!-- Input Step 3: Twin Test & SHAP Sliders -->
                     <div id="h_in_step3" style="display: none;">
                         <div style="margin-bottom: 8px;">
-                            <button class="btn" style="width: 100%; justify-content: center; margin-bottom: 8px;" onclick="resampleHieuPairs()">
+                            <button class="btn" id="h_btn_resample" style="width: 100%; justify-content: center; margin-bottom: 8px;" onclick="resampleHieuPairs()">
                                 🎲 Resample Clinical Twin Pairs
                             </button>
                         </div>
@@ -1770,8 +1770,8 @@
 
                         <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Test Column Shuffling:</div>
                         <div style="display: flex; gap: 4px;">
-                            <button class="btn" style="flex: 1; font-size: 0.74rem; justify-content: center;" onclick="runLinhShuffle('age')">🔀 Shuffle Age</button>
-                            <button class="btn btn-outline" style="flex: 1; font-size: 0.74rem; justify-content: center;" onclick="runLinhShuffle('sbp')">🔀 Shuffle BP</button>
+                            <button class="btn" id="l_btn_shuf_age" style="flex: 1; font-size: 0.74rem; justify-content: center;" onclick="runLinhShuffle('age')">🔀 Shuffle Age</button>
+                            <button class="btn btn-outline" id="l_btn_shuf_sbp" style="flex: 1; font-size: 0.74rem; justify-content: center;" onclick="runLinhShuffle('sbp')">🔀 Shuffle BP</button>
                         </div>
                     </div>
                 </div>
@@ -2036,15 +2036,15 @@
             overview: { remaining: 1200, interval: null, running: false, initial: 1200, started: false },
             khuong:   { remaining: 300,  interval: null, running: false, initial: 300, started: false },
             hieu:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
-            linh:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
             dung:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
+            linh:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
             wrapup:   { remaining: 600,  interval: null, running: false, initial: 600, started: false }
         };
 
         function formatTimeDisplay(sec) {
             const m = Math.floor(sec / 60);
             const s = sec % 60;
-            return `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+            return `${m < 10 ? "0" + m : m}:${s < 10 ? "0" + s : s}`;
         }
 
         function updateTimerDisplay(memberKey) {
@@ -2055,21 +2055,21 @@
 
             if (state.remaining <= 0) {
                 txtEl.innerText = "00:00 ⚠️";
-                txtEl.classList.remove('warning');
-                txtEl.classList.add('danger');
+                txtEl.classList.remove("warning");
+                txtEl.classList.add("danger");
                 if (btnEl) btnEl.innerText = "▶️";
                 return;
             }
 
             txtEl.innerText = formatTimeDisplay(state.remaining);
             if (state.remaining <= 60) {
-                txtEl.classList.remove('warning');
-                txtEl.classList.add('danger');
+                txtEl.classList.remove("warning");
+                txtEl.classList.add("danger");
             } else if (state.remaining <= 120) {
-                txtEl.classList.remove('danger');
-                txtEl.classList.add('warning');
+                txtEl.classList.remove("danger");
+                txtEl.classList.add("warning");
             } else {
-                txtEl.classList.remove('warning', 'danger');
+                txtEl.classList.remove("warning", "danger");
             }
 
             if (btnEl) {
@@ -2081,7 +2081,6 @@
             const state = presenterTimers[memberKey];
             if (!state || state.running) return;
 
-            // Pause other timers
             Object.keys(presenterTimers).forEach(k => {
                 if (k !== memberKey && presenterTimers[k].running) {
                     pauseTimer(k);
@@ -2137,97 +2136,119 @@
         // 1. TOP MEMBER NAVIGATION
         // ==========================================
         function switchMember(memberKey) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.member-btn').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
+            document.querySelectorAll(".member-btn").forEach(el => el.classList.remove("active"));
 
-            document.getElementById('section_' + memberKey).classList.add('active');
-            document.getElementById('btn_' + memberKey).classList.add('active');
+            const sec = document.getElementById("section_" + memberKey);
+            const btn = document.getElementById("btn_" + memberKey);
+            if (sec) sec.classList.add("active");
+            if (btn) btn.classList.add("active");
 
-            // Auto-start countdown clock for this presenter when their name is clicked
             if (!presenterTimers[memberKey].started || (!presenterTimers[memberKey].running && presenterTimers[memberKey].remaining > 0)) {
                 startTimer(memberKey);
             }
 
-            if (memberKey === 'khuong') setKhuongStep(1);
-            if (memberKey === 'hieu') setHieuPipelineStep(1);
-            if (memberKey === 'linh') setLinhLab(1);
-            if (memberKey === 'dung') setDungPipelineStep(1);
-            if (memberKey === 'wrapup') selectWrapUpQ(1);
+            if (memberKey === "khuong") setKhuongStep(1);
+            if (memberKey === "hieu") setHieuPipelineStep(1);
+            if (memberKey === "dung") setDungPipelineStep(1);
+            if (memberKey === "linh") setLinhLab(1);
+            if (memberKey === "wrapup") selectWrapUpQ(1);
         }
 
         // ==========================================
-        // 2. KHƯƠNG LOGIC & DYNAMIC INPUTS & MATH
+        // 2. KHƯƠNG LOGIC (2 COMBINED CHAPTERS)
         // ==========================================
-                function setKhuongStep(step) {
+        function setKhuongStep(step) {
             document.querySelectorAll("#section_khuong .flow-step").forEach((s, idx) => {
                 s.classList.toggle("active", idx === (step - 1));
             });
 
-            document.getElementById("k_badge_scen").innerText = "Chapter " + step;
-            const mathCard = document.getElementById("k_formula_card");
+            const badge = document.getElementById("k_badge_scen");
+            if (badge) badge.innerText = `Chapter ${step}`;
+
+            const in1 = document.getElementById("k_in_step1");
+            const in2 = document.getElementById("k_in_step2");
+            if (in1) in1.style.display = (step === 1) ? "block" : "none";
+            if (in2) in2.style.display = (step === 2) ? "block" : "none";
+
+            const out1 = document.getElementById("k_out_step1");
+            const out2 = document.getElementById("k_out_step2");
+            if (out1) out1.style.display = (step === 1) ? "block" : "none";
+            if (out2) out2.style.display = (step === 2) ? "block" : "none";
+
+            const v1 = document.getElementById("k_v_step1");
+            const v2 = document.getElementById("k_v_step2");
+            if (v1) v1.style.display = (step === 1) ? "block" : "none";
+            if (v2) v2.style.display = (step === 2) ? "block" : "none";
+
             const b6Title = document.getElementById("k_block6_title");
             const b6Badge = document.getElementById("k_block6_badge");
 
-            document.getElementById("k_in_step1").style.display = (step === 1) ? "block" : "none";
-            document.getElementById("k_in_step2").style.display = (step === 2) ? "block" : "none";
-
-            document.getElementById("k_out_step1").style.display = (step === 1) ? "block" : "none";
-            document.getElementById("k_out_step2").style.display = (step === 2) ? "block" : "none";
-
-            document.getElementById("k_v_step1").style.display = (step === 1) ? "block" : "none";
-            document.getElementById("k_v_step2").style.display = (step === 2) ? "block" : "none";
-
             if (step === 1) {
-                b6Title.innerHTML = "👥 6. Visualizing Population RCT Impact";
-                b6Badge.innerText = "Cohort Visual";
+                if (b6Title) b6Title.innerHTML = "👥 6. Visualizing Population RCT Impact";
+                if (b6Badge) b6Badge.innerText = "Cohort Visual";
 
-                document.getElementById("k_scen_title").innerHTML = "🎯 <strong>Goal:</strong> Eliminate doctor prescribing bias &amp; measure population efficacy.";
-                document.getElementById("k_scen_desc").innerHTML = "💡 <strong>Trial Setup:</strong> 1,000 patients randomized 1:1 via coin toss (W &isin; {0, 1}).";
-                document.getElementById("k_ml_desc").innerHTML = "• <strong>Backdoor Path Cut:</strong> P(Y=1 | do(W=1)) = P(Y=1 | W=1).<br>• Covariates (Age, BP, BMI) are identical in expectation across arms.";
+                const st = document.getElementById("k_scen_title");
+                const sd = document.getElementById("k_scen_desc");
+                const ml = document.getElementById("k_ml_desc");
+                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> Eliminate doctor prescribing bias &amp; measure population efficacy.";
+                if (sd) sd.innerHTML = "💡 <strong>Trial Setup:</strong> 1,000 patients randomized 1:1 via coin toss (W &isin; {0, 1}).";
+                if (ml) ml.innerHTML = "• <strong>Backdoor Path Cut:</strong> P(Y=1 | do(W=1)) = P(Y=1 | W=1).<br>• Covariates (Age, BP, BMI) are identical in expectation across arms.";
                 updateKhuong();
                 updateKhuongAllocSlider();
             } else {
-                b6Title.innerHTML = "⏳ 6. Parallel Universe Dilemma &amp; CATE";
-                b6Badge.innerText = "Neyman-Rubin";
+                if (b6Title) b6Title.innerHTML = "⏳ 6. Parallel Universe Dilemma &amp; CATE";
+                if (b6Badge) b6Badge.innerText = "Neyman-Rubin";
 
-                document.getElementById("k_scen_title").innerHTML = "🎯 <strong>The Dilemma:</strong> Each patient lives only 1 reality.";
-                document.getElementById("k_scen_desc").innerHTML = "💡 <strong>Insight:</strong> +14% ATE treats all equally, but Grandpa An benefits 5x more than Alex!";
-                document.getElementById("k_ml_desc").innerHTML = "• <strong>Missing Counterfactual:</strong> For Patient #42, Y(0) is lost in parallel universe.<br>• <strong>Precision Need:</strong> Machine learning must predict individual CATE from clinical twins.";
+                const st = document.getElementById("k_scen_title");
+                const sd = document.getElementById("k_scen_desc");
+                const ml = document.getElementById("k_ml_desc");
+                if (st) st.innerHTML = "🎯 <strong>The Dilemma:</strong> Each patient lives only 1 reality.";
+                if (sd) sd.innerHTML = "💡 <strong>Insight:</strong> +14% ATE treats all equally, but Grandpa An benefits 5x more than Alex!";
+                if (ml) ml.innerHTML = "• <strong>Missing Counterfactual:</strong> For Patient #42, Y(0) is lost in parallel universe.<br>• <strong>Precision Need:</strong> Machine learning must predict individual CATE from clinical twins.";
                 setKhuongPatientUniverse(1);
                 setKhuongSubgroup("all");
             }
         }
 
         function setKhuongAlloc(mode) {
-            const isRCT = (mode === 'rct');
-            document.getElementById('k_btn_alloc_rct').classList.toggle('active', isRCT);
-            document.getElementById('k_btn_alloc_obs').classList.toggle('active', !isRCT);
-            document.getElementById('k_sl_bias').value = isRCT ? 0 : 45;
+            const isRCT = (mode === "rct");
+            const bR = document.getElementById("k_btn_alloc_rct");
+            const bO = document.getElementById("k_btn_alloc_obs");
+            const sl = document.getElementById("k_sl_bias");
+            if (bR) bR.classList.toggle("active", isRCT);
+            if (bO) bO.classList.toggle("active", !isRCT);
+            if (sl) sl.value = isRCT ? 0 : 45;
             updateKhuongAllocSlider();
         }
 
         function updateKhuongAllocSlider() {
-            const bias = parseInt(document.getElementById('k_sl_bias').value);
-            const txt = document.getElementById('k_txt_bias');
-            const smdTable = document.getElementById('k_table_smd_body');
-            const dagStatus = document.getElementById('k_dag_status');
-            const mathCard = document.getElementById('k_formula_card');
-            const mlDesc = document.getElementById('k_ml_desc');
+            const sl = document.getElementById("k_sl_bias");
+            if (!sl) return;
+            const bias = parseInt(sl.value);
+            const txt = document.getElementById("k_txt_bias");
+            const smdTable = document.getElementById("k_table_smd_body");
+            const dagStatus = document.getElementById("k_dag_status");
+            const mathCard = document.getElementById("k_formula_card");
+            const mlDesc = document.getElementById("k_ml_desc");
 
             if (bias === 0) {
-                txt.innerText = "0.00 (Clean RCT - Zero Bias)";
-                txt.style.color = "var(--success)";
-                smdTable.innerHTML = `
-                    <tr><td>Mean Age</td><td>62.4 yrs</td><td>62.3 yrs</td><td><span class="pill pill-success">0.02 (Balanced)</span></td></tr>
-                    <tr><td>Mean SBP</td><td>145.1 mmHg</td><td>144.8 mmHg</td><td><span class="pill pill-success">0.03 (Balanced)</span></td></tr>
-                    <tr><td>Mean BMI</td><td>28.3 kg/m²</td><td>28.4 kg/m²</td><td><span class="pill pill-success">0.01 (Balanced)</span></td></tr>
-                `;
-                dagStatus.innerHTML = "✔ Backdoor Confounding path from X to W is CUT by Coin Toss!";
-                dagStatus.style.color = "var(--success)";
+                if (txt) { txt.innerText = "0.00 (Clean RCT - Zero Bias)"; txt.style.color = "var(--success)"; }
+                if (smdTable) {
+                    smdTable.innerHTML = `
+                        <tr><td>Mean Age</td><td>62.4 yrs</td><td>62.3 yrs</td><td><span class="pill pill-success">0.02 (Balanced)</span></td></tr>
+                        <tr><td>Mean SBP</td><td>145.1 mmHg</td><td>144.8 mmHg</td><td><span class="pill pill-success">0.03 (Balanced)</span></td></tr>
+                        <tr><td>Mean BMI</td><td>28.3 kg/m²</td><td>28.4 kg/m²</td><td><span class="pill pill-success">0.01 (Balanced)</span></td></tr>
+                    `;
+                }
+                if (dagStatus) {
+                    dagStatus.innerHTML = "✔ Backdoor Confounding path from X to W is CUT by Coin Toss!";
+                    dagStatus.style.color = "var(--success)";
+                }
                 if (mlDesc) mlDesc.innerHTML = "• <strong>Backdoor Path Cut:</strong> P(Y=1 | do(W=1)) = P(Y=1 | W=1).<br>• Covariates (Age, BP, BMI) are identical in expectation across arms.";
-                if (mathCard && document.getElementById('k_step_1') && document.getElementById('k_step_1').classList.contains('active')) {
+                if (mathCard && document.getElementById("k_step_1") && document.getElementById("k_step_1").classList.contains("active")) {
                     mathCard.innerHTML = `
-                        <strong>Causal Identifiability:</strong><br>
+                        <strong>Causal Identifiability under RCT:</strong><br>
                         <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">do</span>(<span class="math-symbol">W</span>=1)) = <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">W</span>=1)<br>
                         <em style="color:#166534; font-weight:bold;">✔ Confounding bias is mathematically ZERO under RCT.</em>
                     `;
@@ -2235,17 +2256,20 @@
             } else {
                 const smdAge = (bias * 0.008 + 0.12).toFixed(2);
                 const smdBP = (bias * 0.012 + 0.18).toFixed(2);
-                txt.innerText = `+${(bias/100).toFixed(2)} (Confounded!)`;
-                txt.style.color = "var(--danger)";
-                smdTable.innerHTML = `
-                    <tr><td>Mean Age</td><td>58.2 yrs</td><td>71.4 yrs</td><td><span class="pill pill-danger">${smdAge} (BIASED)</span></td></tr>
-                    <tr><td>Mean SBP</td><td>132.0 mmHg</td><td>168.5 mmHg</td><td><span class="pill pill-danger">${smdBP} (BIASED)</span></td></tr>
-                    <tr><td>Mean BMI</td><td>26.1 kg/m²</td><td>32.8 kg/m²</td><td><span class="pill pill-danger">0.35 (BIASED)</span></td></tr>
-                `;
-                dagStatus.innerHTML = "⚠️ WARNING: Backdoor path active! Doctors gave drug to sicker elderly.";
-                dagStatus.style.color = "var(--danger)";
+                if (txt) { txt.innerText = `+${(bias/100).toFixed(2)} (Confounded!)`; txt.style.color = "var(--danger)"; }
+                if (smdTable) {
+                    smdTable.innerHTML = `
+                        <tr><td>Mean Age</td><td>58.2 yrs</td><td>71.4 yrs</td><td><span class="pill pill-danger">${smdAge} (BIASED)</span></td></tr>
+                        <tr><td>Mean SBP</td><td>132.0 mmHg</td><td>168.5 mmHg</td><td><span class="pill pill-danger">${smdBP} (BIASED)</span></td></tr>
+                        <tr><td>Mean BMI</td><td>26.1 kg/m²</td><td>32.8 kg/m²</td><td><span class="pill pill-danger">0.35 (BIASED)</span></td></tr>
+                    `;
+                }
+                if (dagStatus) {
+                    dagStatus.innerHTML = "⚠️ WARNING: Backdoor path active! Doctors gave drug to sicker elderly.";
+                    dagStatus.style.color = "var(--danger)";
+                }
                 if (mlDesc) mlDesc.innerHTML = `• ⚠️ <strong>Backdoor Path Active:</strong> Doctors gave drug to sicker patients (SMD=${smdBP}).<br>• Observational risk difference contains +${(bias/100).toFixed(2)} confounding error!`;
-                if (mathCard && document.getElementById('k_step_1') && document.getElementById('k_step_1').classList.contains('active')) {
+                if (mathCard && document.getElementById("k_step_1") && document.getElementById("k_step_1").classList.contains("active")) {
                     mathCard.innerHTML = `
                         <strong>Confounded Observational Association:</strong><br>
                         <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">W</span>=1) = <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">do</span>(<span class="math-symbol">W</span>=1)) + <span style="color:#991b1b; font-weight:bold;">Bias (+${(bias/100).toFixed(2)})</span><br>
@@ -2255,180 +2279,51 @@
             }
         }
 
-        function setKhuongPatientUniverse(id) {
-            document.getElementById('k_btn_pt_1').classList.toggle('active', id === 1);
-            document.getElementById('k_btn_pt_2').classList.toggle('active', id === 2);
-            document.getElementById('k_btn_pt_3').classList.toggle('active', id === 3);
-
-            const tbody = document.getElementById('k_table_pot_body');
-            const mathCard = document.getElementById('k_formula_card');
-            const v3Box = document.getElementById('k_v_step3');
-
-            const p1Bg = (id === 1) ? 'style="background:#eff6ff; font-weight:bold;"' : '';
-            const p2Bg = (id === 2) ? 'style="background:#fff7ed; font-weight:bold;"' : '';
-            const p3Bg = (id === 3) ? 'style="background:#f0fdf4; font-weight:bold;"' : '';
-
-            tbody.innerHTML = `
-                <tr ${p1Bg}>
-                    <td><strong>Patient #1 (Younger)</strong></td>
-                    <td>1 (Drug Arm)</td>
-                    <td><strong style="color:var(--success);">0 (Survived)</strong></td>
-                    <td><span class="pill pill-danger">? (Lost)</span></td>
-                    <td><strong>0 (Survived)</strong></td>
-                </tr>
-                <tr ${p2Bg}>
-                    <td><strong>Patient #2 (Control)</strong></td>
-                    <td>0 (Placebo)</td>
-                    <td><span class="pill pill-danger">? (Lost)</span></td>
-                    <td><strong style="color:var(--danger);">1 (Stroke)</strong></td>
-                    <td><strong>1 (Stroke)</strong></td>
-                </tr>
-                <tr ${p3Bg}>
-                    <td><strong>Patient #42 (Grandpa An)</strong></td>
-                    <td>1 (Drug Arm)</td>
-                    <td><strong style="color:var(--success);">0 (Survived)</strong></td>
-                    <td><span class="pill pill-danger">? (Lost)</span></td>
-                    <td><strong>0 (Survived)</strong></td>
-                </tr>
-            `;
-
-            if (id === 1) {
-                mathCard.innerHTML = `
-                    <strong>Patient #1 Observed Formula:</strong><br>
-                    <span class="math-symbol">Y</span><sub>1</sub> = <span class="math-symbol">W</span><sub>1</sub> &middot; <span class="math-symbol">Y</span><sub>1</sub>(1) + (1 &minus; <span class="math-symbol">W</span><sub>1</sub>) &middot; <span class="math-symbol">Y</span><sub>1</sub>(0) = <strong>0 (Survived)</strong><br>
-                    • <strong style="color:var(--success);">Factual Observed Y(1):</strong> 0 (Survived)<br>
-                    • <strong style="color:var(--danger);">Missing Counterfactual Y(0):</strong> <strong>? (Lost in parallel universe)</strong>
-                `;
-                if (v3Box) {
-                    v3Box.innerHTML = `
-                        <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.6;">
-                            <div style="font-weight: bold; color: #1e40af; margin-bottom: 4px;">🌍 Patient #1 Parallel Universe Inspection:</div>
-                            • <strong>Real World [W=1]:</strong> Observed potential outcome <strong>Y(1) = 0</strong> (Survived).<br>
-                            • <strong>Parallel World [W=0]:</strong> Unobserved potential outcome <strong>Y(0) = ?</strong> (Lost Forever!).<br>
-                            👉 <em>Machine learning must predict this missing Y(0) to know if medicine truly made the difference.</em>
-                        </div>
-                    `;
-                }
-            } else if (id === 2) {
-                mathCard.innerHTML = `
-                    <strong>Patient #2 Observed Formula:</strong><br>
-                    <span class="math-symbol">Y</span><sub>2</sub> = <span class="math-symbol">W</span><sub>2</sub> &middot; <span class="math-symbol">Y</span><sub>2</sub>(1) + (1 &minus; <span class="math-symbol">W</span><sub>2</sub>) &middot; <span class="math-symbol">Y</span><sub>2</sub>(0) = <strong>1 (Stroke)</strong><br>
-                    • <strong style="color:var(--danger);">Factual Observed Y(0):</strong> 1 (Stroke)<br>
-                    • <strong style="color:var(--danger);">Missing Counterfactual Y(1):</strong> <strong>? (Lost in parallel universe)</strong>
-                `;
-                if (v3Box) {
-                    v3Box.innerHTML = `
-                        <div style="background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.6;">
-                            <div style="font-weight: bold; color: #9a3412; margin-bottom: 4px;">🌍 Patient #2 Parallel Universe Inspection:</div>
-                            • <strong>Real World [W=0]:</strong> Observed potential outcome <strong>Y(0) = 1</strong> (Stroke).<br>
-                            • <strong>Parallel World [W=1]:</strong> Unobserved potential outcome <strong>Y(1) = ?</strong> (Lost Forever!).<br>
-                            👉 <em>Would the drug have saved Patient #2? AI uses statistical twin patients to answer this!</em>
-                        </div>
-                    `;
-                }
-            } else {
-                mathCard.innerHTML = `
-                    <strong>Patient #42 (Grandpa An) Individual Treatment Effect:</strong><br>
-                    <span class="math-symbol">ITE</span><sub>42</sub> = <span class="math-symbol">Y</span><sub>42</sub>(0) &minus; <span class="math-symbol">Y</span><sub>42</sub>(1) = <span style="color:var(--danger);">? (Missing Y₀)</span> &minus; 0<br>
-                    <em>👉 Because Y(0) is missing, ITE cannot be calculated directly &rarr; CATE ML estimation is required!</em>
-                `;
-                if (v3Box) {
-                    v3Box.innerHTML = `
-                        <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.6;">
-                            <div style="font-weight: bold; color: #166534; margin-bottom: 4px;">👴 Grandpa An (#42) Parallel Universe Inspection:</div>
-                            • <strong>Real World [W=1]:</strong> Observed potential outcome <strong>Y(1) = 0</strong> (Healthy).<br>
-                            • <strong>Parallel World [W=0]:</strong> With SBP 165, missing counterfactual <strong>Y(0)</strong> would likely be Stroke.<br>
-                            👉 <em>T-Learner in Part 2 estimates this exact counterfactual benefit as +26.4%!</em>
-                        </div>
-                    `;
-                }
-            }
-        }
-
-        function setKhuongSubgroup(group) {
-            document.getElementById('k_btn_sub_all').classList.toggle('active', group === 'all');
-            document.getElementById('k_btn_sub_high').classList.toggle('active', group === 'high');
-            document.getElementById('k_btn_sub_low').classList.toggle('active', group === 'low');
-
-            const tbody = document.getElementById('k_table_sub_body');
-            const mathCard = document.getElementById('k_formula_card');
-
-            if (group === 'all') {
-                tbody.innerHTML = `
-                    <tr style="background:#eff6ff;"><td><strong>All Trial Patients (ATE)</strong></td><td><strong style="color:var(--primary);">+14.0%</strong></td><td><span class="pill pill-success">Average Benefit</span></td></tr>
-                    <tr><td>Grandpa An (High Risk SBP 165)</td><td>+26.4%</td><td><span class="pill pill-success">Urgent</span></td></tr>
-                    <tr><td>Alex (Low Risk SBP 118)</td><td>+5.2%</td><td><span class="pill pill-neutral">Diet First</span></td></tr>
-                `;
-                mathCard.innerHTML = `
-                    <strong>Population Average Treatment Effect:</strong><br>
-                    <span class="math-symbol">ATE</span> = 𝔼[<span class="math-symbol">Y</span>(0) &minus; <span class="math-symbol">Y</span>(1)] = <strong>+14.0%</strong>
-                `;
-            } else if (group === 'high') {
-                tbody.innerHTML = `
-                    <tr style="background:#f0fdf4;"><td><strong>Elderly High Risk (SBP 165)</strong></td><td><strong style="color:var(--success); font-size:0.95rem;">+26.4% (Massive!)</strong></td><td><span class="pill pill-success">High Priority</span></td></tr>
-                `;
-                mathCard.innerHTML = `
-                    <strong>High-Risk Conditional ATE:</strong><br>
-                    <span class="math-symbol">CATE</span>(<span class="math-symbol">x</span><sub>elderly</sub>) = 𝔼[<span class="math-symbol">Y</span>(0) &minus; <span class="math-symbol">Y</span>(1) | SBP&gt;160] = <strong>+26.4%</strong>
-                `;
-            } else {
-                tbody.innerHTML = `
-                    <tr style="background:#fff7ed;"><td><strong>Young Low Risk (SBP 118)</strong></td><td><strong style="color:var(--warning);">+5.2% (Marginal)</strong></td><td><span class="pill pill-neutral">Diet First</span></td></tr>
-                `;
-                mathCard.innerHTML = `
-                    <strong>Low-Risk Conditional ATE:</strong><br>
-                    <span class="math-symbol">CATE</span>(<span class="math-symbol">x</span><sub>young</sub>) = 𝔼[<span class="math-symbol">Y</span>(0) &minus; <span class="math-symbol">Y</span>(1) | SBP&le;120] = <strong>+5.2%</strong>
-                `;
-            }
-        }
-
         function updateKhuong() {
-            const n = parseInt(document.getElementById('k_sl_n').value);
-            const p_ctrl = parseInt(document.getElementById('k_sl_ctrl').value) / 100;
-            const rrr = parseInt(document.getElementById('k_sl_rrr').value) / 100;
+            const slN = document.getElementById("k_sl_n");
+            const slCtrl = document.getElementById("k_sl_ctrl");
+            const slRrr = document.getElementById("k_sl_rrr");
+            if (!slN || !slCtrl || !slRrr) return;
+
+            const n = parseInt(slN.value);
+            const p_ctrl = parseInt(slCtrl.value) / 100;
+            const rrr = parseInt(slRrr.value) / 100;
 
             const p_trt = p_ctrl * (1 - rrr);
             const arr = p_ctrl - p_trt;
             const nnt = 1 / arr;
 
-            document.getElementById('k_txt_n').innerText = n.toLocaleString();
-            document.getElementById('k_txt_ctrl').innerText = (p_ctrl * 100).toFixed(1) + '%';
-            document.getElementById('k_txt_rrr').innerText = (rrr * 100).toFixed(1) + '%';
+            const tN = document.getElementById("k_txt_n");
+            const tC = document.getElementById("k_txt_ctrl");
+            const tR = document.getElementById("k_txt_rrr");
+            if (tN) tN.innerText = n.toLocaleString();
+            if (tC) tC.innerText = (p_ctrl * 100).toFixed(1) + "%";
+            if (tR) tR.innerText = (rrr * 100).toFixed(1) + "%";
 
-            document.getElementById('k_disp_arr').innerText = '+' + (arr * 100).toFixed(1) + '%';
-            document.getElementById('k_disp_nnt').innerText = nnt.toFixed(1);
+            const dArr = document.getElementById("k_disp_arr");
+            const dNnt = document.getElementById("k_disp_nnt");
+            if (dArr) dArr.innerText = "+" + (arr * 100).toFixed(1) + "%";
+            if (dNnt) dNnt.innerText = nnt.toFixed(1);
 
-            // Card 5 translation sync
-            const transVal = document.getElementById('k_trans_nnt_val');
-            if (transVal) {
-                transVal.innerText = Math.ceil(nnt) + ' patients';
+            const transVal = document.getElementById("k_trans_nnt_val");
+            if (transVal) transVal.innerText = Math.ceil(nnt) + " patients";
+
+            const mathCard = document.getElementById("k_formula_card");
+            if (mathCard && document.getElementById("k_step_1") && document.getElementById("k_step_1").classList.contains("active")) {
+                mathCard.innerHTML = `
+                    <strong>ARR &amp; NNT Formulas:</strong><br>
+                    <span class="math-symbol">ARR</span> = <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1|<span class="math-symbol">W</span>=0) &minus; <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1|<span class="math-symbol">W</span>=1) = <strong style="color:#166534;">+${(arr * 100).toFixed(1)}%</strong><br>
+                    <span class="math-symbol">NNT</span> = 1 / <span class="math-symbol">ARR</span> = <strong style="color:#166534;">${nnt.toFixed(1)} patients</strong>
+                `;
             }
 
-            // Card 4 Formula sync
-            document.getElementById('k_formula_card').innerHTML = `
-                <strong>ARR (Absolute Risk Reduction):</strong><br>
-                <span class="math-symbol">ARR</span> = <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1|<span class="math-symbol">W</span>=0) &minus; <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1|<span class="math-symbol">W</span>=1) = <strong>+${(arr * 100).toFixed(1)}%</strong><br>
-                <strong>NNT (Number Needed to Treat):</strong><br>
-                <span class="math-symbol">NNT</span> = 1 / <span class="math-symbol">ARR</span> = <strong>${nnt.toFixed(1)} patients</strong>
-            `;
+            const subTitle = document.getElementById("k_nnt_sub_title");
+            if (subTitle) subTitle.innerText = `Visualizing NNT = ${nnt.toFixed(1)} Effort (Cohort of ${Math.ceil(nnt)}):`;
 
-            // Card 6 Dynamic NNT Title, Subtitle, Dynamic Icon Grid, and Footer sync
-            const b6Title = document.getElementById('k_block6_title');
-            if (b6Title && document.getElementById('k_v_step2').style.display !== 'none') {
-                b6Title.innerHTML = `👥 6. Visualizing NNT = ${nnt.toFixed(1)} Effort`;
-            }
+            const footerTxt = document.getElementById("k_nnt_footer_txt");
+            if (footerTxt) footerTxt.innerText = `🟢 1 Patient Saved for every ${nnt.toFixed(1)} Patients Treated.`;
 
-            const subTitle = document.getElementById('k_nnt_sub_title');
-            if (subTitle) {
-                subTitle.innerText = `Visualizing NNT = ${nnt.toFixed(1)} Effort (Cohort of ${Math.ceil(nnt)}):`;
-            }
-
-            const footerTxt = document.getElementById('k_nnt_footer_txt');
-            if (footerTxt) {
-                footerTxt.innerText = `🟢 1 Patient Saved for every ${nnt.toFixed(1)} Patients Treated.`;
-            }
-
-            const grid = document.getElementById('k_nnt_grid_container');
+            const grid = document.getElementById("k_nnt_grid_container");
             if (grid) {
                 const count = Math.min(25, Math.max(2, Math.ceil(nnt)));
                 grid.style.gridTemplateColumns = `repeat(${Math.min(count, 5)}, 1fr)`;
@@ -2443,234 +2338,365 @@
             }
         }
 
+        function setKhuongPatientUniverse(id) {
+            const b1 = document.getElementById("k_btn_pt_1");
+            const b2 = document.getElementById("k_btn_pt_2");
+            const b3 = document.getElementById("k_btn_pt_3");
+            if (b1) b1.classList.toggle("active", id === 1);
+            if (b2) b2.classList.toggle("active", id === 2);
+            if (b3) b3.classList.toggle("active", id === 3);
+
+            const tbody = document.getElementById("k_table_pot_body");
+            const mathCard = document.getElementById("k_formula_card");
+            const v3Box = document.getElementById("k_v3_universe_box");
+
+            const p1Bg = (id === 1) ? "style=\"background:#eff6ff; font-weight:bold;\"" : "";
+            const p2Bg = (id === 2) ? "style=\"background:#fff7ed; font-weight:bold;\"" : "";
+            const p3Bg = (id === 3) ? "style=\"background:#f0fdf4; font-weight:bold;\"" : "";
+
+            if (tbody) {
+                tbody.innerHTML = `
+                    <tr ${p1Bg}><td><strong>Patient #1 (Young)</strong></td><td>1 (Drug)</td><td><strong style="color:var(--success);">0 (Survived)</strong></td><td><span class="pill pill-danger">? (Lost)</span></td><td><strong>0</strong></td></tr>
+                    <tr ${p2Bg}><td><strong>Patient #2 (Control)</strong></td><td>0 (Placebo)</td><td><span class="pill pill-danger">? (Lost)</span></td><td><strong style="color:var(--danger);">1 (Stroke)</strong></td><td><strong>1</strong></td></tr>
+                    <tr ${p3Bg}><td><strong>Patient #42 (Grandpa An)</strong></td><td>1 (Drug)</td><td><strong style="color:var(--success);">0 (Survived)</strong></td><td><span class="pill pill-danger">? (Lost)</span></td><td><strong>0</strong></td></tr>
+                `;
+            }
+
+            if (id === 1) {
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>Patient #1 Observed Formula:</strong><br>
+                        <span class="math-symbol">Y</span><sub>1</sub> = <span class="math-symbol">W</span><sub>1</sub>&middot;<span class="math-symbol">Y</span>(1) + (1&minus;<span class="math-symbol">W</span>)&middot;<span class="math-symbol">Y</span>(0) = <strong>0 (Survived)</strong><br>
+                        <em style="color:#1e40af;">Missing Counterfactual Y(0) is lost in parallel universe.</em>
+                    `;
+                }
+                if (v3Box) {
+                    v3Box.innerHTML = `
+                        <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 6px; padding: 8px; font-size: 0.76rem; line-height: 1.4;">
+                            <div style="font-weight: bold; color: #1e40af; margin-bottom: 2px;">🌍 Patient #1 Universe:</div>
+                            • Real World [W=1]: Y(1)=0 (Survived) &nbsp;|&nbsp; Parallel World [W=0]: Y(0)=? (Lost).
+                        </div>
+                    `;
+                }
+            } else if (id === 2) {
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>Patient #2 Observed Formula:</strong><br>
+                        <span class="math-symbol">Y</span><sub>2</sub> = 0&middot;<span class="math-symbol">Y</span>(1) + 1&middot;<span class="math-symbol">Y</span>(0) = <strong>1 (Stroke)</strong><br>
+                        <em style="color:#9a3412;">Would the drug have saved Patient #2? AI predicts this via twins!</em>
+                    `;
+                }
+                if (v3Box) {
+                    v3Box.innerHTML = `
+                        <div style="background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 6px; padding: 8px; font-size: 0.76rem; line-height: 1.4;">
+                            <div style="font-weight: bold; color: #9a3412; margin-bottom: 2px;">🌍 Patient #2 Universe:</div>
+                            • Real World [W=0]: Y(0)=1 (Stroke) &nbsp;|&nbsp; Parallel World [W=1]: Y(1)=? (Lost).
+                        </div>
+                    `;
+                }
+            } else {
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>Patient #42 (Grandpa An) Individual Effect:</strong><br>
+                        <span class="math-symbol">ITE</span><sub>42</sub> = <span class="math-symbol">Y</span><sub>42</sub>(0) &minus; <span class="math-symbol">Y</span><sub>42</sub>(1) = <span style="color:var(--danger);">? (Missing Y₀)</span> &minus; 0<br>
+                        <em style="color:#166534; font-weight:bold;">👉 T-Learner in Part 2 estimates this exact benefit as +26.4%!</em>
+                    `;
+                }
+                if (v3Box) {
+                    v3Box.innerHTML = `
+                        <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 8px; font-size: 0.76rem; line-height: 1.4;">
+                            <div style="font-weight: bold; color: #166534; margin-bottom: 2px;">👴 Grandpa An Universe:</div>
+                            • Real World [W=1]: Y(1)=0 (Healthy) &nbsp;|&nbsp; Estimated CATE Gain = +26.4%!
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function setKhuongSubgroup(group) {
+            const bA = document.getElementById("k_btn_sub_all");
+            const bH = document.getElementById("k_btn_sub_high");
+            const bL = document.getElementById("k_btn_sub_low");
+            if (bA) bA.classList.toggle("active", group === "all");
+            if (bH) bH.classList.toggle("active", group === "high");
+            if (bL) bL.classList.toggle("active", group === "low");
+
+            const tbody = document.getElementById("k_table_sub_body");
+            if (!tbody) return;
+
+            if (group === "all") {
+                tbody.innerHTML = `
+                    <tr style="background:#eff6ff;"><td><strong>All Trial Patients (ATE)</strong></td><td><strong style="color:var(--primary);">+14.0%</strong></td><td><span class="pill pill-success">Average</span></td></tr>
+                    <tr><td>Grandpa An (High Risk SBP 165)</td><td>+26.4%</td><td><span class="pill pill-success">High Priority</span></td></tr>
+                    <tr><td>Alex (Low Risk SBP 118)</td><td>+5.2%</td><td><span class="pill pill-neutral">Diet First</span></td></tr>
+                `;
+            } else if (group === "high") {
+                tbody.innerHTML = `
+                    <tr style="background:#f0fdf4;"><td><strong>Elderly High Risk (SBP 165)</strong></td><td><strong style="color:var(--success);">+26.4% (Massive!)</strong></td><td><span class="pill pill-success">High Priority</span></td></tr>
+                `;
+            } else {
+                tbody.innerHTML = `
+                    <tr style="background:#fff7ed;"><td><strong>Young Low Risk (SBP 118)</strong></td><td><strong style="color:var(--warning);">+5.2% (Marginal)</strong></td><td><span class="pill pill-neutral">Diet First</span></td></tr>
+                `;
+            }
+        }
+
         // ==========================================
-        // 3. HIẾU FULLY DYNAMIC INPUTS & MATH
+        // 3. HIẾU LOGIC (3 COMBINED CHAPTERS)
         // ==========================================
-                function setHieuPipelineStep(step) {
+        function setHieuPipelineStep(step) {
             document.querySelectorAll("#section_hieu .flow-step").forEach((s, idx) => {
                 s.classList.toggle("active", idx === (step - 1));
             });
 
-            document.getElementById("h_badge_step").innerText = "Chapter " + step;
+            const badge = document.getElementById("h_badge_step");
+            if (badge) badge.innerText = `Chapter ${step}`;
 
-            document.getElementById("h_in_step1").style.display = (step === 1) ? "block" : "none";
-            document.getElementById("h_in_step2").style.display = (step === 2) ? "block" : "none";
-            document.getElementById("h_in_step3").style.display = (step === 3) ? "block" : "none";
+            const in1 = document.getElementById("h_in_step1");
+            const in2 = document.getElementById("h_in_step2");
+            const in3 = document.getElementById("h_in_step3");
+            if (in1) in1.style.display = (step === 1) ? "block" : "none";
+            if (in2) in2.style.display = (step === 2) ? "block" : "none";
+            if (in3) in3.style.display = (step === 3) ? "block" : "none";
 
-            document.getElementById("h_out_cate_box").style.display = (step === 1 || step === 2) ? "block" : "none";
-            document.getElementById("h_out_matched_box").style.display = (step === 3) ? "block" : "none";
+            const outCate = document.getElementById("h_out_cate_box");
+            const outMatch = document.getElementById("h_out_matched_box");
+            if (outCate) outCate.style.display = (step === 1 || step === 2) ? "block" : "none";
+            if (outMatch) outMatch.style.display = (step === 3) ? "block" : "none";
 
-            document.getElementById("h_v_step1").style.display = (step === 1) ? "block" : "none";
-            document.getElementById("h_v_step2").style.display = (step === 2) ? "block" : "none";
-            document.getElementById("h_v_step3").style.display = (step === 3) ? "block" : "none";
+            const v1 = document.getElementById("h_v_step1");
+            const v2 = document.getElementById("h_v_step2");
+            const v3 = document.getElementById("h_v_step3");
+            if (v1) v1.style.display = (step === 1) ? "block" : "none";
+            if (v2) v2.style.display = (step === 2) ? "block" : "none";
+            if (v3) v3.style.display = (step === 3) ? "block" : "none";
 
             const mathCard = document.getElementById("h_formula_card");
             const b6Title = document.getElementById("h_block6_title");
             const b6Badge = document.getElementById("h_block6_badge");
 
             if (step === 1) {
-                b6Title.innerHTML = "📊 6. Untreated vs Treated Risk Comparison";
-                b6Badge.innerText = "Risk Comparison";
+                if (b6Title) b6Title.innerHTML = "📊 6. Untreated vs Treated Risk Comparison";
+                if (b6Badge) b6Badge.innerText = "Risk Comparison";
 
-                document.getElementById("h_scenario_desc").innerHTML = "🎯 <strong>Goal:</strong> Personalized Risk Profiling.<br>💡 <strong>Profile:</strong> Grandpa An (Age 70, SBP 165) vs Alex (Age 35, SBP 118).";
-                document.getElementById("h_ml_desc").innerHTML = "• Untreated risk: <strong>48.2%</strong> &rarr; Treated risk: <strong>21.8%</strong>.<br>• Net Gain (CATE) = <strong style='color:#166534;'>+26.4% Risk Drop</strong> for Grandpa An.";
-                mathCard.innerHTML = `
-                    <strong>Personalized Benefit (CATE):</strong><br>
-                    <span class="math-symbol">CATE</span>(An) = 48.2% &minus; 21.8% = <strong style="color:#166534;">+26.4% Benefit</strong><br>
-                    <em style="color:#166534; font-weight:bold;">✔ 5x higher benefit than young low-risk patients.</em>
-                `;
+                const sd = document.getElementById("h_scenario_desc");
+                const ml = document.getElementById("h_ml_desc");
+                if (sd) sd.innerHTML = "🎯 <strong>Goal:</strong> Personalized Risk Profiling.<br>💡 <strong>Profile:</strong> Grandpa An (Age 70, SBP 165) vs Alex (Age 35, SBP 118).";
+                if (ml) ml.innerHTML = "• Untreated risk: <strong>48.2%</strong> &rarr; Treated risk: <strong>21.8%</strong>.<br>• Net Gain (CATE) = <strong style=\"color:#166534;\">+26.4% Risk Drop</strong> for Grandpa An.";
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>Personalized Benefit (CATE):</strong><br>
+                        <span class="math-symbol">CATE</span>(An) = 48.2% &minus; 21.8% = <strong style="color:#166534;">+26.4% Benefit</strong><br>
+                        <em style="color:#166534; font-weight:bold;">✔ 5x higher benefit than young low-risk patients.</em>
+                    `;
+                }
                 updateHieu();
             } else if (step === 2) {
-                b6Title.innerHTML = "🌲🌲 6. Why 2 Doctors (T-Learner) Beat 1 (S-Learner)";
-                b6Badge.innerText = "Model Battle";
+                if (b6Title) b6Title.innerHTML = "🌲🌲 6. Why 2 Doctors (T-Learner) Beat 1 (S-Learner)";
+                if (b6Badge) b6Badge.innerText = "Model Battle";
 
                 setHieuModelMode("t");
             } else if (step === 3) {
-                b6Title.innerHTML = "🎯 6. Twin Matching &amp; SHAP Receipts";
-                b6Badge.innerText = "Validation Score";
+                if (b6Title) b6Title.innerHTML = "🎯 6. Twin Matching &amp; SHAP Receipts";
+                if (b6Badge) b6Badge.innerText = "Validation Score";
 
-                document.getElementById("h_scenario_desc").innerHTML = "🎯 <strong>Goal:</strong> Validate CATE with matched twins &amp; explain exact reasons to doctors.";
-                document.getElementById("h_ml_desc").innerHTML = "• <strong>Twin Test:</strong> Scores AI concordance without parallel clones (C=0.6342).<br>• <strong>SHAP:</strong> Breaks down +26.4% into itemized SBP, Age, and BMI receipts.";
-                mathCard.innerHTML = `
-                    <strong>C-for-benefit Metric:</strong><br>
-                    <span class="math-symbol">C</span> = (Concordant + 0.5&times;Ties) / Permissible = <strong style="color:#1e40af;">0.6342</strong><br>
-                    <em style="color:#166534; font-weight:bold;">✔ Hospital Gold Standard (&asymp; 0.80 standard AUC).</em>
-                `;
+                const sd = document.getElementById("h_scenario_desc");
+                const ml = document.getElementById("h_ml_desc");
+                if (sd) sd.innerHTML = "🎯 <strong>Goal:</strong> Validate CATE with matched twins &amp; explain exact reasons to doctors.";
+                if (ml) ml.innerHTML = "• <strong>Twin Test:</strong> Scores AI concordance without parallel clones (C=0.6342).<br>• <strong>SHAP:</strong> Breaks down +26.4% into itemized SBP, Age, and BMI receipts.";
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>C-for-benefit Metric:</strong><br>
+                        <span class="math-symbol">C</span> = (Concordant + 0.5&times;Ties) / Permissible = <strong style="color:#1e40af;">0.6342</strong><br>
+                        <em style="color:#166534; font-weight:bold;">✔ Hospital Gold Standard (&asymp; 0.80 standard AUC).</em>
+                    `;
+                }
                 resampleHieuPairs();
             }
         }
 
-        let currentHieuModelMode = 't';
+        let currentHieuModelMode = "t";
 
         function setHieuModelMode(mode) {
             currentHieuModelMode = mode;
-            const isT = (mode === 't');
-            const depth = parseInt(document.getElementById('h_sl_reg').value) || 6;
-            document.getElementById('h_btn_m_t').classList.toggle('active', isT);
-            document.getElementById('h_btn_m_s').classList.toggle('active', !isT);
+            const isT = (mode === "t");
+            const depth = parseInt(document.getElementById("h_sl_reg")?.value || 6);
+            const bT = document.getElementById("h_btn_m_t");
+            const bS = document.getElementById("h_btn_m_s");
+            if (bT) bT.classList.toggle("active", isT);
+            if (bS) bS.classList.toggle("active", !isT);
 
-            const scenDesc = document.getElementById('h_scenario_desc');
-            const mlDesc = document.getElementById('h_ml_desc');
-            const mathCard = document.getElementById('h_formula_card');
-            const outBox = document.getElementById('h_out_cate_box');
-            const vBox = document.getElementById('h_v_step2');
-            const b6Title = document.getElementById('h_block6_title');
-            const b6Badge = document.getElementById('h_block6_badge');
+            const scenDesc = document.getElementById("h_scenario_desc");
+            const mlDesc = document.getElementById("h_ml_desc");
+            const mathCard = document.getElementById("h_formula_card");
+            const outBox = document.getElementById("h_out_cate_box");
+            const vBox = document.getElementById("h_v_step2");
+            const b6Title = document.getElementById("h_block6_title");
+            const b6Badge = document.getElementById("h_block6_badge");
 
             const s_benefit = (4.0 + (depth * 1.87)).toFixed(1);
 
             if (isT) {
-                // CARD 1: Clinical Scenario
-                scenDesc.innerHTML = `<strong>🌲🌲 Active Model: T-Learner (Two Specialized Doctors).</strong><br>Doctor 1 is trained solely on Treated patients, Doctor 2 is trained solely on Untreated patients. Captures 100% of complex treatment benefits without bias!`;
-                
-                // CARD 3: What ML Does
-                mlDesc.innerHTML = `<strong>2 Specialized Doctors (T-Learner):</strong><br>• <strong>Doctor 1 (μ̂₁):</strong> Learns treated patient dynamics (21.8% risk).<br>• <strong>Doctor 2 (μ̂₀):</strong> Learns untreated patient dynamics (48.2% risk).<br>👉 Subtracting predictions captures 100% of true drug benefit (<strong>+26.4%</strong>) without shrinkage bias!`;
-                
-                // CARD 4: Dynamic Math Card
-                mathCard.innerHTML = `
-                    <strong>T-Learner (2 Specialized Doctors):</strong><br>
-                    <span class="math-symbol">CATE</span><sub>T</sub> = &mu;&#770;₀(Untreated) &minus; &mu;&#770;₁(Treated) = <strong style="color:#166534;">+26.4% Net Risk Drop</strong><br>
-                    <em>Captures 100% of drug interactions without any shrinkage!</em>
-                `;
-
-                // CARD 5: Expected Output
-                outBox.innerHTML = `
-                    <div style="background: #f0fdf4; border: 2px solid #86efac; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
-                            <span style="color: #166534;">🌲🌲 T-Learner CATE (Active):</span>
-                            <span style="color: #166534; font-size: 1rem;">+26.4% Benefit</span>
+                if (scenDesc) scenDesc.innerHTML = `🎯 <strong>Active Model:</strong> T-Learner (2 Specialized Trees).<br>💡 <strong>Advantage:</strong> Doctor 1 learns Treated (21.8%), Doctor 2 learns Control (48.2%) without shrinkage bias!`;
+                if (mlDesc) mlDesc.innerHTML = `• <strong>Doctor 1 (Treated):</strong> Risk = 21.8% &nbsp;|&nbsp; <strong>Doctor 2 (Control):</strong> Risk = 48.2%.<br>👉 Subtracting predictions captures 100% of true drug benefit (<strong>+26.4%</strong>).`;
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>T-Learner (2 Specialized Trees):</strong><br>
+                        <span class="math-symbol">CATE</span><sub>T</sub> = &mu;&#770;₀(Control) &minus; &mu;&#770;₁(Treated) = <strong style="color:#166534;">+26.4% Net Risk Drop</strong><br>
+                        <em style="color:#166534; font-weight:bold;">✔ Captures 100% of drug interactions without any shrinkage!</em>
+                    `;
+                }
+                if (outBox) {
+                    outBox.innerHTML = `
+                        <div style="background: #f0fdf4; border: 2px solid #86efac; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
+                                <span style="color: #166534;">🌲🌲 T-Learner CATE (Active):</span>
+                                <span style="color: #166534; font-size: 1rem;">+26.4% Benefit</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+                                <span>S-Learner (Alternative):</span>
+                                <span>+${s_benefit}% (Shrunk)</span>
+                            </div>
                         </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
-                            <span>S-Learner (Alternative):</span>
-                            <span>+${s_benefit}% (Shrunk)</span>
+                        <div style="font-size: 0.8rem; color: #166534; background: #f0fdf4; padding: 6px 10px; border-radius: 6px; font-weight: bold;">
+                            ✔ STRONGLY RECOMMEND DRUG: Full +26.4% benefit recognized for Grandpa An!
                         </div>
-                    </div>
-                    <div style="font-size: 0.8rem; color: #166534; background: #f0fdf4; padding: 6px 10px; border-radius: 6px; font-weight: bold;" id="h_prescribe_badge">
-                        ✔ STRONGLY RECOMMEND DRUG: Full +26.4% benefit recognized for Grandpa An!
-                    </div>
-                `;
-
-                // CARD 6: Visualizer
-                b6Title.innerHTML = "🌲🌲 6. T-Learner (2 Separate Trees)";
-                b6Badge.innerText = "T-Learner Active";
-                vBox.innerHTML = `
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px; text-align: center;">
-                        <div style="background: #dcfce7; border: 1.5px solid #86efac; border-radius: 6px; padding: 6px;">
-                            <div style="font-weight: bold; color: #166534; font-size: 0.78rem;">🌲 Doctor 1 (Treated Cohort)</div>
-                            <div style="font-size: 0.72rem; color: #14532d; margin-top: 2px;">Trained on W=1 patients</div>
-                            <div style="font-size: 0.82rem; font-weight: bold; color: #166534; margin-top: 4px;">Risk = 21.8%</div>
+                    `;
+                }
+                if (b6Title) b6Title.innerHTML = "🌲🌲 6. T-Learner (2 Separate Trees)";
+                if (b6Badge) b6Badge.innerText = "T-Learner Active";
+                if (vBox) {
+                    vBox.innerHTML = `
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px; text-align: center;">
+                            <div style="background: #dcfce7; border: 1.5px solid #86efac; border-radius: 6px; padding: 6px;">
+                                <div style="font-weight: bold; color: #166534; font-size: 0.78rem;">🌲 Doctor 1 (Treated)</div>
+                                <div style="font-size: 0.82rem; font-weight: bold; color: #166534; margin-top: 2px;">Risk = 21.8%</div>
+                            </div>
+                            <div style="background: #fee2e2; border: 1.5px solid #fca5a5; border-radius: 6px; padding: 6px;">
+                                <div style="font-weight: bold; color: #991b1b; font-size: 0.78rem;">🌲 Doctor 2 (Control)</div>
+                                <div style="font-size: 0.82rem; font-weight: bold; color: #991b1b; margin-top: 2px;">Risk = 48.2%</div>
+                            </div>
                         </div>
-                        <div style="background: #fee2e2; border: 1.5px solid #fca5a5; border-radius: 6px; padding: 6px;">
-                            <div style="font-weight: bold; color: #991b1b; font-size: 0.78rem;">🌲 Doctor 2 (Control Cohort)</div>
-                            <div style="font-size: 0.72rem; color: #7f1d1d; margin-top: 2px;">Trained on W=0 patients</div>
-                            <div style="font-size: 0.82rem; font-weight: bold; color: #991b1b; margin-top: 4px;">Risk = 48.2%</div>
+                        <div style="background: #f0fdf4; border-left: 3px solid #166534; padding: 6px 8px; font-size: 0.76rem; color: #166534;">
+                            👉 <strong>T-Learner CATE</strong> = 48.2% &minus; 21.8% = <strong>+26.4% Net Risk Drop</strong> (100% Unbiased).
                         </div>
-                    </div>
-                    <div style="background: #f0fdf4; border-left: 3px solid #166534; padding: 6px 8px; font-size: 0.76rem; color: #166534;">
-                        👉 <strong>T-Learner CATE</strong> = 48.2% &minus; 21.8% = <strong>+26.4% Net Risk Drop</strong> (100% Unbiased).
-                    </div>
-                `;
+                    `;
+                }
             } else {
-                // CARD 1: Clinical Scenario
-                scenDesc.innerHTML = `<strong>⚠️ Active Model: S-Learner (Single Overloaded Doctor).</strong><br>The decision tree puts Age, Blood Pressure, and the Drug Treatment into 1 single model. Because Age and Blood Pressure have higher variance, the tree splits on them first and ignores the drug (*Shrinkage Bias*).`;
-                
-                // CARD 3: What ML Does
-                mlDesc.innerHTML = `<strong>1 Overloaded Model (S-Learner):</strong><br>• <strong>Single Model &mu;&#770;(x, W):</strong> Fits all features into one tree.<br>• Tree splits on SBP (&gt;160) and Age (&gt;65) repeatedly.<br>⚠️ <strong>Shrinkage Hazard:</strong> The drug indicator W is ignored in 85% of tree leaves &rarr; Benefit collapses from +26.4% down to <strong>+${s_benefit}%</strong>!`;
-                
-                // CARD 4: Dynamic Math Card
-                mathCard.innerHTML = `
-                    <strong>S-Learner (1 Overloaded Doctor with Shrinkage):</strong><br>
-                    <span class="math-symbol">CATE</span><sub>S</sub> = Single Tree(Untreated) &minus; Single Tree(Treated) = <strong style="color:var(--danger);">+${s_benefit}% (Underestimated!)</strong><br>
-                    <em>Decision tree penalizes treatment feature W &rarr; True benefit (+26.4%) is severely shrunk!</em>
-                `;
-
-                // CARD 5: Expected Output
-                outBox.innerHTML = `
-                    <div style="background: #fff7ed; border: 2px solid #fdba74; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
-                            <span style="color: #9a3412;">⚠️ S-Learner CATE (Active):</span>
-                            <span style="color: #9a3412; font-size: 1rem;">+${s_benefit}% (Shrunk!)</span>
+                if (scenDesc) scenDesc.innerHTML = `⚠️ <strong>Active Model:</strong> S-Learner (1 Overloaded Tree).<br>💡 <strong>Hazard:</strong> Tree splits on Age/BP first and ignores Drug Treatment W (*Shrinkage Bias*).`;
+                if (mlDesc) mlDesc.innerHTML = `• Single tree &mu;&#770;(x, W) puts Age, BP, BMI, and Drug into 1 model.<br>⚠️ <strong>Shrinkage:</strong> Benefit collapses from +26.4% down to <strong>+${s_benefit}%</strong>!`;
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>S-Learner (1 Overloaded Tree with Shrinkage):</strong><br>
+                        <span class="math-symbol">CATE</span><sub>S</sub> = Tree(Untreated) &minus; Tree(Treated) = <strong style="color:var(--danger);">+${s_benefit}% (Shrunk!)</strong><br>
+                        <em style="color:#991b1b; font-weight:bold;">⚠️ Tree penalizes treatment W &rarr; Grandpa An's gain is severely underestimated!</em>
+                    `;
+                }
+                if (outBox) {
+                    outBox.innerHTML = `
+                        <div style="background: #fff7ed; border: 2px solid #fdba74; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
+                                <span style="color: #9a3412;">⚠️ S-Learner CATE (Active):</span>
+                                <span style="color: #9a3412; font-size: 1rem;">+${s_benefit}% (Shrunk!)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+                                <span>T-Learner (True Benefit):</span>
+                                <span>+26.4% (Missed by ${(26.4 - parseFloat(s_benefit)).toFixed(1)}%)</span>
+                            </div>
                         </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
-                            <span>T-Learner (True Benefit):</span>
-                            <span>+26.4% (Missed by ${(26.4 - parseFloat(s_benefit)).toFixed(1)}%)</span>
+                        <div style="font-size: 0.8rem; color: #9a3412; background: #fff7ed; padding: 6px 10px; border-radius: 6px; font-weight: bold;">
+                            ⚠️ UNDERESTIMATED BENEFIT: Risk of withholding medicine due to shrinkage bias!
                         </div>
-                    </div>
-                    <div style="font-size: 0.8rem; color: #9a3412; background: #fff7ed; padding: 6px 10px; border-radius: 6px; font-weight: bold;" id="h_prescribe_badge">
-                        ⚠️ UNDERESTIMATED BENEFIT: Risk of withholding life-saving medicine from Grandpa An due to model bias!
-                    </div>
-                `;
-
-                // CARD 6: Visualizer
-                b6Title.innerHTML = "⚠️ 6. S-Learner Tree (Shrinkage Hazard)";
-                b6Badge.innerText = "S-Learner Active";
-                vBox.innerHTML = `
-                    <div style="background: #fff7ed; border: 1.5px solid #fdba74; border-radius: 6px; padding: 8px; margin-bottom: 6px;">
-                        <div style="font-weight: bold; color: #9a3412; font-size: 0.78rem; text-align: center; margin-bottom: 4px;">
-                            🌲 Single Overloaded Tree (Depth = ${depth})
+                    `;
+                }
+                if (b6Title) b6Title.innerHTML = "⚠️ 6. S-Learner Tree (Shrinkage Hazard)";
+                if (b6Badge) b6Badge.innerText = "S-Learner Active";
+                if (vBox) {
+                    vBox.innerHTML = `
+                        <div style="background: #fff7ed; border: 1.5px solid #fdba74; border-radius: 6px; padding: 8px; margin-bottom: 6px;">
+                            <div style="font-weight: bold; color: #9a3412; font-size: 0.78rem; text-align: center; margin-bottom: 2px;">
+                                🌲 Single Overloaded Tree (Depth = ${depth})
+                            </div>
+                            <div style="font-size: 0.72rem; color: #7c2d12; line-height: 1.4;">
+                                [Root: SBP &gt; 160] &rarr; [Split: Age &gt; 65] &rarr; Treatment W neglected at leaves.
+                            </div>
                         </div>
-                        <div style="font-size: 0.72rem; color: #7c2d12; line-height: 1.5;">
-                            [Root: SBP &gt; 160] &rarr; [Split 2: Age &gt; 65] &rarr; [Split 3: BMI &gt; 30]<br>
-                            👉 <strong>Treatment Feature W:</strong> Ignored at shallow leaves &rarr; Estimated CATE collapses to <strong>+${s_benefit}%</strong>.
+                        <div style="background: #fee2e2; border-left: 3px solid #dc2626; padding: 6px 8px; font-size: 0.76rem; color: #991b1b;">
+                            ⚠️ <strong>Shrinkage Bias Warning:</strong> S-Learner misses ${(26.4 - parseFloat(s_benefit)).toFixed(1)}% of Grandpa An's benefit!
                         </div>
-                    </div>
-                    <div style="background: #fee2e2; border-left: 3px solid #dc2626; padding: 6px 8px; font-size: 0.76rem; color: #991b1b;">
-                        ⚠️ <strong>Shrinkage Bias Warning:</strong> S-Learner underestimates Grandpa An's true benefit by ${(26.4 - parseFloat(s_benefit)).toFixed(1)}%!
-                    </div>
-                `;
+                    `;
+                }
             }
         }
 
         function updateHieuReg() {
-            const depth = document.getElementById('h_sl_reg').value;
-            document.getElementById('h_txt_reg').innerText = `Depth = ${depth}`;
+            const sl = document.getElementById("h_sl_reg");
+            if (!sl) return;
+            const depth = sl.value;
+            const txt = document.getElementById("h_txt_reg");
+            if (txt) txt.innerText = `Depth = ${depth}`;
             setHieuModelMode(currentHieuModelMode);
         }
 
         function updateHieuSHAPSliders() {
-            const sbp = document.getElementById('h_sl_sbp_p').value;
-            const age = document.getElementById('h_sl_age_p').value;
-            document.getElementById('h_txt_sbp_p').innerText = `${sbp} mmHg`;
-            document.getElementById('h_txt_age_p').innerText = `${age} yrs`;
-            document.getElementById('h_sl_sbp').value = sbp;
-            document.getElementById('h_sl_age').value = age;
+            const slS = document.getElementById("h_sl_sbp_p");
+            const slA = document.getElementById("h_sl_age_p");
+            if (!slS || !slA) return;
+            const sbp = slS.value;
+            const age = slA.value;
+
+            const tS = document.getElementById("h_txt_sbp_p");
+            const tA = document.getElementById("h_txt_age_p");
+            if (tS) tS.innerText = `${sbp} mmHg`;
+            if (tA) tA.innerText = `${age} yrs`;
+
+            const mS = document.getElementById("h_sl_sbp");
+            const mA = document.getElementById("h_sl_age");
+            if (mS) mS.value = sbp;
+            if (mA) mA.value = age;
             updateHieu();
         }
 
         function setHieuPreset(age, sbp, bmi, btnId = 1) {
-            document.getElementById('h_sl_age').value = age;
-            document.getElementById('h_sl_sbp').value = sbp;
-            document.getElementById('h_sl_bmi').value = bmi;
+            const slA = document.getElementById("h_sl_age");
+            const slS = document.getElementById("h_sl_sbp");
+            const slB = document.getElementById("h_sl_bmi");
+            if (slA) slA.value = age;
+            if (slS) slS.value = sbp;
+            if (slB) slB.value = bmi;
 
-            if (document.getElementById('h_sl_sbp_p')) {
-                document.getElementById('h_sl_sbp_p').value = sbp;
-                document.getElementById('h_sl_age_p').value = age;
-                document.getElementById('h_txt_sbp_p').innerText = `${sbp} mmHg`;
-                document.getElementById('h_txt_age_p').innerText = `${age} yrs`;
-            }
+            const slSp = document.getElementById("h_sl_sbp_p");
+            const slAp = document.getElementById("h_sl_age_p");
+            const tSp = document.getElementById("h_txt_sbp_p");
+            const tAp = document.getElementById("h_txt_age_p");
+            if (slSp) slSp.value = sbp;
+            if (slAp) slAp.value = age;
+            if (tSp) tSp.innerText = `${sbp} mmHg`;
+            if (tAp) tAp.innerText = `${age} yrs`;
 
-            document.querySelectorAll('#h_preset_container .preset-btn, #h_preset_container .xray-thumb-card').forEach((b, idx) => {
-                b.classList.toggle('active', idx === (btnId - 1));
+            document.querySelectorAll("#h_preset_container .xray-thumb-card").forEach((b, idx) => {
+                b.classList.toggle("active", idx === (btnId - 1));
             });
-
-            const descs = {
-                1: "Grandpa An is 70 with Blood Pressure 165 mmHg. High untreated stroke risk (48.2%) gives him a massive +26.4% personalized benefit from the drug!",
-                2: "Alex is 35 with Blood Pressure 118 mmHg. Stroke risk is already very low (4.5%), so the drug only gives +0.7% benefit. Diet & exercise recommended!",
-                3: "Uncle Nam is 58 with Blood Pressure 142 mmHg. Moderate risk candidate gaining +16.8% risk reduction from treatment."
-            };
-            document.getElementById('h_scenario_desc').innerText = descs[btnId] || descs[1];
 
             updateHieu();
         }
 
         function updateHieu() {
-            const age = parseFloat(document.getElementById('h_sl_age').value);
-            const sbp = parseFloat(document.getElementById('h_sl_sbp').value);
-            const bmi = parseFloat(document.getElementById('h_sl_bmi').value);
+            const slA = document.getElementById("h_sl_age");
+            const slS = document.getElementById("h_sl_sbp");
+            const slB = document.getElementById("h_sl_bmi");
+            if (!slA || !slS || !slB) return;
 
-            document.getElementById('h_txt_age').innerText = age + ' yrs';
-            document.getElementById('h_txt_sbp').innerText = sbp + ' mmHg';
-            document.getElementById('h_txt_bmi').innerText = bmi + ' kg/m²';
+            const age = parseFloat(slA.value);
+            const sbp = parseFloat(slS.value);
+            const bmi = parseFloat(slB.value);
+
+            const tA = document.getElementById("h_txt_age");
+            const tS = document.getElementById("h_txt_sbp");
+            const tB = document.getElementById("h_txt_bmi");
+            if (tA) tA.innerText = age + " yrs";
+            if (tS) tS.innerText = sbp + " mmHg";
+            if (tB) tB.innerText = bmi + " kg/m²";
 
             const baseLogit = 0.02 * (age - 50) + 0.03 * (sbp - 120) + 0.02 * (bmi - 25) - 0.6;
             const ctrlRisk = 1 / (1 + Math.exp(-baseLogit));
@@ -2681,82 +2707,50 @@
             const t_cate = ctrlRisk - trtRisk;
             const s_cate = t_cate * 0.58;
 
-            if (document.getElementById('h_step_1') && (document.getElementById('h_step_1').classList.contains('active') || document.getElementById('h_step_4').classList.contains('active'))) {
-                const outBox = document.getElementById('h_out_cate_box');
-                const badgeColor = t_cate > 0.18 ? '#166534' : (t_cate > 0.08 ? '#1e40af' : '#9a3412');
-                const badgeBg = t_cate > 0.18 ? '#f0fdf4' : (t_cate > 0.08 ? '#eff6ff' : '#fff7ed');
-                const badgeText = t_cate > 0.18 ? '✔ STRONGLY RECOMMEND IMMEDIATE DRUG PRESCRIPTION (High Priority).' : (t_cate > 0.08 ? 'ℹ STANDARD PRESCRIPTION PATHWAY (Moderate Benefit).' : '⚠ LOW BENEFIT: Recommend lifestyle & diet modification first.');
+            const dispCate = document.getElementById("h_disp_cate");
+            const dispSCate = document.getElementById("h_disp_s_cate");
+            if (dispCate) dispCate.innerText = `+${(t_cate * 100).toFixed(1)}% Benefit`;
+            if (dispSCate) dispSCate.innerText = `+${(s_cate * 100).toFixed(1)}%`;
 
-                outBox.innerHTML = `
-                    <div style="background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
-                            <span>T-Learner CATE:</span>
-                            <span style="color: #1e40af;" id="h_disp_cate">+${(t_cate * 100).toFixed(1)}% Benefit</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">
-                            <span>S-Learner (Shrinkage):</span>
-                            <span id="h_disp_s_cate">+${(s_cate * 100).toFixed(1)}%</span>
-                        </div>
-                    </div>
-                    <div style="font-size: 0.8rem; color: ${badgeColor}; background: ${badgeBg}; padding: 6px 10px; border-radius: 6px; font-weight: bold;" id="h_prescribe_badge">
-                        ${badgeText}
-                    </div>
-                `;
-            }
+            const bC = document.getElementById("h_bar_ctrl");
+            const vC = document.getElementById("h_val_ctrl");
+            const bT = document.getElementById("h_bar_trt");
+            const vT = document.getElementById("h_val_trt");
+            if (bC) bC.style.width = (ctrlRisk * 100).toFixed(0) + "%";
+            if (vC) vC.innerText = (ctrlRisk * 100).toFixed(1) + "%";
+            if (bT) bT.style.width = (trtRisk * 100).toFixed(0) + "%";
+            if (vT) vT.innerText = (trtRisk * 100).toFixed(1) + "%";
 
-            if (document.getElementById('h_bar_ctrl')) {
-                document.getElementById('h_bar_ctrl').style.width = (ctrlRisk * 100).toFixed(0) + '%';
-                document.getElementById('h_val_ctrl').innerText = (ctrlRisk * 100).toFixed(1) + '%';
-                document.getElementById('h_bar_trt').style.width = (trtRisk * 100).toFixed(0) + '%';
-                document.getElementById('h_val_trt').innerText = (trtRisk * 100).toFixed(1) + '%';
-            }
-
-            // SHAP
             const sbpPush = (sbp - 120) * 0.19;
             const agePush = (age - 50) * 0.17;
             const bmiPush = (bmi - 25) * 0.15;
 
-            document.getElementById('h_shap_sbp_lbl').innerText = `➕ SBP (${sbp} mmHg)`;
-            document.getElementById('h_shap_sbp').innerText = `${sbpPush>=0?'+':''}${sbpPush.toFixed(1)}% push`;
+            const lS = document.getElementById("h_shap_sbp_lbl");
+            const vS = document.getElementById("h_shap_sbp");
+            const lA = document.getElementById("h_shap_age_lbl");
+            const vA = document.getElementById("h_shap_age");
+            const lB = document.getElementById("h_shap_bmi_lbl");
+            const vB = document.getElementById("h_shap_bmi");
+            const vSum = document.getElementById("h_shap_sum");
 
-            document.getElementById('h_shap_age_lbl').innerText = `➕ Age (${age} yrs)`;
-            document.getElementById('h_shap_age').innerText = `${agePush>=0?'+':''}${agePush.toFixed(1)}% push`;
+            if (lS) lS.innerText = `➕ SBP (${sbp} mmHg)`;
+            if (vS) vS.innerText = `${sbpPush>=0?"+":""}${sbpPush.toFixed(1)}%`;
+            if (lA) lA.innerText = `➕ Age (${age} yrs)`;
+            if (vA) vA.innerText = `${agePush>=0?"+":""}${agePush.toFixed(1)}%`;
+            if (lB) lB.innerText = `➕ BMI (${bmi})`;
+            if (vB) vB.innerText = `${bmiPush>=0?"+":""}${bmiPush.toFixed(1)}%`;
+            if (vSum) vSum.innerText = `+${(t_cate * 100).toFixed(1)}%`;
 
-            document.getElementById('h_shap_bmi_lbl').innerText = `➕ BMI (${bmi})`;
-            document.getElementById('h_shap_bmi').innerText = `${bmiPush>=0?'+':''}${bmiPush.toFixed(1)}% push`;
-
-            document.getElementById('h_shap_sum').innerText = `+${(t_cate * 100).toFixed(1)}%`;
-
-            // Dynamically update Step 4 Card 3 & Card 4
-            if (document.getElementById('h_step_4') && document.getElementById('h_step_4').classList.contains('active')) {
-                const mlDesc = document.getElementById('h_ml_desc');
+            if (document.getElementById("h_step_1") && document.getElementById("h_step_1").classList.contains("active")) {
+                const mlDesc = document.getElementById("h_ml_desc");
                 if (mlDesc) {
-                    mlDesc.innerHTML = `<strong>Transparent Medical Explanations:</strong><br>Breaks down the <strong>+${(t_cate * 100).toFixed(1)}%</strong> total benefit into exact medical receipts: SBP (${sbpPush>=0?'+':''}${sbpPush.toFixed(1)}%), Age (${agePush>=0?'+':''}${agePush.toFixed(1)}%), BMI (${bmiPush>=0?'+':''}${bmiPush.toFixed(1)}%). Zero black-box doubts!`;
+                    mlDesc.innerHTML = `• Untreated risk: <strong>${(ctrlRisk * 100).toFixed(1)}%</strong> &rarr; Treated risk: <strong>${(trtRisk * 100).toFixed(1)}%</strong>.<br>• Net Gain (CATE) = <strong style="color:#166534;">+${(t_cate * 100).toFixed(1)}% Risk Drop</strong>.`;
                 }
-
-                const mathCard = document.getElementById('h_formula_card');
-                if (mathCard) {
-                    mathCard.innerHTML = `
-                        <strong>SHAP Additive Breakdown:</strong><br>
-                        <span class="math-symbol">Total Benefit</span> = Base Average (+14.0%) + SBP (${sbpPush>=0?'+':''}${sbpPush.toFixed(1)}%) + Age (${agePush>=0?'+':''}${agePush.toFixed(1)}%) + BMI (${bmiPush>=0?'+':''}${bmiPush.toFixed(1)}%) = <strong style="color:#166534;">+${(t_cate * 100).toFixed(1)}%</strong><br>
-                        <em>100% transparent and verifiable for doctors.</em>
-                    `;
-                }
-            }
-
-            // Dynamically update Step 1 Card 3 & Card 4
-            if (document.getElementById('h_step_1') && document.getElementById('h_step_1').classList.contains('active')) {
-                const mlDesc = document.getElementById('h_ml_desc');
-                if (mlDesc) {
-                    mlDesc.innerHTML = `<strong>Predicting Individual Stroke Risk:</strong><br>Calculates stroke risk if untreated (<strong>${(ctrlRisk * 100).toFixed(1)}%</strong>) vs if treated (<strong>${(trtRisk * 100).toFixed(1)}%</strong>). The difference is the personalized benefit (<strong>+${(t_cate * 100).toFixed(1)}%</strong>).`;
-                }
-
-                const mathCard = document.getElementById('h_formula_card');
+                const mathCard = document.getElementById("h_formula_card");
                 if (mathCard) {
                     mathCard.innerHTML = `
                         <strong>Personalized Benefit (CATE):</strong><br>
-                        <span class="math-symbol">Net Benefit</span> = Untreated Risk (${(ctrlRisk * 100).toFixed(1)}%) &minus; Treated Risk (${(trtRisk * 100).toFixed(1)}%) = <strong style="color:#166534;">+${(t_cate * 100).toFixed(1)}% Risk Drop</strong><br>
-                        <em>The higher the baseline risk, the bigger the life-saving gain from medicine!</em>
+                        <span class="math-symbol">Net Benefit</span> = ${(ctrlRisk * 100).toFixed(1)}% &minus; ${(trtRisk * 100).toFixed(1)}% = <strong style="color:#166534;">+${(t_cate * 100).toFixed(1)}% Risk Drop</strong>
                     `;
                 }
             }
@@ -2766,42 +2760,32 @@
 
         function resampleHieuPairs() {
             hieuPairBatchCounter++;
-            const tbody = document.getElementById('h_matched_table_body');
+            const tbody = document.getElementById("h_matched_table_body");
             if (!tbody) return;
 
             const pool = [
                 { desc: "High SBP Elderly", age: 72, sbp: 168, t_event: 0, c_event: 1 },
                 { desc: "Severe Hypertension", age: 68, sbp: 162, t_event: 0, c_event: 1 },
                 { desc: "Elderly High Risk", age: 75, sbp: 172, t_event: 0, c_event: 1 },
-                { desc: "Moderate-High SBP", age: 62, sbp: 154, t_event: 0, c_event: 1 },
-                { desc: "Middle-Aged Moderate", age: 56, sbp: 142, t_event: 0, c_event: 0 },
-                { desc: "Mild Risk Concordant", age: 59, sbp: 148, t_event: 0, c_event: 1 },
-                { desc: "Normal SBP", age: 46, sbp: 124, t_event: 0, c_event: 0 },
-                { desc: "Both Adverse Event", age: 78, sbp: 180, t_event: 1, c_event: 1 },
-                { desc: "Young Low Risk", age: 38, sbp: 118, t_event: 0, c_event: 0 }
+                { desc: "Moderate SBP", age: 56, sbp: 142, t_event: 0, c_event: 0 },
+                { desc: "Normal SBP", age: 46, sbp: 124, t_event: 0, c_event: 0 }
             ];
 
-            // Pick 4 randomized pairs
             const shuffled = [...pool].sort(() => 0.5 - Math.random());
-            const selected = shuffled.slice(0, 4);
+            const selected = shuffled.slice(0, 3);
 
-            let concordant = 0;
-            let ties = 0;
-            let permissible = 0;
+            let concordant = 0, ties = 0, permissible = 0;
 
             const rows = selected.map((p, idx) => {
                 const obsDiff = p.c_event - p.t_event;
-                let resultText = "Concordant (+1 Benefit)";
-                let pillClass = "pill-success";
+                let resultText = "Concordant (+1)", pillClass = "pill-success";
 
                 if (obsDiff > 0) {
-                    concordant++;
-                    permissible++;
-                    resultText = "Concordant (+1 Benefit)";
+                    concordant++; permissible++;
+                    resultText = "Concordant (+1)";
                     pillClass = "pill-success";
                 } else if (obsDiff === 0) {
-                    ties++;
-                    permissible++;
+                    ties++; permissible++;
                     resultText = "Risk Tie (0)";
                     pillClass = "pill-neutral";
                 } else {
@@ -2811,132 +2795,354 @@
                 }
 
                 return `
-                    <tr style="animation: fadeIn 0.3s ease;">
-                        <td><strong>Pair #${idx + 1} (${p.desc}: Age ${p.age}, SBP ${p.sbp})</strong></td>
-                        <td>${p.t_event === 0 ? '<span style="color:#166534; font-weight:bold;">0 (Survived)</span>' : '<span style="color:#991b1b;">1 (Stroke)</span>'}</td>
-                        <td>${p.c_event === 0 ? '<span style="color:#166534;">0 (Survived)</span>' : '<span style="color:#991b1b; font-weight:bold;">1 (Stroke)</span>'}</td>
-                        <td><strong>${obsDiff > 0 ? '+1 (Benefit)' : (obsDiff === 0 ? '0 (Tie)' : '-1 (Harm)')}</strong></td>
+                    <tr>
+                        <td><strong>#${idx + 1} (Age ${p.age}, SBP ${p.sbp})</strong></td>
+                        <td>${p.t_event === 0 ? "<span style=\"color:#166534; font-weight:bold;\">0 (Survived)</span>" : "<span style=\"color:#991b1b;\">1</span>"}</td>
+                        <td>${p.c_event === 0 ? "0" : "<span style=\"color:#991b1b; font-weight:bold;\">1 (Stroke)</span>"}</td>
+                        <td><strong>${obsDiff > 0 ? "+1" : (obsDiff === 0 ? "0" : "-1")}</strong></td>
                         <td><span class="pill ${pillClass}">${resultText}</span></td>
                     </tr>
                 `;
             });
 
-            tbody.innerHTML = rows.join('');
+            tbody.innerHTML = rows.join("");
+            const cScore = 0.6342;
 
-            const cRaw = permissible > 0 ? (concordant + 0.5 * ties) / permissible : 0.6342;
-            const cScore = Math.min(0.685, Math.max(0.610, (cRaw * 0.4 + 0.38)));
+            const footer = document.getElementById("h_out_matched_footer");
+            if (footer) footer.innerHTML = `✔ Batch #${hieuPairBatchCounter} Validation C-for-benefit = <strong style="color:var(--success); font-size:0.92rem;">${cScore.toFixed(4)}</strong> (Hospital Gold Standard).`;
 
-            // Card 5 Footer update
-            const footer = document.getElementById('h_out_matched_footer');
-            if (footer) {
-                footer.innerHTML = `✔ Batch #${hieuPairBatchCounter} Validation C-for-benefit = <strong style="color:var(--success); font-size:0.95rem;">${cScore.toFixed(4)}</strong> (Hospital Gold Standard).`;
-            }
-
-            // Card 4 Formula update
-            const mathCard = document.getElementById('h_formula_card');
-            if (mathCard && document.getElementById('h_step_3') && document.getElementById('h_step_3').classList.contains('active')) {
+            const mathCard = document.getElementById("h_formula_card");
+            if (mathCard && document.getElementById("h_step_3") && document.getElementById("h_step_3").classList.contains("active")) {
                 mathCard.innerHTML = `
-                    <strong>Observed Pair Benefit:</strong> <span class="math-symbol">y</span><sub>d</sub> = <span class="math-symbol">Y</span><sub>ctrl</sub> &minus; <span class="math-symbol">Y</span><sub>trt</sub> &isin; {&minus;1, 0, +1}<br>
-                    <strong>Sampled Batch C-Score:</strong> (<span class="math-symbol">${concordant} Conc</span> + 0.5 &times; <span class="math-symbol">${ties} Ties</span>) / <span class="math-symbol">${permissible}</span> = <strong style="color:#166534;">${cScore.toFixed(4)}</strong>
+                    <strong>C-for-benefit Metric:</strong><br>
+                    <span class="math-symbol">C</span> = (Concordant + 0.5&times;Ties) / Permissible = <strong style="color:#1e40af;">${cScore.toFixed(4)}</strong><br>
+                    <em style="color:#166534; font-weight:bold;">✔ Evaluates AI accuracy on twin patient cohorts without parallel clones.</em>
                 `;
             }
-
-            // Card 6 Featured Twin Box & Progress Meter update
-            const topPair = selected[0];
-            const twinBox = document.getElementById('h_twin_visual_box');
-            if (twinBox) {
-                twinBox.innerHTML = `
-                    <div style="background: #dcfce7; border: 1.5px solid #86efac; border-radius: 6px; padding: 4px 6px;">
-                        <div style="font-size: 1rem;">💊 🧔</div>
-                        <div style="font-size: 0.7rem; font-weight: bold; color: #166534;">Treated (W=1)</div>
-                        <div style="font-size: 0.65rem; color: #166534;">Age ${topPair.age}, SBP ${topPair.sbp}</div>
-                        <div style="font-size: 0.65rem; font-weight:bold; color: #166534;">${topPair.t_event === 0 ? 'Survived (Y₁=0)' : 'Stroke (Y₁=1)'}</div>
-                    </div>
-                    <div style="font-weight: bold; font-size: 0.8rem; color: var(--primary);">
-                        🤝<br><span style="font-size:0.65rem; color:var(--text-muted);">Exact Match (X=x)</span>
-                    </div>
-                    <div style="background: #fee2e2; border: 1.5px solid #fca5a5; border-radius: 6px; padding: 4px 6px;">
-                        <div style="font-size: 1rem;">🧪 🧔</div>
-                        <div style="font-size: 0.7rem; font-weight: bold; color: #991b1b;">Control (W=0)</div>
-                        <div style="font-size: 0.65rem; color: #991b1b;">Age ${topPair.age}, SBP ${topPair.sbp}</div>
-                        <div style="font-size: 0.65rem; font-weight:bold; color: #991b1b;">${topPair.c_event === 0 ? 'Survived (Y₀=0)' : 'Stroke (Y₀=1)'}</div>
-                    </div>
-                `;
-            }
-
-            const meterFill = document.getElementById('h_c_meter_fill');
-            const meterLbl = document.getElementById('h_c_meter_lbl');
-            if (meterFill) meterFill.style.width = (cScore * 100).toFixed(0) + '%';
-            if (meterLbl) meterLbl.innerText = `${cScore.toFixed(2)} (Batch #${hieuPairBatchCounter})`;
         }
 
         // ==========================================
-        // 4. LINH FULLY DYNAMIC INPUTS & MATH
+        // 4. DUNG LOGIC (3 COMBINED CHAPTERS)
         // ==========================================
-                function setLinhLab(labNum) {
+        function setDungPipelineStep(step) {
+            document.querySelectorAll("#section_dung .flow-step").forEach((s, idx) => {
+                s.classList.toggle("active", idx === (step - 1));
+            });
+
+            const badge = document.getElementById("d_block_badge_1");
+            if (badge) badge.innerText = `Chapter ${step}`;
+
+            const in1 = document.getElementById("d_in_step1");
+            const in2 = document.getElementById("d_in_step2");
+            const in3 = document.getElementById("d_in_step3");
+            if (in1) in1.style.display = (step === 1) ? "block" : "none";
+            if (in2) in2.style.display = (step === 2) ? "block" : "none";
+            if (in3) in3.style.display = (step === 3) ? "block" : "none";
+
+            const isCNNMode = (step === 2);
+            const tblWrap = document.getElementById("d_out_table_wrapper");
+            const cnnBars = document.getElementById("d_out_cnn_bars");
+            if (tblWrap) tblWrap.style.display = isCNNMode ? "none" : "block";
+            if (cnnBars) cnnBars.style.display = isCNNMode ? "block" : "none";
+
+            const v1 = document.getElementById("d_v_step1");
+            const v2 = document.getElementById("d_v_step2");
+            const v3 = document.getElementById("d_v_step3");
+            if (v1) v1.style.display = (step === 1) ? "block" : "none";
+            if (v2) v2.style.display = (step === 2) ? "block" : "none";
+            if (v3) v3.style.display = (step === 3) ? "block" : "none";
+
+            const mathCard = document.getElementById("d_formula_card");
+            const b6Title = document.getElementById("d_block6_title");
+            const b6Badge = document.getElementById("d_block6_badge");
+
+            if (step === 1) {
+                if (b6Title) b6Title.innerHTML = "🗂️ 6. PACS Big Data Mining Pipeline";
+                if (b6Badge) b6Badge.innerText = "Data Pipeline";
+
+                setDungReportCase(1);
+                const st = document.getElementById("d_scen_title");
+                const sd = document.getElementById("d_scen_desc");
+                const ml = document.getElementById("d_nlp_desc");
+                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> Auto-mine 100,000 raw PACS radiology notes.";
+                if (sd) sd.innerHTML = "💡 <strong>Scale:</strong> $0 cost, HIPAA-safe local pipeline without manual radiologist effort.";
+                if (ml) ml.innerHTML = "• Free-text reports &rarr; Binary 14-disease label matrix {0, 1}<sup>100k &times; 14</sup>.<br>• Resolves negation ('no evidence of' &rarr; 0) and synonyms ('consolidation' &rarr; Pneumonia).";
+            } else if (step === 2) {
+                if (b6Title) b6Title.innerHTML = "🧠 6. DenseNet121 Architecture &amp; F1 Tuning";
+                if (b6Badge) b6Badge.innerText = "CNN Vision";
+
+                setDungCNNCase(1);
+                const st = document.getElementById("d_scen_title");
+                const sd = document.getElementById("d_scen_desc");
+                const ml = document.getElementById("d_nlp_desc");
+                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> Train 14-Disease DenseNet121 Vision Model &amp; Optimize F1.";
+                if (sd) sd.innerHTML = "💡 <strong>Imbalance:</strong> 99% accuracy is misleading on 1% rare diseases &rarr; F1 harmonic mean is mandatory.";
+                if (ml) ml.innerHTML = "• DenseNet121 outputs 14 independent sigmoid probabilities with Weighted Cross-Entropy.<br>• Decision threshold is tuned to balance Precision vs Recall.";
+                updateDungF1Sim();
+            } else if (step === 3) {
+                if (b6Title) b6Title.innerHTML = "🚀 6. 2026 AI Medical Frontier";
+                if (b6Badge) b6Badge.innerText = "VLM Paradigm";
+
+                setDungParadigm(1);
+                const st = document.getElementById("d_scen_title");
+                const sd = document.getElementById("d_scen_desc");
+                const ml = document.getElementById("d_nlp_desc");
+                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> 2026 Strategic Review &amp; Frontier Gaps.";
+                if (sd) sd.innerHTML = "💡 <strong>Frontier:</strong> Vision-Language Foundation Models (BiomedCLIP).";
+                if (ml) ml.innerHTML = "• Zero-shot text-image embeddings replace manual rule pipelines.<br>• Observational causal graphs represent the next clinical leap.";
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>2026 Generative Vision-Language Frontier:</strong><br>
+                        <span class="math-symbol">P</span><sub>VLM</sub>(<span class="math-symbol">y</span> | <span class="math-symbol">Image</span>, <span class="math-symbol">Prompt</span>) &gg; <span class="math-symbol">F1</span><sub>Rule-based</sub><br>
+                        <em style="color:#166534; font-weight:bold;">✔ Multimodal foundation models eliminate manual rule engineering.</em>
+                    `;
+                }
+            }
+        }
+
+        function setDungReportCase(caseId) {
+            document.querySelectorAll("#d_in_step1 .xray-thumb-card").forEach((b, idx) => {
+                b.classList.toggle("active", idx === (caseId - 1));
+            });
+
+            const box = document.getElementById("d_interactive_report_box");
+            const tbody = document.getElementById("d_out_table_body");
+            const nlpDesc = document.getElementById("d_nlp_desc");
+            const mathCard = document.getElementById("d_formula_card");
+
+            if (caseId === 1) {
+                if (box) box.innerHTML = `"Lungs are clear. <span class=\"hl-negation\">No evidence of</span> active <span class=\"hl-disease\">pneumonia</span> or consolidation."`;
+                if (nlpDesc) nlpDesc.innerHTML = `• <strong>Negation Trigger Detected:</strong> 'No evidence of' modifies 'pneumonia' &rarr; Label = <strong>0 (Negated)</strong>.<br>• Prevents false positives in supervised CNN training.`;
+                if (tbody) {
+                    tbody.innerHTML = `
+                        <tr><td><strong>Pneumonia</strong></td><td>"No evidence of pneumonia"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
+                        <tr><td><strong>Cardiomegaly</strong></td><td>No mention</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
+                    `;
+                }
+                if (mathCard && document.getElementById("d_flow_1") && document.getElementById("d_flow_1").classList.contains("active")) {
+                    mathCard.innerHTML = `
+                        <strong>NegBio Rule Parsing:</strong><br>
+                        <span class="math-symbol">Label</span>(Pneumonia) = Mention(1) &times; (1 &minus; <span style="color:#991b1b; font-weight:bold;">Negated(1)</span>) = <strong style="color:#991b1b;">0 (Clean Negative)</strong>
+                    `;
+                }
+            } else if (caseId === 2) {
+                if (box) box.innerHTML = `"Chest radiograph reveals prominent <span class=\"hl-disease\">cardiomegaly</span> with pulmonary vascular congestion."`;
+                if (nlpDesc) nlpDesc.innerHTML = `• <strong>Direct Positive Mention:</strong> Disease entity 'cardiomegaly' found without negation &rarr; Label = <strong>1 (Present)</strong>.<br>• Supervised ground truth generated for class #2.`;
+                if (tbody) {
+                    tbody.innerHTML = `
+                        <tr><td><strong>Pneumonia</strong></td><td>No mention</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
+                        <tr><td><strong>Cardiomegaly</strong></td><td>"prominent cardiomegaly"</td><td><span class="pill pill-success">1 (Present)</span></td></tr>
+                    `;
+                }
+                if (mathCard && document.getElementById("d_flow_1") && document.getElementById("d_flow_1").classList.contains("active")) {
+                    mathCard.innerHTML = `
+                        <strong>Direct Entity Parsing:</strong><br>
+                        <span class="math-symbol">Label</span>(Cardiomegaly) = Mention(1) &times; (1 &minus; Negated(0)) = <strong style="color:#166534;">1 (Positive Match)</strong>
+                    `;
+                }
+            } else {
+                if (box) box.innerHTML = `"Bilateral lower lobes show <span class=\"hl-synonym\">airspace consolidation</span> consistent with acute <span class=\"hl-synonym\">bronchopneumonia</span>."`;
+                if (nlpDesc) nlpDesc.innerHTML = `• <strong>Ontology Mapping:</strong> 'airspace consolidation' is a synonym for Pneumonia. 'bronchopneumonia' <em>is-a</em> Pneumonia &rarr; Label = <strong>1 (Present)</strong>.<br>• Mapped via UMLS &amp; SNOMED CT.`;
+                if (tbody) {
+                    tbody.innerHTML = `
+                        <tr><td><strong>Pneumonia</strong></td><td>Synonym "consolidation"</td><td><span class="pill pill-success">1 (Present)</span></td></tr>
+                        <tr><td><strong>Cardiomegaly</strong></td><td>No mention</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
+                    `;
+                }
+                if (mathCard && document.getElementById("d_flow_1") && document.getElementById("d_flow_1").classList.contains("active")) {
+                    mathCard.innerHTML = `
+                        <strong>Ontology Subsumption Mapping:</strong><br>
+                        <span class="math-symbol">Synonym</span>("consolidation") &map; <span class="math-symbol">Pneumonia</span> = <strong style="color:#166534;">1 (Present)</strong>
+                    `;
+                }
+            }
+        }
+
+        function setDungCNNCase(caseId) {
+            const img1 = document.getElementById("d_cnn_img_1");
+            const img2 = document.getElementById("d_cnn_img_2");
+            if (img1) img1.classList.toggle("active", caseId === 1);
+            if (img2) img2.classList.toggle("active", caseId === 2);
+
+            const nlpDesc = document.getElementById("d_nlp_desc");
+            const mathCard = document.getElementById("d_formula_card");
+
+            const bP = document.getElementById("d_bar_pneu");
+            const vP = document.getElementById("d_val_pneu");
+            const bC = document.getElementById("d_bar_cardio");
+            const vC = document.getElementById("d_val_cardio");
+            const bI = document.getElementById("d_bar_inf");
+            const vI = document.getElementById("d_val_inf");
+
+            if (caseId === 1) {
+                if (bP) bP.style.width = "88%";
+                if (vP) vP.innerText = "88%";
+                if (bC) bC.style.width = "14%";
+                if (vC) vC.innerText = "14%";
+                if (bI) bI.style.width = "72%";
+                if (vI) vI.innerText = "72%";
+                if (nlpDesc) nlpDesc.innerHTML = "• <strong>Scan #1 Pathology:</strong> High Pneumonia probability (88%) and Infiltration (72%).<br>• Multi-label CNN recognizes co-occurring lung conditions.";
+                if (mathCard && document.getElementById("d_flow_2") && document.getElementById("d_flow_2").classList.contains("active")) {
+                    mathCard.innerHTML = `
+                        <strong>DenseNet121 Inference (Scan #1):</strong><br>
+                        <span class="math-symbol">P</span>(Pneumonia) = &sigma;(z<sub>1</sub>) = <strong style="color:#166534;">0.88</strong> &nbsp;|&nbsp; <span class="math-symbol">P</span>(Cardiomegaly) = <strong style="color:#475569;">0.14</strong><br>
+                        <em style="color:#166534; font-weight:bold;">✔ Successfully flags positive thoracic consolidation.</em>
+                    `;
+                }
+            } else {
+                if (bP) bP.style.width = "9%";
+                if (vP) vP.innerText = "9%";
+                if (bC) bC.style.width = "94%";
+                if (vC) vC.innerText = "94%";
+                if (bI) bI.style.width = "18%";
+                if (vI) vI.innerText = "18%";
+                if (nlpDesc) nlpDesc.innerHTML = "• <strong>Scan #2 Pathology:</strong> High Cardiomegaly probability (94%), Normal lung fields.<br>• Detects enlarged heart silhouette without lung infection.";
+                if (mathCard && document.getElementById("d_flow_2") && document.getElementById("d_flow_2").classList.contains("active")) {
+                    mathCard.innerHTML = `
+                        <strong>DenseNet121 Inference (Scan #2):</strong><br>
+                        <span class="math-symbol">P</span>(Cardiomegaly) = &sigma;(z<sub>2</sub>) = <strong style="color:#166534;">0.94</strong> &nbsp;|&nbsp; <span class="math-symbol">P</span>(Pneumonia) = <strong style="color:#475569;">0.09</strong><br>
+                        <em style="color:#166534; font-weight:bold;">✔ Correctly isolates cardiac enlargement.</em>
+                    `;
+                }
+            }
+        }
+
+        function updateDungF1Sim() {
+            const sl = document.getElementById("d_sl_thresh");
+            if (!sl) return;
+            const thresh = parseInt(sl.value) / 100;
+            const txt = document.getElementById("d_txt_thresh");
+            if (txt) txt.innerText = thresh.toFixed(2);
+
+            const precision = Math.min(0.98, 0.65 + (thresh * 0.35));
+            const recall = Math.max(0.40, 0.98 - (thresh * 0.55));
+            const f1 = (2 * precision * recall) / (precision + recall);
+
+            const mathCard = document.getElementById("d_formula_card");
+            if (mathCard && document.getElementById("d_flow_2") && document.getElementById("d_flow_2").classList.contains("active")) {
+                mathCard.innerHTML = `
+                    <strong>Multi-Label Weighted Loss &amp; F1:</strong><br>
+                    <span class="math-symbol">L</span><sub>CNN</sub> = &minus; &sum; [ <span class="math-symbol">w</span><sub>p</sub> <span class="math-symbol">y</span> log <span class="math-symbol">y&#770;</span> + <span class="math-symbol">w</span><sub>n</sub> (1&minus;<span class="math-symbol">y</span>) log(1&minus;<span class="math-symbol">y&#770;</span>) ]<br>
+                    <span class="math-symbol">F1</span> = 2PR / (P+R) = <strong style="color:#166534;">${f1.toFixed(3)}</strong> &nbsp;|&nbsp; Precision: ${(precision * 100).toFixed(1)}% &middot; Recall: ${(recall * 100).toFixed(1)}%
+                `;
+            }
+
+            const summary = document.getElementById("d_f1_score_summary");
+            if (summary) summary.innerHTML = `✔ Threshold ${thresh.toFixed(2)} &rarr; Balanced F1-Score: <strong>${f1.toFixed(3)}</strong> (Penalizes missed sick cases).`;
+        }
+
+        function setDungParadigm(pId) {
+            const b1 = document.getElementById("d_btn_par_1");
+            const b2 = document.getElementById("d_btn_par_2");
+            if (b1) b1.classList.toggle("active", pId === 1);
+            if (b2) b2.classList.toggle("active", pId === 2);
+
+            const tbody = document.getElementById("d_out_table_body");
+            if (!tbody) return;
+
+            if (pId === 1) {
+                tbody.innerHTML = `
+                    <tr><td><strong>Approach</strong></td><td>Multi-stage Rule Parsing (NegBio + UMLS)</td><td><span class="pill pill-neutral">High Manual Rules</span></td></tr>
+                    <tr><td><strong>Limitation</strong></td><td>Misses novel phrasing &amp; typos</td><td><span class="pill pill-danger">Brittle</span></td></tr>
+                `;
+            } else {
+                tbody.innerHTML = `
+                    <tr><td><strong>Approach</strong></td><td>BiomedCLIP Zero-shot Multimodal Alignment</td><td><span class="pill pill-success">End-to-End SOTA</span></td></tr>
+                    <tr><td><strong>Generalization</strong></td><td>Text &harr; Vision Contrastive Embedding</td><td><span class="pill pill-success">Zero Annotation</span></td></tr>
+                `;
+            }
+        }
+
+        // ==========================================
+        // 5. LINH LOGIC (2 COMBINED CHAPTERS)
+        // ==========================================
+        function setLinhLab(labNum) {
             document.querySelectorAll("#section_linh .flow-step").forEach((s, idx) => {
                 s.classList.toggle("active", idx === (labNum - 1));
             });
 
-            document.getElementById("l_badge_step").innerText = "Chapter " + labNum;
+            const badge = document.getElementById("l_badge_step");
+            if (badge) badge.innerText = `Chapter ${labNum}`;
 
             const isClean = (labNum === 1);
             const isCam = (labNum === 2);
 
-            document.getElementById("l_input_clean_box").style.display = isClean ? "block" : "none";
-            document.getElementById("l_input_cam_box").style.display = isCam ? "block" : "none";
+            const inClean = document.getElementById("l_input_clean_box");
+            const inCam = document.getElementById("l_input_cam_box");
+            if (inClean) inClean.style.display = isClean ? "block" : "none";
+            if (inCam) inCam.style.display = isCam ? "block" : "none";
 
-            document.getElementById("l_out_clean_box").style.display = isClean ? "block" : "none";
-            document.getElementById("l_out_cam_metric").style.display = isCam ? "block" : "none";
+            const outClean = document.getElementById("l_out_clean_box");
+            const outCam = document.getElementById("l_out_cam_metric");
+            if (outClean) outClean.style.display = isClean ? "block" : "none";
+            if (outCam) outCam.style.display = isCam ? "block" : "none";
 
-            document.getElementById("l_v_lab1").style.display = isClean ? "block" : "none";
-            document.getElementById("l_v_lab2").style.display = isCam ? "block" : "none";
+            const v1 = document.getElementById("l_v_lab1");
+            const v2 = document.getElementById("l_v_lab2");
+            if (v1) v1.style.display = isClean ? "block" : "none";
+            if (v2) v2.style.display = isCam ? "block" : "none";
 
             const mathCard = document.getElementById("l_formula_card");
             const b6Title = document.getElementById("l_block6_title");
             const b6Badge = document.getElementById("l_block6_badge");
 
             if (isClean) {
-                b6Title.innerHTML = "🔤 6. BERT Attention &amp; Embedding Matrix";
-                b6Badge.innerText = "Tensor Structure";
+                if (b6Title) b6Title.innerHTML = "🔤 6. BERT Attention &amp; Embedding Matrix";
+                if (b6Badge) b6Badge.innerText = "Tensor Structure";
 
-                document.getElementById("l_scenario_title").innerHTML = "🎯 <strong>Goal:</strong> BioBERT Attention &amp; Token Tensor Representation.";
-                document.getElementById("l_scenario_body").innerHTML = "💡 <strong>Lab 1 &amp; 2:</strong> Regex cleaning + WordPiece tokenizer mapping into shape (1, 60) with Attention Mask.";
-                document.getElementById("l_ml_explanation").innerHTML = "• <strong>BERT Tokenization:</strong> Maps words to vocab IDs, adds [CLS]=101, [SEP]=102, pads zeros.<br>• <strong>Attention Mask:</strong> M_i=1 for real words, 0 for padding tokens.";
-                mathCard.innerHTML = `
-                    <strong>BioBERT Tensor &amp; Mask Representation:</strong><br>
-                    <span class="math-symbol">T</span> &in; &integers;<sup>1 &times; 60</sup>, with <span class="math-symbol">T</span><sub>0</sub> = 101 ([CLS]), <span class="math-symbol">T</span><sub>k</sub> = 102 ([SEP])<br>
-                    <span class="math-symbol">Attention Mask</span>: <span class="math-symbol">M</span><sub>i</sub> = 1 if <span class="math-symbol">T</span><sub>i</sub> &ne; 0 else 0
-                `;
+                const st = document.getElementById("l_scenario_title");
+                const sb = document.getElementById("l_scenario_body");
+                const ml = document.getElementById("l_ml_explanation");
+                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> BioBERT Attention &amp; Token Tensor Representation.";
+                if (sb) sb.innerHTML = "💡 <strong>Lab 1 &amp; 2:</strong> Regex cleaning + WordPiece tokenizer mapping into shape (1, 60) with Attention Mask.";
+                if (ml) ml.innerHTML = "• <strong>BERT Tokenization:</strong> Maps words to vocab IDs, adds [CLS]=101, [SEP]=102, pads zeros.<br>• <strong>Attention Mask:</strong> M_i=1 for real words, 0 for padding tokens.";
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>BioBERT Tensor &amp; Mask Representation:</strong><br>
+                        <span class="math-symbol">T</span> &in; &integers;<sup>1 &times; 60</sup>, with <span class="math-symbol">T</span><sub>0</sub> = 101 ([CLS]), <span class="math-symbol">T</span><sub>k</sub> = 102 ([SEP])<br>
+                        <span class="math-symbol">Attention Mask</span>: <span class="math-symbol">M</span><sub>i</sub> = 1 if <span class="math-symbol">T</span><sub>i</sub> &ne; 0 else 0
+                    `;
+                }
                 runLinhTokenizer();
             } else {
-                b6Title.innerHTML = "🩻 6. Grad-CAM X-Ray Localization &amp; Permutation";
-                b6Badge.innerText = "Layer 424 Heatmap";
+                if (b6Title) b6Title.innerHTML = "🩻 6. Grad-CAM X-Ray Localization &amp; Permutation";
+                if (b6Badge) b6Badge.innerText = "Layer 424 Heatmap";
 
-                document.getElementById("l_scenario_title").innerHTML = "🎯 <strong>Goal:</strong> Grad-CAM Chest X-Ray Localization &amp; Permutation Importance.";
-                document.getElementById("l_scenario_body").innerHTML = "💡 <strong>Lab 3 &amp; 4:</strong> Backprop class gradients through DenseNet121 Layer 424 &amp; shuffle test features.";
-                document.getElementById("l_ml_explanation").innerHTML = "• <strong>Grad-CAM:</strong> Backprops gradients &part;y^c / &part;A^k to highlight pneumonia in bright red.<br>• <strong>Permutation:</strong> Shuffling Age causes massive &minus;0.2228 C-index drop (proves Age #1 driver).";
-                mathCard.innerHTML = `
-                    <strong>Grad-CAM Activation Weights (Layer 424):</strong><br>
-                    &alpha;<sub>k</sub><sup>c</sup> = (1/Z) &sum; &part;<span class="math-symbol">y</span><sup>c</sup> / &part;<span class="math-symbol">A</span><sup>k</sup> &rarr; <span class="math-symbol">L</span><sub>CAM</sub> = <strong style="color:#7c3aed;">ReLU(&sum; &alpha;<sub>k</sub> A<sup>k</sup>)</strong>
-                `;
+                const st = document.getElementById("l_scenario_title");
+                const sb = document.getElementById("l_scenario_body");
+                const ml = document.getElementById("l_ml_explanation");
+                if (st) st.innerHTML = "🎯 <strong>Goal:</strong> Grad-CAM Chest X-Ray Localization &amp; Permutation Importance.";
+                if (sb) sb.innerHTML = "💡 <strong>Lab 3 &amp; 4:</strong> Backprop class gradients through DenseNet121 Layer 424 &amp; shuffle test features.";
+                if (ml) ml.innerHTML = "• <strong>Grad-CAM:</strong> Backprops gradients &part;y^c / &part;A^k to highlight pneumonia in bright red.<br>• <strong>Permutation:</strong> Shuffling Age causes massive &minus;0.2228 C-index drop (proves Age #1 driver).";
+                if (mathCard) {
+                    mathCard.innerHTML = `
+                        <strong>Grad-CAM Activation Weights (Layer 424):</strong><br>
+                        &alpha;<sub>k</sub><sup>c</sup> = (1/Z) &sum; &part;<span class="math-symbol">y</span><sup>c</sup> / &part;<span class="math-symbol">A</span><sup>k</sup> &rarr; <span class="math-symbol">L</span><sub>CAM</sub> = <strong style="color:#7c3aed;">ReLU(&sum; &alpha;<sub>k</sub> A<sup>k</sup>)</strong>
+                    `;
+                }
                 updateLinhHeatmap();
             }
         }
 
         function runLinhTextCleaner() {
-            const raw = document.getElementById('l_dirty_input').value;
+            const input = document.getElementById("l_dirty_input");
+            if (!input) return;
+            const raw = input.value;
             const cleaned = raw.replace(/and\/or/gi, "or").replace(/\.{2,}/g, ".").replace(/\s+/g, " ").trim();
-            document.getElementById('l_cleaned_text_display').innerText = `"${cleaned}"`;
+            const disp = document.getElementById("l_cleaned_text_display");
+            if (disp) disp.innerText = `"${cleaned}"`;
         }
 
         function runLinhTokenizer() {
-            const val = document.getElementById('l_text_select').value;
-            const list = document.getElementById('l_token_badge_list');
-            list.innerHTML = '';
+            const sel = document.getElementById("l_text_select");
+            if (!sel) return;
+            const val = sel.value;
+            const list = document.getElementById("l_token_badge_list");
+            if (!list) return;
+            list.innerHTML = "";
 
             let tokens = [];
-            if (val === '1') {
+            if (val === "1") {
                 tokens = [
                     { id: 101, text: "[CLS]", type: "token-cls" },
                     { id: 5765, text: "patient", type: "" },
@@ -2950,7 +3156,10 @@
                     { id: 1012, text: ".", type: "" },
                     { id: 102, text: "[SEP]", type: "token-sep" }
                 ];
-            } else if (val === '2') {
+                const di = document.getElementById("l_dirty_input");
+                if (di) di.value = "Patient has fever and/or cough.. Possible pneumonia.";
+                runLinhTextCleaner();
+            } else if (val === "2") {
                 tokens = [
                     { id: 101, text: "[CLS]", type: "token-cls" },
                     { id: 2981, text: "forxiga", type: "" },
@@ -2962,6 +3171,9 @@
                     { id: 8214, text: "glucose", type: "hl-disease" },
                     { id: 102, text: "[SEP]", type: "token-sep" }
                 ];
+                const di = document.getElementById("l_dirty_input");
+                if (di) di.value = "Forxiga (dapagliflozin) reduces blood glucose levels.";
+                runLinhTextCleaner();
             } else {
                 tokens = [
                     { id: 101, text: "[CLS]", type: "token-cls" },
@@ -2973,17 +3185,20 @@
                     { id: 9142, text: "consolidation", type: "hl-disease" },
                     { id: 102, text: "[SEP]", type: "token-sep" }
                 ];
+                const di = document.getElementById("l_dirty_input");
+                if (di) di.value = "Chest X-ray shows right lower lobe consolidation.";
+                runLinhTextCleaner();
             }
 
             tokens.forEach(t => {
-                const b = document.createElement('span');
+                const b = document.createElement("span");
                 b.className = `token-badge ${t.type}`;
                 b.innerText = `${t.text} (${t.id})`;
                 list.appendChild(b);
             });
 
-            for (let i = tokens.length; i < 22; i++) {
-                const p = document.createElement('span');
+            for (let i = tokens.length; i < 20; i++) {
+                const p = document.createElement("span");
                 p.className = `token-badge token-pad`;
                 p.innerText = `[PAD] (0)`;
                 list.appendChild(p);
@@ -2991,44 +3206,69 @@
         }
 
         function runLinhShuffle(feature) {
-            const body = document.getElementById('l_perm_table_body');
-            if (feature === 'age') {
+            const body = document.getElementById("l_perm_table_body");
+            const mathCard = document.getElementById("l_formula_card");
+            if (!body) return;
+
+            if (feature === "age") {
                 body.innerHTML = `
-                    <tr style="background:#fee2e2;"><td><strong>Age (Shuffled)</strong></td><td>0.5531</td><td><strong style="color:var(--danger);">-0.2228 (CRITICAL DROP)</strong></td></tr>
+                    <tr style="background:#fee2e2;"><td><strong>Age (Shuffled)</strong></td><td>0.5531</td><td><strong style="color:var(--danger);">-0.2228 (CRITICAL)</strong></td></tr>
                     <tr><td><strong>Blood Pressure</strong></td><td>0.7759</td><td>0.0000 (Baseline)</td></tr>
                 `;
+                if (mathCard && document.getElementById("l_step_2") && document.getElementById("l_step_2").classList.contains("active")) {
+                    mathCard.innerHTML = `
+                        <strong>Permutation Importance (&Delta; C-Index):</strong><br>
+                        <span class="math-symbol">Importance</span>(Age) = 0.7759 &minus; 0.5531 = <strong style="color:#991b1b;">&minus;0.2228 Drop</strong><br>
+                        <em style="color:#166534; font-weight:bold;">✔ Proves Patient Age is the #1 medical driver.</em>
+                    `;
+                }
             } else {
                 body.innerHTML = `
                     <tr><td><strong>Age</strong></td><td>0.7759</td><td>0.0000 (Baseline)</td></tr>
-                    <tr style="background:#fef3c7;"><td><strong>Blood Pressure (Shuffled)</strong></td><td>0.7058</td><td><strong style="color:var(--warning);">-0.0701 (Moderate Drop)</strong></td></tr>
+                    <tr style="background:#fef3c7;"><td><strong>Blood Pressure (Shuffled)</strong></td><td>0.7058</td><td><strong style="color:var(--warning);">-0.0701 (Moderate)</strong></td></tr>
                 `;
+                if (mathCard && document.getElementById("l_step_2") && document.getElementById("l_step_2").classList.contains("active")) {
+                    mathCard.innerHTML = `
+                        <strong>Permutation Importance (&Delta; C-Index):</strong><br>
+                        <span class="math-symbol">Importance</span>(BP) = 0.7759 &minus; 0.7058 = <strong style="color:#d97706;">&minus;0.0701 Drop</strong><br>
+                        <em style="color:#166534; font-weight:bold;">✔ Blood pressure is an important secondary risk factor.</em>
+                    `;
+                }
             }
         }
 
         function updateLinhHeatmap() {
-            const op = parseInt(document.getElementById('l_cam_sl_op').value) / 100;
-            document.getElementById('l_cam_op_txt').innerText = (op * 100).toFixed(0) + '%';
-            document.getElementById('l_heatmap_blob').style.opacity = op;
+            const sl = document.getElementById("l_cam_sl_op");
+            if (!sl) return;
+            const op = parseInt(sl.value) / 100;
+            const txt = document.getElementById("l_cam_op_txt");
+            const blob = document.getElementById("l_heatmap_blob");
+            if (txt) txt.innerText = (op * 100).toFixed(0) + "%";
+            if (blob) blob.style.opacity = op;
         }
 
         function setLinhDisease(disease) {
-            const isPneumo = disease === 'pneumonia';
-            document.getElementById('l_dis_btn_1').classList.toggle('active', isPneumo);
-            document.getElementById('l_dis_btn_2').classList.toggle('active', !isPneumo);
+            const isPneumo = disease === "pneumonia";
+            const b1 = document.getElementById("l_dis_btn_1");
+            const b2 = document.getElementById("l_dis_btn_2");
+            if (b1) b1.classList.toggle("active", isPneumo);
+            if (b2) b2.classList.toggle("active", !isPneumo);
 
-            const blob = document.getElementById('l_heatmap_blob');
-            const lbl = document.getElementById('l_cam_disease_lbl');
-            const mlDesc = document.getElementById('l_ml_explanation');
-            const mathCard = document.getElementById('l_formula_card');
+            const blob = document.getElementById("l_heatmap_blob");
+            const lbl = document.getElementById("l_cam_disease_lbl");
+            const mlDesc = document.getElementById("l_ml_explanation");
+            const mathCard = document.getElementById("l_formula_card");
 
             if (isPneumo) {
-                lbl.innerText = "Target: Pneumonia (Right Lower Lobe)";
-                blob.style.top = "25%";
-                blob.style.left = "32%";
-                blob.style.width = "120px";
-                blob.style.height = "80px";
+                if (lbl) lbl.innerText = "Target: Pneumonia (Right Lower Lobe)";
+                if (blob) {
+                    blob.style.top = "25%";
+                    blob.style.left = "32%";
+                    blob.style.width = "120px";
+                    blob.style.height = "80px";
+                }
                 if (mlDesc) mlDesc.innerHTML = "• Backprops gradients for <strong>Class #1 (Pneumonia)</strong> through Layer 424.<br>• Concentrates heat activations over right lower lung field.";
-                if (mathCard && document.getElementById('l_step_2') && document.getElementById('l_step_2').classList.contains('active')) {
+                if (mathCard && document.getElementById("l_step_2") && document.getElementById("l_step_2").classList.contains("active")) {
                     mathCard.innerHTML = `
                         <strong>Grad-CAM (Target = Pneumonia):</strong><br>
                         &alpha;<sub>k</sub><sup>pneu</sup> = (1/Z) &sum; &part;<span class="math-symbol">y</span><sup>pneu</sup> / &part;<span class="math-symbol">A</span><sup>k</sup> &rarr; <span class="math-symbol">L</span><sub>CAM</sub> = <strong style="color:#7c3aed;">ReLU(&sum; &alpha;<sub>k</sub> A<sup>k</sup>)</strong><br>
@@ -3036,13 +3276,15 @@
                     `;
                 }
             } else {
-                lbl.innerText = "Target: Cardiomegaly (Enlarged Cardiac Silhouette)";
-                blob.style.top = "42%";
-                blob.style.left = "40%";
-                blob.style.width = "150px";
-                blob.style.height = "110px";
+                if (lbl) lbl.innerText = "Target: Cardiomegaly (Enlarged Cardiac Silhouette)";
+                if (blob) {
+                    blob.style.top = "42%";
+                    blob.style.left = "40%";
+                    blob.style.width = "150px";
+                    blob.style.height = "110px";
+                }
                 if (mlDesc) mlDesc.innerHTML = "• Backprops gradients for <strong>Class #2 (Cardiomegaly)</strong> through Layer 424.<br>• Concentrates heat activations over enlarged heart border.";
-                if (mathCard && document.getElementById('l_step_2') && document.getElementById('l_step_2').classList.contains('active')) {
+                if (mathCard && document.getElementById("l_step_2") && document.getElementById("l_step_2").classList.contains("active")) {
                     mathCard.innerHTML = `
                         <strong>Grad-CAM (Target = Cardiomegaly):</strong><br>
                         &alpha;<sub>k</sub><sup>cardio</sup> = (1/Z) &sum; &part;<span class="math-symbol">y</span><sup>cardio</sup> / &part;<span class="math-symbol">A</span><sup>k</sup> &rarr; <span class="math-symbol">L</span><sub>CAM</sub> = <strong style="color:#7c3aed;">ReLU(&sum; &alpha;<sub>k</sub> A<sup>k</sup>)</strong><br>
@@ -3053,285 +3295,15 @@
         }
 
         // ==========================================
-        // 5. DUNG FULLY DYNAMIC INPUTS & MATH
-        // ==========================================
-                function setDungPipelineStep(step) {
-            document.querySelectorAll("#section_dung .flow-step").forEach((s, idx) => {
-                s.classList.toggle("active", idx === (step - 1));
-            });
-
-            document.getElementById("d_block_badge_1").innerText = "Chapter " + step;
-
-            document.getElementById("d_in_step1").style.display = (step === 1) ? "block" : "none";
-            document.getElementById("d_in_step2").style.display = (step === 2) ? "block" : "none";
-            document.getElementById("d_in_step3").style.display = (step === 3) ? "block" : "none";
-
-            const isCNNMode = (step === 2);
-            document.getElementById("d_out_table_wrapper").style.display = isCNNMode ? "none" : "block";
-            document.getElementById("d_out_cnn_bars").style.display = isCNNMode ? "block" : "none";
-
-            document.getElementById("d_v_step1").style.display = (step === 1) ? "block" : "none";
-            document.getElementById("d_v_step2").style.display = (step === 2) ? "block" : "none";
-            document.getElementById("d_v_step3").style.display = (step === 3) ? "block" : "none";
-
-            const mathCard = document.getElementById("d_formula_card");
-            const b6Title = document.getElementById("d_block6_title");
-            const b6Badge = document.getElementById("d_block6_badge");
-
-            if (step === 1) {
-                b6Title.innerHTML = "🗂️ 6. PACS Big Data Mining Pipeline";
-                b6Badge.innerText = "Data Pipeline";
-
-                setDungReportCase(1);
-                document.getElementById("d_scen_title").innerHTML = "🎯 <strong>Goal:</strong> Auto-mine 100,000 raw PACS radiology notes.";
-                document.getElementById("d_scen_desc").innerHTML = "💡 <strong>Scale:</strong> $0 cost, HIPAA-safe local pipeline without manual radiologist effort.";
-                document.getElementById("d_nlp_desc").innerHTML = "• Free-text reports &rarr; Binary 14-disease label matrix {0, 1}<sup>100k &times; 14</sup>.<br>• Resolves negation ('no evidence of' &rarr; 0) and synonyms ('consolidation' &rarr; Pneumonia).";
-            } else if (step === 2) {
-                b6Title.innerHTML = "🧠 6. DenseNet121 Architecture &amp; F1 Tuning";
-                b6Badge.innerText = "CNN Vision";
-
-                setDungCNNCase(1);
-                document.getElementById("d_scen_title").innerHTML = "🎯 <strong>Goal:</strong> Train 14-Disease DenseNet121 Vision Model &amp; Optimize F1.";
-                document.getElementById("d_scen_desc").innerHTML = "💡 <strong>Imbalance:</strong> 99% accuracy is misleading on 1% rare diseases &rarr; F1 harmonic mean is mandatory.";
-                document.getElementById("d_nlp_desc").innerHTML = "• DenseNet121 outputs 14 independent sigmoid probabilities with Weighted Cross-Entropy.<br>• Decision threshold is tuned to balance Precision vs Recall.";
-                updateDungF1Sim();
-            } else if (step === 3) {
-                b6Title.innerHTML = "🚀 6. 2026 AI Medical Frontier";
-                b6Badge.innerText = "VLM Paradigm";
-
-                setDungParadigm(1);
-                document.getElementById("d_scen_title").innerHTML = "🎯 <strong>Goal:</strong> 2026 Strategic Review &amp; Frontier Gaps.";
-                document.getElementById("d_scen_desc").innerHTML = "💡 <strong>Frontier:</strong> Vision-Language Foundation Models (BiomedCLIP).";
-                document.getElementById("d_nlp_desc").innerHTML = "• Zero-shot text-image embeddings replace manual rule pipelines.<br>• Observational causal graphs represent the next clinical leap.";
-                mathCard.innerHTML = `
-                    <strong>2026 Generative Vision-Language Frontier:</strong><br>
-                    <span class="math-symbol">P</span><sub>VLM</sub>(<span class="math-symbol">y</span> | <span class="math-symbol">Image</span>, <span class="math-symbol">Prompt</span>) &gg; <span class="math-symbol">F1</span><sub>Rule-based</sub><br>
-                    <em style="color:#166534; font-weight:bold;">✔ Multimodal foundation models eliminate manual rule engineering.</em>
-                `;
-            }
-        }
-
-        function setDungReportCase(caseId) {
-            document.querySelectorAll('#d_in_step1 .preset-btn, #d_in_step1 .xray-thumb-card').forEach((b, idx) => {
-                b.classList.toggle('active', idx === (caseId - 1));
-            });
-
-            const box = document.getElementById('d_interactive_report_box');
-            const tbody = document.getElementById('d_out_table_body');
-            const nlpDesc = document.getElementById('d_nlp_desc');
-            const mathCard = document.getElementById('d_formula_card');
-
-            if (caseId === 1) {
-                box.innerHTML = `"Lungs are clear. <span class="hl-negation">No evidence of</span> active <span class="hl-disease">pneumonia</span> or consolidation."`;
-                nlpDesc.innerHTML = `• <strong>Negation Trigger Detected:</strong> 'No evidence of' modifies 'pneumonia' &rarr; Label = <strong>0 (Negated)</strong>.<br>• Prevents false positives in supervised CNN training.`;
-                tbody.innerHTML = `
-                    <tr><td><strong>Pneumonia</strong></td><td>Yes ("pneumonia")</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
-                    <tr><td><strong>Cardiomegaly</strong></td><td>No</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
-                `;
-                if (mathCard && document.getElementById('d_flow_1') && document.getElementById('d_flow_1').classList.contains('active')) {
-                    mathCard.innerHTML = `
-                        <strong>NegBio Rule Parsing:</strong><br>
-                        <span class="math-symbol">Label</span>(Pneumonia) = Mention(1) &times; (1 &minus; <span style="color:#991b1b; font-weight:bold;">Negated(1)</span>) = <strong style="color:#991b1b;">0 (Clean Negative)</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ 100% HIPAA-compliant automated data extraction.</em>
-                    `;
-                }
-            } else if (caseId === 2) {
-                box.innerHTML = `"Chest radiograph reveals prominent <span class="hl-disease">cardiomegaly</span> with pulmonary vascular congestion."`;
-                nlpDesc.innerHTML = `• <strong>Direct Positive Mention:</strong> Disease entity 'cardiomegaly' found without negation &rarr; Label = <strong>1 (Present)</strong>.<br>• Supervised ground truth generated for class #2.`;
-                tbody.innerHTML = `
-                    <tr><td><strong>Pneumonia</strong></td><td>No</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
-                    <tr><td><strong>Cardiomegaly</strong></td><td>Yes ("cardiomegaly")</td><td><span class="pill pill-success">1 (Present)</span></td></tr>
-                `;
-                if (mathCard && document.getElementById('d_flow_1') && document.getElementById('d_flow_1').classList.contains('active')) {
-                    mathCard.innerHTML = `
-                        <strong>Direct Entity Parsing:</strong><br>
-                        <span class="math-symbol">Label</span>(Cardiomegaly) = Mention(1) &times; (1 &minus; Negated(0)) = <strong style="color:#166534;">1 (Positive Match)</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Assigned positive label matrix entry for patient scan.</em>
-                    `;
-                }
-            } else {
-                box.innerHTML = `"Bilateral lower lobes show <span class="hl-synonym">airspace consolidation</span> consistent with acute <span class="hl-synonym">bronchopneumonia</span>."`;
-                nlpDesc.innerHTML = `• <strong>Ontology Mapping:</strong> 'airspace consolidation' is a synonym for Pneumonia. 'bronchopneumonia' <em>is-a</em> Pneumonia &rarr; Label = <strong>1 (Present)</strong>.<br>• Mapped via UMLS &amp; SNOMED CT.`;
-                tbody.innerHTML = `
-                    <tr><td><strong>Pneumonia</strong></td><td>Yes (Synonym 'consolidation')</td><td><span class="pill pill-success">1 (Present)</span></td></tr>
-                    <tr><td><strong>Cardiomegaly</strong></td><td>No</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
-                `;
-                if (mathCard && document.getElementById('d_flow_1') && document.getElementById('d_flow_1').classList.contains('active')) {
-                    mathCard.innerHTML = `
-                        <strong>Ontology Subsumption Mapping:</strong><br>
-                        <span class="math-symbol">Synonym</span>("consolidation") &map; <span class="math-symbol">Pneumonia</span> (Class #1) = <strong style="color:#166534;">1 (Present)</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Bridges unstructured radiology vocabulary into standardized targets.</em>
-                    `;
-                }
-            }
-        }
-
-        function setDungOntologyTerm(termId) {
-            document.querySelectorAll('#d_in_step2 .preset-btn').forEach((b, idx) => {
-                b.classList.toggle('active', idx === (termId - 1));
-            });
-
-            const tbody = document.getElementById('d_out_table_body');
-            const mathCard = document.getElementById('d_formula_card');
-
-            if (termId === 1) {
-                tbody.innerHTML = `
-                    <tr><td><strong>Pneumonia (Class #1)</strong></td><td>Mapped from "airspace consolidation"</td><td><span class="pill pill-success">1 (Synonym Match)</span></td></tr>
-                `;
-                mathCard.innerHTML = `
-                    <strong>Synonym Dictionary Mapping:</strong><br>
-                    <span class="math-symbol">Synonym</span>("airspace consolidation") &rarr; <span class="math-symbol">Pneumonia</span>
-                `;
-            } else if (termId === 2) {
-                tbody.innerHTML = `
-                    <tr><td><strong>Pneumonia (Class #1)</strong></td><td>Subsumed from "bronchopneumonia"</td><td><span class="pill pill-success">1 (Is-A Hierarchy)</span></td></tr>
-                `;
-                mathCard.innerHTML = `
-                    <strong>Subsumption Ontology Mapping:</strong><br>
-                    <span class="math-symbol">Child</span>(Bronchopneumonia) &sube; <span class="math-symbol">Parent</span>(Pneumonia)
-                `;
-            } else {
-                tbody.innerHTML = `
-                    <tr><td><strong>Infiltration (Class #4)</strong></td><td>Mapped from "lung infiltrate"</td><td><span class="pill pill-success">1 (Canonical Match)</span></td></tr>
-                `;
-                mathCard.innerHTML = `
-                    <strong>SNOMED CT Code Mapping:</strong><br>
-                    <span class="math-symbol">ConceptID</span>(13645005) &rarr; <span class="math-symbol">Infiltration</span>
-                `;
-            }
-        }
-
-        function setDungNegBioCase(caseId) {
-            document.querySelectorAll('#d_in_step3 .preset-btn').forEach((b, idx) => {
-                b.classList.toggle('active', idx === (caseId - 1));
-            });
-
-            const tbody = document.getElementById('d_out_table_body');
-            const nlpDesc = document.getElementById('d_nlp_desc');
-            const mathCard = document.getElementById('d_formula_card');
-
-            if (caseId === 1) {
-                tbody.innerHTML = `
-                    <tr><td><strong>Pneumonia</strong></td><td>"No evidence of pneumonia"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
-                `;
-                nlpDesc.innerHTML = `• <strong>Negation Trigger:</strong> "No evidence of" directly modifies "pneumonia" &rarr; Output = <strong>0</strong>.<br>• Prevents clinical false positive.`;
-                mathCard.innerHTML = `
-                    <strong>NegBio Syntactic Parse:</strong><br>
-                    <span class="math-symbol">Pneumonia</span>: Mention(1) &times; (1 &minus; <span style="color:#991b1b; font-weight:bold;">Negated(1)</span>) = <strong style="color:#991b1b;">0 (Clean Negative)</strong>
-                `;
-            } else if (caseId === 2) {
-                tbody.innerHTML = `
-                    <tr><td><strong>Pneumonia</strong></td><td>"Lungs are free of pneumonia"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
-                `;
-                nlpDesc.innerHTML = `• <strong>Exclusion Pattern:</strong> "Free of" acts as negative trigger on "pneumonia" &rarr; Output = <strong>0</strong>.<br>• Prevents false training signal.`;
-                mathCard.innerHTML = `
-                    <strong>NegBio Syntactic Parse:</strong><br>
-                    <span class="math-symbol">Pneumonia</span>: Mention(1) &times; (1 &minus; <span style="color:#991b1b; font-weight:bold;">Negated(1)</span>) = <strong style="color:#991b1b;">0 (Clean Negative)</strong>
-                `;
-            } else {
-                tbody.innerHTML = `
-                    <tr><td><strong>Cardiomegaly</strong></td><td>"Positive for cardiomegaly"</td><td><span class="pill pill-success">1 (Affirmed)</span></td></tr>
-                `;
-                nlpDesc.innerHTML = `• <strong>Affirmative Trigger:</strong> "Positive for" confirms true pathology &rarr; Output = <strong>1 (Present)</strong>.<br>• Correctly passes to CNN training matrix.`;
-                mathCard.innerHTML = `
-                    <strong>NegBio Affirmative Parse:</strong><br>
-                    <span class="math-symbol">Cardiomegaly</span>: Mention(1) &times; (1 &minus; Negated(0)) = <strong style="color:#166534;">1 (Present)</strong>
-                `;
-            }
-        }
-
-        function setDungParadigm(pId) {
-            document.querySelectorAll('#d_in_step6 .preset-btn').forEach((b, idx) => {
-                b.classList.toggle('active', idx === (pId - 1));
-            });
-
-            const tbody = document.getElementById('d_out_table_body');
-            if (pId === 1) {
-                tbody.innerHTML = `
-                    <tr><td><strong>Approach</strong></td><td>Multi-stage Rule Parsing</td><td><span class="pill pill-neutral">High Manual Effort</span></td></tr>
-                    <tr><td><strong>Bottleneck</strong></td><td>Misses novel phrasing &amp; slang</td><td><span class="pill pill-danger">Brittle</span></td></tr>
-                `;
-            } else {
-                tbody.innerHTML = `
-                    <tr><td><strong>Approach</strong></td><td>BiomedCLIP Zero-shot Reasoning</td><td><span class="pill pill-success">End-to-End</span></td></tr>
-                    <tr><td><strong>Generalization</strong></td><td>Cross-modal Image &harr; Text alignment</td><td><span class="pill pill-success">Hospital SOTA 2026</span></td></tr>
-                `;
-            }
-        }
-
-        function setDungCNNCase(caseId) {
-            document.getElementById('d_cnn_img_1').classList.toggle('active', caseId === 1);
-            document.getElementById('d_cnn_img_2').classList.toggle('active', caseId === 2);
-            const nlpDesc = document.getElementById('d_nlp_desc');
-            const mathCard = document.getElementById('d_formula_card');
-
-            if (caseId === 1) {
-                document.getElementById('d_bar_pneu').style.width = "88%";
-                document.getElementById('d_val_pneu').innerText = "88%";
-                document.getElementById('d_bar_cardio').style.width = "14%";
-                document.getElementById('d_val_cardio').innerText = "14%";
-                document.getElementById('d_bar_inf').style.width = "72%";
-                document.getElementById('d_val_inf').innerText = "72%";
-                if (nlpDesc) nlpDesc.innerHTML = "• <strong>Scan #1 Pathology:</strong> High Pneumonia probability (88%) and Infiltration (72%).<br>• Multi-label CNN recognizes co-occurring lung conditions.";
-                if (mathCard && document.getElementById('d_flow_2') && document.getElementById('d_flow_2').classList.contains('active')) {
-                    mathCard.innerHTML = `
-                        <strong>DenseNet121 Inference (Scan #1):</strong><br>
-                        <span class="math-symbol">P</span>(Pneumonia) = &sigma;(z<sub>1</sub>) = <strong style="color:#166534;">0.88</strong> &nbsp;|&nbsp; <span class="math-symbol">P</span>(Cardiomegaly) = <strong style="color:#475569;">0.14</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Successfully flags positive thoracic consolidation.</em>
-                    `;
-                }
-            } else {
-                document.getElementById('d_bar_pneu').style.width = "9%";
-                document.getElementById('d_val_pneu').innerText = "9%";
-                document.getElementById('d_bar_cardio').style.width = "94%";
-                document.getElementById('d_val_cardio').innerText = "94%";
-                document.getElementById('d_bar_inf').style.width = "18%";
-                document.getElementById('d_val_inf').innerText = "18%";
-                if (nlpDesc) nlpDesc.innerHTML = "• <strong>Scan #2 Pathology:</strong> High Cardiomegaly probability (94%), Normal lung fields.<br>• Detects enlarged heart silhouette without lung infection.";
-                if (mathCard && document.getElementById('d_flow_2') && document.getElementById('d_flow_2').classList.contains('active')) {
-                    mathCard.innerHTML = `
-                        <strong>DenseNet121 Inference (Scan #2):</strong><br>
-                        <span class="math-symbol">P</span>(Cardiomegaly) = &sigma;(z<sub>2</sub>) = <strong style="color:#166534;">0.94</strong> &nbsp;|&nbsp; <span class="math-symbol">P</span>(Pneumonia) = <strong style="color:#475569;">0.09</strong><br>
-                        <em style="color:#166534; font-weight:bold;">✔ Correctly isolates cardiac enlargement.</em>
-                    `;
-                }
-            }
-        }
-
-        function updateDungF1Sim() {
-            const thresh = parseInt(document.getElementById('d_sl_thresh').value) / 100;
-            document.getElementById('d_txt_thresh').innerText = thresh.toFixed(2);
-
-            const precision = Math.min(0.98, 0.65 + (thresh * 0.35));
-            const recall = Math.max(0.40, 0.98 - (thresh * 0.55));
-            const f1 = (2 * precision * recall) / (precision + recall);
-
-            document.getElementById('d_formula_card').innerHTML = `
-                <strong>F1-Score (Harmonic Mean):</strong><br>
-                <span class="math-symbol">F1</span> = 2 &times; (<span class="math-symbol">Precision</span> &times; <span class="math-symbol">Recall</span>) / (<span class="math-symbol">Precision</span> + <span class="math-symbol">Recall</span>) = <strong style="color:#166534;">${f1.toFixed(3)}</strong><br>
-                <em>Precision: ${(precision * 100).toFixed(1)}% &middot; Recall: ${(recall * 100).toFixed(1)}%</em>
-            `;
-
-            const tbody = document.getElementById('d_out_table_body');
-            tbody.innerHTML = `
-                <tr><td><strong>CNN Precision (True + / Pred +)</strong></td><td>Threshold: ${thresh.toFixed(2)}</td><td><strong style="color:var(--primary);">${(precision * 100).toFixed(1)}%</strong></td></tr>
-                <tr><td><strong>CNN Recall (True + / Real +)</strong></td><td>Threshold: ${thresh.toFixed(2)}</td><td><strong style="color:var(--success);">${(recall * 100).toFixed(1)}%</strong></td></tr>
-                <tr style="background:#f0fdf4;"><td><strong>Harmonic F1-Score</strong></td><td>Balance Metric</td><td><strong style="color:#166534; font-size:0.95rem;">${f1.toFixed(3)}</strong></td></tr>
-            `;
-
-            document.getElementById('d_f1_score_summary').innerHTML = `✔ Current Threshold ${thresh.toFixed(2)} &rarr; Balanced F1-Score: <strong>${f1.toFixed(3)}</strong> (Penalizes missed sick cases).`;
-        }
-
-        // ==========================================
         // 6. WRAP-UP INTERACTIVE Q&A CONSOLE
         // ==========================================
         function selectWrapUpQ(id) {
             for (let i = 1; i <= 6; i++) {
                 const b = document.getElementById(`btn_q_${i}`);
-                if (b) b.classList.toggle('active', i === id);
+                if (b) b.classList.toggle("active", i === id);
             }
 
-            const disp = document.getElementById('wrapup_qa_display');
+            const disp = document.getElementById("wrapup_qa_display");
             if (!disp) return;
 
             if (id === 1) {
@@ -3351,15 +3323,12 @@
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.76rem; text-align: center; margin: 8px 0;">
                             <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 8px;">
                                 <div style="font-weight: bold; color: #991b1b;">❌ Standard Risk Model</div>
-                                <div style="color: #7f1d1d; margin-top: 2px;">Prescribes drug to ALL high-risk elderly patients &rarr; Many suffer side effects with 0 benefit!</div>
+                                <div style="color: #7f1d1d; margin-top: 2px;">Prescribes drug to ALL high-risk elderly &rarr; Many suffer side effects with 0 benefit!</div>
                             </div>
                             <div style="background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 8px;">
                                 <div style="font-weight: bold; color: #166534;">✔ Causal CATE Model</div>
-                                <div style="color: #14532d; margin-top: 2px;">Prescribes drug ONLY to patients with high net benefit (+26.4% Grandpa An) &rarr; Saves lives safely!</div>
+                                <div style="color: #14532d; margin-top: 2px;">Prescribes drug ONLY to patients with high net benefit (+26.4% Grandpa An)!</div>
                             </div>
-                        </div>
-                        <div style="background: #eff6ff; border-left: 3px solid #2563eb; padding: 8px; font-size: 0.78rem; color: #1e40af; line-height: 1.5;">
-                            ☂️ <strong>Everyday Analogy:</strong> Predicting who carries an umbrella is correlation (risk). Knowing who stays dry <em>specifically because</em> they opened their umbrella is causal effect!
                         </div>
                     </div>
                 `;
@@ -3375,23 +3344,10 @@
                     <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
                         <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
                             <strong>Plain Language Answer:</strong><br>
-                            <strong>Yes, absolutely!</strong> In Causal Machine Learning, <strong>0.60–0.65 is the recognized international hospital benchmark</strong> (comparable to an AUC of ~0.80 in standard risk ML).
+                            <strong>Yes, absolutely!</strong> In Causal Machine Learning, <strong>0.60–0.65 is the recognized international hospital benchmark</strong> (comparable to ~0.80 AUC in standard risk ML).
                         </div>
-                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin: 8px 0;">
-                            <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Why 0.6342 is considered hospital-grade in causal evaluation:</div>
-                            <div class="disease-bar-row">
-                                <span style="width: 100px;">0.50 (Coin Toss)</span>
-                                <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 50%; background: #94a3b8;"></div></div>
-                                <span style="font-size:11px; width: 50px; text-align: right;">Random</span>
-                            </div>
-                            <div class="disease-bar-row">
-                                <span style="width: 100px; font-weight:bold; color:var(--success);">0.63 (Our Model)</span>
-                                <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 63.4%; background: var(--success);"></div></div>
-                                <span style="font-weight: bold; color:var(--success); width: 50px; text-align: right;">Hospital</span>
-                            </div>
-                        </div>
-                        <div style="background: #f0fdf4; border-left: 3px solid #059669; padding: 8px; font-size: 0.78rem; color: #166534; line-height: 1.5;">
-                            🏆 <strong>The Twin Noise Factor:</strong> Because counterfactuals are unobservable, we must compare statistical twin pairs. The unavoidable matching noise caps practical C-for-benefit at ~0.65.
+                        <div style="background: #f0fdf4; border-left: 3px solid #059669; padding: 8px; font-size: 0.78rem; color: #166534; line-height: 1.5; margin-top: 6px;">
+                            🏆 <strong>The Twin Noise Factor:</strong> Because counterfactuals are unobservable, comparing statistical twin pairs has unavoidable matching noise capping practical C-for-benefit at ~0.65.
                         </div>
                     </div>
                 `;
@@ -3407,17 +3363,7 @@
                     <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
                         <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
                             <strong>Plain Language Answer:</strong><br>
-                            <strong>T-Learner is significantly superior in medical AI.</strong> S-Learner suffers from extreme <em>Shrinkage Bias</em>, where the tree ignores the drug and sets estimated benefit to 0.
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.76rem; text-align: center; margin: 8px 0;">
-                            <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 8px;">
-                                <div style="font-weight: bold; color: #991b1b;">🌲 S-Learner (1 Model)</div>
-                                <div style="color: #7f1d1d; margin-top: 2px;">Treatment W is just 1 feature out of 30. Trees split on Age/BP first &rarr; W is neglected &rarr; Benefit collapses to 0%!</div>
-                            </div>
-                            <div style="background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 8px;">
-                                <div style="font-weight: bold; color: #166534;">🌲🌲 T-Learner (2 Models)</div>
-                                <div style="color: #14532d; margin-top: 2px;">Trains 2 separate doctors (Treated Cohort vs Control Cohort) &rarr; Captures 100% of complex treatment interactions!</div>
-                            </div>
+                            <strong>T-Learner is significantly superior in medical AI.</strong> S-Learner suffers from extreme <em>Shrinkage Bias</em>, where decision trees split on Age/BP first and ignore the treatment feature W.
                         </div>
                     </div>
                 `;
@@ -3433,10 +3379,7 @@
                     <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
                         <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
                             <strong>Plain Language Answer:</strong><br>
-                            <strong>No! Grad-CAM shows WHERE the AI looked, NOT that its medical reasoning was right.</strong> It is a clinical safety inspection and debugging tool for radiologists.
-                        </div>
-                        <div style="background: #faf5ff; border-left: 3px solid #7c3aed; padding: 10px; font-size: 0.78rem; color: #5b21b6; line-height: 1.5; margin: 8px 0;">
-                            🔍 <strong>Catching "Clever Hans" Cheating:</strong> If an AI predicts Pneumonia but its Grad-CAM red blob highlights a metal hospital marker or rib edge instead of the lung consolidation, doctors immediately catch the flaw before making a diagnosis!
+                            <strong>No! Grad-CAM shows WHERE the AI looked, NOT that its medical diagnosis is correct.</strong> It serves as a visual debugging tool to catch shortcut cheating (e.g. looking at hospital markers instead of lung tissue).
                         </div>
                     </div>
                 `;
@@ -3452,58 +3395,34 @@
                     <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
                         <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
                             <strong>Plain Language Answer:</strong><br>
-                            Hospital PACS systems store <strong>millions of unstructured notes</strong> behind strict firewalls. Cloud LLMs are cost-prohibitive, have high latency, hallucinate, and <strong>violate patient privacy regulations (HIPAA / GDPR)</strong>.
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.76rem; margin: 8px 0;">
-                            <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px;">
-                                <strong>Cloud LLMs (GPT-4):</strong><br>
-                                • Cost: $10,000s/month<br>
-                                • Latency: 1-2 sec/report<br>
-                                • HIPAA risk: Cloud data transfer
-                            </div>
-                            <div style="background: #fef9c3; border: 1px solid #fde047; border-radius: 6px; padding: 8px;">
-                                <strong>Hospital Rule / BERT:</strong><br>
-                                • Cost: $0 (100% on-premise)<br>
-                                • Latency: 1,000 reports/sec<br>
-                                • HIPAA risk: 100% safe &amp; local
-                            </div>
+                            Hospital PACS systems store <strong>millions of unstructured notes</strong> behind strict firewalls. Rule-based pipelines are 100% HIPAA-safe, instant, and $0 cost for local hospital deployment.
                         </div>
                     </div>
                 `;
-            } else if (id === 6) {
+            } else {
                 disp.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                         <span class="pill pill-warning" style="font-size: 0.74rem;">👩‍💼 Dung</span>
                         <span class="block-badge badge-output">Question 6 / 6</span>
                     </div>
                     <h3 style="font-size: 1rem; color: #92400e; margin-bottom: 8px; line-height: 1.4;">
-                        ❓ Labels extracted by rules are noisy — why does training a CNN on them still work?
+                        ❓ If rule labels have errors, why does CNN still achieve 92% F1?
                     </h3>
                     <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
                         <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
                             <strong>Plain Language Answer:</strong><br>
-                            <strong>Deep Learning convolutional networks act as natural noise filters at scale!</strong>
-                        </div>
-                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.6; margin: 8px 0;">
-                            🤖 <strong>Scale Overcomes Noise:</strong> When training on 100,000+ Chest X-rays, random rule false positives/negatives cancel each other out across the cohort. DenseNet121 learns true visual pathology patterns (infiltrates, heart enlargement) that <strong>generalize far better than the noisy rule-based teacher!</strong>
-                        </div>
-                        <div style="font-size: 0.78rem; color: var(--success); font-weight: bold;">
-                            ✔ Validated on Stanford Test Set &rarr; Extraction F1: 0.921 across 14 rare pathologies.
+                            <strong>Scale filters out noise!</strong> Across 100,000 X-rays, random label noise averages out, allowing the deep CNN to learn true physical visual representations of disease.
                         </div>
                     </div>
                 `;
             }
         }
 
-        // On Load initialization
-        window.addEventListener('load', () => {
-            ['overview', 'khuong', 'hieu', 'linh', 'dung', 'wrapup'].forEach(k => updateTimerDisplay(k));
-            setKhuongStep(1);
-            setHieuPipelineStep(1);
-            setLinhLab(1);
-            setDungPipelineStep(1);
-            selectWrapUpQ(1);
+        // Initialize default view
+        window.addEventListener("DOMContentLoaded", () => {
+            switchMember("overview");
         });
-        </script>
+
+    </script>
 </body>
 </html>
