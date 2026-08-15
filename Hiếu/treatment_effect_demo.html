@@ -1808,18 +1808,18 @@
         </div>
 
         <!-- ========================================================================= -->
-        <!-- 5. WRAP-UP & STRATEGIC COURSE Q&A SYNTHESIS                               -->
+        <!-- 5. GRAND CONCLUSION & STRATEGIC COMMITTEE Q&A CONSOLE                    -->
         <!-- ========================================================================= -->
         <div id="section_wrapup" class="tab-content">
             <div class="member-banner" style="border-left: 5px solid #0284c7;">
                 <div>
-                    <span class="role-tag" style="background:#e0f2fe; color:#0369a1;">All Members · Strategic Wrap-Up</span>
-                    <h2 style="font-size: 1.25rem; margin-top: 4px; color: var(--dark);">Course Synthesis &amp; Strategic Q&amp;A Wrap-Up</h2>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Plain-language, crystal-clear answers to the 6 core clinical and machine learning questions.</p>
+                    <span class="role-tag" style="background:#e0f2fe; color:#0369a1;">All Members · Grand Project Conclusion</span>
+                    <h2 style="font-size: 1.25rem; margin-top: 4px; color: var(--dark);">Grand Conclusion, Clinical Synthesis &amp; Interactive Q&amp;A Console</h2>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">End-to-End Clinical Translation: Causal Inference (W1) &rarr; Individualized CATE (W1) &rarr; Medical NLP (W2) &rarr; CNN Vision (W3)</p>
                 </div>
                 <div class="timer-widget" id="timer_wrapup_box">
                     <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
-                        ⏱️ Q&amp;A Timer (10 Mins)
+                        ⏱️ Wrap-Up &amp; Q&amp;A Timer
                     </div>
                     <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
                         <span class="timer-display" id="timer_wrapup_txt">10:00</span>
@@ -1829,138 +1829,106 @@
                 </div>
             </div>
 
-            <!-- 6 Q&A Cards Grid (2 columns x 3 rows) -->
-            <div class="grid-2" style="margin-bottom: 16px;">
-                <!-- Question 1 -->
-                <div class="card" style="border-top: 4px solid #2563eb;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
-                        <span class="pill pill-purple" style="font-size: 0.72rem;">Khương &amp; Hiếu</span>
-                        <span class="block-badge badge-scenario">Question 1</span>
-                    </div>
-                    <h4 style="font-size: 0.92rem; color: #1e3a8a; margin-bottom: 6px; line-height: 1.4;">
-                        ❓ Why not just use a standard risk prediction model instead of causal inference?
-                    </h4>
-                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                        <strong>Plain Answer:</strong> A risk model only answers <em>"Who is sick?"</em> (correlation). It cannot answer <em>"Who will get better if we give them the medicine?"</em> (causality). Prescribing based only on high risk wastes costly drugs and causes avoidable side effects.
-                    </p>
-                    <div style="background: #f8fafc; border-left: 3px solid #2563eb; padding: 8px; font-size: 0.76rem; color: var(--text-muted); line-height: 1.5;">
-                        ☂️ <strong>Simple Analogy:</strong> Predicting who carries an umbrella is risk prediction. Knowing who stays dry <em>because</em> they opened the umbrella is causal inference!
+            <!-- Top 4 Breakthrough Pillars Grid -->
+            <div class="grid-blocks" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 16px;">
+                <div class="card" style="border-top: 4px solid #2563eb; padding: 12px 10px;">
+                    <div style="font-size: 0.74rem; font-weight: 800; color: #2563eb; text-transform: uppercase;">1. Clinical Trial (Khương)</div>
+                    <div style="font-size: 1.2rem; font-weight: 800; color: #1e3a8a; margin: 4px 0;">ARR +14.0%</div>
+                    <div style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.4;">
+                        • RCT coin flip cuts confounders.<br>
+                        • NNT = 7.1 (8 to save 1 life).<br>
+                        • Neyman-Rubin parallel world dilemma.
                     </div>
                 </div>
 
-                <!-- Question 2 -->
-                <div class="card" style="border-top: 4px solid #059669;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
-                        <span class="pill pill-success" style="font-size: 0.72rem;">Hiếu</span>
-                        <span class="block-badge badge-ml">Question 2</span>
-                    </div>
-                    <h4 style="font-size: 0.92rem; color: #065f46; margin-bottom: 6px; line-height: 1.4;">
-                        ❓ Is a C-for-benefit score of 0.60–0.65 good enough for clinical practice?
-                    </h4>
-                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                        <strong>Plain Answer:</strong> <strong>Yes, absolutely!</strong> In treatment effect ML, we never observe counterfactuals for the same patient, so we compare statistical twin pairs.
-                    </p>
-                    <div style="background: #f0fdf4; border-left: 3px solid #059669; padding: 8px; font-size: 0.76rem; color: #065f46; line-height: 1.5;">
-                        🏆 <strong>Hospital Benchmark:</strong> Because twin matching adds unavoidable statistical noise, <strong>0.60–0.65 is the recognized international gold standard</strong> (equivalent to a strong 0.80 AUC in standard risk prediction).
+                <div class="card" style="border-top: 4px solid #059669; padding: 12px 10px;">
+                    <div style="font-size: 0.74rem; font-weight: 800; color: #059669; text-transform: uppercase;">2. Precision CATE (Hiếu)</div>
+                    <div style="font-size: 1.2rem; font-weight: 800; color: #065f46; margin: 4px 0;">C = 0.6342</div>
+                    <div style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.4;">
+                        • T-Learner prevents shrinkage bias.<br>
+                        • Twin matched pairs test.<br>
+                        • Grandpa An gains +26.4% via SHAP.
                     </div>
                 </div>
 
-                <!-- Question 3 -->
-                <div class="card" style="border-top: 4px solid #059669;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
-                        <span class="pill pill-success" style="font-size: 0.72rem;">Hiếu</span>
-                        <span class="block-badge badge-formula">Question 3</span>
-                    </div>
-                    <h4 style="font-size: 0.92rem; color: #065f46; margin-bottom: 6px; line-height: 1.4;">
-                        ❓ Which model is better: S-Learner or T-Learner?
-                    </h4>
-                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                        <strong>Plain Answer:</strong> <strong>T-Learner is significantly better for medicine.</strong> The S-Learner puts the drug treatment feature into one single tree with dozens of patient features (like Age and SBP); the tree ignores the drug, shrinking estimated benefit to zero (*Shrinkage Bias*).
-                    </p>
-                    <div style="background: #f0fdf4; border-left: 3px solid #059669; padding: 8px; font-size: 0.76rem; color: #065f46; line-height: 1.5;">
-                        🌲🌲 <strong>Why T-Learner Wins:</strong> T-Learner trains 2 separate trees (Treated vs Control), capturing 100% of treatment interactions without bias.
+                <div class="card" style="border-top: 4px solid #7c3aed; padding: 12px 10px;">
+                    <div style="font-size: 0.74rem; font-weight: 800; color: #7c3aed; text-transform: uppercase;">3. NLP &amp; Vision (Linh)</div>
+                    <div style="font-size: 1.2rem; font-weight: 800; color: #5b21b6; margin: 4px 0;">Layer 424 CAM</div>
+                    <div style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.4;">
+                        • Regex cleaning &amp; BERT (1,60).<br>
+                        • Permutation: Age drop &minus;0.2228.<br>
+                        • Grad-CAM visual safety verification.
                     </div>
                 </div>
 
-                <!-- Question 4 -->
-                <div class="card" style="border-top: 4px solid #7c3aed;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
-                        <span class="pill pill-purple" style="font-size: 0.72rem;">Linh</span>
-                        <span class="block-badge badge-ml">Question 4</span>
-                    </div>
-                    <h4 style="font-size: 0.92rem; color: #5b21b6; margin-bottom: 6px; line-height: 1.4;">
-                        ❓ Does a Grad-CAM heatmap prove that the AI model is medically correct?
-                    </h4>
-                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                        <strong>Plain Answer:</strong> <strong>No! Grad-CAM shows WHERE the model looked, NOT that its medical reasoning was right.</strong>
-                    </p>
-                    <div style="background: #faf5ff; border-left: 3px solid #7c3aed; padding: 8px; font-size: 0.76rem; color: #5b21b6; line-height: 1.5;">
-                        🔍 <strong>Clinical Safety Check:</strong> If the heatmap highlights a hospital metal marker or bone instead of the lung lesion, doctors catch the AI cheating before it makes a diagnosis!
-                    </div>
-                </div>
-
-                <!-- Question 5 -->
-                <div class="card" style="border-top: 4px solid #d97706;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
-                        <span class="pill pill-warning" style="font-size: 0.72rem;">Linh &amp; Dung</span>
-                        <span class="block-badge badge-workflow">Question 5</span>
-                    </div>
-                    <h4 style="font-size: 0.92rem; color: #92400e; margin-bottom: 6px; line-height: 1.4;">
-                        ❓ If rule-based NLP is dated compared to GPT-4, why do we still study it?
-                    </h4>
-                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                        <strong>Plain Answer:</strong> Real hospital PACS systems have millions of unlabelled notes. Cloud LLMs are expensive, slow, and violate strict patient privacy laws (HIPAA).
-                    </p>
-                    <div style="background: #fffbeb; border-left: 3px solid #d97706; padding: 8px; font-size: 0.76rem; color: #92400e; line-height: 1.5;">
-                        ⚡ <strong>On-Premise Power:</strong> Regex and medical ontologies (UMLS/NegBio) run 100% locally inside hospital firewalls at near-zero cost with deterministic accuracy.
-                    </div>
-                </div>
-
-                <!-- Question 6 -->
-                <div class="card" style="border-top: 4px solid #d97706;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
-                        <span class="pill pill-warning" style="font-size: 0.72rem;">Dung</span>
-                        <span class="block-badge badge-output">Question 6</span>
-                    </div>
-                    <h4 style="font-size: 0.92rem; color: #92400e; margin-bottom: 6px; line-height: 1.4;">
-                        ❓ Labels extracted by rules are noisy — why does training a CNN on them still work?
-                    </h4>
-                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
-                        <strong>Plain Answer:</strong> <strong>Deep Learning CNNs act as natural noise filters at scale.</strong>
-                    </p>
-                    <div style="background: #fffbeb; border-left: 3px solid #d97706; padding: 8px; font-size: 0.76rem; color: #92400e; line-height: 1.5;">
-                        🤖 <strong>Big Data Magic:</strong> Across 100,000+ scans, random rule labeling errors cancel out. The DenseNet121 CNN learns true visual features that generalize far better than the noisy rules!
+                <div class="card" style="border-top: 4px solid #d97706; padding: 12px 10px;">
+                    <div style="font-size: 0.74rem; font-weight: 800; color: #d97706; text-transform: uppercase;">4. PACS &amp; CNNs (Dung)</div>
+                    <div style="font-size: 1.2rem; font-weight: 800; color: #92400e; margin: 4px 0;">F1 = 0.921</div>
+                    <div style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.4;">
+                        • Mined 100k free-text reports.<br>
+                        • NegBio negation &amp; UMLS ontologies.<br>
+                        • 14-Disease DenseNet121 noise filtering.
                     </div>
                 </div>
             </div>
 
-            <!-- Group Takeaway Roadmap Card -->
-            <div class="card" style="background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%); border: 1.5px solid #bfdbfe;">
-                <div class="card-header">
-                    <h3 class="card-title" style="color: #1e40af;">🏁 Final Executive Takeaway: The AI for Medical Treatment Pipeline</h3>
-                    <span class="pill pill-purple">Full Course Synergy</span>
+            <!-- Interactive Committee Q&A Console (Selector + Rich Screen) -->
+            <div class="card" style="padding: 16px; margin-bottom: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <div>
+                        <h3 style="font-size: 1.05rem; color: var(--dark); margin: 0;">🎓 Interactive Committee Defense Q&amp;A Console</h3>
+                        <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">Click on any question below to inspect the team's direct clinical and technical defense.</p>
+                    </div>
+                    <span class="pill pill-purple" style="font-size: 0.75rem;">6 Core Synthesis Questions</span>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; margin-top: 8px;">
-                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 10px;">
-                        <div style="font-size: 1.1rem; margin-bottom: 2px;">👨‍💼 🎲</div>
-                        <div style="font-weight: bold; font-size: 0.78rem; color: #1e3a8a;">1. Clinical Trial (Khương)</div>
-                        <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">Coin flip cuts confounders &rarr; ARR +14% saves 1 life per 7 patients.</div>
+
+                <div style="display: grid; grid-template-columns: 360px 1fr; gap: 14px;">
+                    <!-- Left: 6 Clickable Question Tabs -->
+                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                        <button class="preset-btn active" id="btn_q_1" onclick="selectWrapUpQ(1)" style="text-align: left; padding: 8px 10px; font-size: 0.76rem; border-radius: 6px; line-height: 1.4;">
+                            <strong>Q1.</strong> Why not just use risk prediction instead of causal inference?<br>
+                            <span style="font-size: 0.68rem; color: #2563eb;">👩‍💼 Khương &middot; 👨‍💻 Hiếu</span>
+                        </button>
+                        <button class="preset-btn" id="btn_q_2" onclick="selectWrapUpQ(2)" style="text-align: left; padding: 8px 10px; font-size: 0.76rem; border-radius: 6px; line-height: 1.4;">
+                            <strong>Q2.</strong> Is C-for-benefit of 0.60–0.65 good enough for practice?<br>
+                            <span style="font-size: 0.68rem; color: #059669;">👨‍💻 Hiếu</span>
+                        </button>
+                        <button class="preset-btn" id="btn_q_3" onclick="selectWrapUpQ(3)" style="text-align: left; padding: 8px 10px; font-size: 0.76rem; border-radius: 6px; line-height: 1.4;">
+                            <strong>Q3.</strong> Which is better: S-Learner or T-Learner?<br>
+                            <span style="font-size: 0.68rem; color: #059669;">👨‍💻 Hiếu</span>
+                        </button>
+                        <button class="preset-btn" id="btn_q_4" onclick="selectWrapUpQ(4)" style="text-align: left; padding: 8px 10px; font-size: 0.76rem; border-radius: 6px; line-height: 1.4;">
+                            <strong>Q4.</strong> Does Grad-CAM prove the model is medically correct?<br>
+                            <span style="font-size: 0.68rem; color: #7c3aed;">👨‍💻 Linh</span>
+                        </button>
+                        <button class="preset-btn" id="btn_q_5" onclick="selectWrapUpQ(5)" style="text-align: left; padding: 8px 10px; font-size: 0.76rem; border-radius: 6px; line-height: 1.4;">
+                            <strong>Q5.</strong> If rule-based NLP is dated, why do we still study it?<br>
+                            <span style="font-size: 0.68rem; color: #d97706;">👨‍💻 Linh &middot; 👩‍💼 Dung</span>
+                        </button>
+                        <button class="preset-btn" id="btn_q_6" onclick="selectWrapUpQ(6)" style="text-align: left; padding: 8px 10px; font-size: 0.76rem; border-radius: 6px; line-height: 1.4;">
+                            <strong>Q6.</strong> Why does CNN training on noisy rule labels still work?<br>
+                            <span style="font-size: 0.68rem; color: #d97706;">👩‍💼 Dung</span>
+                        </button>
                     </div>
-                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 10px;">
-                        <div style="font-size: 1.1rem; margin-bottom: 2px;">👨‍💻 🌲</div>
-                        <div style="font-weight: bold; font-size: 0.78rem; color: #065f46;">2. Precision CATE (Hiếu)</div>
-                        <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">T-Learner gives Grandpa An +26.4% benefit &rarr; Twin test C=0.6342.</div>
+
+                    <!-- Right: Dynamic Rich Q&A Display Box -->
+                    <div id="wrapup_qa_display" style="background: #f8fafc; border: 1.5px solid var(--border); border-radius: 8px; padding: 14px;">
+                        <!-- Will be populated dynamically by selectWrapUpQ(id) -->
                     </div>
-                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 10px;">
-                        <div style="font-size: 1.1rem; margin-bottom: 2px;">👨‍💻 🩻</div>
-                        <div style="font-weight: bold; font-size: 0.78rem; color: #5b21b6;">3. NLP &amp; Grad-CAM (Linh)</div>
-                        <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">BERT (1,60) tokenization &rarr; Grad-CAM visual safety check on X-ray.</div>
+                </div>
+            </div>
+
+            <!-- Grand Finale Defense Footer -->
+            <div style="background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); border-radius: 10px; padding: 14px 20px; color: white; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <div style="font-size: 1.05rem; font-weight: 800; color: #93c5fd;">🏁 Ready for Committee Defense &amp; Clinical Q&amp;A</div>
+                    <div style="font-size: 0.78rem; color: #cbd5e1; margin-top: 2px;">
+                        Thank you Professors and Committee! Our group is ready for in-depth discussion on Causal ML, Medical NLP, and Vision Interpretation.
                     </div>
-                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 10px;">
-                        <div style="font-size: 1.1rem; margin-bottom: 2px;">👩‍💼 🏥</div>
-                        <div style="font-weight: bold; font-size: 0.78rem; color: #92400e;">4. Big Data Mining (Dung)</div>
-                        <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">100k PACS reports &rarr; NegBio rules &rarr; 14-Disease CNN with F1=0.921.</div>
-                    </div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn" style="background: #2563eb; color: white; border: none; font-size: 0.76rem;" onclick="switchMember('overview')">⏮️ Overview</button>
+                    <button class="btn" style="background: #059669; color: white; border: none; font-size: 0.76rem;" onclick="switchMember('khuong')">▶️ Start Deck</button>
                 </div>
             </div>
         </div>
@@ -2091,6 +2059,7 @@
             if (memberKey === 'hieu') setHieuPipelineStep(1);
             if (memberKey === 'linh') setLinhLab(1);
             if (memberKey === 'dung') setDungPipelineStep(1);
+            if (memberKey === 'wrapup') selectWrapUpQ(1);
         }
 
         // ==========================================
@@ -3033,6 +3002,179 @@
             document.getElementById('d_f1_score_summary').innerHTML = `✔ Current Threshold ${thresh.toFixed(2)} &rarr; Balanced F1-Score: <strong>${f1.toFixed(3)}</strong> (Penalizes missed sick cases).`;
         }
 
+        // ==========================================
+        // 6. WRAP-UP INTERACTIVE Q&A CONSOLE
+        // ==========================================
+        function selectWrapUpQ(id) {
+            for (let i = 1; i <= 6; i++) {
+                const b = document.getElementById(`btn_q_${i}`);
+                if (b) b.classList.toggle('active', i === id);
+            }
+
+            const disp = document.getElementById('wrapup_qa_display');
+            if (!disp) return;
+
+            if (id === 1) {
+                disp.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="pill pill-purple" style="font-size: 0.74rem;">👩‍💼 Khương &middot; 👨‍💻 Hiếu</span>
+                        <span class="block-badge badge-scenario">Question 1 / 6</span>
+                    </div>
+                    <h3 style="font-size: 1rem; color: #1e3a8a; margin-bottom: 8px; line-height: 1.4;">
+                        ❓ Why not just use a standard risk prediction model instead of causal inference?
+                    </h3>
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                            <strong>Plain Language Answer:</strong><br>
+                            A standard risk model only predicts <em>"Who is sick / at high risk?"</em> (correlation). It <strong>cannot</strong> answer <em>"Who will actually get better IF we prescribe the drug?"</em> (causality).
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.76rem; text-align: center; margin: 8px 0;">
+                            <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 8px;">
+                                <div style="font-weight: bold; color: #991b1b;">❌ Standard Risk Model</div>
+                                <div style="color: #7f1d1d; margin-top: 2px;">Prescribes drug to ALL high-risk elderly patients &rarr; Many suffer side effects with 0 benefit!</div>
+                            </div>
+                            <div style="background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 8px;">
+                                <div style="font-weight: bold; color: #166534;">✔ Causal CATE Model</div>
+                                <div style="color: #14532d; margin-top: 2px;">Prescribes drug ONLY to patients with high net benefit (+26.4% Grandpa An) &rarr; Saves lives safely!</div>
+                            </div>
+                        </div>
+                        <div style="background: #eff6ff; border-left: 3px solid #2563eb; padding: 8px; font-size: 0.78rem; color: #1e40af; line-height: 1.5;">
+                            ☂️ <strong>Everyday Analogy:</strong> Predicting who carries an umbrella is correlation (risk). Knowing who stays dry <em>specifically because</em> they opened their umbrella is causal effect!
+                        </div>
+                    </div>
+                `;
+            } else if (id === 2) {
+                disp.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="pill pill-success" style="font-size: 0.74rem;">👨‍💻 Hiếu</span>
+                        <span class="block-badge badge-ml">Question 2 / 6</span>
+                    </div>
+                    <h3 style="font-size: 1rem; color: #065f46; margin-bottom: 8px; line-height: 1.4;">
+                        ❓ Is a C-for-benefit of 0.60–0.65 good enough for clinical practice?
+                    </h3>
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                            <strong>Plain Language Answer:</strong><br>
+                            <strong>Yes, absolutely!</strong> In Causal Machine Learning, <strong>0.60–0.65 is the recognized international hospital benchmark</strong> (comparable to an AUC of ~0.80 in standard risk ML).
+                        </div>
+                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin: 8px 0;">
+                            <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Why 0.6342 is considered hospital-grade in causal evaluation:</div>
+                            <div class="disease-bar-row">
+                                <span style="width: 100px;">0.50 (Coin Toss)</span>
+                                <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 50%; background: #94a3b8;"></div></div>
+                                <span style="font-size:11px; width: 50px; text-align: right;">Random</span>
+                            </div>
+                            <div class="disease-bar-row">
+                                <span style="width: 100px; font-weight:bold; color:var(--success);">0.63 (Our Model)</span>
+                                <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 63.4%; background: var(--success);"></div></div>
+                                <span style="font-weight: bold; color:var(--success); width: 50px; text-align: right;">Hospital</span>
+                            </div>
+                        </div>
+                        <div style="background: #f0fdf4; border-left: 3px solid #059669; padding: 8px; font-size: 0.78rem; color: #166534; line-height: 1.5;">
+                            🏆 <strong>The Twin Noise Factor:</strong> Because counterfactuals are unobservable, we must compare statistical twin pairs. The unavoidable matching noise caps practical C-for-benefit at ~0.65.
+                        </div>
+                    </div>
+                `;
+            } else if (id === 3) {
+                disp.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="pill pill-success" style="font-size: 0.74rem;">👨‍💻 Hiếu</span>
+                        <span class="block-badge badge-formula">Question 3 / 6</span>
+                    </div>
+                    <h3 style="font-size: 1rem; color: #065f46; margin-bottom: 8px; line-height: 1.4;">
+                        ❓ Which model is better: S-Learner or T-Learner?
+                    </h3>
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                            <strong>Plain Language Answer:</strong><br>
+                            <strong>T-Learner is significantly superior in medical AI.</strong> S-Learner suffers from extreme <em>Shrinkage Bias</em>, where the tree ignores the drug and sets estimated benefit to 0.
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.76rem; text-align: center; margin: 8px 0;">
+                            <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 8px;">
+                                <div style="font-weight: bold; color: #991b1b;">🌲 S-Learner (1 Model)</div>
+                                <div style="color: #7f1d1d; margin-top: 2px;">Treatment W is just 1 feature out of 30. Trees split on Age/BP first &rarr; W is neglected &rarr; Benefit collapses to 0%!</div>
+                            </div>
+                            <div style="background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 8px;">
+                                <div style="font-weight: bold; color: #166534;">🌲🌲 T-Learner (2 Models)</div>
+                                <div style="color: #14532d; margin-top: 2px;">Trains 2 separate doctors (Treated Cohort vs Control Cohort) &rarr; Captures 100% of complex treatment interactions!</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (id === 4) {
+                disp.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="pill pill-purple" style="font-size: 0.74rem;">👨‍💻 Linh</span>
+                        <span class="block-badge badge-ml">Question 4 / 6</span>
+                    </div>
+                    <h3 style="font-size: 1rem; color: #5b21b6; margin-bottom: 8px; line-height: 1.4;">
+                        ❓ Does a Grad-CAM heatmap prove that the AI model is medically correct?
+                    </h3>
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                            <strong>Plain Language Answer:</strong><br>
+                            <strong>No! Grad-CAM shows WHERE the AI looked, NOT that its medical reasoning was right.</strong> It is a clinical safety inspection and debugging tool for radiologists.
+                        </div>
+                        <div style="background: #faf5ff; border-left: 3px solid #7c3aed; padding: 10px; font-size: 0.78rem; color: #5b21b6; line-height: 1.5; margin: 8px 0;">
+                            🔍 <strong>Catching "Clever Hans" Cheating:</strong> If an AI predicts Pneumonia but its Grad-CAM red blob highlights a metal hospital marker or rib edge instead of the lung consolidation, doctors immediately catch the flaw before making a diagnosis!
+                        </div>
+                    </div>
+                `;
+            } else if (id === 5) {
+                disp.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="pill pill-warning" style="font-size: 0.74rem;">👨‍💻 Linh &middot; 👩‍💼 Dung</span>
+                        <span class="block-badge badge-workflow">Question 5 / 6</span>
+                    </div>
+                    <h3 style="font-size: 1rem; color: #92400e; margin-bottom: 8px; line-height: 1.4;">
+                        ❓ If rule-based NLP is dated compared to GPT-4, why do we still study it?
+                    </h3>
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                            <strong>Plain Language Answer:</strong><br>
+                            Hospital PACS systems store <strong>millions of unstructured notes</strong> behind strict firewalls. Cloud LLMs are cost-prohibitive, have high latency, hallucinate, and <strong>violate patient privacy regulations (HIPAA / GDPR)</strong>.
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.76rem; margin: 8px 0;">
+                            <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px;">
+                                <strong>Cloud LLMs (GPT-4):</strong><br>
+                                • Cost: $10,000s/month<br>
+                                • Latency: 1-2 sec/report<br>
+                                • HIPAA risk: Cloud data transfer
+                            </div>
+                            <div style="background: #fef9c3; border: 1px solid #fde047; border-radius: 6px; padding: 8px;">
+                                <strong>Hospital Rule / BERT:</strong><br>
+                                • Cost: $0 (100% on-premise)<br>
+                                • Latency: 1,000 reports/sec<br>
+                                • HIPAA risk: 100% safe &amp; local
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (id === 6) {
+                disp.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="pill pill-warning" style="font-size: 0.74rem;">👩‍💼 Dung</span>
+                        <span class="block-badge badge-output">Question 6 / 6</span>
+                    </div>
+                    <h3 style="font-size: 1rem; color: #92400e; margin-bottom: 8px; line-height: 1.4;">
+                        ❓ Labels extracted by rules are noisy — why does training a CNN on them still work?
+                    </h3>
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px;">
+                        <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                            <strong>Plain Language Answer:</strong><br>
+                            <strong>Deep Learning convolutional networks act as natural noise filters at scale!</strong>
+                        </div>
+                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.6; margin: 8px 0;">
+                            🤖 <strong>Scale Overcomes Noise:</strong> When training on 100,000+ Chest X-rays, random rule false positives/negatives cancel each other out across the cohort. DenseNet121 learns true visual pathology patterns (infiltrates, heart enlargement) that <strong>generalize far better than the noisy rule-based teacher!</strong>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--success); font-weight: bold;">
+                            ✔ Validated on Stanford Test Set &rarr; Extraction F1: 0.921 across 14 rare pathologies.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
         // On Load initialization
         window.addEventListener('load', () => {
             ['overview', 'khuong', 'hieu', 'linh', 'dung', 'wrapup'].forEach(k => updateTimerDisplay(k));
@@ -3040,6 +3182,7 @@
             setHieuPipelineStep(1);
             setLinhLab(1);
             setDungPipelineStep(1);
+            selectWrapUpQ(1);
         });
     </script>
 </body>
