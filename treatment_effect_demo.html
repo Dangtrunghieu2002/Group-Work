@@ -951,6 +951,9 @@
                                 <tr><td>Patient #2</td><td>0 (Placebo)</td><td>1 (Stroke)</td><td><span class="pill pill-danger">? (Missing)</span></td></tr>
                             </tbody>
                         </table>
+                        <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
+                            💡 <em>Note: The <strong>"?"</strong> represents the unobservable counterfactual outcome in the parallel universe (Neyman-Rubin Causal Dilemma).</em>
+                        </div>
                     </div>
 
                     <!-- Output View Step 4: Heterogeneity Table -->
@@ -2046,8 +2049,10 @@
                     <tr><td>Patient #2</td><td>0 (Placebo Arm)</td><td>1 (Stroke)</td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
                 `;
                 mathCard.innerHTML = `
-                    <strong>Patient #1 Observed:</strong> <span class="math-symbol">W</span><sub>1</sub> = 1 &rarr; <span class="math-symbol">Y</span><sub>1</sub>(1) = 0<br>
-                    <strong>Missing:</strong> <span class="math-symbol">Y</span><sub>1</sub>(0) is completely unobservable.
+                    <strong>Neyman-Rubin Observed Outcome:</strong><br>
+                    <span class="math-symbol">Y</span><sub>1</sub> = <span class="math-symbol">W</span><sub>1</sub> &middot; <span class="math-symbol">Y</span><sub>1</sub>(1) + (1 &minus; <span class="math-symbol">W</span><sub>1</sub>) &middot; <span class="math-symbol">Y</span><sub>1</sub>(0) = <strong>0 (Survived)</strong><br>
+                    • <strong style="color:var(--success);">Factual:</strong> <span class="math-symbol">W</span><sub>1</sub> = 1 &rarr; <span class="math-symbol">Y</span><sub>1</sub>(1) = 0<br>
+                    • <strong style="color:var(--danger);">Counterfactual:</strong> <span class="math-symbol">Y</span><sub>1</sub>(0) = <strong>? (Lost forever)</strong>
                 `;
             } else if (id === 2) {
                 tbody.innerHTML = `
@@ -2055,8 +2060,10 @@
                     <tr style="background:#fee2e2;"><td><strong>Patient #2</strong></td><td>0 (Placebo Arm)</td><td><strong style="color:var(--danger);">1 (Stroke)</strong></td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
                 `;
                 mathCard.innerHTML = `
-                    <strong>Patient #2 Observed:</strong> <span class="math-symbol">W</span><sub>2</sub> = 0 &rarr; <span class="math-symbol">Y</span><sub>2</sub>(0) = 1<br>
-                    <strong>Missing:</strong> <span class="math-symbol">Y</span><sub>2</sub>(1) if they had taken the drug is lost forever.
+                    <strong>Neyman-Rubin Observed Outcome:</strong><br>
+                    <span class="math-symbol">Y</span><sub>2</sub> = <span class="math-symbol">W</span><sub>2</sub> &middot; <span class="math-symbol">Y</span><sub>2</sub>(1) + (1 &minus; <span class="math-symbol">W</span><sub>2</sub>) &middot; <span class="math-symbol">Y</span><sub>2</sub>(0) = <strong>1 (Stroke)</strong><br>
+                    • <strong style="color:var(--danger);">Factual:</strong> <span class="math-symbol">W</span><sub>2</sub> = 0 &rarr; <span class="math-symbol">Y</span><sub>2</sub>(0) = 1<br>
+                    • <strong style="color:var(--danger);">Counterfactual:</strong> <span class="math-symbol">Y</span><sub>2</sub>(1) = <strong>? (Lost forever)</strong>
                 `;
             } else {
                 tbody.innerHTML = `
@@ -2064,7 +2071,8 @@
                 `;
                 mathCard.innerHTML = `
                     <strong>Individual Treatment Effect (ITE):</strong><br>
-                    <span class="math-symbol">ITE</span><sub>42</sub> = <span class="math-symbol">Y</span><sub>42</sub>(0) &minus; <span class="math-symbol">Y</span><sub>42</sub>(1) &rarr; <em>Cannot calculate directly without ML!</em>
+                    <span class="math-symbol">ITE</span><sub>42</sub> = <span class="math-symbol">Y</span><sub>42</sub>(0) &minus; <span class="math-symbol">Y</span><sub>42</sub>(1) = <span style="color:var(--danger);">? (Missing)</span> &minus; 0<br>
+                    <em>👉 Impossible to compute directly for a single person &rarr; Machine Learning (CATE) required!</em>
                 `;
             }
         }
