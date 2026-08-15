@@ -1766,26 +1766,36 @@
                     </div>
 
                     <div id="l_v_lab2" style="display: none;">
-                        <div class="xray-container">
-                            <svg class="xray-bg-svg" viewBox="0 0 200 160">
-                                <path d="M40,20 Q60,10 100,20 Q140,10 160,20 Q170,80 155,140 Q100,150 100,100 Q100,150 45,140 Q30,80 40,20" fill="#1e293b" stroke="#475569" stroke-width="2"/>
-                                <path d="M50,35 Q85,30 90,80 Q85,130 55,125 Q42,80 50,35" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-                                <path d="M150,35 Q115,30 110,80 Q115,130 145,125 Q158,80 150,35" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-                                <path id="svg_heart" d="M85,75 Q100,60 120,80 Q130,110 105,125 Q85,115 85,75" fill="#334155" opacity="0.7"/>
-                            </svg>
-                            <div class="heatmap-overlay" id="l_heatmap_blob"></div>
+                        <div style="position: relative; width: 100%; max-width: 260px; height: 260px; margin: 0 auto 6px auto; background: #000; border-radius: 8px; overflow: hidden; border: 2px solid #334155; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                            <!-- Realistic Chest X-Ray Base Film -->
+                            <img id="l_xray_img" src="chest_xray.jpg" alt="Frontal Chest Radiograph" style="width: 100%; height: 100%; object-fit: cover; filter: contrast(1.15) brightness(0.95);">
+                            
+                            <!-- Grad-CAM Jet Heatmap Overlay -->
+                            <div id="l_heatmap_blob" style="position: absolute; top: 120px; left: 40px; width: 90px; height: 75px; border-radius: 50%; background: radial-gradient(circle, rgba(239,68,68,0.92) 0%, rgba(245,158,11,0.75) 40%, rgba(59,130,246,0.35) 70%, rgba(16,185,129,0) 95%); filter: blur(10px); opacity: 0.85; mix-blend-mode: screen; transition: all 0.35s ease; pointer-events: none;"></div>
+
+                            <!-- Peak Gradient Crosshair Marker -->
+                            <div id="l_cam_crosshair" style="position: absolute; top: 150px; left: 80px; transform: translate(-50%, -50%); pointer-events: none; transition: all 0.35s ease;">
+                                <div style="width: 16px; height: 16px; border: 1.5px solid #ef4444; border-radius: 50%; animation: pulse 1.5s infinite;"></div>
+                                <div style="position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 0.62rem; color: #ffffff; background: rgba(220,38,38,0.85); padding: 1px 6px; border-radius: 4px; font-weight: 800; white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.6);" id="l_cam_peak_txt">Peak α=0.942</div>
+                            </div>
+
+                            <!-- Radiological Viewport HUD Overlays -->
+                            <div style="position: absolute; top: 6px; left: 8px; font-size: 0.62rem; font-weight: 800; color: #94a3b8; text-shadow: 0 1px 2px #000; letter-spacing: 0.05em;">PA ERECT</div>
+                            <div style="position: absolute; top: 6px; right: 8px; font-size: 0.62rem; font-weight: 800; color: #38bdf8; text-shadow: 0 1px 2px #000;">Layer 424 (7×7×1024)</div>
+                            <div style="position: absolute; bottom: 6px; left: 8px; font-size: 0.72rem; font-weight: 900; color: #cbd5e1; text-shadow: 0 1px 2px #000;">R</div>
+                            <div style="position: absolute; bottom: 6px; right: 8px; font-size: 0.72rem; font-weight: 900; color: #cbd5e1; text-shadow: 0 1px 2px #000;">L</div>
                         </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.74rem; color: var(--text-muted); margin-top: 6px;">
-                            <span>DenseNet121 Layer 424 Activations</span>
-                            <span style="color: var(--purple); font-weight: bold;" id="l_cam_disease_lbl">Target: Pneumonia</span>
+
+                        <div id="l_cam_disease_lbl" style="text-align: center; font-size: 0.76rem; font-weight: 800; color: #1e3a8a; margin-bottom: 4px;">
+                            Target: Pneumonia (Right Lower Lobe Consolidation · α_peak = 0.942)
                         </div>
-                        <div style="font-size: 0.74rem; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; padding: 4px 8px; color: #166534; margin-top: 4px;" id="l_f1_score_summary">
-                            ✔ Threshold 0.50 &rarr; Balanced F1-Score: <strong>0.923</strong>.
+
+                        <div id="l_sanity_check_box" style="background: #fef2f2; border: 1px dashed #fca5a5; border-radius: 6px; padding: 6px 8px; font-size: 0.70rem; color: #991b1b; line-height: 1.35;">
+                            <strong>⚠️ Adebayo et al. (NeurIPS 2018) Sanity Check:</strong> Grad-CAM shows WHERE the model looked, NOT WHY. Saliency maps can look convincing even under weight randomization.
                         </div>
                     </div>
                 </div>
             </div>
-
             <!-- Narrative Transition Bridge to Wrap-Up -->
             <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border: 1.5px solid #c4b5fd; border-radius: 8px; padding: 12px 16px; margin-top: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(124,58,237,0.06);">
                 <div>
@@ -2929,37 +2939,49 @@
 
             const lbl = document.getElementById("l_cam_disease_lbl");
             const blob = document.getElementById("l_heatmap_blob");
+            const crosshair = document.getElementById("l_cam_crosshair");
+            const peakTxt = document.getElementById("l_cam_peak_txt");
             const barPneu = document.getElementById("l_bar_pneu");
             const valPneu = document.getElementById("l_val_pneu");
             const barCardio = document.getElementById("l_bar_cardio");
             const valCardio = document.getElementById("l_val_cardio");
 
             if (dis === "pneumonia") {
-                if (lbl) lbl.innerText = "Target: Pneumonia (Right Lower Lobe Consolidation)";
+                if (lbl) lbl.innerHTML = "Target: 🫁 <strong>Pneumonia</strong> (Right Lower Lobe Consolidation &bull; Peak &alpha;<sub>k</sub> = 0.942)";
                 if (blob) {
-                    blob.style.top = "65px";
-                    blob.style.left = "45px";
-                    blob.style.width = "75px";
-                    blob.style.height = "60px";
-                    blob.style.background = "radial-gradient(circle, rgba(239,68,68,0.85) 0%, rgba(245,158,11,0.5) 45%, rgba(16,185,129,0) 80%)";
-                }
-                if (barPneu) barPneu.style.width = "88%";
-                if (valPneu) valPneu.innerText = "88%";
-                if (barCardio) barCardio.style.width = "14%";
-                if (valCardio) valCardio.innerText = "14%";
-            } else {
-                if (lbl) lbl.innerText = "Target: Cardiomegaly (Enlarged Cardiac Silhouette)";
-                if (blob) {
-                    blob.style.top = "70px";
-                    blob.style.left = "80px";
-                    blob.style.width = "95px";
+                    blob.style.top = "120px";
+                    blob.style.left = "42px";
+                    blob.style.width = "90px";
                     blob.style.height = "75px";
-                    blob.style.background = "radial-gradient(circle, rgba(59,130,246,0.85) 0%, rgba(147,51,234,0.5) 50%, rgba(16,185,129,0) 85%)";
+                    blob.style.background = "radial-gradient(circle, rgba(239,68,68,0.95) 0%, rgba(245,158,11,0.80) 40%, rgba(59,130,246,0.30) 70%, rgba(16,185,129,0) 95%)";
                 }
+                if (crosshair) {
+                    crosshair.style.top = "155px";
+                    crosshair.style.left = "85px";
+                }
+                if (peakTxt) peakTxt.innerText = "Peak α=0.942 (Right Lung)";
+                if (barPneu) barPneu.style.width = "88%";
+                if (valPneu) valPneu.innerText = "88% (POSITIVE)";
+                if (barCardio) barCardio.style.width = "14%";
+                if (valCardio) valCardio.innerText = "14% (Normal)";
+            } else {
+                if (lbl) lbl.innerHTML = "Target: ❤️ <strong>Cardiomegaly</strong> (Enlarged Cardiac Silhouette &bull; Peak &alpha;<sub>k</sub> = 0.968)";
+                if (blob) {
+                    blob.style.top = "105px";
+                    blob.style.left = "90px";
+                    blob.style.width = "120px";
+                    blob.style.height = "100px";
+                    blob.style.background = "radial-gradient(ellipse at center, rgba(239,68,68,0.95) 0%, rgba(245,158,11,0.82) 45%, rgba(59,130,246,0.35) 75%, rgba(16,185,129,0) 95%)";
+                }
+                if (crosshair) {
+                    crosshair.style.top = "150px";
+                    crosshair.style.left = "145px";
+                }
+                if (peakTxt) peakTxt.innerText = "Peak α=0.968 (Cardiac Border)";
                 if (barPneu) barPneu.style.width = "12%";
-                if (valPneu) valPneu.innerText = "12%";
+                if (valPneu) valPneu.innerText = "12% (Normal)";
                 if (barCardio) barCardio.style.width = "94%";
-                if (valCardio) valCardio.innerText = "94%";
+                if (valCardio) valCardio.innerText = "94% (POSITIVE)";
             }
             updateLinhF1Thresh();
         }
