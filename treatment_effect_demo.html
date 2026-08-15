@@ -1502,15 +1502,49 @@
 
                     <!-- Input Step 2: 14-CNN Scan Selector & Threshold Slider -->
                     <div id="d_in_step2" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Select Chest X-Ray Scan:</div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>Select Input Chest X-Ray Scan (224×224):</span>
+                            <span class="pill pill-purple" style="font-size:0.7rem;">Click Image to Feed CNN</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                            <!-- Scan 1: Pneumonia Image Card -->
                             <div class="xray-thumb-card active" id="d_cnn_img_1" onclick="setDungCNNCase(1)">
-                                <div style="font-size: 1.2rem;">🩻</div>
-                                <div style="font-size: 0.76rem; font-weight: bold;">Scan #01: Pneumonia</div>
+                                <div class="xray-thumb-svg-wrap">
+                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
+                                        <!-- Ribcage & Thoracic Cavity -->
+                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                                        <!-- Right Lung Field -->
+                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <!-- Left Lung Field -->
+                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <!-- Heart Shadow -->
+                                        <path d="M42,38 Q50,30 60,40 Q65,55 52,62 Q42,58 42,38" fill="#334155" opacity="0.7"/>
+                                        <!-- Pneumonia Opacity Consolidation in Right Lower Lobe -->
+                                        <circle cx="32" cy="48" r="10" fill="#ef4444" opacity="0.75" filter="blur(2px)"/>
+                                    </svg>
+                                    <span style="position: absolute; bottom: 3px; right: 5px; font-size: 0.65rem; background: rgba(0,0,0,0.75); color: #fca5a5; padding: 1px 4px; border-radius: 3px; font-weight: bold;">Opacity Alert</span>
+                                </div>
+                                <div style="font-size: 0.78rem; font-weight: bold; color: var(--dark);">Scan #0599</div>
+                                <div style="font-size: 0.72rem; color: #dc2626; font-weight: 700;">🫁 Pneumonia Scan</div>
                             </div>
+
+                            <!-- Scan 2: Cardiomegaly Image Card -->
                             <div class="xray-thumb-card" id="d_cnn_img_2" onclick="setDungCNNCase(2)">
-                                <div style="font-size: 1.2rem;">🩻</div>
-                                <div style="font-size: 0.76rem; font-weight: bold;">Scan #02: Cardiomegaly</div>
+                                <div class="xray-thumb-svg-wrap">
+                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
+                                        <!-- Ribcage & Thoracic Cavity -->
+                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                                        <!-- Right Lung Field -->
+                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <!-- Left Lung Field -->
+                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <!-- Enlarged Cardiomegaly Silhouette (>55% CTR) -->
+                                        <path d="M35,36 Q50,26 68,38 Q78,62 50,68 Q33,60 35,36" fill="#3b82f6" opacity="0.8" stroke="#93c5fd" stroke-width="1"/>
+                                    </svg>
+                                    <span style="position: absolute; bottom: 3px; right: 5px; font-size: 0.65rem; background: rgba(0,0,0,0.75); color: #93c5fd; padding: 1px 4px; border-radius: 3px; font-weight: bold;">CTR &gt; 55%</span>
+                                </div>
+                                <div style="font-size: 0.78rem; font-weight: bold; color: var(--dark);">Scan #1042</div>
+                                <div style="font-size: 0.72rem; color: #2563eb; font-weight: 700;">❤️ Cardiomegaly</div>
                             </div>
                         </div>
                         <div class="control-group">
@@ -1710,8 +1744,28 @@
                         
                         <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Target Pathology Scan:</div>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
-                            <button class="preset-btn active" id="l_dis_btn_1" onclick="setLinhDisease('pneumonia')">🩻 Pneumonia</button>
-                            <button class="preset-btn" id="l_dis_btn_2" onclick="setLinhDisease('cardiomegaly')">🩻 Cardiomegaly</button>
+                            <div class="xray-thumb-card active" id="l_dis_btn_1" onclick="setLinhDisease('pneumonia')">
+                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
+                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
+                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <circle cx="32" cy="48" r="9" fill="#ef4444" opacity="0.8" filter="blur(2px)"/>
+                                    </svg>
+                                </div>
+                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">🫁 Pneumonia</div>
+                            </div>
+                            <div class="xray-thumb-card" id="l_dis_btn_2" onclick="setLinhDisease('cardiomegaly')">
+                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
+                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
+                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+                                        <path d="M36,35 Q50,26 68,38 Q78,62 50,68 Q33,60 36,35" fill="#3b82f6" opacity="0.85" stroke="#93c5fd" stroke-width="1"/>
+                                    </svg>
+                                </div>
+                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">❤️ Cardiomegaly</div>
+                            </div>
                         </div>
 
                         <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Test Column Shuffling:</div>
@@ -2974,7 +3028,7 @@
                 blob.style.width = "120px";
                 blob.style.height = "80px";
                 if (mlDesc) mlDesc.innerHTML = "• Backprops gradients for <strong>Class #1 (Pneumonia)</strong> through Layer 424.<br>• Concentrates heat activations over right lower lung field.";
-                if (mathCard && document.getElementById('l_step_4') && document.getElementById('l_step_4').classList.contains('active')) {
+                if (mathCard && document.getElementById('l_step_2') && document.getElementById('l_step_2').classList.contains('active')) {
                     mathCard.innerHTML = `
                         <strong>Grad-CAM (Target = Pneumonia):</strong><br>
                         &alpha;<sub>k</sub><sup>pneu</sup> = (1/Z) &sum; &part;<span class="math-symbol">y</span><sup>pneu</sup> / &part;<span class="math-symbol">A</span><sup>k</sup> &rarr; <span class="math-symbol">L</span><sub>CAM</sub> = <strong style="color:#7c3aed;">ReLU(&sum; &alpha;<sub>k</sub> A<sup>k</sup>)</strong><br>
@@ -2988,7 +3042,7 @@
                 blob.style.width = "150px";
                 blob.style.height = "110px";
                 if (mlDesc) mlDesc.innerHTML = "• Backprops gradients for <strong>Class #2 (Cardiomegaly)</strong> through Layer 424.<br>• Concentrates heat activations over enlarged heart border.";
-                if (mathCard && document.getElementById('l_step_4') && document.getElementById('l_step_4').classList.contains('active')) {
+                if (mathCard && document.getElementById('l_step_2') && document.getElementById('l_step_2').classList.contains('active')) {
                     mathCard.innerHTML = `
                         <strong>Grad-CAM (Target = Cardiomegaly):</strong><br>
                         &alpha;<sub>k</sub><sup>cardio</sup> = (1/Z) &sum; &part;<span class="math-symbol">y</span><sup>cardio</sup> / &part;<span class="math-symbol">A</span><sup>k</sup> &rarr; <span class="math-symbol">L</span><sub>CAM</sub> = <strong style="color:#7c3aed;">ReLU(&sum; &alpha;<sub>k</sub> A<sup>k</sup>)</strong><br>
@@ -3219,7 +3273,7 @@
                 document.getElementById('d_bar_inf').style.width = "72%";
                 document.getElementById('d_val_inf').innerText = "72%";
                 if (nlpDesc) nlpDesc.innerHTML = "• <strong>Scan #1 Pathology:</strong> High Pneumonia probability (88%) and Infiltration (72%).<br>• Multi-label CNN recognizes co-occurring lung conditions.";
-                if (mathCard && document.getElementById('d_flow_4') && document.getElementById('d_flow_4').classList.contains('active')) {
+                if (mathCard && document.getElementById('d_flow_2') && document.getElementById('d_flow_2').classList.contains('active')) {
                     mathCard.innerHTML = `
                         <strong>DenseNet121 Inference (Scan #1):</strong><br>
                         <span class="math-symbol">P</span>(Pneumonia) = &sigma;(z<sub>1</sub>) = <strong style="color:#166534;">0.88</strong> &nbsp;|&nbsp; <span class="math-symbol">P</span>(Cardiomegaly) = <strong style="color:#475569;">0.14</strong><br>
@@ -3234,7 +3288,7 @@
                 document.getElementById('d_bar_inf').style.width = "18%";
                 document.getElementById('d_val_inf').innerText = "18%";
                 if (nlpDesc) nlpDesc.innerHTML = "• <strong>Scan #2 Pathology:</strong> High Cardiomegaly probability (94%), Normal lung fields.<br>• Detects enlarged heart silhouette without lung infection.";
-                if (mathCard && document.getElementById('d_flow_4') && document.getElementById('d_flow_4').classList.contains('active')) {
+                if (mathCard && document.getElementById('d_flow_2') && document.getElementById('d_flow_2').classList.contains('active')) {
                     mathCard.innerHTML = `
                         <strong>DenseNet121 Inference (Scan #2):</strong><br>
                         <span class="math-symbol">P</span>(Cardiomegaly) = &sigma;(z<sub>2</sub>) = <strong style="color:#166534;">0.94</strong> &nbsp;|&nbsp; <span class="math-symbol">P</span>(Pneumonia) = <strong style="color:#475569;">0.09</strong><br>
