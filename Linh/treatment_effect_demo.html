@@ -809,7 +809,7 @@
                 <div>
                     <span class="role-tag" style="background:#eff6ff; color:#1e40af;">Final Master Project · AI For Medical Treatment</span>
                     <h2 style="font-size: 1.25rem; margin-top: 4px; color: var(--dark);">Group Work Architecture &amp; Course Lab References</h2>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">End-to-End Clinical Translation: Causal Inference (W1) &rarr; Individualized CATE (W1) &rarr; Label Mining &amp; 14-CNN (W2) &rarr; Explainability &amp; Grad-CAM (W3)</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">End-to-End Clinical Translation: Causal RCT (Part 1) &rarr; Precision CATE (Part 2) &rarr; 100k PACS Label Mining (Part 3) &rarr; 14-CNN &amp; Grad-CAM Explainability (Part 4)</p>
                 </div>
                 <div class="timer-widget" id="timer_overview_box">
                     <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
@@ -856,7 +856,7 @@
                     <div style="font-size: 0.74rem; font-weight: 700; color: #d97706; margin-top: 2px;">ID: 20225030</div>
                     <div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 8px;">20225030@student.vgu.edu.vn</div>
                     <div class="pill pill-warning" style="font-size: 0.68rem; display: inline-block; margin-bottom: 10px;">
-                        Part 3: Label Mining &amp; 14-CNN
+                        Part 3: 100k PACS Label Mining
                     </div>
                     <button class="btn btn-outline" style="width: 100%; font-size: 0.74rem; justify-content: center;">Start Dung &rarr;</button>
                 </div>
@@ -889,7 +889,7 @@
                             <strong>2. Precision CATE (Hiếu):</strong> T-Learner separate trees, Twin pairs matching (C=0.6342), and TreeSHAP.
                         </div>
                         <div style="background: #f8fafc; border-left: 3px solid #d97706; padding: 8px 10px; border-radius: 4px;">
-                            <strong>3. Big Data Mining &amp; Vision (Dung):</strong> 100k PACS reports, NegBio rules, and 14-Disease CNN (DenseNet121).
+                            <strong>3. 100k PACS Big Data Mining (Dung):</strong> Automated 100,000 radiology report mining with NegBio, UMLS ontologies, and 2026 Multimodal VLM.
                         </div>
                         <div style="background: #f8fafc; border-left: 3px solid #7c3aed; padding: 8px 10px; border-radius: 4px;">
                             <strong>4. NLP &amp; Vision Interpretation (Linh):</strong> Regex cleaner, BERT (1,60) input tensor, and Grad-CAM Layer 424.
@@ -1500,7 +1500,7 @@
                             <button class="preset-btn" id="d_btn_par_2" onclick="setDungParadigm(2)">2026: Vision-Language Model</button>
                         </div>
                         <div style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.4;">
-                            Explore how hospital systems transition from rule-mined CNN training to Zero-Shot Multimodal VLM alignment.
+                            Explore how hospital systems transition from two-stage text rule extraction to Zero-Shot Multimodal Foundation VLM alignment.
                         </div>
                     </div>
                 </div>
@@ -2642,7 +2642,7 @@
             const tblBody = document.getElementById("d_out_table_body");
 
             if (parNum === 1) {
-                if (mlDesc) mlDesc.innerHTML = `<strong>2020 Two-Stage Rule Pipeline:</strong> NegBio extracts text labels $\rightarrow$ CNN trains on images. Rule errors can propagate into dataset.`;
+                if (mlDesc) mlDesc.innerHTML = `<strong>2020 Two-Stage Rule Pipeline:</strong> NegBio extracts text labels $\rightarrow$ exports ground-truth binary matrix $\{0, 1\}^{100k \times 14}$. Rule errors can propagate into dataset.`;
                 if (formCard) formCard.innerHTML = `<div><strong>Rule-Based Pipeline:</strong> PACS Text $\rightarrow$ Label Matrix $\mathbf{Y} \in \{0, 1\}^{100k \times 14}$</div>`;
             } else {
                 if (mlDesc) mlDesc.innerHTML = `<strong>2026 Multimodal Foundation Model:</strong> BiomedCLIP aligns radiology text and X-ray embeddings in a shared latent space via contrastive learning, enabling Zero-Shot diagnosis.`;
