@@ -661,6 +661,9 @@
                 <button class="member-btn" id="btn_dung" onclick="switchMember('dung')">
                     👩‍💼 Dung
                 </button>
+                <button class="member-btn" id="btn_wrapup" onclick="switchMember('wrapup')">
+                    🎯 Wrap-Up &amp; Q&amp;A
+                </button>
             </div>
         </div>
     </header>
@@ -1795,6 +1798,164 @@
             </div>
         </div>
 
+        <!-- ========================================================================= -->
+        <!-- 5. WRAP-UP & STRATEGIC COURSE Q&A SYNTHESIS                               -->
+        <!-- ========================================================================= -->
+        <div id="section_wrapup" class="tab-content">
+            <div class="member-banner" style="border-left: 5px solid #0284c7;">
+                <div>
+                    <span class="role-tag" style="background:#e0f2fe; color:#0369a1;">All Members · Strategic Wrap-Up</span>
+                    <h2 style="font-size: 1.25rem; margin-top: 4px; color: var(--dark);">Course Synthesis &amp; Strategic Q&amp;A Wrap-Up</h2>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Plain-language, crystal-clear answers to the 6 core clinical and machine learning questions.</p>
+                </div>
+                <div class="timer-widget" id="timer_wrapup_box">
+                    <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
+                        ⏱️ Q&amp;A Timer (10 Mins)
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
+                        <span class="timer-display" id="timer_wrapup_txt">10:00</span>
+                        <button class="timer-control-btn" onclick="toggleTimer('wrapup')" id="timer_wrapup_btn" title="Pause / Resume">⏸️</button>
+                        <button class="timer-control-btn" onclick="resetTimer('wrapup')" title="Reset to 10:00">🔄</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 Q&A Cards Grid (2 columns x 3 rows) -->
+            <div class="grid-2" style="margin-bottom: 16px;">
+                <!-- Question 1 -->
+                <div class="card" style="border-top: 4px solid #2563eb;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                        <span class="pill pill-purple" style="font-size: 0.72rem;">Khương &amp; Hiếu</span>
+                        <span class="block-badge badge-scenario">Question 1</span>
+                    </div>
+                    <h4 style="font-size: 0.92rem; color: #1e3a8a; margin-bottom: 6px; line-height: 1.4;">
+                        ❓ Why not just use a standard risk prediction model instead of causal inference?
+                    </h4>
+                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                        <strong>Plain Answer:</strong> A risk model only answers <em>"Who is sick?"</em> (correlation). It cannot answer <em>"Who will get better if we give them the medicine?"</em> (causality). Prescribing based only on high risk wastes costly drugs and causes avoidable side effects.
+                    </p>
+                    <div style="background: #f8fafc; border-left: 3px solid #2563eb; padding: 8px; font-size: 0.76rem; color: var(--text-muted); line-height: 1.5;">
+                        ☂️ <strong>Simple Analogy:</strong> Predicting who carries an umbrella is risk prediction. Knowing who stays dry <em>because</em> they opened the umbrella is causal inference!
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="card" style="border-top: 4px solid #059669;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                        <span class="pill pill-success" style="font-size: 0.72rem;">Hiếu</span>
+                        <span class="block-badge badge-ml">Question 2</span>
+                    </div>
+                    <h4 style="font-size: 0.92rem; color: #065f46; margin-bottom: 6px; line-height: 1.4;">
+                        ❓ Is a C-for-benefit score of 0.60–0.65 good enough for clinical practice?
+                    </h4>
+                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                        <strong>Plain Answer:</strong> <strong>Yes, absolutely!</strong> In treatment effect ML, we never observe counterfactuals for the same patient, so we compare statistical twin pairs.
+                    </p>
+                    <div style="background: #f0fdf4; border-left: 3px solid #059669; padding: 8px; font-size: 0.76rem; color: #065f46; line-height: 1.5;">
+                        🏆 <strong>Hospital Benchmark:</strong> Because twin matching adds unavoidable statistical noise, <strong>0.60–0.65 is the recognized international gold standard</strong> (equivalent to a strong 0.80 AUC in standard risk prediction).
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="card" style="border-top: 4px solid #059669;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                        <span class="pill pill-success" style="font-size: 0.72rem;">Hiếu</span>
+                        <span class="block-badge badge-formula">Question 3</span>
+                    </div>
+                    <h4 style="font-size: 0.92rem; color: #065f46; margin-bottom: 6px; line-height: 1.4;">
+                        ❓ Which model is better: S-Learner or T-Learner?
+                    </h4>
+                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                        <strong>Plain Answer:</strong> <strong>T-Learner is significantly better for medicine.</strong> The S-Learner puts the drug treatment feature into one single tree with dozens of patient features (like Age and SBP); the tree ignores the drug, shrinking estimated benefit to zero (*Shrinkage Bias*).
+                    </p>
+                    <div style="background: #f0fdf4; border-left: 3px solid #059669; padding: 8px; font-size: 0.76rem; color: #065f46; line-height: 1.5;">
+                        🌲🌲 <strong>Why T-Learner Wins:</strong> T-Learner trains 2 separate trees (Treated vs Control), capturing 100% of treatment interactions without bias.
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="card" style="border-top: 4px solid #7c3aed;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                        <span class="pill pill-purple" style="font-size: 0.72rem;">Linh</span>
+                        <span class="block-badge badge-ml">Question 4</span>
+                    </div>
+                    <h4 style="font-size: 0.92rem; color: #5b21b6; margin-bottom: 6px; line-height: 1.4;">
+                        ❓ Does a Grad-CAM heatmap prove that the AI model is medically correct?
+                    </h4>
+                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                        <strong>Plain Answer:</strong> <strong>No! Grad-CAM shows WHERE the model looked, NOT that its medical reasoning was right.</strong>
+                    </p>
+                    <div style="background: #faf5ff; border-left: 3px solid #7c3aed; padding: 8px; font-size: 0.76rem; color: #5b21b6; line-height: 1.5;">
+                        🔍 <strong>Clinical Safety Check:</strong> If the heatmap highlights a hospital metal marker or bone instead of the lung lesion, doctors catch the AI cheating before it makes a diagnosis!
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="card" style="border-top: 4px solid #d97706;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                        <span class="pill pill-warning" style="font-size: 0.72rem;">Linh &amp; Dung</span>
+                        <span class="block-badge badge-workflow">Question 5</span>
+                    </div>
+                    <h4 style="font-size: 0.92rem; color: #92400e; margin-bottom: 6px; line-height: 1.4;">
+                        ❓ If rule-based NLP is dated compared to GPT-4, why do we still study it?
+                    </h4>
+                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                        <strong>Plain Answer:</strong> Real hospital PACS systems have millions of unlabelled notes. Cloud LLMs are expensive, slow, and violate strict patient privacy laws (HIPAA).
+                    </p>
+                    <div style="background: #fffbeb; border-left: 3px solid #d97706; padding: 8px; font-size: 0.76rem; color: #92400e; line-height: 1.5;">
+                        ⚡ <strong>On-Premise Power:</strong> Regex and medical ontologies (UMLS/NegBio) run 100% locally inside hospital firewalls at near-zero cost with deterministic accuracy.
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="card" style="border-top: 4px solid #d97706;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                        <span class="pill pill-warning" style="font-size: 0.72rem;">Dung</span>
+                        <span class="block-badge badge-output">Question 6</span>
+                    </div>
+                    <h4 style="font-size: 0.92rem; color: #92400e; margin-bottom: 6px; line-height: 1.4;">
+                        ❓ Labels extracted by rules are noisy — why does training a CNN on them still work?
+                    </h4>
+                    <p style="font-size: 0.8rem; color: var(--text-main); line-height: 1.6; margin-bottom: 8px;">
+                        <strong>Plain Answer:</strong> <strong>Deep Learning CNNs act as natural noise filters at scale.</strong>
+                    </p>
+                    <div style="background: #fffbeb; border-left: 3px solid #d97706; padding: 8px; font-size: 0.76rem; color: #92400e; line-height: 1.5;">
+                        🤖 <strong>Big Data Magic:</strong> Across 100,000+ scans, random rule labeling errors cancel out. The DenseNet121 CNN learns true visual features that generalize far better than the noisy rules!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Takeaway Roadmap Card -->
+            <div class="card" style="background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%); border: 1.5px solid #bfdbfe;">
+                <div class="card-header">
+                    <h3 class="card-title" style="color: #1e40af;">🏁 Final Executive Takeaway: The AI for Medical Treatment Pipeline</h3>
+                    <span class="pill pill-purple">Full Course Synergy</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; margin-top: 8px;">
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 10px;">
+                        <div style="font-size: 1.1rem; margin-bottom: 2px;">👨‍💼 🎲</div>
+                        <div style="font-weight: bold; font-size: 0.78rem; color: #1e3a8a;">1. Clinical Trial (Khương)</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">Coin flip cuts confounders &rarr; ARR +14% saves 1 life per 7 patients.</div>
+                    </div>
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 10px;">
+                        <div style="font-size: 1.1rem; margin-bottom: 2px;">👨‍💻 🌲</div>
+                        <div style="font-weight: bold; font-size: 0.78rem; color: #065f46;">2. Precision CATE (Hiếu)</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">T-Learner gives Grandpa An +26.4% benefit &rarr; Twin test C=0.6342.</div>
+                    </div>
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 10px;">
+                        <div style="font-size: 1.1rem; margin-bottom: 2px;">👨‍💻 🩻</div>
+                        <div style="font-weight: bold; font-size: 0.78rem; color: #5b21b6;">3. NLP &amp; Grad-CAM (Linh)</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">BERT (1,60) tokenization &rarr; Grad-CAM visual safety check on X-ray.</div>
+                    </div>
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 10px;">
+                        <div style="font-size: 1.1rem; margin-bottom: 2px;">👩‍💼 🏥</div>
+                        <div style="font-weight: bold; font-size: 0.78rem; color: #92400e;">4. Big Data Mining (Dung)</div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;">100k PACS reports &rarr; NegBio rules &rarr; 14-Disease CNN with F1=0.921.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -1806,7 +1967,8 @@
             khuong:   { remaining: 300,  interval: null, running: false, initial: 300, started: false },
             hieu:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
             linh:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
-            dung:     { remaining: 300,  interval: null, running: false, initial: 300, started: false }
+            dung:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
+            wrapup:   { remaining: 600,  interval: null, running: false, initial: 600, started: false }
         };
 
         function formatTimeDisplay(sec) {
@@ -2864,7 +3026,7 @@
 
         // On Load initialization
         window.addEventListener('load', () => {
-            ['overview', 'khuong', 'hieu', 'linh', 'dung'].forEach(k => updateTimerDisplay(k));
+            ['overview', 'khuong', 'hieu', 'linh', 'dung', 'wrapup'].forEach(k => updateTimerDisplay(k));
             setKhuongStep(1);
             setHieuPipelineStep(1);
             setLinhLab(1);
