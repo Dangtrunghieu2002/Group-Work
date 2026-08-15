@@ -856,7 +856,7 @@
                     <div style="font-size: 0.74rem; font-weight: 700; color: #d97706; margin-top: 2px;">ID: 20225030</div>
                     <div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 8px;">20225030@student.vgu.edu.vn</div>
                     <div class="pill pill-warning" style="font-size: 0.68rem; display: inline-block; margin-bottom: 10px;">
-                        Part 3: 100k PACS Label Mining
+                        Part 3: Automatic Label Extraction (Dung)
                     </div>
                     <button class="btn btn-outline" style="width: 100%; font-size: 0.74rem; justify-content: center;">Start Dung &rarr;</button>
                 </div>
@@ -1427,8 +1427,8 @@
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span class="flowchart-icon">🗺️</span>
                         <div>
-                            <div style="font-size: 0.82rem; font-weight: 800; color: #92400e; text-transform: uppercase; letter-spacing: 0.03em;">Dung's Big Data Label Mining &amp; 2026 Frontier Pipeline (2 Unified Chapters)</div>
-                            <div style="font-size: 0.72rem; color: var(--text-muted);">Unstructured PACS Radiology Notes &rarr; Automated NegBio Mining &rarr; 2026 BiomedCLIP VLM</div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #92400e; text-transform: uppercase; letter-spacing: 0.03em;">Dung: Automatic Label Extraction &amp; Evaluation (Week 2, V4–10 &amp; Week 3, V3)</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3-Step Rule Pipeline (Synonyms &rarr; Is-A &rarr; NegBio) &bull; Precision/Recall/F1 vs Accuracy Trap &bull; Course 3 Critique</div>
                         </div>
                     </div>
                     <span class="pill pill-warning" style="font-size: 0.68rem;">2 Core Chapters</span>
@@ -1492,15 +1492,17 @@
                         </div>
                     </div>
 
-                    <!-- Input Step 2: Paradigm Selector -->
+                    <!-- Input Step 2: F1 Evaluation & Critical Assessment (Week 2, V8-10 & Section 4) -->
                     <div id="d_in_step2" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Select AI Paradigm Architecture:</div>
-                        <div style="display: flex; gap: 4px; margin-bottom: 8px;">
-                            <button class="preset-btn active" id="d_btn_par_1" onclick="setDungParadigm(1)">2020: Rule-Based Pipeline</button>
-                            <button class="preset-btn" id="d_btn_par_2" onclick="setDungParadigm(2)">2026: Vision-Language Model</button>
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Multi-Label Averaging Strategy:</div>
+                        <div style="display: flex; gap: 4px; margin-bottom: 6px;">
+                            <button class="preset-btn active" id="d_btn_avg_macro" onclick="setDungAverageMode('macro')">Macro-Average (Equal Disease Weight)</button>
+                            <button class="preset-btn" id="d_btn_avg_micro" onclick="setDungAverageMode('micro')">Micro-Average (Case-Weighted)</button>
                         </div>
-                        <div style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.4;">
-                            Explore how hospital systems transition from two-stage text rule extraction to Zero-Shot Multimodal Foundation VLM alignment.
+                        <div style="font-size: 0.78rem; font-weight: bold; margin: 6px 0 4px 0;">Course 3 Critical Assessment (Phần 4):</div>
+                        <div style="display: flex; gap: 4px; margin-bottom: 4px;">
+                            <button class="preset-btn" id="d_btn_crit_1" onclick="setDungCritique(1)">Core Strengths &amp; Accuracy Trap</button>
+                            <button class="preset-btn" id="d_btn_crit_2" onclick="setDungCritique(2)">2026 Outdated Tools &amp; Fixes</button>
                         </div>
                     </div>
                 </div>
@@ -1544,13 +1546,11 @@
                     </div>
 
                     <div id="d_v_step2" style="display: none;">
-                        <div style="background: #0f172a; color: white; border-radius: 6px; padding: 8px; font-size: 0.74rem;">
-                            <div style="color: #60a5fa; font-weight: bold; margin-bottom: 2px;">2026 Multimodal Foundation Model:</div>
-                            <div style="color: #cbd5e1; line-height: 1.4; margin-bottom: 4px;">
-                                Image &harr; BiomedCLIP Text Embedding alignment enables Zero-Shot disease classification without hand-crafted rules!
-                            </div>
-                            <div style="text-align: center; font-size: 0.72rem; color: #34d399; font-weight: bold;">
-                                ⚡ Contrastive Cosine Sim(v, t) &rarr; Zero-Shot Diagnosis!
+                        <div style="background: #fffbeb; border: 1.5px solid #fde047; border-radius: 6px; padding: 8px; font-size: 0.75rem;">
+                            <div style="color: #92400e; font-weight: bold; margin-bottom: 3px;">📑 Course 3 Critical Assessment (Phần 4):</div>
+                            <div style="color: #78350f; line-height: 1.45;" id="d_crit_v_text">
+                                • <strong>Accuracy Trap:</strong> With 1% disease prevalence, predicting all 0 gives 99% accuracy but misses all sick patients. F1 harmonic mean is mandatory.<br>
+                                • <strong>2026 Evolution:</strong> 2018 BERT rule pipelines are being upgraded with end-to-end Multimodal Foundation Models (BiomedCLIP).
                             </div>
                         </div>
                     </div>
@@ -1560,8 +1560,8 @@
             <!-- Narrative Transition Bridge to Part 4 -->
             <div style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 1.5px solid #fde047; border-radius: 8px; padding: 12px 16px; margin-top: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(217,119,6,0.06);">
                 <div>
-                    <span style="font-size: 0.72rem; font-weight: 800; color: #92400e; text-transform: uppercase;">Chapter 4 &bull; NLP Attention &amp; 14-CNN Vision Labs</span>
-                    <div style="font-size: 0.88rem; font-weight: 800; color: #78350f; margin-top: 2px;">100k Labels mined &rarr; Hand off to Linh for BioBERT NLP, 14-CNN Training &amp; Grad-CAM Vision!</div>
+                    <span style="font-size: 0.72rem; font-weight: 800; color: #92400e; text-transform: uppercase;">Transition to Part 4 &bull; Medical QA &amp; Model Interpretation</span>
+                    <div style="font-size: 0.88rem; font-weight: 800; color: #78350f; margin-top: 2px;">100,000 Labels Extracted &rarr; Hand off to Linh for Medical QA Spans, Permutation &amp; Grad-CAM!</div>
                 </div>
                 <button class="btn" style="background:#d97706; color:#fff;" onclick="switchMember('linh')">Continue to Part 4: Linh &rarr;</button>
             </div>
@@ -1572,9 +1572,9 @@
         <div id="section_linh" class="tab-content">
             <div class="member-banner" style="border-left: 5px solid var(--purple);">
                 <div>
-                    <span class="role-tag" style="background:#f5f3ff; color:#6d28d9;">Part 4: Linh · Medical NLP &amp; 14-CNN Vision Labs</span>
-                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">BioBERT Attention, 14-Disease DenseNet121 CNN Training, F1 Tuning &amp; Grad-CAM Localization</h2>
-                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.35;">Scope: WordPiece token tensors (1, 60), 14-disease multi-label CNN training with F1 threshold optimization, and Layer 424 Grad-CAM visual heatmaps.</p>
+                    <span class="role-tag" style="background:#f5f3ff; color:#6d28d9;">Part 4: Linh (DEV 2) · Medical QA &amp; ML Interpretation (Week 2 &amp; 3)</span>
+                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Medical QA (BioBERT Spans), Permutation Importance &amp; Grad-CAM with Sanity Checks</h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.35;">Scope: Resolving Polysemy ("MS"), Start/End Vectors S &amp; E, Drop Column vs Permutation, and Layer 424 Grad-CAM with Adebayo 2018 Sanity Checks.</p>
                 </div>
                 <div class="timer-widget" id="timer_linh_box">
                     <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
@@ -1594,8 +1594,8 @@
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span class="flowchart-icon">🗺️</span>
                         <div>
-                            <div style="font-size: 0.82rem; font-weight: 800; color: #5b21b6; text-transform: uppercase; letter-spacing: 0.03em;">Linh's NLP Attention &amp; 14-CNN Vision Lab (2 Unified Chapters)</div>
-                            <div style="font-size: 0.72rem; color: var(--text-muted);">BioBERT Attention Tensors &rarr; 14-CNN Training, F1 Tuning &amp; Layer 424 Grad-CAM</div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #5b21b6; text-transform: uppercase; letter-spacing: 0.03em;">Linh: Medical QA &amp; ML Interpretation Labs (Week 2, V1–3 &amp; Week 3, V1–2, 7–9)</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">BioBERT Contextual Spans (S &amp; E) &bull; Permutation Importance &bull; Layer 424 Grad-CAM &amp; Sanity Checks</div>
                         </div>
                     </div>
                     <span class="pill pill-purple" style="font-size: 0.68rem;">2 Core Chapters</span>
@@ -1975,7 +1975,8 @@
         <script>
 
         // =========================================================================
-        // ANTIGRAVITY UNIFIED PRESENTATION & LIVE REACTIVE ENGINE (100% CLEAN MATH)
+        // ANTIGRAVITY UNIFIED PRESENTATION ENGINE — 100% COURSE 3 SUMMARY COMPLIANT
+        // (Khương: BIZ 1 | Hiếu: DEV 1 | Dung: BIZ 2 | Linh: DEV 2)
         // =========================================================================
 
         let currentMember = "overview";
@@ -2075,7 +2076,7 @@
         }
 
         // =========================================================================
-        // 1. KHƯƠNG - CLINICAL RCT & POTENTIAL OUTCOMES LOGIC
+        // 1. KHƯƠNG (BIZ 1) — WEEK 1 (VIDEOS 1–7): CLINICAL RCT & CAUSAL FOUNDATIONS
         // =========================================================================
         let kAllocMode = 'rct';
         let kActivePatient = 1;
@@ -2100,8 +2101,8 @@
             const b6Title = document.getElementById("k_block6_title");
 
             if (step === 1) {
-                if (badge) badge.innerText = "Chapter 1";
-                if (scTitle) scTitle.innerText = "Testing Drug Efficacy in a Clinical Cohort";
+                if (badge) badge.innerText = "Chapter 1 (Week 1, V1–4)";
+                if (scTitle) scTitle.innerText = "Clinical Trial Cohort: ARR, RRR & NNT Economics (Patient 62y)";
                 if (scBody) scBody.innerText = "Demonstrating how randomized coin flips cut confounding bias and compute Population Absolute Risk Reduction (ARR).";
                 if (inStep1) inStep1.style.display = "block";
                 if (inStep2) inStep2.style.display = "none";
@@ -2112,8 +2113,8 @@
                 if (b6Title) b6Title.innerText = "👥 6. Visualizing Trial Impact";
                 updateKhuong();
             } else {
-                if (badge) badge.innerText = "Chapter 2";
-                if (scTitle) scTitle.innerText = "The Parallel Universe Dilemma (Missing Counterfactuals)";
+                if (badge) badge.innerText = "Chapter 2 (Week 1, V5–7)";
+                if (scTitle) scTitle.innerText = "Neyman-Rubin Potential Outcomes & ATE to CATE Transition";
                 if (scBody) scBody.innerText = "Under the Neyman-Rubin model, we only observe one world per patient. The other outcome Y(0) is fundamentally missing.";
                 if (inStep1) inStep1.style.display = "none";
                 if (inStep2) inStep2.style.display = "block";
@@ -2173,9 +2174,9 @@
             const mlDesc = document.getElementById("k_ml_desc");
             if (mlDesc) {
                 if (kAllocMode === "rct") {
-                    mlDesc.innerHTML = `<strong>Coin Flip (Clean RCT):</strong> Treatment W is assigned with P(W=1) = 0.50, independent of Age/BP. The backdoor path is severed (X &#8869; W).`;
+                    mlDesc.innerHTML = `<strong>Coin Flip (Clean RCT):</strong> Treatment W is assigned with P(W=1) = 0.50, independent of Age/BP. The backdoor confounding path is severed (X &#8869; W). Standardized Mean Difference (SMD) &lt; 0.10.`;
                 } else {
-                    mlDesc.innerHTML = `<strong>Doctor Choice (Biased):</strong> Sicker patients were preferentially prescribed treatment (X &rarr; W). Confounder bias contaminates raw risk differences.`;
+                    mlDesc.innerHTML = `<strong>Doctor Choice (Biased):</strong> Sicker patients were preferentially prescribed treatment (X &rarr; W). Confounder bias contaminates raw risk differences (SMD explodes to +0.45).`;
                 }
             }
 
@@ -2190,7 +2191,7 @@
                             = ${(pControl*100).toFixed(1)}% &minus; ${(pTreated*100).toFixed(1)}% = <strong style="color: #166534;">+${(arr*100).toFixed(1)}% Risk Drop</strong>
                         </div>
                         <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; color: #166534; font-weight: 800;">
-                            NNT = 1 / ARR = 1 / ${arr.toFixed(3)} = <strong>${nnt.toFixed(1)} Patients</strong>
+                            NNT = 1 / ARR = 1 / ${arr.toFixed(3)} = <strong>${nnt.toFixed(1)} Patients</strong> (RRR = ${(rrrVal*100).toFixed(0)}%)
                         </div>
                     </div>
                 `;
@@ -2250,7 +2251,7 @@
         const kPatients = [
             { id: 1, name: "Young Alex", age: 35, sbp: 118, w: 0, y_obs: 0, cate: "+2.0%" },
             { id: 2, name: "Uncle Nam", age: 58, sbp: 142, w: 0, y_obs: 1, cate: "+12.4%" },
-            { id: 3, name: "Grandpa An", age: 70, sbp: 165, w: 1, y_obs: 0, cate: "+26.4%" }
+            { id: 3, name: "Patient 62y (Grandpa An)", age: 62, sbp: 165, w: 1, y_obs: 0, cate: "+26.4%" }
         ];
 
         function setKhuongPatientUniverse(id) {
@@ -2276,7 +2277,7 @@
 
             const mlDesc = document.getElementById("k_ml_desc");
             if (mlDesc) {
-                mlDesc.innerHTML = `<strong>Neyman-Rubin Potential Outcomes:</strong> Each patient has two potential states: Y(1) and Y(0). Because treatment W is binary, we can only observe Y = W &middot; Y(1) + (1&minus;W) &middot; Y(0). The counterfactual is unobservable in real life.`;
+                mlDesc.innerHTML = `<strong>Neyman-Rubin Potential Outcomes:</strong> Each patient has two potential states: Y(1) and Y(0). Because treatment W is binary, we can only observe Y = W &middot; Y(1) + (1&minus;W) &middot; Y(0). The counterfactual is unobservable in real life. ATE ignores individual risk profiles, requiring CATE.`;
             }
 
             const formCard = document.getElementById("k_formula_card");
@@ -2310,7 +2311,7 @@
             if (subTable) {
                 subTable.innerHTML = `
                     <tr style="${kSubgroupMode === 'high' ? 'background:#dcfce7; font-weight:bold;' : ''}">
-                        <td><strong>High Risk (Elderly, SBP > 160)</strong></td>
+                        <td><strong>High Risk (Patient 62y, SBP > 160)</strong></td>
                         <td><span style="color:#166534; font-weight:800;">+26.4% ARR</span></td>
                         <td><span class="pill pill-danger">Highest Priority</span></td>
                     </tr>
@@ -2342,7 +2343,7 @@
         }
 
         // =========================================================================
-        // 2. HIẾU - INDIVIDUALIZED CATE & SHAP LOGIC
+        // 2. HIẾU (DEV 1) — WEEK 1 (VIDEOS 8–12) & WEEK 3 (VIDEOS 4–6)
         // =========================================================================
         let hModelMode = 't';
         let hTwinBatch = 1;
@@ -2367,7 +2368,7 @@
             const b6Title = document.getElementById("h_block6_title");
 
             if (step === 1) {
-                if (badge) badge.innerText = "Chapter 1";
+                if (badge) badge.innerText = "Chapter 1 (Week 1, V8)";
                 if (scDesc) scDesc.innerText = "Precision CATE profiling: Estimating stroke risk drop conditioned on individual Age, SBP, and BMI.";
                 if (in1) in1.style.display = "block";
                 if (in2) in2.style.display = "none";
@@ -2380,7 +2381,7 @@
                 if (b6Title) b6Title.innerText = "📊 6. Individual Risk Bars";
                 updateHieu();
             } else if (step === 2) {
-                if (badge) badge.innerText = "Chapter 2";
+                if (badge) badge.innerText = "Chapter 2 (Week 1, V8–9)";
                 if (scDesc) scDesc.innerText = "Architecture Battle: Comparing T-Learner (2 Specialized Trees) against S-Learner (Shrinkage Bias).";
                 if (in1) in1.style.display = "none";
                 if (in2) in2.style.display = "block";
@@ -2393,7 +2394,7 @@
                 if (b6Title) b6Title.innerText = "🌲 6. Model Structure Comparison";
                 updateHieuReg();
             } else {
-                if (badge) badge.innerText = "Chapter 3";
+                if (badge) badge.innerText = "Chapter 3 (Week 1, V10–12 & Week 3, V4–6)";
                 if (scDesc) scDesc.innerText = "Matched Twin Pairs Validation (C=0.6342) and Itemized TreeSHAP Push Receipts.";
                 if (in1) in1.style.display = "none";
                 if (in2) in2.style.display = "none";
@@ -2490,9 +2491,9 @@
                 if (hStep === 1) {
                     mlDesc.innerHTML = `<strong>T-Learner CATE Prediction:</strong> Trained model estimates &mu;<sub>0</sub>(X) (Untreated Risk = ${(baselineRisk*100).toFixed(1)}%) and &mu;<sub>1</sub>(X) (Treated Risk = ${(treatedRisk*100).toFixed(1)}%). Difference is the true personalized benefit.`;
                 } else if (hStep === 2) {
-                    mlDesc.innerHTML = `<strong>T-Learner vs S-Learner:</strong> T-Learner uses two specialized models to avoid regularization bias. S-Learner puts treatment into one tree, shrinking benefit by ${( (trueCATE - shrunkCATE)*100 ).toFixed(1)}%.`;
+                    mlDesc.innerHTML = `<strong>T-Learner vs S-Learner Trap:</strong> T-Learner uses two specialized models to avoid regularization bias. S-Learner puts treatment into one tree, shrinking benefit by ${( (trueCATE - shrunkCATE)*100 ).toFixed(1)}%.`;
                 } else {
-                    mlDesc.innerHTML = `<strong>TreeSHAP Decomposition:</strong> Additive feature attribution calculates exact push percentages from SBP, Age, and Baseline drug effect.`;
+                    mlDesc.innerHTML = `<strong>TreeSHAP Decomposition:</strong> Additive feature attribution calculates exact push percentages from SBP, Age, and Baseline drug effect for each patient.`;
                 }
             }
 
@@ -2560,12 +2561,12 @@
 
             const foot = document.getElementById("h_out_matched_footer");
             if (foot) {
-                foot.innerHTML = `✔ Batch #${hTwinBatch} Validation C-for-benefit = <strong>0.6342</strong> (Hospital Gold Standard).`;
+                foot.innerHTML = `✔ Batch #${hTwinBatch} Validation C-for-benefit = <strong>0.6342</strong> (Hospital Gold Standard: 0.55–0.65).`;
             }
         }
 
         // =========================================================================
-        // 3. DUNG - 100K PACS BIG DATA LABEL MINING & 2026 MULTIMODAL VLM
+        // 3. DUNG (BIZ 2) — WEEK 2 (VIDEOS 4–10) & WEEK 3 (V3) + CRITICAL REVIEW
         // =========================================================================
         const dReports = {
             1: {
@@ -2575,7 +2576,7 @@
                     <tr><td><strong>Consolidation</strong></td><td>"No consolidation"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
                     <tr><td><strong>Cardiomegaly</strong></td><td>Not Mentioned</td><td><span class="pill pill-purple">0 (Absent)</span></td></tr>
                 `,
-                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">NegBio Extraction:</strong><br>Label(Pneumonia) = Mention(1) &times; (1 &minus; Negated(1)) = 1 &times; 0 = <strong style="color:#dc2626;">0 (Clean Negative)</strong></div>`
+                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">Step 3: NegBio Negation Detection:</strong><br>Label(Pneumonia) = Mention(1) &times; (1 &minus; Negated(1)) = 1 &times; 0 = <strong style="color:#dc2626;">0 (Clean Negative)</strong></div>`
             },
             2: {
                 text: '“Chest radiograph reveals prominent <span class="hl-disease">cardiomegaly</span> with mild interstitial <span class="hl-disease">edema</span>.”',
@@ -2584,7 +2585,7 @@
                     <tr><td><strong>Edema</strong></td><td>"Mild interstitial edema"</td><td><span class="pill pill-success">1 (Positive)</span></td></tr>
                     <tr><td><strong>Pneumonia</strong></td><td>Not Mentioned</td><td><span class="pill pill-purple">0 (Absent)</span></td></tr>
                 `,
-                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">NegBio Extraction:</strong><br>Label(Cardiomegaly) = Mention(1) &times; (1 &minus; Negated(0)) = 1 &times; 1 = <strong style="color:#166534;">1 (Positive Ground Truth)</strong></div>`
+                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">Step 1: Direct Mention Extraction:</strong><br>Label(Cardiomegaly) = Mention(1) &times; (1 &minus; Negated(0)) = 1 &times; 1 = <strong style="color:#166534;">1 (Positive Ground Truth)</strong></div>`
             },
             3: {
                 text: '“Findings consistent with dense airspace <span class="hl-disease">consolidation</span> in right lung.”',
@@ -2592,9 +2593,11 @@
                     <tr><td><strong>Pneumonia</strong></td><td>Synonym: "airspace consolidation"</td><td><span class="pill pill-success">1 (UMLS Mapped)</span></td></tr>
                     <tr><td><strong>Consolidation</strong></td><td>Direct match</td><td><span class="pill pill-success">1 (Positive)</span></td></tr>
                 `,
-                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">UMLS Concept Mapping:</strong><br>Label(Pneumonia) = OntologyMap("consolidation") = <strong style="color:#166534;">1 (Concept C0032285)</strong></div>`
+                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">Step 2: UMLS / Is-A Concept Mapping:</strong><br>Label(Pneumonia) = OntologyMap("consolidation") = <strong style="color:#166534;">1 (Concept C0032285)</strong></div>`
             }
         };
+
+        let dAvgMode = 'macro';
 
         function setDungPipelineStep(step) {
             dStep = step;
@@ -2613,25 +2616,25 @@
             const b6Title = document.getElementById("d_block6_title");
 
             if (step === 1) {
-                if (badge) badge.innerText = "Chapter 1";
-                if (scTitle) scTitle.innerText = "Extracting Structured Labels from 100,000 PACS Reports";
-                if (scDesc) scDesc.innerText = "Automating hospital-scale radiology text mining using NegBio syntactic parsing and UMLS ontologies.";
+                if (badge) badge.innerText = "Chapter 1 (Week 2, V4–7)";
+                if (scTitle) scTitle.innerText = "Automatic Label Extraction: 3-Step PACS Rule Mining Pipeline";
+                if (scDesc) scDesc.innerText = "Extracting binary ground truth {0, 1} from 100,000 radiology notes via Synonyms (UMLS), Is-A hierarchies & NegBio.";
                 if (in1) in1.style.display = "block";
                 if (in2) in2.style.display = "none";
                 if (v1) v1.style.display = "block";
                 if (v2) v2.style.display = "none";
-                if (b6Title) b6Title.innerText = "🗂️ 6. PACS Big Data Pipeline";
+                if (b6Title) b6Title.innerText = "🗂️ 6. 3-Step PACS Data Pipeline";
                 setDungReportCase(1);
             } else {
-                if (badge) badge.innerText = "Chapter 2";
-                if (scTitle) scTitle.innerText = "2026 Frontier: Multimodal Vision-Language Models (VLM)";
-                if (scDesc) scDesc.innerText = "Transitioning from rule-based pipelines to end-to-end foundation models (BiomedCLIP) with zero-shot classification.";
+                if (badge) badge.innerText = "Chapter 2 (Week 2, V8–10 & Phần 4)";
+                if (scTitle) scTitle.innerText = "Multi-Label Evaluation Metrics (F1) & Course 3 Critical Assessment";
+                if (scDesc) scDesc.innerText = "Why Accuracy is useless in medical AI (1% disease prevalence), Macro vs Micro average, and Critical Review (Phần 4).";
                 if (in1) in1.style.display = "none";
                 if (in2) in2.style.display = "block";
                 if (v1) v1.style.display = "none";
                 if (v2) v2.style.display = "block";
-                if (b6Title) b6Title.innerText = "🤖 6. 2026 Multimodal Alignment";
-                setDungParadigm(2);
+                if (b6Title) b6Title.innerText = "📑 6. Course 3 Critical Assessment";
+                setDungAverageMode('macro');
             }
         }
 
@@ -2651,62 +2654,81 @@
             if (tblBody) tblBody.innerHTML = d.table;
             if (formCard) formCard.innerHTML = d.math;
             if (mlDesc) {
-                mlDesc.innerHTML = `<strong>NegBio Rule-Based Extraction:</strong> Uses dependency graph parsing to detect negation cues ("no evidence of") and binds them to target pathologies, generating 100,000 ground truth labels at $0 cost.`;
+                mlDesc.innerHTML = `<strong>3-Step Automatic Label Extraction:</strong> 1. Maps medical synonyms via UMLS; 2. Traverses Is-A ontology hierarchies; 3. NegBio dependency graph parses negation cues to create 100,000 ground truth labels.`;
             }
         }
 
-        function setDungParadigm(parNum) {
-            const btn1 = document.getElementById("d_btn_par_1");
-            const btn2 = document.getElementById("d_btn_par_2");
-            if (btn1) btn1.classList.toggle("active", parNum === 1);
-            if (btn2) btn2.classList.toggle("active", parNum === 2);
+        function setDungAverageMode(mode) {
+            dAvgMode = mode;
+            const btnMacro = document.getElementById("d_btn_avg_macro");
+            const btnMicro = document.getElementById("d_btn_avg_micro");
+            if (btnMacro) btnMacro.classList.toggle("active", mode === 'macro');
+            if (btnMicro) btnMicro.classList.toggle("active", mode === 'micro');
 
-            const mlDesc = document.getElementById("d_nlp_desc");
             const formCard = document.getElementById("d_formula_card");
+            const mlDesc = document.getElementById("d_nlp_desc");
             const tblBody = document.getElementById("d_out_table_body");
 
-            if (parNum === 1) {
-                if (mlDesc) mlDesc.innerHTML = `<strong>2020 Two-Stage Rule Pipeline:</strong> NegBio extracts text labels &rarr; exports ground-truth binary matrix Y &isin; {0, 1}<sup>100k &times; 14</sup>. Rule errors can propagate into dataset.`;
-                if (formCard) formCard.innerHTML = `
-                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
-                        <strong style="color: #1e40af;">Rule-Based Pipeline:</strong><br>
-                        PACS Text &rarr; Ground Truth Matrix <strong>Y</strong> &isin; {0, 1}<sup>100,000 &times; 14</sup>
-                    </div>
-                `;
-            } else {
-                if (mlDesc) mlDesc.innerHTML = `<strong>2026 Multimodal Foundation Model:</strong> BiomedCLIP aligns radiology text and X-ray embeddings in a shared latent space via contrastive learning, enabling Zero-Shot diagnosis.`;
+            if (mode === 'macro') {
                 if (formCard) formCard.innerHTML = `
                     <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
-                        <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
-                            Contrastive Alignment Loss:
-                        </div>
-                        <div style="color: #1e3a8a;">
-                            <strong>L<sub>InfoNCE</sub></strong> = &minus;log <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">exp( sim(v<sub>i</sub>, t<sub>i</sub>) / &tau; )</span><span>&sum;<sub>j</sub> exp( sim(v<sub>i</sub>, t<sub>j</sub>) / &tau; )</span></span>
-                        </div>
-                        <div style="margin-top: 4px; font-size: 0.74rem; color: #166534; font-weight: bold;">
-                            ✔ Zero-Shot Cosine Similarity = <strong>0.942</strong> (Pneumonia Match)
-                        </div>
+                        <strong style="color: #1e40af;">Macro-Average F1 Formula:</strong><br>
+                        Macro-F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">1</span><span>K</span></span> &sum;<sub>k=1</sub><sup>K</sup> F1<sub>k</sub> = <strong style="color:#166534;">0.842</strong>
+                        <div style="font-size: 0.74rem; color: #1e40af; margin-top: 4px;">✔ Treats all 14 disease categories equally (prevents rare disease neglect).</div>
                     </div>
                 `;
-                if (tblBody) {
-                    tblBody.innerHTML = `
-                        <tr><td><strong>BiomedCLIP Zero-Shot</strong></td><td>Prompt: "Chest X-ray showing consolidation"</td><td><span class="pill pill-success">Cosine Sim = 0.942</span></td></tr>
-                        <tr><td><strong>Normal Control</strong></td><td>Prompt: "Normal chest radiograph"</td><td><span class="pill pill-danger">Cosine Sim = 0.081</span></td></tr>
-                    `;
-                }
+                if (mlDesc) mlDesc.innerHTML = `<strong>Macro-Average Evaluation:</strong> Computes F1 separately for each disease category and averages them. Vital in medicine so that rare high-mortality conditions (e.g. Hernia 0.2%) count equally to common ones.`;
+            } else {
+                if (formCard) formCard.innerHTML = `
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
+                        <strong style="color: #1e40af;">Micro-Average F1 Formula:</strong><br>
+                        Micro-F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &sum; TP<sub>k</sub></span><span>2 &sum; TP<sub>k</sub> + &sum; FP<sub>k</sub> + &sum; FN<sub>k</sub></span></span> = <strong style="color:#166534;">0.891</strong>
+                        <div style="font-size: 0.74rem; color: #1e40af; margin-top: 4px;">✔ Aggregates global true/false positives across all 100,000 cases.</div>
+                    </div>
+                `;
+                if (mlDesc) mlDesc.innerHTML = `<strong>Micro-Average Evaluation:</strong> Aggregates globally across all instances. Reflects overall diagnostic throughput, but is heavily dominated by frequent diseases.`;
+            }
+
+            if (tblBody) {
+                tblBody.innerHTML = `
+                    <tr><td><strong>Pneumonia (Rare ~1.4%)</strong></td><td>Precision: 0.904 | Recall: 0.766</td><td><span class="pill pill-success">F1 = 0.829</span></td></tr>
+                    <tr><td><strong>Cardiomegaly (~2.8%)</strong></td><td>Precision: 0.880 | Recall: 0.850</td><td><span class="pill pill-success">F1 = 0.865</span></td></tr>
+                    <tr><td><strong>Hernia (Ultra-rare 0.2%)</strong></td><td>Precision: 0.820 | Recall: 0.690</td><td><span class="pill pill-purple">F1 = 0.749</span></td></tr>
+                `;
+            }
+        }
+
+        function setDungCritique(critNum) {
+            const btn1 = document.getElementById("d_btn_crit_1");
+            const btn2 = document.getElementById("d_btn_crit_2");
+            if (btn1) btn1.classList.toggle("active", critNum === 1);
+            if (btn2) btn2.classList.toggle("active", critNum === 2);
+
+            const vTxt = document.getElementById("d_crit_v_text");
+            if (critNum === 1) {
+                if (vTxt) vTxt.innerHTML = `
+                    • <strong>Accuracy Trap:</strong> With 1% disease prevalence, predicting all 0 gives 99% accuracy but misses all sick patients. F1 harmonic mean is mandatory.<br>
+                    • <strong>Core Strengths:</strong> 3-week modular logic (Causal &rarr; NLP &rarr; XAI), compact 104-minute video concepts, and rigorous clinical formulation.
+                `;
+            } else {
+                if (vTxt) vTxt.innerHTML = `
+                    • <strong>2026 Outdated Tools:</strong> 2018 BERT regex pipelines are superseded by Multimodal Foundation Models (BiomedCLIP) with Zero-Shot alignment.<br>
+                    • <strong>Observational Gap:</strong> Course 3 focuses on clean RCTs; real hospital deployment requires propensity score matching & sensitivity analysis for unmeasured confounding.
+                `;
             }
         }
 
         // =========================================================================
-        // 4. LINH - MEDICAL NLP & 14-CNN GRAD-CAM VISION LABS
+        // 4. LINH (DEV 2) — WEEK 2 (V1–3) & WEEK 3 (V1–2, 7–9)
         // =========================================================================
         const lTexts = {
-            1: "Patient has fever and/or cough.. Possible pneumonia.",
+            1: "Patient diagnosed with MS (Mitral Stenosis) after echocardiogram.",
             2: "Forxiga (dapagliflozin) reduces blood glucose levels.",
-            3: "Chest X-ray shows right lower lobe consolidation."
+            3: "Chest X-ray shows dense consolidation in right lower lobe."
         };
 
         let lActiveDisease = 'pneumonia';
+        let lEmbMode = 'context';
 
         function setLinhLab(step) {
             lStep = step;
@@ -2727,21 +2749,21 @@
             const b6Title = document.getElementById("l_block6_title");
 
             if (step === 1) {
-                if (badge) badge.innerText = "Chapter 1";
-                if (scTitle) scTitle.innerText = "Clinical Text Preprocessing & BioBERT Attention Tokens";
-                if (scBody) scBody.innerText = "Demonstrating how regex normalization and WordPiece tokenization format raw clinical notes for BioBERT.";
+                if (badge) badge.innerText = "Chapter 1 (Week 2, V1–3)";
+                if (scTitle) scTitle.innerText = "Medical Question Answering: BioBERT Contextual Spans & Polysemy";
+                if (scBody) scBody.innerText = "Resolving polysemy (e.g. 'MS' = Multiple Sclerosis vs Mitral Stenosis) and extracting answer spans via Start/End vectors S and E.";
                 if (inClean) inClean.style.display = "block";
                 if (inCam) inCam.style.display = "none";
                 if (outClean) outClean.style.display = "block";
                 if (outCam) outCam.style.display = "none";
                 if (vLab1) vLab1.style.display = "block";
                 if (vLab2) vLab2.style.display = "none";
-                if (b6Title) b6Title.innerText = "🔤 6. BioBERT Attention Tensor";
+                if (b6Title) b6Title.innerText = "🔤 6. BioBERT Contextual Span Tensor";
                 runLinhTokenizer();
             } else {
-                if (badge) badge.innerText = "Chapter 2";
-                if (scTitle) scTitle.innerText = "14-CNN Vision Training, F1 Threshold Tuning & Layer 424 Grad-CAM";
-                if (scBody) scBody.innerText = "DenseNet121 multi-label classification, harmonic F1 tuning for rare disease safety, and Grad-CAM Layer 424 visual explainability.";
+                if (badge) badge.innerText = "Chapter 2 (Week 3, V1–2, 7–9)";
+                if (scTitle) scTitle.innerText = "ML Interpretation: Permutation & Grad-CAM with Sanity Checks";
+                if (scBody) scBody.innerText = "Drop Column vs Permutation, 14-Disease DenseNet121 Layer 424 Grad-CAM heatmaps, and Adebayo 2018 Sanity Checks.";
                 if (inClean) inClean.style.display = "none";
                 if (inCam) inCam.style.display = "block";
                 if (outClean) outClean.style.display = "none";
@@ -2751,6 +2773,15 @@
                 if (b6Title) b6Title.innerText = "🩻 6. Layer 424 Grad-CAM Visualizer";
                 setLinhDisease(lActiveDisease);
             }
+        }
+
+        function setLinhEmbeddingMode(mode) {
+            lEmbMode = mode;
+            const btnStat = document.getElementById("l_btn_emb_static");
+            const btnCont = document.getElementById("l_btn_emb_context");
+            if (btnStat) btnStat.classList.toggle("active", mode === 'static');
+            if (btnCont) btnCont.classList.toggle("active", mode === 'context');
+            runLinhTextCleaner();
         }
 
         function runLinhTokenizer() {
@@ -2794,15 +2825,12 @@
             const formCard = document.getElementById("l_formula_card");
             if (formCard) {
                 formCard.innerHTML = `
-                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
-                        <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
-                            BioBERT Embedding Tensor:
-                        </div>
-                        <div style="color: #1e3a8a;">
-                            <strong>T</strong> = <strong>E</strong><sub>Token</sub> + <strong>E</strong><sub>Pos</sub> + <strong>E</strong><sub>Seg</sub> &isin; &#8477;<sup>1 &times; 60 &times; 768</sup>
-                        </div>
-                        <div style="margin-top: 4px; font-size: 0.74rem; color: #6d28d9; font-weight: bold;">
-                            Attention Mask M<sub>i</sub> = 1 (Real Token), M<sub>i</sub> = 0 ([PAD])
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
+                        <strong style="color: #1e40af;">Extractive QA Span Probability:</strong><br>
+                        P<sub>start</sub>(i) = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">exp( S &middot; T<sub>i</sub> )</span><span>&sum;<sub>j</sub> exp( S &middot; T<sub>j</sub> )</span></span>, &nbsp;
+                        P<sub>end</sub>(j) = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">exp( E &middot; T<sub>j</sub> )</span><span>&sum;<sub>k</sub> exp( E &middot; T<sub>k</sub> )</span></span>
+                        <div style="margin-top: 4px; font-size: 0.74rem; color: ${lEmbMode === 'context' ? '#166534' : '#991b1b'}; font-weight: bold;">
+                            ${lEmbMode === 'context' ? '✔ BioBERT Contextual Embedding: "MS" correctly resolved to Mitral Stenosis' : '⚠️ Static Word2Vec: "MS" vector is ambiguous across Multiple Sclerosis & Mitral Stenosis'}
                         </div>
                     </div>
                 `;
@@ -2810,7 +2838,7 @@
 
             const mlDesc = document.getElementById("l_ml_explanation");
             if (mlDesc) {
-                mlDesc.innerHTML = `<strong>BioBERT Attention Pipeline:</strong> Regex normalizes clinical noise, WordPiece handles unseen medical terms (e.g. 'dapagliflozin'), and the attention mask ensures transformers ignore zero padding.`;
+                mlDesc.innerHTML = `<strong>Medical QA & Contextual Spans:</strong> Static embeddings (Word2Vec) assign 1 fixed vector per word, failing on medical polysemy (e.g. 'MS'). BioBERT computes dynamic contextual embeddings, and trained Start (S) & End (E) vectors pinpoint the exact answer span [i, j].`;
             }
         }
 
@@ -2878,13 +2906,13 @@
                 formCard.innerHTML = `
                     <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
                         <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
-                            Harmonic F1-Score:
+                            Permutation Drop &amp; Layer 424 Grad-CAM:
                         </div>
                         <div style="color: #1e3a8a;">
-                            F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &times; Precision &times; Recall</span><span>Precision + Recall</span></span> = <strong style="color:#166534;">${f1.toFixed(3)}</strong>
+                            &Delta;C(Age) = C<sub>shuffled</sub> &minus; C<sub>baseline</sub> = 0.5531 &minus; 0.7759 = <strong style="color:#dc2626;">-0.2228</strong>
                         </div>
                         <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; margin-top: 4px; color: #7c3aed; font-weight: 800;">
-                            Grad-CAM: L<sub>CAM</sub><sup>c</sup> = ReLU( &sum;<sub>k</sub> &alpha;<sub>k</sub><sup>c</sup> &middot; A<sup>k</sup> ) [Layer 424]
+                            L<sub>Grad-CAM</sub><sup>c</sup> = ReLU( &sum;<sub>k</sub> &alpha;<sub>k</sub><sup>c</sup> &middot; A<sup>k</sup> ) &nbsp; [Layer 424]
                         </div>
                     </div>
                 `;
@@ -2892,7 +2920,7 @@
 
             const mlDesc = document.getElementById("l_ml_explanation");
             if (mlDesc) {
-                mlDesc.innerHTML = `<strong>14-CNN DenseNet121 &amp; Grad-CAM:</strong> Evaluates multi-label sigmoid probabilities, optimizes F1 harmonic mean for rare disease balance, and computes Layer 424 gradients to display transparent visual heatmaps.`;
+                mlDesc.innerHTML = `<strong>Permutation &amp; Grad-CAM Localization:</strong> Permutation measures global feature importance without retraining. Grad-CAM backpropagates gradients to Layer 424 feature maps to display visual pathology heatmaps (Weakly-supervised localization).`;
             }
         }
 
