@@ -2444,23 +2444,123 @@
             }
         }
 
+        let currentHieuModelMode = 't';
+
         function setHieuModelMode(mode) {
+            currentHieuModelMode = mode;
             const isT = (mode === 't');
+            const depth = parseInt(document.getElementById('h_sl_reg').value) || 6;
             document.getElementById('h_btn_m_t').classList.toggle('active', isT);
             document.getElementById('h_btn_m_s').classList.toggle('active', !isT);
 
+            const scenDesc = document.getElementById('h_scenario_desc');
+            const mlDesc = document.getElementById('h_ml_desc');
             const mathCard = document.getElementById('h_formula_card');
+            const outBox = document.getElementById('h_out_cate_box');
+            const vBox = document.getElementById('h_v_step2');
+            const b6Title = document.getElementById('h_block6_title');
+            const b6Badge = document.getElementById('h_block6_badge');
+
+            const s_benefit = (4.0 + (depth * 1.87)).toFixed(1);
+
             if (isT) {
+                // CARD 1: Clinical Scenario
+                scenDesc.innerHTML = `<strong>🌲🌲 Active Model: T-Learner (Two Specialized Doctors).</strong><br>Doctor 1 is trained solely on Treated patients, Doctor 2 is trained solely on Untreated patients. Captures 100% of complex treatment benefits without bias!`;
+                
+                // CARD 3: What ML Does
+                mlDesc.innerHTML = `<strong>2 Specialized Doctors (T-Learner):</strong><br>• <strong>Doctor 1 (μ̂₁):</strong> Learns treated patient dynamics (21.8% risk).<br>• <strong>Doctor 2 (μ̂₀):</strong> Learns untreated patient dynamics (48.2% risk).<br>👉 Subtracting predictions captures 100% of true drug benefit (<strong>+26.4%</strong>) without shrinkage bias!`;
+                
+                // CARD 4: Dynamic Math Card
                 mathCard.innerHTML = `
                     <strong>T-Learner (2 Specialized Doctors):</strong><br>
-                    <span class="math-symbol">CATE</span><sub>T</sub> = Doctor 2 (Untreated) &minus; Doctor 1 (Treated) = <strong style="color:#166534;">+26.4%</strong><br>
+                    <span class="math-symbol">CATE</span><sub>T</sub> = &mu;&#770;₀(Untreated) &minus; &mu;&#770;₁(Treated) = <strong style="color:#166534;">+26.4% Net Risk Drop</strong><br>
                     <em>Captures 100% of drug interactions without any shrinkage!</em>
                 `;
+
+                // CARD 5: Expected Output
+                outBox.innerHTML = `
+                    <div style="background: #f0fdf4; border: 2px solid #86efac; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
+                            <span style="color: #166534;">🌲🌲 T-Learner CATE (Active):</span>
+                            <span style="color: #166534; font-size: 1rem;">+26.4% Benefit</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+                            <span>S-Learner (Alternative):</span>
+                            <span>+${s_benefit}% (Shrunk)</span>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #166534; background: #f0fdf4; padding: 6px 10px; border-radius: 6px; font-weight: bold;" id="h_prescribe_badge">
+                        ✔ STRONGLY RECOMMEND DRUG: Full +26.4% benefit recognized for Grandpa An!
+                    </div>
+                `;
+
+                // CARD 6: Visualizer
+                b6Title.innerHTML = "🌲🌲 6. T-Learner (2 Separate Trees)";
+                b6Badge.innerText = "T-Learner Active";
+                vBox.innerHTML = `
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px; text-align: center;">
+                        <div style="background: #dcfce7; border: 1.5px solid #86efac; border-radius: 6px; padding: 6px;">
+                            <div style="font-weight: bold; color: #166534; font-size: 0.78rem;">🌲 Doctor 1 (Treated Cohort)</div>
+                            <div style="font-size: 0.72rem; color: #14532d; margin-top: 2px;">Trained on W=1 patients</div>
+                            <div style="font-size: 0.82rem; font-weight: bold; color: #166534; margin-top: 4px;">Risk = 21.8%</div>
+                        </div>
+                        <div style="background: #fee2e2; border: 1.5px solid #fca5a5; border-radius: 6px; padding: 6px;">
+                            <div style="font-weight: bold; color: #991b1b; font-size: 0.78rem;">🌲 Doctor 2 (Control Cohort)</div>
+                            <div style="font-size: 0.72rem; color: #7f1d1d; margin-top: 2px;">Trained on W=0 patients</div>
+                            <div style="font-size: 0.82rem; font-weight: bold; color: #991b1b; margin-top: 4px;">Risk = 48.2%</div>
+                        </div>
+                    </div>
+                    <div style="background: #f0fdf4; border-left: 3px solid #166534; padding: 6px 8px; font-size: 0.76rem; color: #166534;">
+                        👉 <strong>T-Learner CATE</strong> = 48.2% &minus; 21.8% = <strong>+26.4% Net Risk Drop</strong> (100% Unbiased).
+                    </div>
+                `;
             } else {
+                // CARD 1: Clinical Scenario
+                scenDesc.innerHTML = `<strong>⚠️ Active Model: S-Learner (Single Overloaded Doctor).</strong><br>The decision tree puts Age, Blood Pressure, and the Drug Treatment into 1 single model. Because Age and Blood Pressure have higher variance, the tree splits on them first and ignores the drug (*Shrinkage Bias*).`;
+                
+                // CARD 3: What ML Does
+                mlDesc.innerHTML = `<strong>1 Overloaded Model (S-Learner):</strong><br>• <strong>Single Model &mu;&#770;(x, W):</strong> Fits all features into one tree.<br>• Tree splits on SBP (&gt;160) and Age (&gt;65) repeatedly.<br>⚠️ <strong>Shrinkage Hazard:</strong> The drug indicator W is ignored in 85% of tree leaves &rarr; Benefit collapses from +26.4% down to <strong>+${s_benefit}%</strong>!`;
+                
+                // CARD 4: Dynamic Math Card
                 mathCard.innerHTML = `
-                    <strong>S-Learner (1 Overloaded Doctor):</strong><br>
-                    <span class="math-symbol">CATE</span><sub>S</sub> = Single Tree(Untreated) &minus; Single Tree(Treated) = <strong style="color:var(--danger);">+15.2% (Shrinkage Bias!)</strong><br>
-                    <em>Decision tree forgets the medicine because it focuses on Age &rarr; Underestimates benefit.</em>
+                    <strong>S-Learner (1 Overloaded Doctor with Shrinkage):</strong><br>
+                    <span class="math-symbol">CATE</span><sub>S</sub> = Single Tree(Untreated) &minus; Single Tree(Treated) = <strong style="color:var(--danger);">+${s_benefit}% (Underestimated!)</strong><br>
+                    <em>Decision tree penalizes treatment feature W &rarr; True benefit (+26.4%) is severely shrunk!</em>
+                `;
+
+                // CARD 5: Expected Output
+                outBox.innerHTML = `
+                    <div style="background: #fff7ed; border: 2px solid #fdba74; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
+                            <span style="color: #9a3412;">⚠️ S-Learner CATE (Active):</span>
+                            <span style="color: #9a3412; font-size: 1rem;">+${s_benefit}% (Shrunk!)</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+                            <span>T-Learner (True Benefit):</span>
+                            <span>+26.4% (Missed by ${(26.4 - parseFloat(s_benefit)).toFixed(1)}%)</span>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #9a3412; background: #fff7ed; padding: 6px 10px; border-radius: 6px; font-weight: bold;" id="h_prescribe_badge">
+                        ⚠️ UNDERESTIMATED BENEFIT: Risk of withholding life-saving medicine from Grandpa An due to model bias!
+                    </div>
+                `;
+
+                // CARD 6: Visualizer
+                b6Title.innerHTML = "⚠️ 6. S-Learner Tree (Shrinkage Hazard)";
+                b6Badge.innerText = "S-Learner Active";
+                vBox.innerHTML = `
+                    <div style="background: #fff7ed; border: 1.5px solid #fdba74; border-radius: 6px; padding: 8px; margin-bottom: 6px;">
+                        <div style="font-weight: bold; color: #9a3412; font-size: 0.78rem; text-align: center; margin-bottom: 4px;">
+                            🌲 Single Overloaded Tree (Depth = ${depth})
+                        </div>
+                        <div style="font-size: 0.72rem; color: #7c2d12; line-height: 1.5;">
+                            [Root: SBP &gt; 160] &rarr; [Split 2: Age &gt; 65] &rarr; [Split 3: BMI &gt; 30]<br>
+                            👉 <strong>Treatment Feature W:</strong> Ignored at shallow leaves &rarr; Estimated CATE collapses to <strong>+${s_benefit}%</strong>.
+                        </div>
+                    </div>
+                    <div style="background: #fee2e2; border-left: 3px solid #dc2626; padding: 6px 8px; font-size: 0.76rem; color: #991b1b;">
+                        ⚠️ <strong>Shrinkage Bias Warning:</strong> S-Learner underestimates Grandpa An's true benefit by ${(26.4 - parseFloat(s_benefit)).toFixed(1)}%!
+                    </div>
                 `;
             }
         }
@@ -2468,6 +2568,7 @@
         function updateHieuReg() {
             const depth = document.getElementById('h_sl_reg').value;
             document.getElementById('h_txt_reg').innerText = `Depth = ${depth}`;
+            setHieuModelMode(currentHieuModelMode);
         }
 
         function updateHieuSHAPSliders() {
@@ -2524,26 +2625,34 @@
             const t_cate = ctrlRisk - trtRisk;
             const s_cate = t_cate * 0.58;
 
-            document.getElementById('h_disp_cate').innerText = `+${(t_cate * 100).toFixed(1)}% Benefit`;
-            document.getElementById('h_disp_s_cate').innerText = `+${(s_cate * 100).toFixed(1)}% (Shrinkage)`;
+            if (document.getElementById('h_step_1') && (document.getElementById('h_step_1').classList.contains('active') || document.getElementById('h_step_4').classList.contains('active'))) {
+                const outBox = document.getElementById('h_out_cate_box');
+                const badgeColor = t_cate > 0.18 ? '#166534' : (t_cate > 0.08 ? '#1e40af' : '#9a3412');
+                const badgeBg = t_cate > 0.18 ? '#f0fdf4' : (t_cate > 0.08 ? '#eff6ff' : '#fff7ed');
+                const badgeText = t_cate > 0.18 ? '✔ STRONGLY RECOMMEND IMMEDIATE DRUG PRESCRIPTION (High Priority).' : (t_cate > 0.08 ? 'ℹ STANDARD PRESCRIPTION PATHWAY (Moderate Benefit).' : '⚠ LOW BENEFIT: Recommend lifestyle & diet modification first.');
+
+                outBox.innerHTML = `
+                    <div style="background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
+                            <span>T-Learner CATE:</span>
+                            <span style="color: #1e40af;" id="h_disp_cate">+${(t_cate * 100).toFixed(1)}% Benefit</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">
+                            <span>S-Learner (Shrinkage):</span>
+                            <span id="h_disp_s_cate">+${(s_cate * 100).toFixed(1)}%</span>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.8rem; color: ${badgeColor}; background: ${badgeBg}; padding: 6px 10px; border-radius: 6px; font-weight: bold;" id="h_prescribe_badge">
+                        ${badgeText}
+                    </div>
+                `;
+            }
 
             if (document.getElementById('h_bar_ctrl')) {
                 document.getElementById('h_bar_ctrl').style.width = (ctrlRisk * 100).toFixed(0) + '%';
                 document.getElementById('h_val_ctrl').innerText = (ctrlRisk * 100).toFixed(1) + '%';
                 document.getElementById('h_bar_trt').style.width = (trtRisk * 100).toFixed(0) + '%';
                 document.getElementById('h_val_trt').innerText = (trtRisk * 100).toFixed(1) + '%';
-            }
-
-            const badge = document.getElementById('h_prescribe_badge');
-            if (t_cate > 0.18) {
-                badge.style.color = "#166534"; badge.style.background = "#f0fdf4";
-                badge.innerText = "✔ STRONGLY RECOMMEND IMMEDIATE DRUG PRESCRIPTION (High Priority).";
-            } else if (t_cate > 0.08) {
-                badge.style.color = "#1e40af"; badge.style.background = "#eff6ff";
-                badge.innerText = "ℹ STANDARD PRESCRIPTION PATHWAY (Moderate Benefit).";
-            } else {
-                badge.style.color = "#9a3412"; badge.style.background = "#fff7ed";
-                badge.innerText = "⚠ LOW BENEFIT: Recommend lifestyle & diet modification first.";
             }
 
             // SHAP
