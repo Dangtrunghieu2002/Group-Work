@@ -1499,7 +1499,7 @@
                             <button class="preset-btn active" id="d_btn_avg_macro" onclick="setDungAverageMode('macro')">Macro-Average (Equal Disease Weight)</button>
                             <button class="preset-btn" id="d_btn_avg_micro" onclick="setDungAverageMode('micro')">Micro-Average (Case-Weighted)</button>
                         </div>
-                        <div style="font-size: 0.78rem; font-weight: bold; margin: 6px 0 4px 0;">Course 3 Critical Assessment (Phần 4):</div>
+                        <div style="font-size: 0.78rem; font-weight: bold; margin: 6px 0 4px 0;">Course 3 Critical Assessment (Section 4):</div>
                         <div style="display: flex; gap: 4px; margin-bottom: 4px;">
                             <button class="preset-btn" id="d_btn_crit_1" onclick="setDungCritique(1)">Core Strengths &amp; Accuracy Trap</button>
                             <button class="preset-btn" id="d_btn_crit_2" onclick="setDungCritique(2)">2026 Outdated Tools &amp; Fixes</button>
@@ -1547,7 +1547,7 @@
 
                     <div id="d_v_step2" style="display: none;">
                         <div style="background: #fffbeb; border: 1.5px solid #fde047; border-radius: 6px; padding: 8px; font-size: 0.75rem;">
-                            <div style="color: #92400e; font-weight: bold; margin-bottom: 3px;">📑 Course 3 Critical Assessment (Phần 4):</div>
+                            <div style="color: #92400e; font-weight: bold; margin-bottom: 3px;">📑 Course 3 Critical Assessment (Section 4):</div>
                             <div style="color: #78350f; line-height: 1.45;" id="d_crit_v_text">
                                 • <strong>Accuracy Trap:</strong> With 1% disease prevalence, predicting all 0 gives 99% accuracy but misses all sick patients. F1 harmonic mean is mandatory.<br>
                                 • <strong>2026 Evolution:</strong> 2018 BERT rule pipelines are being upgraded with end-to-end Multimodal Foundation Models (BiomedCLIP).
@@ -2575,7 +2575,7 @@
         }
 
         // =========================================================================
-        // 3. DUNG (BIZ 2) — WEEK 2 (VIDEOS 4–10) & CRITICAL ASSESSMENT (PHẦN 4)
+        // 3. DUNG (BIZ 2) — WEEK 2 (VIDEOS 4–10) & CRITICAL ASSESSMENT (SECTION 4)
         // =========================================================================
         const dReports = {
             1: {
@@ -2641,9 +2641,9 @@
                 if (b6Title) b6Title.innerText = "🗂️ 6. 3-Step PACS Data Pipeline";
                 setDungReportCase(dActiveCase);
             } else {
-                if (badge) badge.innerText = "Chapter 2 (Week 2, V8–10 & Phần 4)";
+                if (badge) badge.innerText = "Chapter 2 (Week 2, V8–10 & Section 4)";
                 if (scTitle) scTitle.innerText = "Multi-Label Evaluation Metrics (F1) & Course 3 Critical Assessment";
-                if (scDesc) scDesc.innerText = "Why Accuracy is useless in medical AI (1% disease prevalence), Macro vs Micro average, and Critical Review (Phần 4).";
+                if (scDesc) scDesc.innerText = "Why Accuracy is useless in medical AI (1% disease prevalence), Macro vs Micro average, and Critical Review (Section 4).";
                 if (in1) in1.style.display = "none";
                 if (in2) in2.style.display = "block";
                 if (v1) v1.style.display = "none";
