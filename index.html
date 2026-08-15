@@ -435,44 +435,175 @@
         .pill-neutral { background: #f1f5f9; color: #475569; }
         .pill-purple { background: var(--purple-light); color: var(--purple); }
 
-        /* Step Pipeline */
-        .pipeline-flow {
+        /* Flowchart / Interactive Pipeline Process Diagram */
+        .flowchart-card {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            margin-bottom: 16px;
+        }
+
+        .flowchart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .flowchart-icon {
+            font-size: 1.25rem;
+            background: #f1f5f9;
+            padding: 4px 6px;
+            border-radius: 6px;
+        }
+
+        .flowchart-track {
             display: flex;
             align-items: center;
             gap: 6px;
             overflow-x: auto;
-            padding: 8px 0;
-            margin-bottom: 12px;
+            padding: 4px 2px 6px 2px;
         }
 
         .flow-step {
-            background: #f1f5f9;
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
             padding: 8px 12px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            white-space: nowrap;
             cursor: pointer;
-            transition: all 0.15s;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             user-select: none;
+            flex-shrink: 0;
+            position: relative;
         }
 
         .flow-step:hover {
+            background: #f1f5f9;
+            border-color: #94a3b8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .flow-step-num {
+            width: 24px;
+            height: 24px;
             background: #e2e8f0;
-            border-color: #cbd5e1;
+            color: #475569;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 800;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
         }
 
-        .flow-step.active {
-            background: var(--primary-light);
-            color: white;
-            border-color: var(--primary-light);
-            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+        .flow-step-content {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
         }
 
-        .flow-arrow {
+        .flow-step-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #1e293b;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .flow-step-sub {
+            font-size: 0.67rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .flow-connector {
+            display: flex;
+            align-items: center;
             color: #94a3b8;
-            font-weight: bold;
+            font-weight: 800;
+            font-size: 0.95rem;
+            padding: 0 1px;
+            flex-shrink: 0;
+        }
+
+        /* Active styling per section theme */
+        #section_khuong .flow-step.active {
+            background: #eff6ff;
+            border-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.18);
+        }
+        #section_khuong .flow-step.active .flow-step-num {
+            background: #2563eb;
+            color: #ffffff;
+        }
+        #section_khuong .flow-step.active .flow-step-title {
+            color: #1e3a8a;
+        }
+        #section_khuong .flow-step.active .flow-step-sub {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        #section_hieu .flow-step.active {
+            background: #f0fdf4;
+            border-color: #059669;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.18);
+        }
+        #section_hieu .flow-step.active .flow-step-num {
+            background: #059669;
+            color: #ffffff;
+        }
+        #section_hieu .flow-step.active .flow-step-title {
+            color: #065f46;
+        }
+        #section_hieu .flow-step.active .flow-step-sub {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        #section_dung .flow-step.active {
+            background: #fffbeb;
+            border-color: #d97706;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.18);
+        }
+        #section_dung .flow-step.active .flow-step-num {
+            background: #d97706;
+            color: #ffffff;
+        }
+        #section_dung .flow-step.active .flow-step-title {
+            color: #92400e;
+        }
+        #section_dung .flow-step.active .flow-step-sub {
+            color: #d97706;
+            font-weight: 600;
+        }
+
+        #section_linh .flow-step.active {
+            background: #f5f3ff;
+            border-color: #7c3aed;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.18);
+        }
+        #section_linh .flow-step.active .flow-step-num {
+            background: #7c3aed;
+            color: #ffffff;
+        }
+        #section_linh .flow-step.active .flow-step-title {
+            color: #5b21b6;
+        }
+        #section_linh .flow-step.active .flow-step-sub {
+            color: #7c3aed;
+            font-weight: 600;
         }
 
         /* X-ray visualizer box */
@@ -816,19 +947,50 @@
                 </div>
             </div>
 
-            <!-- Pipeline Flow -->
-            <div class="card" style="padding: 12px 18px; margin-bottom: 16px;">
-                <div style="font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
-                    🔄 Khương's Workflow Pipeline (Click Steps to Present):
+            <!-- Interactive Flowchart Diagram for Khương -->
+            <div class="card flowchart-card" style="padding: 14px 16px; margin-bottom: 16px;">
+                <div class="flowchart-header">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="flowchart-icon">🗺️</span>
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.03em;">Khương's Clinical Trial Architecture (Click Nodes to Navigate)</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">From Population Randomization &rarr; Causal Counterfactual Dilemma</div>
+                        </div>
+                    </div>
+                    <span class="pill pill-purple" style="font-size: 0.68rem;">4 Connected Nodes</span>
                 </div>
-                <div class="pipeline-flow">
-                    <div class="flow-step active" id="k_step_1" onclick="setKhuongStep(1)">1. Clinical Question (Why RCT?)</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="k_step_2" onclick="setKhuongStep(2)">2. Population Risk (ARR &amp; NNT)</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="k_step_3" onclick="setKhuongStep(3)">3. Counterfactual Dilemma Y(1) vs Y(0)</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="k_step_4" onclick="setKhuongStep(4)">4. Bridge to CATE (Hiếu)</div>
+                <div class="flowchart-track">
+                    <div class="flow-step active" id="k_step_1" onclick="setKhuongStep(1)">
+                        <div class="flow-step-num">01</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">Why RCT?</div>
+                            <div class="flow-step-sub">Coin Flip vs Doctor Bias</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="k_step_2" onclick="setKhuongStep(2)">
+                        <div class="flow-step-num">02</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">ARR &amp; NNT</div>
+                            <div class="flow-step-sub">+14% Risk Drop (NNT=7.1)</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="k_step_3" onclick="setKhuongStep(3)">
+                        <div class="flow-step-num">03</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">Parallel Worlds</div>
+                            <div class="flow-step-sub">Missing Counterfactual Y₀</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="k_step_4" onclick="setKhuongStep(4)">
+                        <div class="flow-step-num">04</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">Bridge to CATE</div>
+                            <div class="flow-step-sub">Subgroup Heterogeneity</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1093,19 +1255,50 @@
                 </div>
             </div>
 
-            <!-- Pipeline Flow -->
-            <div class="card" style="padding: 12px 18px; margin-bottom: 16px;">
-                <div style="font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
-                    🔄 Hiếu's 4-Step Storyline (Click to Present):
+            <!-- Interactive Flowchart Diagram for Hiếu -->
+            <div class="card flowchart-card" style="padding: 14px 16px; margin-bottom: 16px;">
+                <div class="flowchart-header">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="flowchart-icon">🗺️</span>
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #065f46; text-transform: uppercase; letter-spacing: 0.03em;">Hiếu's Personalized CATE Pipeline (Click Nodes to Navigate)</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">From Individual Risk Profiling &rarr; T vs S Learner &rarr; SHAP Explainability</div>
+                        </div>
+                    </div>
+                    <span class="pill pill-success" style="font-size: 0.68rem;">4 Connected Nodes</span>
                 </div>
-                <div class="pipeline-flow">
-                    <div class="flow-step active" id="h_step_1" onclick="setHieuPipelineStep(1)">1. Patient Risk: Who Needs Help?</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="h_step_2" onclick="setHieuPipelineStep(2)">2. T vs S Learner (2 Doctors vs 1)</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="h_step_3" onclick="setHieuPipelineStep(3)">3. Twin Test: Scoring AI (C=0.6342)</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="h_step_4" onclick="setHieuPipelineStep(4)">4. SHAP Receipt for Doctors</div>
+                <div class="flowchart-track">
+                    <div class="flow-step active" id="h_step_1" onclick="setHieuPipelineStep(1)">
+                        <div class="flow-step-num">01</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">Patient Risk</div>
+                            <div class="flow-step-sub">Grandpa An vs Alex</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="h_step_2" onclick="setHieuPipelineStep(2)">
+                        <div class="flow-step-num">02</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">T vs S Learner</div>
+                            <div class="flow-step-sub">2 Doctors vs 1 Tree Bias</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="h_step_3" onclick="setHieuPipelineStep(3)">
+                        <div class="flow-step-num">03</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">Twin Pairs Test</div>
+                            <div class="flow-step-sub">C-for-benefit = 0.6342</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="h_step_4" onclick="setHieuPipelineStep(4)">
+                        <div class="flow-step-num">04</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">SHAP Receipt</div>
+                            <div class="flow-step-sub">Itemized AI Explanations</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1348,23 +1541,66 @@
                 </div>
             </div>
 
-            <!-- Fully Interactive Pipeline Flow for Dung -->
-            <div class="card" style="padding: 12px 18px; margin-bottom: 16px;">
-                <div style="font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
-                    🔄 Dung's Workflow Pipeline (Click Steps to Present):
+            <!-- Interactive Flowchart Diagram for Dung -->
+            <div class="card flowchart-card" style="padding: 14px 16px; margin-bottom: 16px;">
+                <div class="flowchart-header">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="flowchart-icon">🗺️</span>
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #92400e; text-transform: uppercase; letter-spacing: 0.03em;">Dung's 100k PACS Label Mining &amp; 14-CNN Architecture (Click Nodes)</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">Unstructured Radiology Notes &rarr; NegBio Parsing &rarr; Multi-Label DenseNet121</div>
+                        </div>
+                    </div>
+                    <span class="pill pill-warning" style="font-size: 0.68rem;">6 Connected Nodes</span>
                 </div>
-                <div class="pipeline-flow">
-                    <div class="flow-step active" id="d_flow_1" onclick="setDungPipelineStep(1)">Step 1: 100k PACS Notes</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="d_flow_2" onclick="setDungPipelineStep(2)">Step 2: Medical Ontology</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="d_flow_3" onclick="setDungPipelineStep(3)">Step 3: NegBio Rules</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="d_flow_4" onclick="setDungPipelineStep(4)">Step 4: 14-CNN Training</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="d_flow_5" onclick="setDungPipelineStep(5)">Step 5: F1 Thresholds</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="d_flow_6" onclick="setDungPipelineStep(6)">Step 6: 2026 Foundation Vision</div>
+                <div class="flowchart-track">
+                    <div class="flow-step active" id="d_flow_1" onclick="setDungPipelineStep(1)">
+                        <div class="flow-step-num">01</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">100k Reports</div>
+                            <div class="flow-step-sub">PACS EHR Mining</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="d_flow_2" onclick="setDungPipelineStep(2)">
+                        <div class="flow-step-num">02</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">Ontology Tree</div>
+                            <div class="flow-step-sub">Synonyms &amp; 'Is-A'</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="d_flow_3" onclick="setDungPipelineStep(3)">
+                        <div class="flow-step-num">03</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">NegBio Rules</div>
+                            <div class="flow-step-sub">Negation Flip &rarr; 0</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="d_flow_4" onclick="setDungPipelineStep(4)">
+                        <div class="flow-step-num">04</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">14-CNN Model</div>
+                            <div class="flow-step-sub">DenseNet-121</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="d_flow_5" onclick="setDungPipelineStep(5)">
+                        <div class="flow-step-num">05</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">F1 Thresholds</div>
+                            <div class="flow-step-sub">Tuning Rare Diseases</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="d_flow_6" onclick="setDungPipelineStep(6)">
+                        <div class="flow-step-num">06</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">2026 Vision</div>
+                            <div class="flow-step-sub">BiomedCLIP Zero-Shot</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1667,19 +1903,50 @@
                 </div>
             </div>
 
-            <!-- Pipeline Flow for Linh -->
-            <div class="card" style="padding: 12px 18px; margin-bottom: 16px;">
-                <div style="font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">
-                    🔄 Linh's Workflow Pipeline (Click Steps to Present):
+            <!-- Interactive Flowchart Diagram for Linh -->
+            <div class="card flowchart-card" style="padding: 14px 16px; margin-bottom: 16px;">
+                <div class="flowchart-header">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span class="flowchart-icon">🗺️</span>
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #5b21b6; text-transform: uppercase; letter-spacing: 0.03em;">Linh's NLP Attention &amp; Vision Explainability Pipeline</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">Regex Sanitization &rarr; BioBERT Attention &rarr; Permutation Importance &rarr; Grad-CAM</div>
+                        </div>
+                    </div>
+                    <span class="pill pill-purple" style="font-size: 0.68rem;">4 Connected Nodes</span>
                 </div>
-                <div class="pipeline-flow">
-                    <div class="flow-step active" id="l_step_1" onclick="setLinhLab(1)">Step 1: Clean Text (Regex)</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="l_step_2" onclick="setLinhLab(2)">Step 2: BioBERT Attention</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="l_step_3" onclick="setLinhLab(3)">Step 3: Feature Importance</div>
-                    <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="l_step_4" onclick="setLinhLab(4)">Step 4: Grad-CAM Heatmaps</div>
+                <div class="flowchart-track">
+                    <div class="flow-step active" id="l_step_1" onclick="setLinhLab(1)">
+                        <div class="flow-step-num">01</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">Text De-ID</div>
+                            <div class="flow-step-sub">Regex Punctuation Clean</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="l_step_2" onclick="setLinhLab(2)">
+                        <div class="flow-step-num">02</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">BioBERT Attention</div>
+                            <div class="flow-step-sub">(1, 60) Tensor Embeddings</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="l_step_3" onclick="setLinhLab(3)">
+                        <div class="flow-step-num">03</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">Feature Permutation</div>
+                            <div class="flow-step-sub">&Delta; C-Index Ablation</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
+                    <div class="flow-step" id="l_step_4" onclick="setLinhLab(4)">
+                        <div class="flow-step-num">04</div>
+                        <div class="flow-step-content">
+                            <div class="flow-step-title">Grad-CAM X-Ray</div>
+                            <div class="flow-step-sub">Layer 424 Heatmaps</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
