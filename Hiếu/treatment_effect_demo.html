@@ -1060,6 +1060,15 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Narrative Transition Bridge to Part 2 -->
+            <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1.5px solid #93c5fd; border-radius: 8px; padding: 12px 16px; margin-top: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(37,99,235,0.06);">
+                <div>
+                    <span style="font-size: 0.72rem; font-weight: 800; color: #1e40af; text-transform: uppercase;">Chapter 2 &bull; Precision Personalized Medicine</span>
+                    <div style="font-size: 0.88rem; font-weight: 800; color: #1e3a8a; margin-top: 2px;">Trial gives +14% ARR average &rarr; But who benefits the most individually?</div>
+                </div>
+                <button class="btn" style="background:#2563eb; color:#fff;" onclick="switchMember('hieu')">Continue to Part 2: Hiếu &rarr;</button>
+            </div>
         </div>
 
         <!-- ========================================================================= -->
@@ -1306,6 +1315,15 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Narrative Transition Bridge to Part 3 -->
+            <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 1.5px solid #86efac; border-radius: 8px; padding: 12px 16px; margin-top: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(5,150,105,0.06);">
+                <div>
+                    <span style="font-size: 0.72rem; font-weight: 800; color: #166534; text-transform: uppercase;">Chapter 3 &bull; Big Hospital Data &amp; Vision Training</span>
+                    <div style="font-size: 0.88rem; font-weight: 800; color: #065f46; margin-top: 2px;">CATE needs clean disease labels &rarr; How do we auto-mine 100,000 raw PACS reports?</div>
+                </div>
+                <button class="btn" style="background:#059669; color:#fff;" onclick="switchMember('dung')">Continue to Part 3: Dung &rarr;</button>
+            </div>
         </div>
 
         <!-- ========================================================================= -->
@@ -1336,17 +1354,17 @@
                     🔄 Dung's Workflow Pipeline (Click Steps to Present):
                 </div>
                 <div class="pipeline-flow">
-                    <div class="flow-step active" id="d_flow_1" onclick="setDungPipelineStep(1)">1. Free-Text Reports</div>
+                    <div class="flow-step active" id="d_flow_1" onclick="setDungPipelineStep(1)">Step 1: 100k PACS Notes</div>
                     <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="d_flow_2" onclick="setDungPipelineStep(2)">2. Synonyms &amp; 'Is-A' Trees</div>
+                    <div class="flow-step" id="d_flow_2" onclick="setDungPipelineStep(2)">Step 2: Medical Ontology</div>
                     <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="d_flow_3" onclick="setDungPipelineStep(3)">3. Negation Detection Rules</div>
+                    <div class="flow-step" id="d_flow_3" onclick="setDungPipelineStep(3)">Step 3: NegBio Rules</div>
                     <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="d_flow_4" onclick="setDungPipelineStep(4)">4. 14-Disease CNN Training</div>
+                    <div class="flow-step" id="d_flow_4" onclick="setDungPipelineStep(4)">Step 4: 14-CNN Training</div>
                     <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="d_flow_5" onclick="setDungPipelineStep(5)">5. CNN F1 Threshold Simulator</div>
+                    <div class="flow-step" id="d_flow_5" onclick="setDungPipelineStep(5)">Step 5: F1 Thresholds</div>
                     <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="d_flow_6" onclick="setDungPipelineStep(6)">6. 2026 Strategic Review</div>
+                    <div class="flow-step" id="d_flow_6" onclick="setDungPipelineStep(6)">Step 6: 2026 Foundation Vision</div>
                 </div>
             </div>
 
@@ -1616,6 +1634,15 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Narrative Transition Bridge to Part 4 -->
+            <div style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 1.5px solid #fde047; border-radius: 8px; padding: 12px 16px; margin-top: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(217,119,6,0.06);">
+                <div>
+                    <span style="font-size: 0.72rem; font-weight: 800; color: #92400e; text-transform: uppercase;">Chapter 4 &bull; NLP Attention &amp; Vision Explainability</span>
+                    <div style="font-size: 0.88rem; font-weight: 800; color: #78350f; margin-top: 2px;">14-CNN is trained (F1=0.92) &rarr; Can doctors trust its BERT text attention &amp; Grad-CAM heatmaps?</div>
+                </div>
+                <button class="btn" style="background:#d97706; color:#fff;" onclick="switchMember('linh')">Continue to Part 4: Linh &rarr;</button>
+            </div>
         </div>
 
         <!-- ========================================================================= -->
@@ -1646,13 +1673,13 @@
                     🔄 Linh's Workflow Pipeline (Click Steps to Present):
                 </div>
                 <div class="pipeline-flow">
-                    <div class="flow-step active" id="l_step_1" onclick="setLinhLab(1)">Lab 1: Clean Text (C3_W2_Lab_1)</div>
+                    <div class="flow-step active" id="l_step_1" onclick="setLinhLab(1)">Step 1: Clean Text (Regex)</div>
                     <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="l_step_2" onclick="setLinhLab(2)">Lab 2: BERT Input Tensor (C3_W2_Lab_3)</div>
+                    <div class="flow-step" id="l_step_2" onclick="setLinhLab(2)">Step 2: BioBERT Attention</div>
                     <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="l_step_3" onclick="setLinhLab(3)">Lab 3: Permutation Method (C3_W3_Lab_1)</div>
+                    <div class="flow-step" id="l_step_3" onclick="setLinhLab(3)">Step 3: Feature Importance</div>
                     <span class="flow-arrow">&rarr;</span>
-                    <div class="flow-step" id="l_step_4" onclick="setLinhLab(4)">Lab 4: Grad-CAM X-Ray (C3_W3_Lab_2 &amp; 3)</div>
+                    <div class="flow-step" id="l_step_4" onclick="setLinhLab(4)">Step 4: Grad-CAM Heatmaps</div>
                 </div>
             </div>
 
@@ -1834,6 +1861,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Narrative Transition Bridge to Wrap-Up -->
+            <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border: 1.5px solid #c4b5fd; border-radius: 8px; padding: 12px 16px; margin-top: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(124,58,237,0.06);">
+                <div>
+                    <span style="font-size: 0.72rem; font-weight: 800; color: #6d28d9; text-transform: uppercase;">Final Synthesis &bull; Grand Conclusion</span>
+                    <div style="font-size: 0.88rem; font-weight: 800; color: #4c1d95; margin-top: 2px;">All 4 pillars complete &rarr; Review key takeaways &amp; plain-language answers!</div>
+                </div>
+                <button class="btn" style="background:#7c3aed; color:#fff;" onclick="switchMember('wrapup')">View Wrap-Up &amp; Q&amp;A &rarr;</button>
             </div>
         </div>
 
@@ -2899,7 +2935,7 @@
                 s.classList.toggle('active', idx === (labNum - 1));
             });
 
-            document.getElementById('l_badge_step').innerText = `Lab ${labNum}`;
+            document.getElementById('l_badge_step').innerText = `Step ${labNum}`;
 
             const isClean = (labNum === 1);
             const isNLP = (labNum === 2);
