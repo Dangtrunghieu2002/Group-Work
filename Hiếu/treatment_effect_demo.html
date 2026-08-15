@@ -928,12 +928,15 @@
         <!-- ========================================================================= -->
         <!-- 1. KHƯƠNG - CLINICAL FOUNDATIONS & RCT POPULATION LEVEL                    -->
         <!-- ========================================================================= -->
+                <!-- ========================================================================= -->
+        <!-- 1. KHƯƠNG - CLINICAL FOUNDATIONS & RCT POPULATION LEVEL                    -->
+        <!-- ========================================================================= -->
         <div id="section_khuong" class="tab-content">
             <div class="member-banner" style="border-left: 5px solid var(--primary-light);">
                 <div>
-                    <span class="role-tag" style="background:#eff6ff; color:#1e40af;">Khương · Clinical Foundations &amp; Causal Inference</span>
-                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Clinical Trials, Risk Reduction (ARR / NNT) &amp; The Counterfactual Dilemma</h2>
-                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.35; line-height: 1.3;">Core Question: "Does this medicine work for the whole population, and how many lives are saved?"</p>
+                    <span class="role-tag" style="background:#eff6ff; color:#1e40af;">Part 1: Khương · Clinical Foundations &amp; Causal Inference</span>
+                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Clinical Trials, Population ARR / NNT &amp; The Counterfactual Dilemma</h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.35;">Scope: Proving population drug efficacy without doctor confounding, and identifying why average trials fail individual patients.</p>
                 </div>
                 <div class="timer-widget" id="timer_khuong_box">
                     <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
@@ -947,48 +950,32 @@
                 </div>
             </div>
 
-            <!-- Interactive Flowchart Diagram for Khương -->
+            <!-- Interactive Flowchart Diagram for Khương (2 Combined Steps) -->
             <div class="card flowchart-card" style="padding: 14px 16px; margin-bottom: 16px;">
                 <div class="flowchart-header">
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span class="flowchart-icon">🗺️</span>
                         <div>
-                            <div style="font-size: 0.82rem; font-weight: 800; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.03em;">Khương's Clinical Trial Architecture (Click Nodes to Navigate)</div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.03em;">Khương's Clinical Trial Architecture (2 Unified Chapters)</div>
                             <div style="font-size: 0.72rem; color: var(--text-muted);">From Population Randomization &rarr; Causal Counterfactual Dilemma</div>
                         </div>
                     </div>
-                    <span class="pill pill-purple" style="font-size: 0.68rem;">4 Connected Nodes</span>
+                    <span class="pill pill-purple" style="font-size: 0.68rem;">2 Core Chapters</span>
                 </div>
                 <div class="flowchart-track">
                     <div class="flow-step active" id="k_step_1" onclick="setKhuongStep(1)">
                         <div class="flow-step-num">01</div>
                         <div class="flow-step-content">
-                            <div class="flow-step-title">Why RCT?</div>
-                            <div class="flow-step-sub">Coin Flip vs Doctor Bias</div>
+                            <div class="flow-step-title">Trial RCT &amp; ARR</div>
+                            <div class="flow-step-sub">Population Efficacy &amp; NNT=7.1</div>
                         </div>
                     </div>
                     <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
                     <div class="flow-step" id="k_step_2" onclick="setKhuongStep(2)">
                         <div class="flow-step-num">02</div>
                         <div class="flow-step-content">
-                            <div class="flow-step-title">ARR &amp; NNT</div>
-                            <div class="flow-step-sub">+14% Risk Drop (NNT=7.1)</div>
-                        </div>
-                    </div>
-                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
-                    <div class="flow-step" id="k_step_3" onclick="setKhuongStep(3)">
-                        <div class="flow-step-num">03</div>
-                        <div class="flow-step-content">
-                            <div class="flow-step-title">Parallel Worlds</div>
-                            <div class="flow-step-sub">Missing Counterfactual Y₀</div>
-                        </div>
-                    </div>
-                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
-                    <div class="flow-step" id="k_step_4" onclick="setKhuongStep(4)">
-                        <div class="flow-step-num">04</div>
-                        <div class="flow-step-content">
-                            <div class="flow-step-title">Bridge to CATE</div>
-                            <div class="flow-step-sub">Subgroup Heterogeneity</div>
+                            <div class="flow-step-title">Missing Worlds &amp; CATE</div>
+                            <div class="flow-step-sub">Neyman-Rubin Dilemma &amp; Subgroups</div>
                         </div>
                     </div>
                 </div>
@@ -997,16 +984,16 @@
             <!-- 6 Structured Blocks Grid for Khương -->
             <div class="grid-blocks">
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="k_badge_scen">Step 1</span></div>
+                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="k_badge_scen">Chapter 1</span></div>
                     <p style="font-size: 0.84rem; color: var(--text-main); font-weight: 600; margin-bottom: 8px;" id="k_scen_title"></p>
                     <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.35;" id="k_scen_desc"></p>
                 </div>
 
-                <!-- Card 2: DYNAMIC INPUTS FOR KHƯƠNG PER STEP -->
+                <!-- Card 2: DYNAMIC INPUTS FOR KHƯƠNG -->
                 <div class="card">
                     <div class="card-header"><h3 class="card-title">📥 2. Inputs</h3><span class="block-badge badge-input" id="k_input_badge">Touch to Demo</span></div>
                     
-                    <!-- Input Step 1: RCT Confounding vs Coin Flip Simulator -->
+                    <!-- Input Step 1: RCT Allocation & Trial Sliders -->
                     <div id="k_in_step1" style="display: block;">
                         <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Trial Allocation Mechanism:</div>
                         <div style="display: flex; gap: 4px; margin-bottom: 8px;">
@@ -1017,207 +1004,125 @@
                             <div class="control-header"><span>Backdoor Confounder Bias</span><span id="k_txt_bias" style="font-weight: bold; color: var(--success);">0.00 (Zero Bias)</span></div>
                             <input type="range" class="slider" id="k_sl_bias" min="0" max="80" value="0" oninput="updateKhuongAllocSlider()">
                         </div>
+                        <div class="control-group">
+                            <div class="control-header"><span>Trial Patients (<span class="math-symbol">N</span>)</span><span id="k_txt_n" style="font-weight: bold; color: var(--primary);">1,000</span></div>
+                            <input type="range" class="slider" id="k_sl_n" min="500" max="3000" step="100" value="1000" oninput="updateKhuong()">
+                        </div>
+                        <div class="control-group">
+                            <div class="control-header"><span>Control Event Rate</span><span id="k_txt_ctrl" style="font-weight: bold; color: var(--danger);">20.0%</span></div>
+                            <input type="range" class="slider" id="k_sl_ctrl" min="10" max="50" step="1" value="20" oninput="updateKhuong()">
+                        </div>
+                        <div class="control-group">
+                            <div class="control-header"><span>Treatment Power (RRR)</span><span id="k_txt_rrr" style="font-weight: bold; color: var(--success);">70.0%</span></div>
+                            <input type="range" class="slider" id="k_sl_rrr" min="20" max="85" step="5" value="70" oninput="updateKhuong()">
+                        </div>
                     </div>
 
-                    <!-- Input Step 2: Population Trial Sliders -->
+                    <!-- Input Step 2: Patient Universe & Subgroup Selector -->
                     <div id="k_in_step2" style="display: none;">
-                        <div class="control-group">
-                            <div class="control-header"><span>Trial Patients (<span class="math-symbol">N</span>)</span><span id="k_txt_n" style="font-weight: bold; color: var(--primary);">1,200</span></div>
-                            <input type="range" class="slider" id="k_sl_n" min="500" max="3000" step="100" value="1200" oninput="updateKhuong()">
-                        </div>
-                        <div class="control-group">
-                            <div class="control-header"><span>Control Event Rate</span><span id="k_txt_ctrl" style="font-weight: bold; color: var(--danger);">35.0%</span></div>
-                            <input type="range" class="slider" id="k_sl_ctrl" min="15" max="60" step="1" value="35" oninput="updateKhuong()">
-                        </div>
-                        <div class="control-group">
-                            <div class="control-header"><span>Treatment Power (RRR)</span><span id="k_txt_rrr" style="font-weight: bold; color: var(--success);">40.0%</span></div>
-                            <input type="range" class="slider" id="k_sl_rrr" min="10" max="70" step="5" value="40" oninput="updateKhuong()">
-                        </div>
-                    </div>
-
-                    <!-- Input Step 3: Potential Outcome Patient Selector with Universe Cards -->
-                    <div id="k_in_step3" style="display: none;">
                         <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
                             <span>Select Patient to Probe Universe:</span>
                             <span class="pill pill-purple" style="font-size:0.7rem;">Parallel Worlds</span>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px;">
-                            <!-- Patient 1 Card -->
                             <div class="xray-thumb-card active" id="k_btn_pt_1" onclick="setKhuongPatientUniverse(1)">
-                                <div style="font-size: 1.25rem; margin-bottom: 2px;">🏃</div>
+                                <div style="font-size: 1.2rem; margin-bottom: 2px;">🏃</div>
                                 <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Patient #1</div>
-                                <div style="font-size: 0.65rem; color: #166534; background: #dcfce7; border-radius: 4px; padding: 1px 3px; margin-top: 3px; font-weight: bold;">Treated Arm (W=1)</div>
+                                <div style="font-size: 0.65rem; color: #166534; background: #dcfce7; border-radius: 4px; padding: 1px 3px; font-weight: bold;">Treated (W=1)</div>
                             </div>
-                            <!-- Patient 2 Card -->
                             <div class="xray-thumb-card" id="k_btn_pt_2" onclick="setKhuongPatientUniverse(2)">
-                                <div style="font-size: 1.25rem; margin-bottom: 2px;">👨</div>
+                                <div style="font-size: 1.2rem; margin-bottom: 2px;">🧑</div>
                                 <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Patient #2</div>
-                                <div style="font-size: 0.65rem; color: #991b1b; background: #fee2e2; border-radius: 4px; padding: 1px 3px; margin-top: 3px; font-weight: bold;">Placebo Arm (W=0)</div>
+                                <div style="font-size: 0.65rem; color: #991b1b; background: #fee2e2; border-radius: 4px; padding: 1px 3px; font-weight: bold;">Control (W=0)</div>
                             </div>
-                            <!-- Patient 42 Card -->
                             <div class="xray-thumb-card" id="k_btn_pt_3" onclick="setKhuongPatientUniverse(3)">
-                                <div style="font-size: 1.25rem; margin-bottom: 2px;">👴</div>
-                                <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Patient #42</div>
-                                <div style="font-size: 0.65rem; color: #1e40af; background: #dbeafe; border-radius: 4px; padding: 1px 3px; margin-top: 3px; font-weight: bold;">Grandpa An (High SBP)</div>
+                                <div style="font-size: 1.2rem; margin-bottom: 2px;">👴</div>
+                                <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Grandpa An</div>
+                                <div style="font-size: 0.65rem; color: #1e40af; background: #dbeafe; border-radius: 4px; padding: 1px 3px; font-weight: bold;">Patient #42</div>
                             </div>
                         </div>
-                        <div style="font-size: 0.74rem; color: var(--text-muted); line-height: 1.4;">
-                            Neyman-Rubin: Factual outcome $Y$ observed vs Parallel universe $Y_{\text{counterfactual}}$ <strong>Lost Forever</strong>!
-                        </div>
-                    </div>
 
-                    <!-- Input Step 4: Subgroup Cohort Risk Selector -->
-                    <div id="k_in_step4" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Select Patient Subgroup Cohort:</div>
-                        <div style="display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap;">
-                            <button class="preset-btn active" id="k_btn_sub_all" onclick="setKhuongSubgroup('all')">All Patients (ATE)</button>
-                            <button class="preset-btn" id="k_btn_sub_high" onclick="setKhuongSubgroup('high')">Elderly SBP>160</button>
-                            <button class="preset-btn" id="k_btn_sub_low" onclick="setKhuongSubgroup('low')">Young SBP<120</button>
-                        </div>
-                        <div style="font-size: 0.76rem; color: var(--text-muted);">
-                            Demonstrating why population ATE hides high-benefit vs low-benefit subgroups.
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Explore Subgroup Heterogeneity:</div>
+                        <div style="display: flex; gap: 4px;">
+                            <button class="preset-btn active" id="k_btn_sub_all" onclick="setKhuongSubgroup('all')">👥 All Patients</button>
+                            <button class="preset-btn" id="k_btn_sub_high" onclick="setKhuongSubgroup('high')">👴 Elderly High Risk</button>
+                            <button class="preset-btn" id="k_btn_sub_low" onclick="setKhuongSubgroup('low')">🏃 Young Low Risk</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Card 3: WHAT ML / STATS DOES -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">🧠 3. What Statistics Does</h3><span class="block-badge badge-ml">Logic</span></div>
-                    <p style="font-size: 0.84rem; color: var(--text-main); font-weight: 600; margin-bottom: 6px;" id="k_ml_title"></p>
-                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.35;" id="k_ml_desc"></p>
+                    <div class="card-header"><h3 class="card-title">🧠 3. What ML/Stats Does</h3><span class="block-badge badge-ml">Algorithm</span></div>
+                    <div style="font-size: 0.85rem; line-height: 1.5; color: var(--text-main);" id="k_ml_desc"></div>
                 </div>
 
+                <!-- Card 4: DYNAMIC MATH CARD -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Formula</span></div>
-                    <div class="formula-card" id="k_formula_card"></div>
+                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Metric</span></div>
+                    <div class="formula-box" id="k_formula_card" style="font-size: 0.85rem; line-height: 1.6;"></div>
                 </div>
 
+                <!-- Card 5: EXPECTED OUTPUT -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Results</span></div>
+                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Clinical Gain</span></div>
                     
-                    <!-- Output View Step 1: Baseline Balance Table -->
                     <div id="k_out_step1" style="display: block;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 4px;">Baseline Covariate Balance (RCT Table 1):</div>
-                        <table style="font-size: 0.76rem;">
-                            <thead><tr><th>Covariate</th><th>Placebo Group</th><th>Drug Group</th><th>|SMD| &lt; 0.1</th></tr></thead>
-                            <tbody id="k_table_smd_body">
-                                <tr><td>Mean Age</td><td>62.4 yrs</td><td>62.3 yrs</td><td><span class="pill pill-success">0.02 (Balanced)</span></td></tr>
-                                <tr><td>Mean SBP</td><td>145.1 mmHg</td><td>144.8 mmHg</td><td><span class="pill pill-success">0.03 (Balanced)</span></td></tr>
-                                <tr><td>Mean BMI</td><td>28.3 kg/m²</td><td>28.4 kg/m²</td><td><span class="pill pill-success">0.01 (Balanced)</span></td></tr>
-                            </tbody>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                            <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 8px; padding: 8px; text-align: center;">
+                                <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: bold;">Absolute Risk Drop</div>
+                                <div style="font-size: 1.35rem; font-weight: 800; color: #1e40af;" id="k_disp_arr">+14.0%</div>
+                                <div style="font-size: 0.65rem; color: #1e40af;">ARR = P₀ &minus; P₁</div>
+                            </div>
+                            <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; padding: 8px; text-align: center;">
+                                <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: bold;">Number Needed to Treat</div>
+                                <div style="font-size: 1.35rem; font-weight: 800; color: #166534;" id="k_disp_nnt">7.1</div>
+                                <div style="font-size: 0.65rem; color: #166534;">NNT = 1 / ARR</div>
+                            </div>
+                        </div>
+                        <table class="table" style="font-size: 0.76rem;">
+                            <thead><tr><th>Baseline Covariates</th><th>Treated</th><th>Control</th><th>SMD Balance</th></tr></thead>
+                            <tbody id="k_table_smd_body"></tbody>
                         </table>
                     </div>
 
-                    <!-- Output View Step 2: ARR / NNT Stat Boxes -->
                     <div id="k_out_step2" style="display: none;">
-                        <div class="grid-2" style="margin-bottom: 8px;">
-                            <div class="stat-box"><div class="stat-label">ARR (Risk Drop)</div><div class="stat-val" style="color: var(--success);" id="k_disp_arr">+14.0%</div></div>
-                            <div class="stat-box"><div class="stat-label">NNT (Effort)</div><div class="stat-val" style="color: var(--primary);" id="k_disp_nnt">7.1</div></div>
-                        </div>
-                        <div id="k_txt_nnt_trans" style="font-size: 0.8rem; color: var(--text-muted);">Hospital translation: Treat <strong id="k_trans_nnt_val">8 patients</strong> to save <strong>1 life</strong>.</div>
-                    </div>
-
-                    <!-- Output View Step 3: Potential Outcomes Table -->
-                    <div id="k_out_step3" style="display: none;">
-                        <table style="font-size: 0.76rem;">
-                            <thead>
-                                <tr>
-                                    <th>Patient</th>
-                                    <th>Assigned (W)</th>
-                                    <th>If Treated Y(1)</th>
-                                    <th>If Placebo Y(0)</th>
-                                    <th>Observed Y</th>
-                                </tr>
-                            </thead>
-                            <tbody id="k_table_pot_body">
-                                <tr>
-                                    <td><strong>Patient #1 (Younger)</strong></td>
-                                    <td>1 (Drug Arm)</td>
-                                    <td><strong style="color:var(--success);">0 (Survived)</strong></td>
-                                    <td><span class="pill pill-danger">? (Lost)</span></td>
-                                    <td><strong>0 (Survived)</strong></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Patient #2 (Control)</strong></td>
-                                    <td>0 (Placebo)</td>
-                                    <td><span class="pill pill-danger">? (Lost)</span></td>
-                                    <td><strong style="color:var(--danger);">1 (Stroke)</strong></td>
-                                    <td><strong>1 (Stroke)</strong></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Patient #42 (Grandpa An)</strong></td>
-                                    <td>1 (Drug Arm)</td>
-                                    <td><strong style="color:var(--success);">0 (Survived)</strong></td>
-                                    <td><span class="pill pill-danger">? (Lost)</span></td>
-                                    <td><strong>0 (Survived)</strong></td>
-                                </tr>
-                            </tbody>
+                        <div style="font-size: 0.76rem; font-weight: bold; margin-bottom: 4px; color: var(--text-muted);">Neyman-Rubin Potential Outcomes:</div>
+                        <table class="table" style="font-size: 0.74rem; margin-bottom: 8px;">
+                            <thead><tr><th>Patient</th><th>Arm W</th><th>If Treated Y(1)</th><th>If Placebo Y(0)</th><th>Observed Y</th></tr></thead>
+                            <tbody id="k_table_pot_body"></tbody>
                         </table>
-                        <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
-                            💡 <em>Neyman-Rubin Causal Dilemma: For each patient, we can only ever observe either <strong>Y(1)</strong> or <strong>Y(0)</strong>, never both!</em>
-                        </div>
-                    </div>
-
-                    <!-- Output View Step 4: Heterogeneity Table -->
-                    <div id="k_out_step4" style="display: none;">
-                        <table style="font-size: 0.76rem;">
-                            <thead><tr><th>Subgroup</th><th>CATE Benefit</th><th>Action</th></tr></thead>
-                            <tbody id="k_table_sub_body">
-                                <tr><td>Grandpa An (High Risk)</td><td><strong style="color:var(--success);">+26.4%</strong></td><td><span class="pill pill-success">High Priority</span></td></tr>
-                                <tr><td>Alex (Low Risk)</td><td><strong style="color:var(--warning);">+5.2%</strong></td><td><span class="pill pill-neutral">Diet First</span></td></tr>
-                            </tbody>
+                        <div style="font-size: 0.76rem; font-weight: bold; margin-bottom: 4px; color: var(--text-muted);">Subgroup Heterogeneity Breakdown:</div>
+                        <table class="table" style="font-size: 0.74rem;">
+                            <thead><tr><th>Subgroup</th><th>CATE Benefit</th><th>Priority</th></tr></thead>
+                            <tbody id="k_table_sub_body"></tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- Block 6: DYNAMIC PER STEP FOR KHƯƠNG -->
+                <!-- Card 6: VISUALIZER -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title" id="k_block6_title">⚖️ 6. Causal Mechanism</h3><span class="block-badge badge-workflow" id="k_block6_badge">Details</span></div>
+                    <div class="card-header"><h3 class="card-title" id="k_block6_title">👥 6. Visualizing Trial Impact</h3><span class="block-badge badge-workflow" id="k_block6_badge">Cohort Visual</span></div>
                     
-                    <!-- View Step 1: Causal DAG -->
                     <div id="k_v_step1" style="display: block;">
-                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 0.78rem; text-align: center; line-height: 1.7;">
-                            <strong>Causal Directed Acyclic Graph (DAG):</strong><br>
-                            <span style="color:var(--purple); font-weight:bold;">[Patient Health X]</span> &rarr; <span style="color:var(--danger); font-weight:bold;">[Outcome Y]</span><br>
-                            <span style="color:var(--success); font-weight:bold;">[Randomization Coin Toss]</span> &rarr; <span style="color:var(--primary); font-weight:bold;">[Treatment W]</span> &rarr; <span style="color:var(--danger); font-weight:bold;">[Outcome Y]</span><br>
-                            <span style="color:var(--success); font-size:11px; font-weight:bold;" id="k_dag_status">✔ Backdoor Confounding path from X to W is CUT!</span>
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;" id="k_nnt_sub_title">Visualizing NNT = 7.1 Effort (1 Life Saved per 7 Patients):</div>
+                        <div id="k_nnt_grid_container" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; text-align: center; font-size: 1.4rem; padding: 8px; background: #f8fafc; border-radius: 6px; border: 1px solid var(--border); margin-bottom: 8px;">
+                            <div style="background:#d1fae5; border-radius:4px; padding:4px;">🟢</div>
+                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;">⚪</div>
+                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;">⚪</div>
+                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;">⚪</div>
+                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;">⚪</div>
+                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;">⚪</div>
+                            <div style="background:#fee2e2; border-radius:4px; padding:4px;">🔴</div>
                         </div>
+                        <div style="font-size: 0.76rem; font-weight: bold; color: var(--success); margin-bottom: 6px;" id="k_nnt_footer_txt">🟢 1 Patient Saved for every 7.1 Patients Treated.</div>
+                        <div style="font-size: 0.74rem; padding: 6px 8px; border-radius: 4px; background: #f0fdf4; border: 1px solid #86efac; color: #166534;" id="k_dag_status">✔ Backdoor Confounding path from X to W is CUT by Coin Toss!</div>
                     </div>
 
-                    <!-- View Step 2: 10-Patient Icon Grid -->
                     <div id="k_v_step2" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;" id="k_nnt_sub_title">Visualizing NNT = 7.1 Effort:</div>
-                        <div id="k_nnt_grid_container" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; text-align: center; font-size: 1.1rem;">
-                            <div style="background:#d1fae5; border-radius:4px; padding:4px;" title="Saved by Drug">🟢</div>
-                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
-                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
-                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
-                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
-                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
-                            <div style="background:#f1f5f9; border-radius:4px; padding:4px;" title="Survived anyway">⚪</div>
-                            <div style="background:#fee2e2; border-radius:4px; padding:4px;" title="Adverse event despite treatment">🔴</div>
-                        </div>
-                        <div id="k_nnt_footer_txt" style="font-size: 0.74rem; color: var(--success); font-weight: bold; margin-top: 6px;">
-                            🟢 1 Patient Saved for every 7.1 Patients Treated.
-                        </div>
-                    </div>
-
-                    <!-- View Step 3: Counterfactual Parallel Universe Box -->
-                    <div id="k_v_step3" style="display: none;">
-                        <div style="background: #eff6ff; border: 1px dashed var(--primary-light); border-radius: 6px; padding: 8px; font-size: 0.8rem; line-height: 1.5;">
-                            <strong>The Parallel Universe Dilemma:</strong><br>
-                            • <strong>Real World:</strong> Patient #42 took drug &rarr; Survived.<br>
-                            • <strong>Parallel World:</strong> If not treated? Lost forever!<br>
-                            👉 <em>Machine learning must estimate this missing counterfactual.</em>
-                        </div>
-                    </div>
-
-                    <!-- View Step 4: Hand-off to Hiếu Button -->
-                    <div id="k_v_step4" style="display: none;">
-                        <div style="font-size: 0.8rem; margin-bottom: 8px; color: var(--text-main);">
-                            Population ATE treats everyone the same. We need Causal AI to personalize treatment!
-                        </div>
+                        <div id="k_v3_universe_box" style="margin-bottom: 8px;"></div>
                         <button class="btn" style="width: 100%; justify-content: center;" onclick="switchMember('hieu')">
-                            👉 Hand-off to Hiếu for CATE ML
+                            👉 Hand-off to Hiếu for Precision CATE ML &rarr;
                         </button>
                     </div>
                 </div>
@@ -1232,16 +1137,15 @@
                 <button class="btn" style="background:#2563eb; color:#fff;" onclick="switchMember('hieu')">Continue to Part 2: Hiếu &rarr;</button>
             </div>
         </div>
-
         <!-- ========================================================================= -->
         <!-- 2. HIẾU - INDIVIDUALIZED CATE (T vs S LEARNER) & SHAP EXPLAIN              -->
         <!-- ========================================================================= -->
         <div id="section_hieu" class="tab-content">
             <div class="member-banner" style="border-left: 5px solid var(--success);">
                 <div>
-                    <span class="role-tag" style="background:#d1fae5; color:#065f46;">Hiếu · Individualized AI Medicine (CATE)</span>
-                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Personalized Treatment Effect (CATE): Finding Who Benefits Most</h2>
-                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.35; line-height: 1.3;">Core Question: "Khương proved the drug works on average. But WHICH specific patient gets the biggest benefit, and why?"</p>
+                    <span class="role-tag" style="background:#d1fae5; color:#065f46;">Part 2: Hiếu · Individualized AI Medicine (CATE)</span>
+                    <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Personalized Treatment Effect (CATE), T-Learner vs S-Learner &amp; SHAP Receipts</h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.35;">Scope: Estimating individual stroke risk drop, preventing tree shrinkage bias, and validating with matched clinical twin pairs.</p>
                 </div>
                 <div class="timer-widget" id="timer_hieu_box">
                     <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
@@ -1255,23 +1159,23 @@
                 </div>
             </div>
 
-            <!-- Interactive Flowchart Diagram for Hiếu -->
+            <!-- Interactive Flowchart Diagram for Hiếu (3 Combined Steps) -->
             <div class="card flowchart-card" style="padding: 14px 16px; margin-bottom: 16px;">
                 <div class="flowchart-header">
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span class="flowchart-icon">🗺️</span>
                         <div>
-                            <div style="font-size: 0.82rem; font-weight: 800; color: #065f46; text-transform: uppercase; letter-spacing: 0.03em;">Hiếu's Personalized CATE Pipeline (Click Nodes to Navigate)</div>
-                            <div style="font-size: 0.72rem; color: var(--text-muted);">From Individual Risk Profiling &rarr; T vs S Learner &rarr; SHAP Explainability</div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #065f46; text-transform: uppercase; letter-spacing: 0.03em;">Hiếu's Personalized CATE Pipeline (3 Unified Chapters)</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">From Individual Risk Profiling &rarr; T vs S Learner &rarr; Twin Test &amp; SHAP Receipts</div>
                         </div>
                     </div>
-                    <span class="pill pill-success" style="font-size: 0.68rem;">4 Connected Nodes</span>
+                    <span class="pill pill-success" style="font-size: 0.68rem;">3 Core Chapters</span>
                 </div>
                 <div class="flowchart-track">
                     <div class="flow-step active" id="h_step_1" onclick="setHieuPipelineStep(1)">
                         <div class="flow-step-num">01</div>
                         <div class="flow-step-content">
-                            <div class="flow-step-title">Patient Risk</div>
+                            <div class="flow-step-title">Individual CATE</div>
                             <div class="flow-step-sub">Grandpa An vs Alex</div>
                         </div>
                     </div>
@@ -1287,16 +1191,8 @@
                     <div class="flow-step" id="h_step_3" onclick="setHieuPipelineStep(3)">
                         <div class="flow-step-num">03</div>
                         <div class="flow-step-content">
-                            <div class="flow-step-title">Twin Pairs Test</div>
-                            <div class="flow-step-sub">C-for-benefit = 0.6342</div>
-                        </div>
-                    </div>
-                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
-                    <div class="flow-step" id="h_step_4" onclick="setHieuPipelineStep(4)">
-                        <div class="flow-step-num">04</div>
-                        <div class="flow-step-content">
-                            <div class="flow-step-title">SHAP Receipt</div>
-                            <div class="flow-step-sub">Itemized AI Explanations</div>
+                            <div class="flow-step-title">Twin Test &amp; SHAP</div>
+                            <div class="flow-step-sub">C=0.6342 &amp; Itemized AI Receipt</div>
                         </div>
                     </div>
                 </div>
@@ -1305,98 +1201,97 @@
             <!-- 6 Structured Blocks Grid for Hiếu -->
             <div class="grid-blocks">
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="h_badge_step">Step 1</span></div>
-                    <div id="h_preset_container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px;">
-                        <div class="xray-thumb-card active" id="p_btn_1" onclick="setHieuPreset(70, 165, 31, 1)">
-                            <div style="font-size: 1.25rem;">👴</div>
-                            <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Grandpa An</div>
-                            <div style="font-size: 0.65rem; color: #991b1b; background: #fee2e2; border-radius: 4px; padding: 1px 3px; font-weight: bold;">SBP: 165 mmHg</div>
-                        </div>
-                        <div class="xray-thumb-card" id="p_btn_2" onclick="setHieuPreset(35, 118, 22, 2)">
-                            <div style="font-size: 1.25rem;">🏃</div>
-                            <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Alex (Young)</div>
-                            <div style="font-size: 0.65rem; color: #166534; background: #dcfce7; border-radius: 4px; padding: 1px 3px; font-weight: bold;">SBP: 118 mmHg</div>
-                        </div>
-                        <div class="xray-thumb-card" id="p_btn_3" onclick="setHieuPreset(58, 142, 28, 3)">
-                            <div style="font-size: 1.25rem;">👨</div>
-                            <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Uncle Nam</div>
-                            <div style="font-size: 0.65rem; color: #854d0e; background: #fef9c3; border-radius: 4px; padding: 1px 3px; font-weight: bold;">SBP: 142 mmHg</div>
-                        </div>
-                    </div>
-                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.35; line-height: 1.3;" id="h_scenario_desc"></p>
+                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="h_badge_step">Chapter 1</span></div>
+                    <div style="font-size: 0.84rem; color: var(--text-main); font-weight: 600; line-height: 1.4; margin-bottom: 6px;" id="h_scenario_desc"></div>
                 </div>
 
-                <!-- Card 2: DYNAMIC INPUTS FOR HIẾU PER STEP -->
+                <!-- Card 2: DYNAMIC INPUTS FOR HIẾU -->
                 <div class="card">
                     <div class="card-header"><h3 class="card-title">📥 2. Inputs</h3><span class="block-badge badge-input">Touch to Demo</span></div>
                     
-                    <!-- Input Step 1: Health Sliders -->
+                    <!-- Input Step 1: Patient Profile Sliders -->
                     <div id="h_in_step1" style="display: block;">
+                        <div id="h_preset_container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px;">
+                            <div class="xray-thumb-card active" id="p_btn_1" onclick="setHieuPreset(70, 165, 31, 1)">
+                                <div style="font-size: 1.25rem;">👴</div>
+                                <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Grandpa An</div>
+                                <div style="font-size: 0.65rem; color: #991b1b; background: #fee2e2; border-radius: 4px; padding: 1px 3px; font-weight: bold;">SBP: 165 mmHg</div>
+                            </div>
+                            <div class="xray-thumb-card" id="p_btn_2" onclick="setHieuPreset(35, 118, 22, 2)">
+                                <div style="font-size: 1.25rem;">🏃</div>
+                                <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Alex (Young)</div>
+                                <div style="font-size: 0.65rem; color: #166534; background: #dcfce7; border-radius: 4px; padding: 1px 3px; font-weight: bold;">SBP: 118 mmHg</div>
+                            </div>
+                            <div class="xray-thumb-card" id="p_btn_3" onclick="setHieuPreset(58, 142, 27, 3)">
+                                <div style="font-size: 1.25rem;">🧔</div>
+                                <div style="font-size: 0.76rem; font-weight: bold; color: var(--dark);">Uncle Nam</div>
+                                <div style="font-size: 0.65rem; color: #1e40af; background: #dbeafe; border-radius: 4px; padding: 1px 3px; font-weight: bold;">SBP: 142 mmHg</div>
+                            </div>
+                        </div>
+
                         <div class="control-group">
-                            <div class="control-header"><span>Age</span><span id="h_txt_age" style="font-weight: bold; color: var(--primary);">70 yrs</span></div>
+                            <div class="control-header"><span>Patient Age</span><span id="h_txt_age" style="font-weight: bold; color: var(--primary);">70 yrs</span></div>
                             <input type="range" class="slider" id="h_sl_age" min="30" max="85" value="70" oninput="updateHieu()">
                         </div>
                         <div class="control-group">
-                            <div class="control-header"><span>Systolic Blood Pressure (SBP)</span><span id="h_txt_sbp" style="font-weight: bold; color: var(--primary);">165 mmHg</span></div>
-                            <input type="range" class="slider" id="h_sl_sbp" min="110" max="190" value="165" oninput="updateHieu()">
+                            <div class="control-header"><span>Systolic BP</span><span id="h_txt_sbp" style="font-weight: bold; color: var(--danger);">165 mmHg</span></div>
+                            <input type="range" class="slider" id="h_sl_sbp" min="100" max="200" value="165" oninput="updateHieu()">
                         </div>
                         <div class="control-group">
                             <div class="control-header"><span>Body Mass Index (BMI)</span><span id="h_txt_bmi" style="font-weight: bold; color: var(--primary);">31.0 kg/m²</span></div>
-                            <input type="range" class="slider" id="h_sl_bmi" min="18" max="40" step="0.5" value="31" oninput="updateHieu()">
+                            <input type="range" class="slider" id="h_sl_bmi" min="18" max="40" step="0.5" value="31.0" oninput="updateHieu()">
                         </div>
                     </div>
 
-                    <!-- Input Step 2: Architecture Regularization & Model Switcher -->
+                    <!-- Input Step 2: Model Battle -->
                     <div id="h_in_step2" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Choose Learner Architecture:</div>
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Select ML Model Architecture:</div>
                         <div style="display: flex; gap: 4px; margin-bottom: 8px;">
-                            <button class="preset-btn active" id="h_btn_m_t" onclick="setHieuModelMode('t')">🌲🌲 T-Learner</button>
+                            <button class="preset-btn active" id="h_btn_m_t" onclick="setHieuModelMode('t')">🌲🌲 T-Learner (2 Doctors)</button>
                             <button class="preset-btn" id="h_btn_m_s" onclick="setHieuModelMode('s')">🌲 S-Learner (Shrinkage)</button>
                         </div>
                         <div class="control-group">
-                            <div class="control-header"><span>Tree Splitting Regularization</span><span id="h_txt_reg" style="font-weight: bold; color: var(--purple);">Depth = 6</span></div>
-                            <input type="range" class="slider" id="h_sl_reg" min="2" max="12" value="6" oninput="updateHieuReg()">
+                            <div class="control-header"><span>Tree Splitting Regularization (Depth)</span><span id="h_txt_reg" style="font-weight: bold; color: var(--primary);">Depth = 6</span></div>
+                            <input type="range" class="slider" id="h_sl_reg" min="2" max="10" value="6" oninput="updateHieuReg()">
                         </div>
                     </div>
 
-                    <!-- Input Step 3: Matched Pairs Testing -->
+                    <!-- Input Step 3: Twin Test & SHAP Sliders -->
                     <div id="h_in_step3" style="display: none;">
-                        <div style="font-size: 0.8rem; font-weight: bold; margin-bottom: 6px;">Simulated Matched Pairs in Validation Cohort:</div>
-                        <button class="btn" style="width: 100%; justify-content: center; margin-bottom: 8px;" onclick="resampleHieuPairs()">🎲 Resample Clinical Twin Pairs</button>
-                        <div style="font-size: 0.76rem; color: var(--text-muted);">
-                            Pairs two identical patients (one treated, one control) to evaluate treatment effect ranking without ground truth.
+                        <div style="margin-bottom: 8px;">
+                            <button class="btn" style="width: 100%; justify-content: center; margin-bottom: 8px;" onclick="resampleHieuPairs()">
+                                🎲 Resample Clinical Twin Pairs
+                            </button>
                         </div>
-                    </div>
-
-                    <!-- Input Step 4: SHAP Attribution Explorer -->
-                    <div id="h_in_step4" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Interactive Feature Perturbation:</div>
-                        <div class="control-group">
-                            <div class="control-header"><span>SBP Perturbation</span><span id="h_txt_sbp_p" style="font-weight: bold; color: var(--success);">165 mmHg</span></div>
+                        <div style="font-size: 0.76rem; font-weight: bold; margin-bottom: 4px;">Explore SHAP Feature Sensitivity:</div>
+                        <div class="control-group" style="margin-bottom: 6px;">
+                            <div class="control-header" style="font-size:0.76rem;"><span>SBP Push</span><span id="h_txt_sbp_p" style="font-weight: bold; color: var(--danger);">165 mmHg</span></div>
                             <input type="range" class="slider" id="h_sl_sbp_p" min="110" max="190" value="165" oninput="updateHieuSHAPSliders()">
                         </div>
                         <div class="control-group">
-                            <div class="control-header"><span>Age Perturbation</span><span id="h_txt_age_p" style="font-weight: bold; color: var(--success);">70 yrs</span></div>
-                            <input type="range" class="slider" id="h_sl_age_p" min="30" max="85" value="70" oninput="updateHieuSHAPSliders()">
+                            <div class="control-header" style="font-size:0.76rem;"><span>Age Push</span><span id="h_txt_age_p" style="font-weight: bold; color: var(--primary);">70 yrs</span></div>
+                            <input type="range" class="slider" id="h_sl_age_p" min="35" max="85" value="70" oninput="updateHieuSHAPSliders()">
                         </div>
                     </div>
                 </div>
 
+                <!-- Card 3: WHAT ML DOES -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">🧠 3. What ML Does</h3><span class="block-badge badge-ml">Algorithm</span></div>
-                    <div style="font-size: 0.84rem; color: var(--text-main); line-height: 1.6;" id="h_ml_desc"></div>
+                    <div class="card-header"><h3 class="card-title">🧠 3. What ML Does</h3><span class="block-badge badge-ml">CATE Logic</span></div>
+                    <div style="font-size: 0.85rem; line-height: 1.5; color: var(--text-main);" id="h_ml_desc"></div>
                 </div>
 
+                <!-- Card 4: DYNAMIC MATH CARD -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Formula</span></div>
-                    <div class="formula-card" id="h_formula_card"></div>
+                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Metric</span></div>
+                    <div class="formula-box" id="h_formula_card" style="font-size: 0.85rem; line-height: 1.6;"></div>
                 </div>
 
+                <!-- Card 5: EXPECTED OUTPUT -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Results</span></div>
+                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Benefit Receipt</span></div>
                     
-                    <!-- Output View Step 1, 2, 4: CATE Card & Prescription -->
-                    <div id="h_out_cate_box">
+                    <div id="h_out_cate_box" style="display: block;">
                         <div style="background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 8px; padding: 10px; margin-bottom: 8px;">
                             <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: bold;">
                                 <span>T-Learner CATE:</span>
@@ -1408,101 +1303,87 @@
                             </div>
                         </div>
                         <div style="font-size: 0.8rem; color: #166534; background: #f0fdf4; padding: 6px 10px; border-radius: 6px; font-weight: bold;" id="h_prescribe_badge">
-                            ✔ STRONGLY RECOMMEND IMMEDIATE DRUG PRESCRIPTION.
+                            ✔ STRONGLY RECOMMEND IMMEDIATE DRUG PRESCRIPTION (High Priority).
                         </div>
                     </div>
 
-                    <!-- Output View Step 3: Matched Pairs Table -->
                     <div id="h_out_matched_box" style="display: none;">
-                        <table style="font-size: 0.78rem;">
-                            <thead><tr><th>Pair</th><th>Treated (Y₁)</th><th>Control (Y₀)</th><th>Observed Benefit</th><th>Result</th></tr></thead>
-                            <tbody id="h_matched_table_body">
-                                <tr><td><strong>Pair 1 (Age 68, SBP 160)</strong></td><td>0 (Survived)</td><td>1 (Stroke)</td><td>+1 (Benefit)</td><td><span class="pill pill-success">Concordant</span></td></tr>
-                                <tr><td><strong>Pair 2 (Age 72, SBP 170)</strong></td><td>0 (Survived)</td><td>1 (Stroke)</td><td>+1 (Benefit)</td><td><span class="pill pill-success">Concordant</span></td></tr>
-                                <tr><td><strong>Pair 3 (Age 45, SBP 125)</strong></td><td>0 (Survived)</td><td>0 (Survived)</td><td>0 (Tie)</td><td><span class="pill pill-neutral">Risk Tie</span></td></tr>
-                            </tbody>
+                        <div style="font-size: 0.74rem; font-weight: bold; margin-bottom: 4px; color: var(--text-muted);">Matched Twin Pairs Validation:</div>
+                        <table class="table" style="font-size: 0.74rem; margin-bottom: 6px;">
+                            <thead><tr><th>Twin Pair</th><th>Treated (Y₁)</th><th>Control (Y₀)</th><th>Benefit</th><th>Concordance</th></tr></thead>
+                            <tbody id="h_matched_table_body"></tbody>
                         </table>
-                        <div style="font-size: 0.78rem; color: var(--primary); font-weight: bold; margin-top: 6px;" id="h_out_matched_footer">
-                            ✔ Validation C-for-benefit = <strong>0.6342</strong> (Hospital-grade discriminative power).
+                        <div style="font-size: 0.75rem; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; padding: 6px 8px; color: #166534;" id="h_out_matched_footer">
+                            ✔ C-for-benefit = <strong>0.6342</strong> (Hospital Gold Standard).
                         </div>
                     </div>
                 </div>
 
-                <!-- Block 6: DYNAMIC PER STEP FOR HIẾU -->
+                <!-- Card 6: VISUALIZER -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title" id="h_block6_title">🧾 6. ML Visualizer</h3><span class="block-badge badge-ml" id="h_block6_badge">Details</span></div>
+                    <div class="card-header"><h3 class="card-title" id="h_block6_title">📊 6. CATE Visualizer</h3><span class="block-badge badge-workflow" id="h_block6_badge">Risk Model</span></div>
                     
-                    <!-- View Step 1: Baseline Health Gauge -->
                     <div id="h_v_step1" style="display: block;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Baseline Risk Composition &sigma;(z):</div>
+                        <div style="font-size: 0.76rem; font-weight: bold; margin-bottom: 6px;">Untreated Risk vs Treated Risk:</div>
                         <div class="disease-bar-row">
-                            <span style="width: 80px;">Untreated Risk</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="h_bar_ctrl" style="width: 48%; background: var(--danger);"></div></div>
-                            <span id="h_val_ctrl" style="font-weight: bold; width: 40px; text-align: right;">48.2%</span>
+                            <span style="width: 100px;">If Untreated:</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="h_bar_ctrl" style="width: 48.2%; background: var(--danger);"></div></div>
+                            <span id="h_val_ctrl" style="font-weight: bold; color:var(--danger); width: 45px; text-align: right;">48.2%</span>
                         </div>
                         <div class="disease-bar-row">
-                            <span style="width: 80px;">Treated Risk</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="h_bar_trt" style="width: 22%; background: var(--success);"></div></div>
-                            <span id="h_val_trt" style="font-weight: bold; width: 40px; text-align: right;">21.8%</span>
+                            <span style="width: 100px;">If Treated:</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="h_bar_trt" style="width: 21.8%; background: var(--success);"></div></div>
+                            <span id="h_val_trt" style="font-weight: bold; color:var(--success); width: 45px; text-align: right;">21.8%</span>
                         </div>
-                        <div style="font-size: 0.76rem; color: var(--primary); font-weight: bold; margin-top: 6px;">
-                            👉 Individualized CATE = 48.2% - 21.8% = <strong>+26.4% Net Risk Drop</strong>.
+                        <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; padding: 6px; font-size: 0.76rem; color: #166534; font-weight: bold; text-align: center; margin-top: 8px;">
+                            👉 Net Life-Saving Gain = +26.4% Risk Drop
                         </div>
                     </div>
 
-                    <!-- View Step 2: Architecture T vs S Diagram -->
                     <div id="h_v_step2" style="display: none;">
-                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6;">
-                            • <strong>T-Learner:</strong> 🌲 Doctor A (Treated) + 🌲 Doctor B (Control) &rarr; Full interactions!<br>
-                            • <strong>S-Learner:</strong> 🌲 1 Model with W as 1 feature &rarr; Tree never splits on W &rarr; CATE collapses to 0.
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px; text-align: center;">
+                            <div style="background: #dcfce7; border: 1.5px solid #86efac; border-radius: 6px; padding: 6px;">
+                                <div style="font-weight: bold; color: #166534; font-size: 0.78rem;">🌲 Doctor 1 (Treated)</div>
+                                <div style="font-size: 0.82rem; font-weight: bold; color: #166534; margin-top: 2px;">Risk = 21.8%</div>
+                            </div>
+                            <div style="background: #fee2e2; border: 1.5px solid #fca5a5; border-radius: 6px; padding: 6px;">
+                                <div style="font-weight: bold; color: #991b1b; font-size: 0.78rem;">🌲 Doctor 2 (Control)</div>
+                                <div style="font-size: 0.82rem; font-weight: bold; color: #991b1b; margin-top: 2px;">Risk = 48.2%</div>
+                            </div>
                         </div>
-                        <div style="font-size: 0.76rem; color: var(--danger); font-weight: bold; margin-top: 6px;">
-                            ⚠️ S-Learner suffers from extreme feature shrinkage hazard!
+                        <div style="background: #f0fdf4; border-left: 3px solid #166534; padding: 6px 8px; font-size: 0.76rem; color: #166534;">
+                            👉 <strong>T-Learner CATE</strong> = 48.2% &minus; 21.8% = <strong>+26.4% Net Risk Drop</strong> (100% Unbiased).
                         </div>
                     </div>
 
-                    <!-- View Step 3: C-for-benefit Benchmark Meter & Visual Twin Matching -->
                     <div id="h_v_step3" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Clinical Twin Matching Architecture:</div>
-                        <div id="h_twin_visual_box" style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 6px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-around; text-align: center;">
-                            <div style="background: #dcfce7; border: 1px solid #86efac; border-radius: 6px; padding: 4px 6px;">
+                        <div style="font-size: 0.76rem; font-weight: bold; margin-bottom: 4px;">Clinical Twin Matching &amp; C-Score:</div>
+                        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: center; text-align: center; margin-bottom: 8px;" id="h_twin_visual_box">
+                            <div style="background: #dcfce7; border: 1.5px solid #86efac; border-radius: 6px; padding: 4px 6px;">
                                 <div style="font-size: 1rem;">💊 🧔</div>
                                 <div style="font-size: 0.7rem; font-weight: bold; color: #166534;">Treated (W=1)</div>
-                                <div style="font-size: 0.65rem; color: #166534;">Age 68, SBP 160</div>
+                                <div style="font-size: 0.65rem; color: #166534;">Age 70, SBP 165</div>
                                 <div style="font-size: 0.65rem; font-weight:bold; color: #166534;">Survived (Y₁=0)</div>
                             </div>
                             <div style="font-weight: bold; font-size: 0.8rem; color: var(--primary);">
-                                🤝<br><span style="font-size:0.65rem; color:var(--text-muted);">Exact Match (X=x)</span>
+                                🤝<br><span style="font-size:0.65rem; color:var(--text-muted);">Exact Match</span>
                             </div>
-                            <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 4px 6px;">
+                            <div style="background: #fee2e2; border: 1.5px solid #fca5a5; border-radius: 6px; padding: 4px 6px;">
                                 <div style="font-size: 1rem;">🧪 🧔</div>
                                 <div style="font-size: 0.7rem; font-weight: bold; color: #991b1b;">Control (W=0)</div>
-                                <div style="font-size: 0.65rem; color: #991b1b;">Age 68, SBP 160</div>
+                                <div style="font-size: 0.65rem; color: #991b1b;">Age 70, SBP 165</div>
                                 <div style="font-size: 0.65rem; font-weight:bold; color: #991b1b;">Stroke (Y₀=1)</div>
                             </div>
                         </div>
                         <div class="disease-bar-row">
-                            <span style="width: 90px;">0.50 (Random)</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 50%; background: #94a3b8;"></div></div>
-                            <span style="font-size:11px; width: 45px; text-align: right;">Coin Toss</span>
+                            <span style="width: 90px; font-weight:bold;">C-for-benefit:</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="h_c_meter_fill" style="width: 63.4%; background: var(--success);"></div></div>
+                            <span id="h_c_meter_lbl" style="font-weight: bold; color:var(--success); width: 60px; text-align: right;">0.6342</span>
                         </div>
-                        <div class="disease-bar-row">
-                            <span style="width: 90px;" id="h_c_meter_lbl">0.63 (Model)</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="h_c_meter_fill" style="width: 63%; background: var(--success);"></div></div>
-                            <span style="font-weight: bold; color:var(--success); width: 45px; text-align: right;">Hospital</span>
-                        </div>
-                        <div style="font-size: 0.74rem; color: var(--success); font-weight: bold; margin-top: 6px;">
-                            ✔ In Causal ML, 0.60–0.65 is the recognized international clinical benchmark.
-                        </div>
-                    </div>
-
-                    <!-- View Step 4: Local SHAP Waterfall Receipt -->
-                    <div id="h_v_step4" style="display: none;">
-                        <div style="font-size: 0.8rem; line-height: 1.6;">
-                            • Base Population Benefit: <strong>+14.0%</strong><br>
-                            • <span id="h_shap_sbp_lbl">➕ SBP (165 mmHg)</span>: <strong style="color:var(--success);" id="h_shap_sbp">+8.5% push</strong><br>
-                            • <span id="h_shap_age_lbl">➕ Age (70 yrs)</span>: <strong style="color:var(--success);" id="h_shap_age">+3.4% push</strong><br>
-                            • <span id="h_shap_bmi_lbl">➕ BMI (31.0)</span>: <strong style="color:var(--success);" id="h_shap_bmi">+0.5% push</strong><br>
+                        <div style="background: #eff6ff; border-radius: 6px; padding: 6px 8px; font-size: 0.74rem; color: #1e40af; margin-top: 6px;">
+                            • <span id="h_shap_sbp_lbl">➕ SBP (165 mmHg)</span>: <strong style="color:var(--success);" id="h_shap_sbp">+8.5%</strong> &nbsp;|&nbsp;
+                            • <span id="h_shap_age_lbl">➕ Age (70 yrs)</span>: <strong style="color:var(--success);" id="h_shap_age">+3.4%</strong> &nbsp;|&nbsp;
+                            • <span id="h_shap_bmi_lbl">➕ BMI (31.0)</span>: <strong style="color:var(--success);" id="h_shap_bmi">+0.5%</strong><br>
                             👉 <strong>Total CATE: <span id="h_shap_sum" style="color:var(--primary); font-weight:bold;">+26.4%</span></strong>
                         </div>
                     </div>
@@ -1518,7 +1399,6 @@
                 <button class="btn" style="background:#059669; color:#fff;" onclick="switchMember('dung')">Continue to Part 3: Dung &rarr;</button>
             </div>
         </div>
-
         <!-- ========================================================================= -->
         <!-- 3. DUNG - LABEL EXTRACTION & 14-DISEASE CNN TRAINING                       -->
         <!-- ========================================================================= -->
@@ -1527,7 +1407,7 @@
                 <div>
                     <span class="role-tag" style="background:#fef3c7; color:#92400e;">Part 3: Dung · Automated Labeling &amp; 14-Disease CNN Models</span>
                     <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Automated Medical Labeling, 14-Disease CNN Vision Training &amp; F1 Evaluation</h2>
-                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.35; line-height: 1.3;">Scope: Mining 100,000 text reports to train Multi-Label CNN Classifiers (DenseNet121) and evaluating rare diseases.</p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.35;">Scope: Mining 100,000 text reports to train Multi-Label CNN Classifiers (DenseNet121) and evaluating rare diseases.</p>
                 </div>
                 <div class="timer-widget" id="timer_dung_box">
                     <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
@@ -1541,64 +1421,40 @@
                 </div>
             </div>
 
-            <!-- Interactive Flowchart Diagram for Dung -->
+            <!-- Interactive Flowchart Diagram for Dung (3 Combined Steps) -->
             <div class="card flowchart-card" style="padding: 14px 16px; margin-bottom: 16px;">
                 <div class="flowchart-header">
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span class="flowchart-icon">🗺️</span>
                         <div>
-                            <div style="font-size: 0.82rem; font-weight: 800; color: #92400e; text-transform: uppercase; letter-spacing: 0.03em;">Dung's 100k PACS Label Mining &amp; 14-CNN Architecture (Click Nodes)</div>
-                            <div style="font-size: 0.72rem; color: var(--text-muted);">Unstructured Radiology Notes &rarr; NegBio Parsing &rarr; Multi-Label DenseNet121</div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #92400e; text-transform: uppercase; letter-spacing: 0.03em;">Dung's 100k PACS Label Mining &amp; 14-CNN Architecture (3 Unified Chapters)</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">Unstructured Radiology Notes &rarr; Multi-Label DenseNet121 &rarr; 2026 Frontier Vision</div>
                         </div>
                     </div>
-                    <span class="pill pill-warning" style="font-size: 0.68rem;">6 Connected Nodes</span>
+                    <span class="pill pill-warning" style="font-size: 0.68rem;">3 Core Chapters</span>
                 </div>
                 <div class="flowchart-track">
                     <div class="flow-step active" id="d_flow_1" onclick="setDungPipelineStep(1)">
                         <div class="flow-step-num">01</div>
                         <div class="flow-step-content">
-                            <div class="flow-step-title">100k Reports</div>
-                            <div class="flow-step-sub">PACS EHR Mining</div>
+                            <div class="flow-step-title">100k PACS Labeling</div>
+                            <div class="flow-step-sub">NegBio &amp; Medical Ontologies</div>
                         </div>
                     </div>
                     <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
                     <div class="flow-step" id="d_flow_2" onclick="setDungPipelineStep(2)">
                         <div class="flow-step-num">02</div>
                         <div class="flow-step-content">
-                            <div class="flow-step-title">Ontology Tree</div>
-                            <div class="flow-step-sub">Synonyms &amp; 'Is-A'</div>
+                            <div class="flow-step-title">14-CNN &amp; F1 Tuning</div>
+                            <div class="flow-step-sub">DenseNet121 &amp; Imbalance Optimization</div>
                         </div>
                     </div>
                     <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
                     <div class="flow-step" id="d_flow_3" onclick="setDungPipelineStep(3)">
                         <div class="flow-step-num">03</div>
                         <div class="flow-step-content">
-                            <div class="flow-step-title">NegBio Rules</div>
-                            <div class="flow-step-sub">Negation Flip &rarr; 0</div>
-                        </div>
-                    </div>
-                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
-                    <div class="flow-step" id="d_flow_4" onclick="setDungPipelineStep(4)">
-                        <div class="flow-step-num">04</div>
-                        <div class="flow-step-content">
-                            <div class="flow-step-title">14-CNN Model</div>
-                            <div class="flow-step-sub">DenseNet-121</div>
-                        </div>
-                    </div>
-                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
-                    <div class="flow-step" id="d_flow_5" onclick="setDungPipelineStep(5)">
-                        <div class="flow-step-num">05</div>
-                        <div class="flow-step-content">
-                            <div class="flow-step-title">F1 Thresholds</div>
-                            <div class="flow-step-sub">Tuning Rare Diseases</div>
-                        </div>
-                    </div>
-                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
-                    <div class="flow-step" id="d_flow_6" onclick="setDungPipelineStep(6)">
-                        <div class="flow-step-num">06</div>
-                        <div class="flow-step-content">
-                            <div class="flow-step-title">2026 Vision</div>
-                            <div class="flow-step-sub">BiomedCLIP Zero-Shot</div>
+                            <div class="flow-step-title">2026 Frontier Vision</div>
+                            <div class="flow-step-sub">BiomedCLIP Zero-Shot &amp; Critique</div>
                         </div>
                     </div>
                 </div>
@@ -1607,12 +1463,12 @@
             <!-- 6 Structured Blocks Grid for Dung -->
             <div class="grid-blocks">
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="d_block_badge_1">Step 1</span></div>
+                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="d_block_badge_1">Chapter 1</span></div>
                     <p style="font-size: 0.84rem; color: var(--text-main); font-weight: 600; margin-bottom: 6px;" id="d_scen_title"></p>
                     <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.35;" id="d_scen_desc"></p>
                 </div>
 
-                <!-- Card 2: DYNAMIC INPUTS FOR DUNG PER STEP -->
+                <!-- Card 2: DYNAMIC INPUTS FOR DUNG -->
                 <div class="card">
                     <div class="card-header"><h3 class="card-title">📥 2. Inputs</h3><span class="block-badge badge-input">Touch to Demo</span></div>
                     
@@ -1636,232 +1492,118 @@
                             <div class="xray-thumb-card" id="d_btn_rep_3" onclick="setDungReportCase(3)">
                                 <div style="font-size: 1.1rem; margin-bottom: 2px;">📋</div>
                                 <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">Case #03</div>
-                                <div style="font-size: 0.65rem; color: #854d0e; background: #fef9c3; border-radius: 4px; padding: 1px 2px; font-weight: bold;">Synonym Jargon</div>
+                                <div style="font-size: 0.65rem; color: #92400e; background: #fef3c7; border-radius: 4px; padding: 1px 2px; font-weight: bold;">Synonym Mapping</div>
                             </div>
                         </div>
-                        <div class="report-text-box" id="d_interactive_report_box" style="font-size: 0.82rem;">
+                        <div class="report-text-box" id="d_interactive_report_box" style="font-size: 0.78rem; margin-bottom: 4px;">
                             "Lungs are clear. <span class="hl-negation">No evidence of</span> active <span class="hl-disease">pneumonia</span> or consolidation."
                         </div>
                     </div>
 
-                    <!-- Input Step 2: Medical Ontology & Synonym Term Picker -->
+                    <!-- Input Step 2: 14-CNN Scan Selector & Threshold Slider -->
                     <div id="d_in_step2" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Pick Medical Jargon Term:</div>
-                        <div style="display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap;">
-                            <button class="preset-btn active" id="d_btn_ont_1" onclick="setDungOntologyTerm(1)">"airspace consolidation"</button>
-                            <button class="preset-btn" id="d_btn_ont_2" onclick="setDungOntologyTerm(2)">"bronchopneumonia"</button>
-                            <button class="preset-btn" id="d_btn_ont_3" onclick="setDungOntologyTerm(3)">"lung infiltrate"</button>
-                        </div>
-                        <div style="font-size: 0.76rem; color: var(--text-muted);">
-                            Demonstrates how medical ontologies map non-standard text to master 14-disease taxonomy.
-                        </div>
-                    </div>
-
-                    <!-- Input Step 3: NegBio Trigger Modifier Rule Tester -->
-                    <div id="d_in_step3" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Test Negation Triggers:</div>
-                        <div style="display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap;">
-                            <button class="preset-btn active" id="d_btn_neg_1" onclick="setDungNegBioCase(1)">"No evidence of..."</button>
-                            <button class="preset-btn" id="d_btn_neg_2" onclick="setDungNegBioCase(2)">"Lungs are free of..."</button>
-                            <button class="preset-btn" id="d_btn_neg_3" onclick="setDungNegBioCase(3)">"Positive for..."</button>
-                        </div>
-                        <div style="font-size: 0.76rem; color: var(--text-muted);">
-                            Tests syntactic dependency trees to flip presence label from 1 to 0.
-                        </div>
-                    </div>
-
-                    <!-- Input Step 4: Chest X-Ray CNN Scan Selector with Real Visual Images -->
-                    <div id="d_in_step4" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
-                            <span>Select Input Chest X-Ray Scan (224×224):</span>
-                            <span class="pill pill-purple" style="font-size:0.7rem;">Click Image to Feed CNN</span>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
-                            <!-- Scan 1: Pneumonia Image Card -->
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Select Chest X-Ray Scan:</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
                             <div class="xray-thumb-card active" id="d_cnn_img_1" onclick="setDungCNNCase(1)">
-                                <div class="xray-thumb-svg-wrap">
-                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
-                                        <!-- Ribcage & Thoracic Cavity -->
-                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
-                                        <!-- Right Lung Field -->
-                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <!-- Left Lung Field -->
-                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <!-- Heart Shadow -->
-                                        <path d="M42,38 Q50,30 60,40 Q65,55 52,62 Q42,58 42,38" fill="#334155" opacity="0.7"/>
-                                        <!-- Pneumonia Opacity Consolidation in Right Lower Lobe -->
-                                        <circle cx="32" cy="48" r="10" fill="#ef4444" opacity="0.75" filter="blur(2px)"/>
-                                    </svg>
-                                    <span style="position: absolute; bottom: 3px; right: 5px; font-size: 0.65rem; background: rgba(0,0,0,0.75); color: #fca5a5; padding: 1px 4px; border-radius: 3px; font-weight: bold;">Opacity Alert</span>
-                                </div>
-                                <div style="font-size: 0.78rem; font-weight: bold; color: var(--dark);">Scan #0599</div>
-                                <div style="font-size: 0.72rem; color: #dc2626; font-weight: 700;">🫁 Pneumonia Scan</div>
+                                <div style="font-size: 1.2rem;">🩻</div>
+                                <div style="font-size: 0.76rem; font-weight: bold;">Scan #01: Pneumonia</div>
                             </div>
-
-                            <!-- Scan 2: Cardiomegaly Image Card -->
                             <div class="xray-thumb-card" id="d_cnn_img_2" onclick="setDungCNNCase(2)">
-                                <div class="xray-thumb-svg-wrap">
-                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
-                                        <!-- Ribcage & Thoracic Cavity -->
-                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
-                                        <!-- Right Lung Field -->
-                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <!-- Left Lung Field -->
-                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <!-- Enlarged Cardiomegaly Silhouette (>55% CTR) -->
-                                        <path d="M35,36 Q50,26 68,38 Q78,62 50,68 Q33,60 35,36" fill="#3b82f6" opacity="0.8" stroke="#93c5fd" stroke-width="1"/>
-                                    </svg>
-                                    <span style="position: absolute; bottom: 3px; right: 5px; font-size: 0.65rem; background: rgba(0,0,0,0.75); color: #93c5fd; padding: 1px 4px; border-radius: 3px; font-weight: bold;">CTR &gt; 55%</span>
-                                </div>
-                                <div style="font-size: 0.78rem; font-weight: bold; color: var(--dark);">Scan #1204</div>
-                                <div style="font-size: 0.72rem; color: #2563eb; font-weight: 700;">❤️ Cardiomegaly Scan</div>
+                                <div style="font-size: 1.2rem;">🩻</div>
+                                <div style="font-size: 0.76rem; font-weight: bold;">Scan #02: Cardiomegaly</div>
                             </div>
                         </div>
-                        <div style="font-size: 0.74rem; color: var(--text-muted); line-height: 1.4;">
-                            DenseNet121 Backbone &rarr; Global Avg Pool &rarr; <strong>14 Sigmoid Heads &sigma;(z_c)</strong>.
+                        <div class="control-group">
+                            <div class="control-header"><span>Operating Decision Threshold</span><span id="d_txt_thresh" style="font-weight: bold; color: var(--primary);">0.50</span></div>
+                            <input type="range" class="slider" id="d_sl_thresh" min="5" max="95" value="50" oninput="updateDungF1Sim()">
                         </div>
                     </div>
 
-                    <!-- Input Step 5: CNN Sigmoid Decision Threshold Slider -->
-                    <div id="d_in_step5" style="display: none;">
-                        <div class="control-header">
-                            <span>CNN Sigmoid Decision Threshold:</span>
-                            <span id="d_txt_thresh" style="font-weight: bold; color: var(--warning);">0.50</span>
-                        </div>
-                        <input type="range" class="slider" id="d_sl_thresh" min="10" max="90" value="50" oninput="updateDungF1Sim()">
-                        <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 6px;">
-                            Move threshold to balance CNN Precision vs Recall on rare diseases!
-                        </div>
-                    </div>
-
-                    <!-- Input Step 6: 2026 AI Paradigm Selector -->
-                    <div id="d_in_step6" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Compare Modeling Paradigm:</div>
-                        <div style="display: flex; gap: 4px; margin-bottom: 8px;">
-                            <button class="preset-btn active" id="d_btn_par_1" onclick="setDungParadigm(1)">Classic Regex (2020)</button>
-                            <button class="preset-btn" id="d_btn_par_2" onclick="setDungParadigm(2)">Biomed Foundation VLM (2026)</button>
-                        </div>
-                        <div style="font-size: 0.76rem; color: var(--text-muted);">
-                            Critique of automated multi-stage pipelines vs end-to-end foundation models.
+                    <!-- Input Step 3: Paradigm Selector -->
+                    <div id="d_in_step3" style="display: none;">
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Select Paradigm Architecture:</div>
+                        <div style="display: flex; gap: 4px;">
+                            <button class="preset-btn active" id="d_btn_par_1" onclick="setDungParadigm(1)">2020: Rule-Based Pipeline</button>
+                            <button class="preset-btn" id="d_btn_par_2" onclick="setDungParadigm(2)">2026: Vision-Language Model</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Card 3: WHAT NLP / ML DOES -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">🧠 3. What ML &amp; CNN Does</h3><span class="block-badge badge-ml">Algorithm</span></div>
-                    <div style="font-size: 0.82rem; color: var(--text-main); line-height: 1.6;" id="d_nlp_desc"></div>
+                    <div class="card-header"><h3 class="card-title">🧠 3. What NLP/ML Does</h3><span class="block-badge badge-ml">Mining Logic</span></div>
+                    <div style="font-size: 0.85rem; line-height: 1.5; color: var(--text-main);" id="d_nlp_desc"></div>
                 </div>
 
+                <!-- Card 4: DYNAMIC MATH CARD -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Formula</span></div>
-                    <div class="formula-card" id="d_formula_card"></div>
+                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Metric</span></div>
+                    <div class="formula-box" id="d_formula_card" style="font-size: 0.85rem; line-height: 1.6;"></div>
                 </div>
 
+                <!-- Card 5: EXPECTED OUTPUT -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Results</span></div>
+                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Mined Targets</span></div>
                     
-                    <div id="d_out_table_wrapper">
-                        <table style="font-size: 0.8rem;" id="d_output_table">
-                            <thead><tr><th>Disease</th><th>Extracted/Predicted</th><th>Final Status</th></tr></thead>
-                            <tbody id="d_out_table_body">
-                                <tr><td><strong>Pneumonia</strong></td><td>Yes ("pneumonia")</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
-                                <tr><td><strong>Cardiomegaly</strong></td><td>No</td><td><span class="pill pill-neutral">0 (Absent)</span></td></tr>
-                            </tbody>
+                    <div id="d_out_table_wrapper" style="display: block;">
+                        <table class="table" style="font-size: 0.76rem;">
+                            <thead><tr><th>Target Disease</th><th>Extracted Context</th><th>Label Output</th></tr></thead>
+                            <tbody id="d_out_table_body"></tbody>
                         </table>
                     </div>
 
                     <div id="d_out_cnn_bars" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">14-Class CNN Sigmoid Probabilities &sigma;(z_c):</div>
                         <div class="disease-bar-row">
-                            <span style="width: 85px;">Pneumonia</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_pneu" style="width: 88%; background: var(--danger);"></div></div>
-                            <span id="d_val_pneu" style="font-weight: bold; width: 35px; text-align: right;">88%</span>
+                            <span style="width: 100px;">Pneumonia:</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_pneu" style="width: 88%; background: var(--primary);"></div></div>
+                            <span id="d_val_pneu" style="font-weight: bold; color:var(--primary); width: 45px; text-align: right;">88%</span>
                         </div>
                         <div class="disease-bar-row">
-                            <span style="width: 85px;">Cardiomegaly</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_cardio" style="width: 14%; background: var(--primary-light);"></div></div>
-                            <span id="d_val_cardio" style="font-weight: bold; width: 35px; text-align: right;">14%</span>
+                            <span style="width: 100px;">Cardiomegaly:</span>
+                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_cardio" style="width: 14%; background: var(--danger);"></div></div>
+                            <span id="d_val_cardio" style="font-weight: bold; color:var(--danger); width: 45px; text-align: right;">14%</span>
                         </div>
                         <div class="disease-bar-row">
-                            <span style="width: 85px;">Effusion</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_eff" style="width: 6%; background: #94a3b8;"></div></div>
-                            <span id="d_val_eff" style="font-weight: bold; width: 35px; text-align: right;">6%</span>
-                        </div>
-                        <div class="disease-bar-row">
-                            <span style="width: 85px;">Infiltration</span>
+                            <span style="width: 100px;">Infiltration:</span>
                             <div class="disease-progress-bg"><div class="disease-progress-fill" id="d_bar_inf" style="width: 72%; background: var(--warning);"></div></div>
-                            <span id="d_val_inf" style="font-weight: bold; width: 35px; text-align: right;">72%</span>
+                            <span id="d_val_inf" style="font-weight: bold; color:var(--warning); width: 45px; text-align: right;">72%</span>
                         </div>
-                    </div>
-
-                    <div style="font-size: 0.78rem; color: var(--success); font-weight: bold; margin-top: 6px;" id="d_f1_score_summary">
-                        ✔ Extraction F1-Score: 0.921 on 1,000 test reports
                     </div>
                 </div>
 
-                <!-- Block 6: DYNAMIC PER STEP FOR DUNG -->
+                <!-- Card 6: VISUALIZER -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title" id="d_block6_title">🗂️ 6. System Architecture</h3><span class="block-badge badge-workflow" id="d_block6_badge">Details</span></div>
+                    <div class="card-header"><h3 class="card-title" id="d_block6_title">🗂️ 6. PACS Big Data Pipeline</h3><span class="block-badge badge-workflow" id="d_block6_badge">Data Pipeline</span></div>
                     
                     <div id="d_v_step1" style="display: block;">
-                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.7; text-align: center;">
-                            <strong>PACS Big Data Pipeline:</strong><br>
-                            🏥 100,000 Unlabelled DICOM Images &rarr; 📝 Free-Text Radiology Summaries &rarr; 🤖 Dung's Automated Rule Parser &rarr; 🏷️ Clean Binary Target Labels!
+                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 0.75rem; line-height: 1.5; margin-bottom: 6px;">
+                            <strong>100,000 PACS Pipeline Flow:</strong><br>
+                            [Raw Text] &rarr; [UMLS Synonym Lookup] &rarr; [NegBio Syntactic Parse] &rarr; [Ground Truth Label Matrix {0, 1}<sup>100k&times;14</sup>].
+                        </div>
+                        <div style="background: #f0fdf4; border-left: 3px solid #166534; padding: 6px 8px; font-size: 0.75rem; color: #166534;">
+                            ✔ 100% HIPAA-compliant, $0 cost, automated hospital-scale data mining.
                         </div>
                     </div>
 
                     <div id="d_v_step2" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Medical Ontology Tree (14-Disease Taxonomy):</div>
-                        <div style="background: #f1f5f9; border-radius: 6px; padding: 8px; font-size: 0.76rem; line-height: 1.6;">
-                            ├── <strong>Pneumonia (Class #1)</strong><br>
-                            │&nbsp;&nbsp;&nbsp;&nbsp;├── <em>is-a:</em> Bronchopneumonia<br>
-                            │&nbsp;&nbsp;&nbsp;&nbsp;└── <em>synonym:</em> Airspace consolidation<br>
-                            └── <strong>Infiltration (Class #4)</strong><br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;└── <em>canonical match:</em> Lung infiltrate (SNOMED 13645005)
+                        <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 6px; padding: 8px; margin-bottom: 6px;">
+                            <div style="font-weight: bold; color: #1e40af; font-size: 0.78rem; text-align: center;">
+                                🧠 DenseNet121 Layer 424 Multi-Label Model
+                            </div>
+                            <div style="font-size: 0.72rem; color: #1e3a8a; margin-top: 2px;">
+                                14 Independent Sigmoids + Weighted Cross-Entropy Loss to counter 1% rare disease imbalance.
+                            </div>
+                        </div>
+                        <div style="font-size: 0.75rem; background: #f0fdf4; border: 1px solid #86efac; border-radius: 6px; padding: 6px 8px; color: #166534;" id="d_f1_score_summary">
+                            ✔ Threshold 0.50 &rarr; Balanced F1-Score: <strong>0.923</strong>.
                         </div>
                     </div>
 
                     <div id="d_v_step3" style="display: none;">
-                        <div style="background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6;">
-                            <strong>NegBio Dependency Tree:</strong><br>
-                            [No evidence of] &mdash;(negation modifier)&rarr; [Pneumonia]<br>
-                            👉 <em>Trigger matches within 3-token window &rarr; Rule flips output label from 1 to 0!</em>
-                        </div>
-                    </div>
-
-                    <div id="d_v_step4" style="display: none;">
-                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6;">
-                            <strong>DenseNet121 Architecture:</strong><br>
-                            Input Image (224x224x3) &rarr; Conv Blocks &rarr; Layer 424 Features (10x10x1024) &rarr; Global Avg Pool &rarr; <strong>14 Sigmoid Heads &sigma;(z_c)</strong>.
-                        </div>
-                    </div>
-
-                    <div id="d_v_step5" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Confusion Matrix on 1,000 Scans (1% Prevalence):</div>
-                        <table style="font-size: 0.74rem;">
-                            <thead><tr><th>Metric</th><th>Count</th><th>Clinical Impact</th></tr></thead>
-                            <tbody>
-                                <tr><td>True Positive (TP)</td><td>9</td><td><span class="pill pill-success">Life Saved</span></td></tr>
-                                <tr><td>False Negative (FN)</td><td>1</td><td><span class="pill pill-danger">Missed Sick Patient!</span></td></tr>
-                                <tr><td>False Positive (FP)</td><td>1</td><td><span class="pill pill-warning">Extra Followup</span></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div id="d_v_step6" style="display: none;">
-                        <div style="background: #0f172a; color: #f8fafc; border-radius: 8px; padding: 10px; font-size: 0.76rem; border: 1px solid #334155;">
-                            <div style="font-size: 0.8rem; font-weight: bold; color: #a78bfa; margin-bottom: 6px;">BiomedCLIP Dual-Encoder Architecture (2026):</div>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; text-align: center; margin-bottom: 6px;">
-                                <div style="background: rgba(139, 92, 246, 0.2); border: 1px dashed #a78bfa; border-radius: 6px; padding: 6px 4px;">
-                                    <div style="font-size: 1.15rem;">🩻</div>
-                                    <div style="font-weight: bold; font-size: 0.72rem; color: #c4b5fd;">Vision ViT-B/16</div>
-                                    <div style="font-size: 0.65rem; color: #94a3b8;">Image Vector v &in; &reals;<sup>512</sup></div>
-                                </div>
-                                <div style="background: rgba(59, 130, 246, 0.2); border: 1px dashed #60a5fa; border-radius: 6px; padding: 6px 4px;">
-                                    <div style="font-size: 1.15rem;">📝</div>
-                                    <div style="font-weight: bold; font-size: 0.72rem; color: #93c5fd;">Biomed Text BERT</div>
-                                    <div style="font-size: 0.65rem; color: #94a3b8;">Text Vector t &in; &reals;<sup>512</sup></div>
-                                </div>
+                        <div style="background: #0f172a; color: white; border-radius: 6px; padding: 8px; font-size: 0.74rem;">
+                            <div style="color: #60a5fa; font-weight: bold; margin-bottom: 2px;">2026 Multimodal Foundation Model:</div>
+                            <div style="color: #cbd5e1; line-height: 1.4; margin-bottom: 4px;">
+                                Image &harr; BiomedCLIP Text Embedding alignment enables Zero-Shot disease classification without hand-crafted rules!
                             </div>
                             <div style="text-align: center; font-size: 0.72rem; color: #34d399; font-weight: bold;">
                                 ⚡ Contrastive Cosine Sim(v, t) &rarr; Zero-Shot Diagnosis!
@@ -1880,7 +1622,6 @@
                 <button class="btn" style="background:#d97706; color:#fff;" onclick="switchMember('linh')">Continue to Part 4: Linh &rarr;</button>
             </div>
         </div>
-
         <!-- ========================================================================= -->
         <!-- 4. LINH - MEDICAL NLP & MODEL INTERPRETATION                               -->
         <!-- ========================================================================= -->
@@ -1889,7 +1630,7 @@
                 <div>
                     <span class="role-tag" style="background:#f5f3ff; color:#6d28d9;">Part 4: Linh · Medical NLP &amp; ML Interpretation Labs</span>
                     <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Medical NLP (Text Cleaning, BERT) &amp; Vision Interpretation (Permutation, Grad-CAM)</h2>
-                    <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.35; line-height: 1.3;">Scope: Fully aligned with practical lab notebooks in Week 2 (NLP) and Week 3 (Interpretation).</p>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.35;">Scope: Deep tokenization with attention tensors, feature permutation ranking, and Layer 424 Grad-CAM X-Ray visual explainability.</p>
                 </div>
                 <div class="timer-widget" id="timer_linh_box">
                     <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
@@ -1903,48 +1644,32 @@
                 </div>
             </div>
 
-            <!-- Interactive Flowchart Diagram for Linh -->
+            <!-- Interactive Flowchart Diagram for Linh (2 Combined Steps) -->
             <div class="card flowchart-card" style="padding: 14px 16px; margin-bottom: 16px;">
                 <div class="flowchart-header">
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span class="flowchart-icon">🗺️</span>
                         <div>
-                            <div style="font-size: 0.82rem; font-weight: 800; color: #5b21b6; text-transform: uppercase; letter-spacing: 0.03em;">Linh's NLP Attention &amp; Vision Explainability Pipeline</div>
-                            <div style="font-size: 0.72rem; color: var(--text-muted);">Regex Sanitization &rarr; BioBERT Attention &rarr; Permutation Importance &rarr; Grad-CAM</div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #5b21b6; text-transform: uppercase; letter-spacing: 0.03em;">Linh's NLP Attention &amp; Vision Explainability Pipeline (2 Unified Chapters)</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">BioBERT Attention Tensors &rarr; Grad-CAM X-Ray Localization &amp; Permutation</div>
                         </div>
                     </div>
-                    <span class="pill pill-purple" style="font-size: 0.68rem;">4 Connected Nodes</span>
+                    <span class="pill pill-purple" style="font-size: 0.68rem;">2 Core Chapters</span>
                 </div>
                 <div class="flowchart-track">
                     <div class="flow-step active" id="l_step_1" onclick="setLinhLab(1)">
                         <div class="flow-step-num">01</div>
                         <div class="flow-step-content">
-                            <div class="flow-step-title">Text De-ID</div>
-                            <div class="flow-step-sub">Regex Punctuation Clean</div>
+                            <div class="flow-step-title">BioBERT Attention</div>
+                            <div class="flow-step-sub">Regex Cleaning &amp; Token Tensor</div>
                         </div>
                     </div>
                     <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
                     <div class="flow-step" id="l_step_2" onclick="setLinhLab(2)">
                         <div class="flow-step-num">02</div>
                         <div class="flow-step-content">
-                            <div class="flow-step-title">BioBERT Attention</div>
-                            <div class="flow-step-sub">(1, 60) Tensor Embeddings</div>
-                        </div>
-                    </div>
-                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
-                    <div class="flow-step" id="l_step_3" onclick="setLinhLab(3)">
-                        <div class="flow-step-num">03</div>
-                        <div class="flow-step-content">
-                            <div class="flow-step-title">Feature Permutation</div>
-                            <div class="flow-step-sub">&Delta; C-Index Ablation</div>
-                        </div>
-                    </div>
-                    <div class="flow-connector"><span class="flow-arrow">&rarr;</span></div>
-                    <div class="flow-step" id="l_step_4" onclick="setLinhLab(4)">
-                        <div class="flow-step-num">04</div>
-                        <div class="flow-step-content">
-                            <div class="flow-step-title">Grad-CAM X-Ray</div>
-                            <div class="flow-step-sub">Layer 424 Heatmaps</div>
+                            <div class="flow-step-title">Grad-CAM &amp; Permutation</div>
+                            <div class="flow-step-sub">Layer 424 Heatmaps &amp; Feature Importance</div>
                         </div>
                     </div>
                 </div>
@@ -1953,36 +1678,29 @@
             <!-- 6 Structured Blocks Grid for Linh -->
             <div class="grid-blocks">
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="l_badge_step">Lab 1</span></div>
+                    <div class="card-header"><h3 class="card-title">📖 1. Clinical Scenario</h3><span class="block-badge badge-scenario" id="l_badge_step">Chapter 1</span></div>
                     <p style="font-size: 0.84rem; color: var(--text-main); font-weight: 600; margin-bottom: 6px;" id="l_scenario_title"></p>
                     <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.35;" id="l_scenario_body"></p>
                 </div>
 
-                <!-- Card 2: DYNAMIC INPUTS FOR LINH PER STEP -->
+                <!-- Card 2: DYNAMIC INPUTS FOR LINH -->
                 <div class="card">
                     <div class="card-header"><h3 class="card-title">📥 2. Inputs</h3><span class="block-badge badge-input">Touch to Demo</span></div>
                     
-                    <div id="l_input_clean_box">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Raw Messy Text:</div>
-                        <input type="text" id="l_dirty_input" value="Patient has fever and/or cough.. Possible pneumonia." oninput="runLinhTextCleaner()" style="width: 100%; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.82rem; margin-bottom: 6px;">
-                        <button class="btn" style="width: 100%; justify-content: center;" onclick="runLinhTextCleaner()">✨ Clean Medical Text</button>
-                    </div>
-
-                    <div id="l_input_nlp_box" style="display: none;">
+                    <!-- Input Step 1: Text Cleaner & Tokenizer -->
+                    <div id="l_input_clean_box" style="display: block;">
                         <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Choose Clinical Text to Tokenize:</div>
-                        <select style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.82rem;" id="l_text_select" onchange="runLinhTokenizer()">
+                        <select style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.82rem; margin-bottom: 8px;" id="l_text_select" onchange="runLinhTokenizer()">
                             <option value="1">"Patient has fever and/or cough.. Possible pneumonia."</option>
                             <option value="2">"Forxiga (dapagliflozin) reduces blood glucose levels."</option>
                             <option value="3">"Chest X-ray shows right lower lobe consolidation."</option>
                         </select>
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Or Test Instant Regex Cleaner:</div>
+                        <input type="text" id="l_dirty_input" value="Patient has fever and/or cough.. Possible pneumonia." oninput="runLinhTextCleaner()" style="width: 100%; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border); font-size: 0.82rem; margin-bottom: 6px;">
+                        <button class="btn" style="width: 100%; justify-content: center;" onclick="runLinhTextCleaner()">✨ Clean Medical Text</button>
                     </div>
 
-                    <div id="l_input_perm_box" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 6px;">Test Column Shuffling:</div>
-                        <button class="btn" style="width: 100%; margin-bottom: 6px; justify-content: center;" onclick="runLinhShuffle('age')">🔀 Shuffle 'Age' Feature</button>
-                        <button class="btn btn-outline" style="width: 100%; justify-content: center;" onclick="runLinhShuffle('sbp')">🔀 Shuffle 'Blood Pressure'</button>
-                    </div>
-
+                    <!-- Input Step 2: Grad-CAM Opacity, Disease & Shuffle -->
                     <div id="l_input_cam_box" style="display: none;">
                         <div class="control-header">
                             <span>Grad-CAM Overlay Opacity:</span>
@@ -1991,128 +1709,71 @@
                         <input type="range" class="slider" id="l_cam_sl_op" min="0" max="100" value="80" oninput="updateLinhHeatmap()" style="margin-bottom: 8px;">
                         
                         <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Target Pathology Scan:</div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                            <div class="xray-thumb-card active" id="l_dis_btn_1" onclick="setLinhDisease('pneumonia')">
-                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
-                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
-                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
-                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <circle cx="32" cy="48" r="9" fill="#ef4444" opacity="0.8" filter="blur(2px)"/>
-                                    </svg>
-                                </div>
-                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">🫁 Pneumonia</div>
-                            </div>
-                            <div class="xray-thumb-card" id="l_dis_btn_2" onclick="setLinhDisease('cardiomegaly')">
-                                <div class="xray-thumb-svg-wrap" style="height: 60px;">
-                                    <svg viewBox="0 0 100 80" style="width: 100%; height: 100%;">
-                                        <path d="M20,10 Q30,5 50,10 Q70,5 80,10 Q85,40 78,70 Q50,75 50,50 Q50,75 22,70 Q15,40 20,10" fill="#1e293b" stroke="#475569" stroke-width="1"/>
-                                        <path d="M25,18 Q42,15 45,40 Q42,65 28,62 Q21,40 25,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <path d="M75,18 Q58,15 55,40 Q58,65 72,62 Q79,40 75,18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-                                        <path d="M36,35 Q50,26 68,38 Q78,62 50,68 Q33,60 36,35" fill="#3b82f6" opacity="0.85" stroke="#93c5fd" stroke-width="1"/>
-                                    </svg>
-                                </div>
-                                <div style="font-size: 0.74rem; font-weight: bold; color: var(--dark);">❤️ Cardiomegaly</div>
-                            </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+                            <button class="preset-btn active" id="l_dis_btn_1" onclick="setLinhDisease('pneumonia')">🩻 Pneumonia</button>
+                            <button class="preset-btn" id="l_dis_btn_2" onclick="setLinhDisease('cardiomegaly')">🩻 Cardiomegaly</button>
+                        </div>
+
+                        <div style="font-size: 0.78rem; font-weight: bold; margin-bottom: 4px;">Test Column Shuffling:</div>
+                        <div style="display: flex; gap: 4px;">
+                            <button class="btn" style="flex: 1; font-size: 0.74rem; justify-content: center;" onclick="runLinhShuffle('age')">🔀 Shuffle Age</button>
+                            <button class="btn btn-outline" style="flex: 1; font-size: 0.74rem; justify-content: center;" onclick="runLinhShuffle('sbp')">🔀 Shuffle BP</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Card 3: WHAT NLP / ML DOES -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">🧠 3. What ML Does</h3><span class="block-badge badge-ml">Algorithm</span></div>
-                    <div style="font-size: 0.82rem; color: var(--text-main); line-height: 1.6;" id="l_ml_explanation"></div>
+                    <div class="card-header"><h3 class="card-title">🧠 3. What NLP/ML Does</h3><span class="block-badge badge-ml">Explainability</span></div>
+                    <div style="font-size: 0.85rem; line-height: 1.5; color: var(--text-main);" id="l_ml_explanation"></div>
                 </div>
 
+                <!-- Card 4: DYNAMIC MATH CARD -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Formula</span></div>
-                    <div class="formula-card" id="l_formula_card"></div>
+                    <div class="card-header"><h3 class="card-title">📐 4. Dynamic Math Card</h3><span class="block-badge badge-formula">Live Metric</span></div>
+                    <div class="formula-box" id="l_formula_card" style="font-size: 0.85rem; line-height: 1.6;"></div>
                 </div>
 
+                <!-- Card 5: EXPECTED OUTPUT -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Results</span></div>
+                    <div class="card-header"><h3 class="card-title">📤 5. Expected Output</h3><span class="block-badge badge-output">Attention/Weights</span></div>
                     
-                    <div id="l_out_clean_box">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--success); margin-bottom: 4px;">Normalized Output String:</div>
-                        <div class="report-text-box" id="l_cleaned_text_display" style="font-size: 0.82rem;">
+                    <div id="l_out_clean_box" style="display: block;">
+                        <div style="font-size: 0.76rem; font-weight: bold; margin-bottom: 4px; color: var(--text-muted);">Standardized Clean Text:</div>
+                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; font-size: 0.78rem; font-weight: bold; color: #1e40af; margin-bottom: 8px;" id="l_cleaned_text_display">
                             "Patient has fever or cough. Possible pneumonia."
                         </div>
-                    </div>
-
-                    <div id="l_out_nlp_box" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary);">BERT Tensor Shape: <span style="font-family: monospace;">(1, 60)</span></div>
-                        <div class="token-list" id="l_token_badge_list"></div>
-                    </div>
-
-                    <div id="l_out_perm_box" style="display: none;">
-                        <table style="font-size: 0.8rem;">
-                            <thead><tr><th>Feature</th><th>Shuffled C-Index</th><th>Drop (&Delta;)</th></tr></thead>
-                            <tbody id="l_perm_table_body">
-                                <tr><td><strong>Age</strong></td><td>0.5531</td><td><strong style="color:var(--danger);">-0.2228 (High)</strong></td></tr>
-                                <tr><td><strong>Blood Pressure</strong></td><td>0.7058</td><td><strong style="color:var(--warning);">-0.0701 (Med)</strong></td></tr>
-                            </tbody>
-                        </table>
+                        <div style="font-size: 0.76rem; font-weight: bold; margin-bottom: 4px; color: var(--text-muted);">WordPiece Token IDs (Fixed Length = 60):</div>
+                        <div id="l_token_badge_list" style="display: flex; flex-wrap: wrap; gap: 4px; max-height: 110px; overflow-y: auto;"></div>
                     </div>
 
                     <div id="l_out_cam_metric" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--purple); margin-bottom: 4px;">Layer 424 Feature Map Activations:</div>
-                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 0.8rem;">
-                            • Feature Map Shape: <code>(10, 10, 1024)</code><br>
-                            • Max Gradient Weight &alpha;<sub>k</sub>: <strong>+0.842</strong><br>
-                            • Spatial Resolution: <code>10x10 &rarr; Upsampled to 224x224</code>
-                        </div>
+                        <div style="font-size: 0.74rem; font-weight: bold; margin-bottom: 4px; color: var(--text-muted);">Permutation Importance (&Delta; C-Index):</div>
+                        <table class="table" style="font-size: 0.74rem;">
+                            <thead><tr><th>Feature</th><th>C-Index</th><th>Drop</th></tr></thead>
+                            <tbody id="l_perm_table_body">
+                                <tr><td><strong>Age</strong></td><td>0.7759</td><td>0.0000 (Baseline)</td></tr>
+                                <tr><td><strong>Blood Pressure</strong></td><td>0.7759</td><td>0.0000 (Baseline)</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
-                <!-- Block 6: DYNAMIC PER LAB FOR LINH -->
+                <!-- Card 6: VISUALIZER -->
                 <div class="card">
-                    <div class="card-header"><h3 class="card-title" id="l_block6_title">🩻 6. Lab Visualizer</h3><span class="block-badge badge-ml" id="l_block6_badge">Details</span></div>
+                    <div class="card-header"><h3 class="card-title" id="l_block6_title">🔤 6. BERT Attention &amp; Embeddings</h3><span class="block-badge badge-workflow" id="l_block6_badge">Tensor Structure</span></div>
                     
                     <div id="l_v_lab1" style="display: block;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Active Regex Normalization Rules:</div>
-                        <div class="rule-item"><span>Replace ambiguous slash:</span><span class="rule-code">/and\/or/i &rarr; "or"</span></div>
-                        <div class="rule-item"><span>Collapse consecutive dots:</span><span class="rule-code">/\.{2,}/ &rarr; "."</span></div>
-                        <div class="rule-item"><span>Collapse whitespace:</span><span class="rule-code">/\s+/ &rarr; " "</span></div>
-                        <div style="font-size: 0.76rem; color: var(--success); font-weight: bold; margin-top: 6px;">
-                            ✔ Standardized text prevents OOV token errors in BERT.
+                        <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 6px; padding: 8px; font-size: 0.75rem; margin-bottom: 6px;">
+                            <strong>BioBERT Tensor Format:</strong> [CLS] Token 101 &rarr; Word Tokens &rarr; [SEP] Token 102 &rarr; [PAD] Zeros.<br>
+                            Attention Mask = 1 for real tokens, 0 for padding.
+                        </div>
+                        <div style="background: #f0fdf4; border-left: 3px solid #166534; padding: 6px 8px; font-size: 0.75rem; color: #166534;">
+                            ✔ Prepared for BioBERT contextual attention layers.
                         </div>
                     </div>
 
                     <div id="l_v_lab2" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">BERT Embedding Composition:</div>
-                        <div style="background: #f1f5f9; border-radius: 6px; padding: 8px; font-size: 0.78rem; line-height: 1.6; margin-bottom: 6px;">
-                            • <strong>Token Embeddings:</strong> (1, 60, 768)<br>
-                            • <strong>Position Embeddings:</strong> (1, 60, 768)<br>
-                            • <strong>Segment Embeddings:</strong> (1, 60, 768)<br>
-                            👉 <strong>Total Layer Output:</strong> <code>Tensor Shape (1, 60, 768)</code>
-                        </div>
-                        <div style="font-size: 0.76rem; color: var(--primary); font-weight: bold;">
-                            ✔ Attention Mask zeroes out all 38 [PAD] tokens so they don't corrupt Self-Attention.
-                        </div>
-                    </div>
-
-                    <div id="l_v_lab3" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Permutation Drop Ranking (&Delta; C-Index):</div>
-                        <div class="disease-bar-row">
-                            <span style="width: 85px;">1. Age</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 95%; background: var(--danger);"></div></div>
-                            <span style="font-weight: bold; width: 45px; color: var(--danger); text-align: right;">-0.2228</span>
-                        </div>
-                        <div class="disease-bar-row">
-                            <span style="width: 85px;">2. SBP</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 32%; background: var(--warning);"></div></div>
-                            <span style="font-weight: bold; width: 45px; color: var(--warning); text-align: right;">-0.0701</span>
-                        </div>
-                        <div class="disease-bar-row">
-                            <span style="width: 85px;">3. BMI</span>
-                            <div class="disease-progress-bg"><div class="disease-progress-fill" style="width: 10%; background: #94a3b8;"></div></div>
-                            <span style="font-weight: bold; width: 45px; color: var(--text-muted); text-align: right;">-0.0150</span>
-                        </div>
-                        <div style="font-size: 0.76rem; color: var(--danger); font-weight: bold; margin-top: 6px;">
-                            ✔ Proves model performance relies 3x more on Age than on Blood Pressure.
-                        </div>
-                    </div>
-
-                    <div id="l_v_lab4" style="display: none;">
                         <div class="xray-container">
                             <svg class="xray-bg-svg" viewBox="0 0 200 160">
                                 <path d="M40,20 Q60,10 100,20 Q140,10 160,20 Q170,80 155,140 Q100,150 100,100 Q100,150 45,140 Q30,80 40,20" fill="#1e293b" stroke="#475569" stroke-width="2"/>
@@ -2139,11 +1800,7 @@
                 <button class="btn" style="background:#7c3aed; color:#fff;" onclick="switchMember('wrapup')">View Wrap-Up &amp; Q&amp;A &rarr;</button>
             </div>
         </div>
-
-        <!-- ========================================================================= -->
-        <!-- 5. GROUP CONCLUSION & WRAP-UP (EASIEST & CLEAREST)                        -->
-        <!-- ========================================================================= -->
-        <div id="section_wrapup" class="tab-content">
+<div id="section_wrapup" class="tab-content">
             <div class="member-banner" style="border-left: 5px solid #0284c7;">
                 <div>
                     <span class="role-tag" style="background:#e0f2fe; color:#0369a1;">All Members · Grand Conclusion</span>
@@ -2317,7 +1974,7 @@
 
     </div>
 
-    <script>
+        <script>
         // ==========================================
         // 0. COUNTDOWN TIMER ENGINE (5 MINS / SPEAKER)
         // ==========================================
@@ -2447,74 +2104,43 @@
         // ==========================================
         // 2. KHƯƠNG LOGIC & DYNAMIC INPUTS & MATH
         // ==========================================
-        function setKhuongStep(step) {
-            document.querySelectorAll('#section_khuong .flow-step').forEach((s, idx) => {
-                s.classList.toggle('active', idx === (step - 1));
+                function setKhuongStep(step) {
+            document.querySelectorAll("#section_khuong .flow-step").forEach((s, idx) => {
+                s.classList.toggle("active", idx === (step - 1));
             });
 
-            document.getElementById('k_badge_scen').innerText = `Step ${step}`;
-            const mathCard = document.getElementById('k_formula_card');
-            const b6Title = document.getElementById('k_block6_title');
-            const b6Badge = document.getElementById('k_block6_badge');
+            document.getElementById("k_badge_scen").innerText = "Chapter " + step;
+            const mathCard = document.getElementById("k_formula_card");
+            const b6Title = document.getElementById("k_block6_title");
+            const b6Badge = document.getElementById("k_block6_badge");
 
-            // Dynamic Inputs (Card 2)
-            document.getElementById('k_in_step1').style.display = (step === 1) ? 'block' : 'none';
-            document.getElementById('k_in_step2').style.display = (step === 2) ? 'block' : 'none';
-            document.getElementById('k_in_step3').style.display = (step === 3) ? 'block' : 'none';
-            document.getElementById('k_in_step4').style.display = (step === 4) ? 'block' : 'none';
+            document.getElementById("k_in_step1").style.display = (step === 1) ? "block" : "none";
+            document.getElementById("k_in_step2").style.display = (step === 2) ? "block" : "none";
 
-            // Dynamic Outputs (Card 5)
-            document.getElementById('k_out_step1').style.display = (step === 1) ? 'block' : 'none';
-            document.getElementById('k_out_step2').style.display = (step === 2) ? 'block' : 'none';
-            document.getElementById('k_out_step3').style.display = (step === 3) ? 'block' : 'none';
-            document.getElementById('k_out_step4').style.display = (step === 4) ? 'block' : 'none';
+            document.getElementById("k_out_step1").style.display = (step === 1) ? "block" : "none";
+            document.getElementById("k_out_step2").style.display = (step === 2) ? "block" : "none";
 
-            // Dynamic Visualizer (Card 6)
-            document.getElementById('k_v_step1').style.display = (step === 1) ? 'block' : 'none';
-            document.getElementById('k_v_step2').style.display = (step === 2) ? 'block' : 'none';
-            document.getElementById('k_v_step3').style.display = (step === 3) ? 'block' : 'none';
-            document.getElementById('k_v_step4').style.display = (step === 4) ? 'block' : 'none';
+            document.getElementById("k_v_step1").style.display = (step === 1) ? "block" : "none";
+            document.getElementById("k_v_step2").style.display = (step === 2) ? "block" : "none";
 
             if (step === 1) {
-                b6Title.innerHTML = "⚖️ 6. Causal Mechanism (DAG)";
-                b6Badge.innerText = "Causal Graph";
+                b6Title.innerHTML = "👥 6. Visualizing Population RCT Impact";
+                b6Badge.innerText = "Cohort Visual";
 
-                document.getElementById('k_scen_title').innerHTML = "🎯 <strong>Goal:</strong> Eliminate prescribing bias between drug & placebo.";
-                document.getElementById('k_scen_desc').innerHTML = "💡 <strong>Trial Setup:</strong> 1,000 patients randomized 1:1 via coin toss (W &isin; {0, 1}).";
-                document.getElementById('k_ml_title').innerHTML = "<strong>Causal Identifiability:</strong>";
-                document.getElementById('k_ml_desc').innerHTML = "• <strong>Backdoor Path Cut:</strong> P(Y=1 | do(W=1)) = P(Y=1 | W=1).<br>• Covariates (Age, BP, BMI) are identical in expectation across arms.";
-                mathCard.innerHTML = `
-                    <strong>Causal Identifiability:</strong><br>
-                    <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">do</span>(<span class="math-symbol">W</span>=1)) = <span class="math-symbol">P</span>(<span class="math-symbol">Y</span>=1 | <span class="math-symbol">W</span>=1)<br>
-                    <em style="color:#166534; font-weight:bold;">✔ Confounding bias is mathematically ZERO under RCT.</em>
-                `;
-            } else if (step === 2) {
-                b6Title.innerHTML = "👥 6. Visualizing NNT = 7.1 Effort";
-                b6Badge.innerText = "10-Patient Grid";
-
-                document.getElementById('k_scen_title').innerHTML = "🎯 <strong>Goal:</strong> Measure population survival gain & hospital efficiency.";
-                document.getElementById('k_scen_desc').innerHTML = "💡 <strong>Trial Result:</strong> Placebo risk = 20.0%, Treated risk = 6.0%.";
-                document.getElementById('k_ml_title').innerHTML = "<strong>Population Metrics:</strong>";
-                document.getElementById('k_ml_desc').innerHTML = "• <strong>ARR = +14.0%:</strong> Drug drops stroke rate by 14% absolute.<br>• <strong>NNT = 7.1:</strong> Treat 7 patients to save 1 life.";
+                document.getElementById("k_scen_title").innerHTML = "🎯 <strong>Goal:</strong> Eliminate doctor prescribing bias &amp; measure population efficacy.";
+                document.getElementById("k_scen_desc").innerHTML = "💡 <strong>Trial Setup:</strong> 1,000 patients randomized 1:1 via coin toss (W &isin; {0, 1}).";
+                document.getElementById("k_ml_desc").innerHTML = "• <strong>Backdoor Path Cut:</strong> P(Y=1 | do(W=1)) = P(Y=1 | W=1).<br>• Covariates (Age, BP, BMI) are identical in expectation across arms.";
                 updateKhuong();
-            } else if (step === 3) {
-                b6Title.innerHTML = "⏳ 6. Parallel Universe Dilemma";
+                updateKhuongAllocSlider();
+            } else {
+                b6Title.innerHTML = "⏳ 6. Parallel Universe Dilemma &amp; CATE";
                 b6Badge.innerText = "Neyman-Rubin";
 
-                document.getElementById('k_scen_title').innerHTML = "🎯 <strong>The Dilemma:</strong> Each patient lives only 1 reality.";
-                document.getElementById('k_scen_desc').innerHTML = "💡 <strong>Missing Data:</strong> Observed Y = W·Y(1) + (1-W)·Y(0). Counterfactual Y₀ is lost forever!";
-                document.getElementById('k_ml_title').innerHTML = "<strong>Causal Prediction:</strong>";
-                document.getElementById('k_ml_desc').innerHTML = "• Cannot clone patients into parallel universes.<br>• Machine learning predicts missing counterfactual from clinical twins.";
+                document.getElementById("k_scen_title").innerHTML = "🎯 <strong>The Dilemma:</strong> Each patient lives only 1 reality.";
+                document.getElementById("k_scen_desc").innerHTML = "💡 <strong>Insight:</strong> +14% ATE treats all equally, but Grandpa An benefits 5x more than Alex!";
+                document.getElementById("k_ml_desc").innerHTML = "• <strong>Missing Counterfactual:</strong> For Patient #42, Y(0) is lost in parallel universe.<br>• <strong>Precision Need:</strong> Machine learning must predict individual CATE from clinical twins.";
                 setKhuongPatientUniverse(1);
-            } else if (step === 4) {
-                b6Title.innerHTML = "🤝 6. Bridge to Machine Learning";
-                b6Badge.innerText = "CATE Transition";
-
-                document.getElementById('k_scen_title').innerHTML = "🎯 <strong>Goal:</strong> Move from Population Average (ATE) to Precision AI (CATE).";
-                document.getElementById('k_scen_desc').innerHTML = "💡 <strong>Insight:</strong> +14% ATE treats all equally, but Grandpa An benefits 5x more than Alex!";
-                document.getElementById('k_ml_title').innerHTML = "<strong>Precision Medicine:</strong>";
-                document.getElementById('k_ml_desc').innerHTML = "• <strong>Grandpa An (High Risk):</strong> +26.4% gain &rarr; High Priority.<br>• <strong>Alex (Low Risk):</strong> +5.2% gain &rarr; Lifestyle first.";
-                setKhuongSubgroup('all');
+                setKhuongSubgroup("all");
             }
         }
 
@@ -2766,43 +2392,34 @@
         // ==========================================
         // 3. HIẾU FULLY DYNAMIC INPUTS & MATH
         // ==========================================
-        function setHieuPipelineStep(step) {
-            document.querySelectorAll('#section_hieu .flow-step').forEach((s, idx) => {
-                s.classList.toggle('active', idx === (step - 1));
+                function setHieuPipelineStep(step) {
+            document.querySelectorAll("#section_hieu .flow-step").forEach((s, idx) => {
+                s.classList.toggle("active", idx === (step - 1));
             });
 
-            document.getElementById('h_badge_step').innerText = `Step ${step}`;
+            document.getElementById("h_badge_step").innerText = "Chapter " + step;
 
-            // Dynamic Inputs (Card 2)
-            document.getElementById('h_in_step1').style.display = (step === 1) ? 'block' : 'none';
-            document.getElementById('h_in_step2').style.display = (step === 2) ? 'block' : 'none';
-            document.getElementById('h_in_step3').style.display = (step === 3) ? 'block' : 'none';
-            document.getElementById('h_in_step4').style.display = (step === 4) ? 'block' : 'none';
+            document.getElementById("h_in_step1").style.display = (step === 1) ? "block" : "none";
+            document.getElementById("h_in_step2").style.display = (step === 2) ? "block" : "none";
+            document.getElementById("h_in_step3").style.display = (step === 3) ? "block" : "none";
 
-            // Preset bar only on relevant steps
-            document.getElementById('h_preset_container').style.display = (step === 1 || step === 4) ? 'flex' : 'none';
+            document.getElementById("h_out_cate_box").style.display = (step === 1 || step === 2) ? "block" : "none";
+            document.getElementById("h_out_matched_box").style.display = (step === 3) ? "block" : "none";
 
-            // Outputs
-            const isMatchedStep = (step === 3);
-            document.getElementById('h_out_cate_box').style.display = isMatchedStep ? 'none' : 'block';
-            document.getElementById('h_out_matched_box').style.display = isMatchedStep ? 'block' : 'none';
+            document.getElementById("h_v_step1").style.display = (step === 1) ? "block" : "none";
+            document.getElementById("h_v_step2").style.display = (step === 2) ? "block" : "none";
+            document.getElementById("h_v_step3").style.display = (step === 3) ? "block" : "none";
 
-            // Dynamic Visualizer (Card 6)
-            document.getElementById('h_v_step1').style.display = (step === 1) ? 'block' : 'none';
-            document.getElementById('h_v_step2').style.display = (step === 2) ? 'block' : 'none';
-            document.getElementById('h_v_step3').style.display = (step === 3) ? 'block' : 'none';
-            document.getElementById('h_v_step4').style.display = (step === 4) ? 'block' : 'none';
-
-            const mathCard = document.getElementById('h_formula_card');
-            const b6Title = document.getElementById('h_block6_title');
-            const b6Badge = document.getElementById('h_block6_badge');
+            const mathCard = document.getElementById("h_formula_card");
+            const b6Title = document.getElementById("h_block6_title");
+            const b6Badge = document.getElementById("h_block6_badge");
 
             if (step === 1) {
                 b6Title.innerHTML = "📊 6. Untreated vs Treated Risk Comparison";
                 b6Badge.innerText = "Risk Comparison";
 
-                document.getElementById('h_scenario_desc').innerHTML = "🎯 <strong>Goal:</strong> Personalized Risk Profiling.<br>💡 <strong>Profile:</strong> Grandpa An (Age 70, SBP 165) vs Alex (Age 35, SBP 118).";
-                document.getElementById('h_ml_desc').innerHTML = `• Untreated risk: <strong>48.2%</strong> &rarr; Treated risk: <strong>21.8%</strong>.<br>• Net Gain (CATE) = <strong style="color:#166534;">+26.4% Risk Drop</strong> for Grandpa An.`;
+                document.getElementById("h_scenario_desc").innerHTML = "🎯 <strong>Goal:</strong> Personalized Risk Profiling.<br>💡 <strong>Profile:</strong> Grandpa An (Age 70, SBP 165) vs Alex (Age 35, SBP 118).";
+                document.getElementById("h_ml_desc").innerHTML = "• Untreated risk: <strong>48.2%</strong> &rarr; Treated risk: <strong>21.8%</strong>.<br>• Net Gain (CATE) = <strong style='color:#166534;'>+26.4% Risk Drop</strong> for Grandpa An.";
                 mathCard.innerHTML = `
                     <strong>Personalized Benefit (CATE):</strong><br>
                     <span class="math-symbol">CATE</span>(An) = 48.2% &minus; 21.8% = <strong style="color:#166534;">+26.4% Benefit</strong><br>
@@ -2813,33 +2430,19 @@
                 b6Title.innerHTML = "🌲🌲 6. Why 2 Doctors (T-Learner) Beat 1 (S-Learner)";
                 b6Badge.innerText = "Model Battle";
 
-                document.getElementById('h_scenario_desc').innerText = "Step 2: Should AI train 1 model with all features (S-Learner) or 2 specialized models (T-Learner)?";
-                document.getElementById('h_ml_desc').innerHTML = "<strong>2 Specialized Doctors (T-Learner):</strong><br>• <strong>Doctor 1:</strong> Specializes in Treated patients.<br>• <strong>Doctor 2:</strong> Specializes in Untreated patients.<br>👉 Subtracting predictions captures 100% of the true drug benefit without shrinkage bias!";
-                setHieuModelMode('t');
+                setHieuModelMode("t");
             } else if (step === 3) {
-                b6Title.innerHTML = "🎯 6. Twin Matching &amp; Hospital Benchmark (C=0.6342)";
+                b6Title.innerHTML = "🎯 6. Twin Matching &amp; SHAP Receipts";
                 b6Badge.innerText = "Validation Score";
 
-                document.getElementById('h_scenario_desc').innerHTML = "🎯 <strong>Goal:</strong> Validate CATE without parallel universes.<br>💡 <strong>Method:</strong> Pair statistical twins with identical Age & SBP.";
-                document.getElementById('h_ml_desc').innerHTML = "• Pairs: 1 Treated (W=1) + 1 Control (W=0).<br>• Concordant when Treated survives and Control has stroke (+1 Benefit).";
+                document.getElementById("h_scenario_desc").innerHTML = "🎯 <strong>Goal:</strong> Validate CATE with matched twins &amp; explain exact reasons to doctors.";
+                document.getElementById("h_ml_desc").innerHTML = "• <strong>Twin Test:</strong> Scores AI concordance without parallel clones (C=0.6342).<br>• <strong>SHAP:</strong> Breaks down +26.4% into itemized SBP, Age, and BMI receipts.";
                 mathCard.innerHTML = `
                     <strong>C-for-benefit Metric:</strong><br>
                     <span class="math-symbol">C</span> = (Concordant + 0.5&times;Ties) / Permissible = <strong style="color:#1e40af;">0.6342</strong><br>
                     <em style="color:#166534; font-weight:bold;">✔ Hospital Gold Standard (&asymp; 0.80 standard AUC).</em>
                 `;
                 resampleHieuPairs();
-            } else if (step === 4) {
-                b6Title.innerHTML = "🧾 6. Itemized AI Receipt for Doctors (SHAP)";
-                b6Badge.innerText = "AI Explainability";
-
-                document.getElementById('h_scenario_desc').innerHTML = "🎯 <strong>Goal:</strong> 100% Transparent AI Receipt for Clinicians.<br>💡 <strong>Question:</strong> Why does Grandpa An get +26.4% benefit?";
-                document.getElementById('h_ml_desc').innerHTML = "• SBP 165 pushes benefit by <strong>+8.5%</strong>.<br>• Age 70 pushes benefit by <strong>+3.4%</strong>.<br>• BMI 31 pushes benefit by <strong>+0.5%</strong>.";
-                mathCard.innerHTML = `
-                    <strong>SHAP Additive Breakdown:</strong><br>
-                    <span class="math-symbol">Total Benefit</span> = Base Average (+14.0%) + SBP Push (+7.2%) + Age Push (+3.4%) + BMI (+1.8%) = <strong style="color:#166534;">+26.4%</strong><br>
-                    <em>100% transparent and verifiable for doctors.</em>
-                `;
-                updateHieu();
             }
         }
 
@@ -3216,94 +2819,52 @@
         // ==========================================
         // 4. LINH FULLY DYNAMIC INPUTS & MATH
         // ==========================================
-        function setLinhLab(labNum) {
-            document.querySelectorAll('#section_linh .flow-step').forEach((s, idx) => {
-                s.classList.toggle('active', idx === (labNum - 1));
+                function setLinhLab(labNum) {
+            document.querySelectorAll("#section_linh .flow-step").forEach((s, idx) => {
+                s.classList.toggle("active", idx === (labNum - 1));
             });
 
-            document.getElementById('l_badge_step').innerText = `Step ${labNum}`;
+            document.getElementById("l_badge_step").innerText = "Chapter " + labNum;
 
             const isClean = (labNum === 1);
-            const isNLP = (labNum === 2);
-            const isPerm = (labNum === 3);
-            const isCam = (labNum === 4);
+            const isCam = (labNum === 2);
 
-            // Dynamic Inputs (Card 2)
-            document.getElementById('l_input_clean_box').style.display = isClean ? 'block' : 'none';
-            document.getElementById('l_input_nlp_box').style.display = isNLP ? 'block' : 'none';
-            document.getElementById('l_input_perm_box').style.display = isPerm ? 'block' : 'none';
-            document.getElementById('l_input_cam_box').style.display = isCam ? 'block' : 'none';
+            document.getElementById("l_input_clean_box").style.display = isClean ? "block" : "none";
+            document.getElementById("l_input_cam_box").style.display = isCam ? "block" : "none";
 
-            // Outputs (Card 5)
-            document.getElementById('l_out_clean_box').style.display = isClean ? 'block' : 'none';
-            document.getElementById('l_out_nlp_box').style.display = isNLP ? 'block' : 'none';
-            document.getElementById('l_out_perm_box').style.display = isPerm ? 'block' : 'none';
-            document.getElementById('l_out_cam_metric').style.display = isCam ? 'block' : 'none';
+            document.getElementById("l_out_clean_box").style.display = isClean ? "block" : "none";
+            document.getElementById("l_out_cam_metric").style.display = isCam ? "block" : "none";
 
-            // Visualizer (Card 6)
-            document.getElementById('l_v_lab1').style.display = isClean ? 'block' : 'none';
-            document.getElementById('l_v_lab2').style.display = isNLP ? 'block' : 'none';
-            document.getElementById('l_v_lab3').style.display = isPerm ? 'block' : 'none';
-            document.getElementById('l_v_lab4').style.display = isCam ? 'block' : 'none';
+            document.getElementById("l_v_lab1").style.display = isClean ? "block" : "none";
+            document.getElementById("l_v_lab2").style.display = isCam ? "block" : "none";
 
-            const mathCard = document.getElementById('l_formula_card');
-            const b6Title = document.getElementById('l_block6_title');
-            const b6Badge = document.getElementById('l_block6_badge');
+            const mathCard = document.getElementById("l_formula_card");
+            const b6Title = document.getElementById("l_block6_title");
+            const b6Badge = document.getElementById("l_block6_badge");
 
             if (isClean) {
-                b6Title.innerHTML = "🧹 6. Normalization Rules Engine";
-                b6Badge.innerText = "Regex Rules";
-                b6Badge.className = "block-badge badge-workflow";
-
-                document.getElementById('l_scenario_title').innerHTML = "🎯 <strong>Goal:</strong> Text sanitization & De-identification.";
-                document.getElementById('l_scenario_body').innerHTML = "💡 <strong>Lab 1:</strong> Standardize punctuation and medical typos via Regex.";
-                document.getElementById('l_ml_explanation').innerHTML = "• Replaces 'and/or' &rarr; 'or', removes trailing dots, collapses spaces.<br>• Prepares clean text for neural tokenizers.";
-                mathCard.innerHTML = `
-                    <strong>Text Cleaning Transformation:</strong><br>
-                    <span class="math-symbol">s</span> &larr; <span class="math-symbol">regex_replace</span>(<span class="math-symbol">s</span>, <span class="math-symbol">r"and/or"</span>, <span class="math-symbol">"or"</span>)<br>
-                    <span class="math-symbol">s</span> &larr; <span class="math-symbol">regex_replace</span>(<span class="math-symbol">s</span>, <span class="math-symbol">r"\.+"</span>, <span class="math-symbol">"."</span>)
-                `;
-                runLinhTextCleaner();
-            } else if (isNLP) {
-                b6Title.innerHTML = "🔤 6. BERT Attention & Embedding Matrix";
+                b6Title.innerHTML = "🔤 6. BERT Attention &amp; Embedding Matrix";
                 b6Badge.innerText = "Tensor Structure";
-                b6Badge.className = "block-badge badge-input";
 
-                document.getElementById('l_scenario_title').innerHTML = "🎯 <strong>Goal:</strong> BioBERT Tokenization & Attention Tensor.";
-                document.getElementById('l_scenario_body').innerHTML = "💡 <strong>Lab 2:</strong> Map medical text to WordPiece IDs with Attention Mask.";
-                document.getElementById('l_ml_explanation').innerHTML = "• Fixed shape (1, 60) with [CLS]=101, [SEP]=102, and [PAD]=0.<br>• Attention mask M_i ignores padding tokens.";
+                document.getElementById("l_scenario_title").innerHTML = "🎯 <strong>Goal:</strong> BioBERT Attention &amp; Token Tensor Representation.";
+                document.getElementById("l_scenario_body").innerHTML = "💡 <strong>Lab 1 &amp; 2:</strong> Regex cleaning + WordPiece tokenizer mapping into shape (1, 60) with Attention Mask.";
+                document.getElementById("l_ml_explanation").innerHTML = "• <strong>BERT Tokenization:</strong> Maps words to vocab IDs, adds [CLS]=101, [SEP]=102, pads zeros.<br>• <strong>Attention Mask:</strong> M_i=1 for real words, 0 for padding tokens.";
                 mathCard.innerHTML = `
-                    <strong>BERT Tensor Representation:</strong><br>
-                    <span class="math-symbol">T</span> &in; &integers;<sup>1 &times; 60</sup>, where <span class="math-symbol">T</span><sub>0</sub> = 101 ([CLS]), <span class="math-symbol">T</span><sub>k</sub> = 102 ([SEP])<br>
-                    <strong>Attention Mask:</strong> <span class="math-symbol">M</span><sub>i</sub> = 1 if <span class="math-symbol">T</span><sub>i</sub> &ne; 0 else 0
+                    <strong>BioBERT Tensor &amp; Mask Representation:</strong><br>
+                    <span class="math-symbol">T</span> &in; &integers;<sup>1 &times; 60</sup>, with <span class="math-symbol">T</span><sub>0</sub> = 101 ([CLS]), <span class="math-symbol">T</span><sub>k</sub> = 102 ([SEP])<br>
+                    <span class="math-symbol">Attention Mask</span>: <span class="math-symbol">M</span><sub>i</sub> = 1 if <span class="math-symbol">T</span><sub>i</sub> &ne; 0 else 0
                 `;
                 runLinhTokenizer();
-            } else if (isPerm) {
-                b6Title.innerHTML = "📊 6. Feature Importance Ranking (&Delta; C-Index)";
-                b6Badge.innerText = "Permutation Drops";
-                b6Badge.className = "block-badge badge-output";
+            } else {
+                b6Title.innerHTML = "🩻 6. Grad-CAM X-Ray Localization &amp; Permutation";
+                b6Badge.innerText = "Layer 424 Heatmap";
 
-                document.getElementById('l_scenario_title').innerHTML = "🎯 <strong>Goal:</strong> Permutation Feature Importance.";
-                document.getElementById('l_scenario_body').innerHTML = "💡 <strong>Lab 3:</strong> Shuffle test columns to measure performance drops (&Delta; C-Index).";
-                document.getElementById('l_ml_explanation').innerHTML = "• Shuffling 'Age' drops C-index from 0.7759 to 0.5531 (&minus;0.2228 drop!).<br>• Proves Age is the #1 prognostic driver.";
+                document.getElementById("l_scenario_title").innerHTML = "🎯 <strong>Goal:</strong> Grad-CAM Chest X-Ray Localization &amp; Permutation Importance.";
+                document.getElementById("l_scenario_body").innerHTML = "💡 <strong>Lab 3 &amp; 4:</strong> Backprop class gradients through DenseNet121 Layer 424 &amp; shuffle test features.";
+                document.getElementById("l_ml_explanation").innerHTML = "• <strong>Grad-CAM:</strong> Backprops gradients &part;y^c / &part;A^k to highlight pneumonia in bright red.<br>• <strong>Permutation:</strong> Shuffling Age causes massive &minus;0.2228 C-index drop (proves Age #1 driver).";
                 mathCard.innerHTML = `
-                    <strong>Permutation Importance Metric:</strong><br>
-                    <span class="math-symbol">Importance</span>(<span class="math-symbol">X</span><sub>j</sub>) = <span class="math-symbol">C_baseline</span> (0.7759) &minus; <span class="math-symbol">C_shuffled</span>(<span class="math-symbol">X</span><sub>j</sub>)<br>
-                    <em>Shuffling 'Age' drops C-index by &minus;0.2228 &rarr; Age is the #1 feature!</em>
-                `;
-                runLinhShuffle('age');
-            } else if (isCam) {
-                b6Title.innerHTML = "🩻 6. Grad-CAM X-Ray Localization";
-                b6Badge.innerText = "DenseNet121";
-                b6Badge.className = "block-badge badge-ml";
-
-                document.getElementById('l_scenario_title').innerHTML = "🎯 <strong>Goal:</strong> Grad-CAM Chest X-Ray Visual Heatmaps.";
-                document.getElementById('l_scenario_body').innerHTML = "💡 <strong>Lab 4:</strong> DenseNet121 Layer 424 class activation maps.";
-                document.getElementById('l_ml_explanation').innerHTML = "• Backprops class gradients &part;y^c / &part;A^k and pools to weights &alpha;_k^c.<br>• Highlights pneumonia pathology in bright red on X-Ray.";
-                mathCard.innerHTML = `
-                    <strong>Grad-CAM Feature Weights (Layer 424):</strong><br>
-                    &alpha;<sub>k</sub><sup>c</sup> = (1 / <span class="math-symbol">Z</span>) &sum;<sub>i</sub> &sum;<sub>j</sub> (&part;<span class="math-symbol">y</span><sup>c</sup> / &part;<span class="math-symbol">A</span><sub>ij</sub><sup>k</sup>)<br>
-                    <span class="math-symbol">L</span><sub>Grad-CAM</sub><sup>c</sup> = <span class="math-symbol">ReLU</span>( &sum;<sub>k</sub> &alpha;<sub>k</sub><sup>c</sup> <span class="math-symbol">A</span><sup>k</sup> )
+                    <strong>Grad-CAM Activation Weights (Layer 424):</strong><br>
+                    &alpha;<sub>k</sub><sup>c</sup> = (1/Z) &sum; &part;<span class="math-symbol">y</span><sup>c</sup> / &part;<span class="math-symbol">A</span><sup>k</sup> &rarr; <span class="math-symbol">L</span><sub>CAM</sub> = <strong style="color:#7c3aed;">ReLU(&sum; &alpha;<sub>k</sub> A<sup>k</sup>)</strong>
                 `;
                 updateLinhHeatmap();
             }
@@ -3440,110 +3001,58 @@
         // ==========================================
         // 5. DUNG FULLY DYNAMIC INPUTS & MATH
         // ==========================================
-        function setDungPipelineStep(step) {
-            document.querySelectorAll('#section_dung .flow-step').forEach((s, idx) => {
-                s.classList.toggle('active', idx === (step - 1));
+                function setDungPipelineStep(step) {
+            document.querySelectorAll("#section_dung .flow-step").forEach((s, idx) => {
+                s.classList.toggle("active", idx === (step - 1));
             });
 
-            document.getElementById('d_block_badge_1').innerText = `Step ${step}`;
+            document.getElementById("d_block_badge_1").innerText = "Chapter " + step;
 
-            // Dynamic Inputs (Card 2)
-            document.getElementById('d_in_step1').style.display = (step === 1) ? 'block' : 'none';
-            document.getElementById('d_in_step2').style.display = (step === 2) ? 'block' : 'none';
-            document.getElementById('d_in_step3').style.display = (step === 3) ? 'block' : 'none';
-            document.getElementById('d_in_step4').style.display = (step === 4) ? 'block' : 'none';
-            document.getElementById('d_in_step5').style.display = (step === 5) ? 'block' : 'none';
-            document.getElementById('d_in_step6').style.display = (step === 6) ? 'block' : 'none';
+            document.getElementById("d_in_step1").style.display = (step === 1) ? "block" : "none";
+            document.getElementById("d_in_step2").style.display = (step === 2) ? "block" : "none";
+            document.getElementById("d_in_step3").style.display = (step === 3) ? "block" : "none";
 
-            // Dynamic Outputs (Card 5)
-            const isCNNMode = (step === 4);
-            document.getElementById('d_out_table_wrapper').style.display = isCNNMode ? 'none' : 'block';
-            document.getElementById('d_out_cnn_bars').style.display = isCNNMode ? 'block' : 'none';
+            const isCNNMode = (step === 2);
+            document.getElementById("d_out_table_wrapper").style.display = isCNNMode ? "none" : "block";
+            document.getElementById("d_out_cnn_bars").style.display = isCNNMode ? "block" : "none";
 
-            // Dynamic Visualizer (Card 6)
-            document.getElementById('d_v_step1').style.display = (step === 1) ? 'block' : 'none';
-            document.getElementById('d_v_step2').style.display = (step === 2) ? 'block' : 'none';
-            document.getElementById('d_v_step3').style.display = (step === 3) ? 'block' : 'none';
-            document.getElementById('d_v_step4').style.display = (step === 4) ? 'block' : 'none';
-            document.getElementById('d_v_step5').style.display = (step === 5) ? 'block' : 'none';
-            document.getElementById('d_v_step6').style.display = (step === 6) ? 'block' : 'none';
+            document.getElementById("d_v_step1").style.display = (step === 1) ? "block" : "none";
+            document.getElementById("d_v_step2").style.display = (step === 2) ? "block" : "none";
+            document.getElementById("d_v_step3").style.display = (step === 3) ? "block" : "none";
 
-            const mathCard = document.getElementById('d_formula_card');
-            const b6Title = document.getElementById('d_block6_title');
-            const b6Badge = document.getElementById('d_block6_badge');
+            const mathCard = document.getElementById("d_formula_card");
+            const b6Title = document.getElementById("d_block6_title");
+            const b6Badge = document.getElementById("d_block6_badge");
 
             if (step === 1) {
-                b6Title.innerHTML = "🗂️ 6. PACS Big Data Pipeline";
+                b6Title.innerHTML = "🗂️ 6. PACS Big Data Mining Pipeline";
                 b6Badge.innerText = "Data Pipeline";
 
                 setDungReportCase(1);
-                document.getElementById('d_scen_title').innerHTML = "🎯 <strong>Goal:</strong> Auto-mine 100,000 raw PACS radiology notes.";
-                document.getElementById('d_scen_desc').innerHTML = "💡 <strong>Scale:</strong> $0 cost, HIPAA-safe local pipeline without manual radiologist effort.";
-                document.getElementById('d_nlp_desc').innerHTML = "• Free-text reports &rarr; Binary 14-disease label matrix {0, 1}<sup>100k &times; 14</sup>.<br>• Generates gold-standard supervised training sets.";
-                mathCard.innerHTML = `
-                    <strong>Unstructured Text Mining Goal:</strong><br>
-                    <span class="math-symbol">D</span><sub>raw</sub> &in; <span class="math-symbol">Text</span><sup>100,000</sup> &rarr; <span class="math-symbol">D</span><sub>binary</sub> &in; {0, 1}<sup>100,000 &times; 14</sup><br>
-                    <em>Transforms unstructured medical English into supervised training labels.</em>
-                `;
+                document.getElementById("d_scen_title").innerHTML = "🎯 <strong>Goal:</strong> Auto-mine 100,000 raw PACS radiology notes.";
+                document.getElementById("d_scen_desc").innerHTML = "💡 <strong>Scale:</strong> $0 cost, HIPAA-safe local pipeline without manual radiologist effort.";
+                document.getElementById("d_nlp_desc").innerHTML = "• Free-text reports &rarr; Binary 14-disease label matrix {0, 1}<sup>100k &times; 14</sup>.<br>• Resolves negation ('no evidence of' &rarr; 0) and synonyms ('consolidation' &rarr; Pneumonia).";
             } else if (step === 2) {
-                b6Title.innerHTML = "🌳 6. Medical Ontology Hierarchy";
-                b6Badge.innerText = "Ontology Tree";
-
-                setDungOntologyTerm(1);
-                document.getElementById('d_scen_title').innerHTML = "🎯 <strong>Goal:</strong> Standardize clinical synonyms & taxonomies.";
-                document.getElementById('d_scen_desc').innerHTML = "💡 <strong>Ontology:</strong> UMLS / SNOMED CT hierarchy mapping.";
-                document.getElementById('d_nlp_desc').innerHTML = `• "Airspace consolidation" &map; Pneumonia (Class #1).<br>• "Lung infiltrate" &map; Infiltration (Class #4).`;
-                mathCard.innerHTML = `
-                    <strong>Ontology Mapping Rule:</strong><br>
-                    <span class="math-symbol">Synonym</span>("consolidation") &map; <span class="math-symbol">Pneumonia</span> (Class #1)<br>
-                    <span class="math-symbol">Canonical</span>("lung infiltrate") &map; <span class="math-symbol">Infiltration</span> (Class #4)
-                `;
-            } else if (step === 3) {
-                b6Title.innerHTML = "🚫 6. NegBio Dependency Parse Tree";
-                b6Badge.innerText = "Negation Logic";
-
-                setDungNegBioCase(1);
-                document.getElementById('d_scen_title').innerHTML = `🎯 <strong>Goal:</strong> Filter out negation triggers ("no evidence of").`;
-                document.getElementById('d_scen_desc').innerHTML = `💡 <strong>Engine:</strong> NegBio syntactic dependency parser.`;
-                document.getElementById('d_nlp_desc').innerHTML = `• "No evidence of pneumonia" &rarr; Label <strong>0 (Negated)</strong>.<br>• Prevents false positives from routine rule-out phrasing.`;
-                mathCard.innerHTML = `
-                    <strong>Negation Logic:</strong><br>
-                    <span class="math-symbol">Label</span>(<span class="math-symbol">c</span>) = <span class="math-symbol">&#x1D7D9;</span>(<span class="math-symbol">Mentioned</span>(<span class="math-symbol">c</span>)) &times; (1 &minus; <span class="math-symbol">Negated</span>(<span class="math-symbol">c</span>))<br>
-                    <em>Prevents false positives on 'no evidence of' or 'clear lungs'.</em>
-                `;
-            } else if (step === 4) {
-                b6Title.innerHTML = "🩻 6. DenseNet121 Vision Model";
-                b6Badge.innerText = "CNN Architecture";
+                b6Title.innerHTML = "🧠 6. DenseNet121 Architecture &amp; F1 Tuning";
+                b6Badge.innerText = "CNN Vision";
 
                 setDungCNNCase(1);
-                document.getElementById('d_scen_title').innerHTML = "🎯 <strong>Goal:</strong> Train 14-Disease DenseNet121 Vision Model.";
-                document.getElementById('d_scen_desc').innerHTML = "💡 <strong>Data:</strong> 100,000 chest X-rays paired with mined labels.";
-                document.getElementById('d_nlp_desc').innerHTML = "• 14 independent sigmoid outputs with Weighted Cross-Entropy.<br>• High accuracy across all common thoracic pathologies.";
-                mathCard.innerHTML = `
-                    <strong>Multi-Label Weighted Cross-Entropy Loss:</strong><br>
-                    <span class="math-symbol">L</span><sub>CNN</sub> = &minus; &sum;<sub>c=1</sub><sup>14</sup> [ <span class="math-symbol">w</span><sub>p,c</sub> <span class="math-symbol">y</span><sub>c</sub> log <span class="math-symbol">y&#770;</span><sub>c</sub> + <span class="math-symbol">w</span><sub>n,c</sub> (1 &minus; <span class="math-symbol">y</span><sub>c</sub>) log(1 &minus; <span class="math-symbol">y&#770;</span><sub>c</sub>) ]<br>
-                    <em>Where &sigma;(z_c) outputs independent probability for each disease class c.</em>
-                `;
-            } else if (step === 5) {
-                b6Title.innerHTML = "⚖️ 6. Confusion Matrix & Trade-off";
-                b6Badge.innerText = "Imbalance Metric";
-
-                document.getElementById('d_scen_title').innerHTML = "🎯 <strong>Goal:</strong> Optimize F1-Score for rare diseases (1% prevalence).";
-                document.getElementById('d_scen_desc').innerHTML = "💡 <strong>Pitfall:</strong> 99% accuracy is misleading when 99% are healthy!";
-                document.getElementById('d_nlp_desc').innerHTML = "• Tune decision threshold to maximize F1 harmonic mean.<br>• High recall prevents missing life-threatening conditions.";
+                document.getElementById("d_scen_title").innerHTML = "🎯 <strong>Goal:</strong> Train 14-Disease DenseNet121 Vision Model &amp; Optimize F1.";
+                document.getElementById("d_scen_desc").innerHTML = "💡 <strong>Imbalance:</strong> 99% accuracy is misleading on 1% rare diseases &rarr; F1 harmonic mean is mandatory.";
+                document.getElementById("d_nlp_desc").innerHTML = "• DenseNet121 outputs 14 independent sigmoid probabilities with Weighted Cross-Entropy.<br>• Decision threshold is tuned to balance Precision vs Recall.";
                 updateDungF1Sim();
-            } else if (step === 6) {
+            } else if (step === 3) {
                 b6Title.innerHTML = "🚀 6. 2026 AI Medical Frontier";
                 b6Badge.innerText = "VLM Paradigm";
 
                 setDungParadigm(1);
-                document.getElementById('d_scen_title').innerHTML = "🎯 <strong>Goal:</strong> 2026 Strategic Review & Frontier Gaps.";
-                document.getElementById('d_scen_desc').innerHTML = "💡 <strong>Frontier:</strong> Vision-Language Foundation Models (BiomedCLIP).";
-                document.getElementById('d_nlp_desc').innerHTML = "• Zero-shot text-image embeddings replace manual rule pipelines.<br>• Observational causal graphs represent the next clinical leap.";
+                document.getElementById("d_scen_title").innerHTML = "🎯 <strong>Goal:</strong> 2026 Strategic Review &amp; Frontier Gaps.";
+                document.getElementById("d_scen_desc").innerHTML = "💡 <strong>Frontier:</strong> Vision-Language Foundation Models (BiomedCLIP).";
+                document.getElementById("d_nlp_desc").innerHTML = "• Zero-shot text-image embeddings replace manual rule pipelines.<br>• Observational causal graphs represent the next clinical leap.";
                 mathCard.innerHTML = `
                     <strong>2026 Generative Vision-Language Frontier:</strong><br>
-                    <span class="math-symbol">P</span><sub>VLM</sub>(<span class="math-symbol">y</span> | <span class="math-symbol">Image</span>, <span class="math-symbol">Prompt</span>) &gg; <span class="math-symbol">F1</span><sub>Rule-based</span><br>
-                    <em>Zero-shot biomedical foundation models eliminate manual rule engineering.</em>
+                    <span class="math-symbol">P</span><sub>VLM</sub>(<span class="math-symbol">y</span> | <span class="math-symbol">Image</span>, <span class="math-symbol">Prompt</span>) &gg; <span class="math-symbol">F1</span><sub>Rule-based</sub><br>
+                    <em style="color:#166534; font-weight:bold;">✔ Multimodal foundation models eliminate manual rule engineering.</em>
                 `;
             }
         }
@@ -3941,6 +3450,6 @@
             setDungPipelineStep(1);
             selectWrapUpQ(1);
         });
-    </script>
+        </script>
 </body>
 </html>
