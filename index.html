@@ -2702,24 +2702,24 @@
 
             if (mode === 'macro') {
                 if (formCard) formCard.innerHTML = `
-                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.80rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
-                        <!-- 1. Base Harmonic F1 Formula -->
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.78rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px; line-height: 1.45;">
+                        <!-- 1. Base Harmonic F1 with Numerical Substitution -->
                         <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
-                            1. Harmonic F1-Score (Single Disease Category k):
+                            1. Single Disease Harmonic F1 (e.g. Pneumonia: P=0.904, R=0.766):
                         </div>
-                        <div style="color: #1e3a8a; margin-bottom: 5px; font-size: 0.78rem;">
-                            F1<sub>k</sub> = 2 &times; <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.74rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">Precision<sub>k</sub> &times; Recall<sub>k</sub></span><span>Precision<sub>k</sub> + Recall<sub>k</sub></span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.74rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &middot; TP<sub>k</sub></span><span>2 &middot; TP<sub>k</sub> + FP<sub>k</sub> + FN<sub>k</sub></span></span>
+                        <div style="color: #1e3a8a; margin-bottom: 3px;">
+                            F1<sub>Pneu</sub> = 2 &times; <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">Precision &times; Recall</span><span>Precision + Recall</span></span> = 2 &times; <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">0.904 &times; 0.766</span><span>0.904 + 0.766</span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">1.3849</span><span>1.6700</span></span> = <strong style="color:#166534;">0.829</strong>
                         </div>
 
-                        <!-- 2. Macro-Average Formula -->
-                        <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; color: #166534; font-weight: 800; margin-bottom: 2px;">
-                            2. Macro-Average F1 (All K=14 Categories Equal Weight):
+                        <!-- 2. Macro-Average with Numerical Substitution -->
+                        <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; margin-top: 4px; color: #166534; font-weight: 800; margin-bottom: 2px;">
+                            2. Macro-Average F1 (Numerical Substitution across all K=14 Categories):
                         </div>
-                        <div style="color: #166534; font-size: 0.82rem;">
-                            Macro-F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.74rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">1</span><span>K</span></span> &sum;<sub>k=1</sub><sup>K=14</sup> F1<sub>k</sub> = <strong style="font-size:0.95rem;">0.842</strong>
+                        <div style="color: #166534;">
+                            Macro-F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">1</span><span>14</span></span> &sum;<sub>k=1</sub><sup>14</sup> F1<sub>k</sub> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">0.829<sub>(Pneu)</sub> + 0.865<sub>(Cardio)</sub> + 0.749<sub>(Hernia)</sub> + &hellip; + 0.872</span><span>14</span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">11.788</span><span>14</span></span> = <strong style="font-size:0.92rem; color:#166534;">0.842</strong>
                         </div>
-                        <div style="font-size: 0.72rem; color: #1e40af; margin-top: 3px;">
-                            ✔ Gives equal 7.14% weight to rare conditions (Hernia 0.2%, Pneumonia 1.4%).
+                        <div style="font-size: 0.70rem; color: #1e40af; margin-top: 3px;">
+                            ✔ Each category receives an exact equal weight of <strong>1/14 &approx; 7.14%</strong>, preventing rare disease neglect.
                         </div>
                     </div>
                 `;
@@ -2738,24 +2738,24 @@
                 }
             } else {
                 if (formCard) formCard.innerHTML = `
-                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.80rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
-                        <!-- 1. Base Harmonic F1 Formula -->
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.78rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px; line-height: 1.45;">
+                        <!-- 1. Base Harmonic F1 with Numerical Substitution -->
                         <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
-                            1. Harmonic F1-Score (Single Disease Category k):
+                            1. Single Disease Harmonic F1 (e.g. Infiltration: TP=18450, FP=2100, FN=1450):
                         </div>
-                        <div style="color: #1e3a8a; margin-bottom: 5px; font-size: 0.78rem;">
-                            F1<sub>k</sub> = 2 &times; <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.74rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">Precision<sub>k</sub> &times; Recall<sub>k</sub></span><span>Precision<sub>k</sub> + Recall<sub>k</sub></span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.74rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &middot; TP<sub>k</sub></span><span>2 &middot; TP<sub>k</sub> + FP<sub>k</sub> + FN<sub>k</sub></span></span>
+                        <div style="color: #1e3a8a; margin-bottom: 3px;">
+                            F1<sub>Infilt</sub> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &middot; TP</span><span>2 &middot; TP + FP + FN</span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &times; 18,450</span><span>2(18,450) + 2,100 + 1,450</span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">36,900</span><span>40,450</span></span> = <strong style="color:#2563eb;">0.912</strong>
                         </div>
 
-                        <!-- 2. Micro-Average Formula -->
-                        <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; color: #1e40af; font-weight: 800; margin-bottom: 2px;">
+                        <!-- 2. Micro-Average with Numerical Substitution -->
+                        <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; margin-top: 4px; color: #1e40af; font-weight: 800; margin-bottom: 2px;">
                             2. Micro-Average F1 (Aggregated Confusion Matrix Across 100k Scans):
                         </div>
-                        <div style="color: #1e40af; font-size: 0.82rem;">
-                            Micro-F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.74rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &sum; TP<sub>k</sub></span><span>2 &sum; TP<sub>k</sub> + &sum; FP<sub>k</sub> + &sum; FN<sub>k</sub></span></span> = <strong style="font-size:0.95rem; color:#2563eb;">0.891</strong>
+                        <div style="color: #1e40af;">
+                            Micro-F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &sum; TP<sub>k</sub></span><span>2 &sum; TP<sub>k</sub> + &sum; FP<sub>k</sub> + &sum; FN<sub>k</sub></span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &times; 21,800</span><span>2(21,800) + 2,650 + 2,700</span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">43,600</span><span>48,950</span></span> = <strong style="font-size:0.92rem; color:#2563eb;">0.891</strong>
                         </div>
-                        <div style="font-size: 0.72rem; color: #991b1b; margin-top: 3px;">
-                            ⚠️ Dominated by high-frequency diseases (rare disease failure is masked).
+                        <div style="font-size: 0.70rem; color: #991b1b; margin-top: 3px;">
+                            ⚠️ High-volume conditions dominate ~80% of the numerator and denominator sums.
                         </div>
                     </div>
                 `;
@@ -2792,15 +2792,15 @@
                 `;
                 if (formCard) {
                     formCard.innerHTML = `
-                        <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.80rem; background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 8px 10px;">
+                        <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.78rem; background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 8px 10px; line-height: 1.45;">
                             <div style="color: #991b1b; font-weight: 800; margin-bottom: 2px;">
-                                The 99% Accuracy Trap in Medicine (1% Prevalence):
+                                The 99% Accuracy Trap in Medicine (10,000 Scans, 1% Disease = 100 Sick Patients):
                             </div>
-                            <div style="color: #991b1b; font-size: 0.76rem; margin-bottom: 4px;">
-                                Accuracy = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">TP + TN</span><span>TP + TN + FP + FN</span></span> &rarr; Naive All-Zero Model = <strong style="font-size:0.9rem;">99.0%</strong>
+                            <div style="color: #991b1b; font-size: 0.74rem; margin-bottom: 3px;">
+                                &bull; Naive All-Zero Model: Accuracy = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.70rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">TP + TN</span><span>TP + TN + FP + FN</span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.70rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">0 + 9,900</span><span>0 + 9,900 + 0 + 100</span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.70rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">9,900</span><span>10,000</span></span> = <strong style="font-size:0.88rem;">99.0%</strong>
                             </div>
                             <div style="border-top: 1px dashed #fca5a5; padding-top: 4px; color: #166534; font-weight: 800;">
-                                Harmonic F1 = 2 &times; <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">P &times; R</span><span>P + R</span></span> &rarr; Naive F1 = <strong style="color:#dc2626;">0.000 (FATAL!)</strong> vs Course 3 F1 = <strong style="color:#166534;">0.842 (LIFESAVING)</strong>
+                                &bull; Harmonic F1 Score: F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.70rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &middot; TP</span><span>2 &middot; TP + FP + FN</span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.70rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2(0)</span><span>2(0) + 0 + 100</span></span> = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.70rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">0</span><span>100</span></span> = <strong style="color:#dc2626; font-size:0.88rem;">0.000 (FATAL!)</strong> vs Course 3 F1 = <strong style="color:#166534; font-size:0.88rem;">0.842 (LIFESAVING)</strong>
                             </div>
                         </div>
                     `;
@@ -2826,15 +2826,15 @@
                 `;
                 if (formCard) {
                     formCard.innerHTML = `
-                        <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.80rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
+                        <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.78rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px; line-height: 1.45;">
                             <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
-                                2026 Paradigm Shift: Multimodal Foundation VLM:
+                                2026 Paradigm Shift: Multimodal Foundation VLM vs 2020 Two-Stage Rule Metric:
                             </div>
-                            <div style="color: #1e3a8a; font-size: 0.76rem; margin-bottom: 4px;">
-                                2020 Two-Stage Rule Metric: F1 = 2 &middot; (P &middot; R) / (P + R) &rarr; Error Cascade Risk
+                            <div style="color: #1e3a8a; font-size: 0.74rem; margin-bottom: 3px;">
+                                &bull; 2020 Two-Stage Metric: F1 = 2 &times; (0.904 &times; 0.766) / (0.904 + 0.766) = <strong>0.829</strong> (Prone to Error Propagation)
                             </div>
                             <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; color: #166534; font-weight: 800;">
-                                2026 Contrastive Alignment: L<sub>InfoNCE</sub> = &minus;log <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.72rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">exp( sim(v<sub>i</sub>, t<sub>i</sub>) / &tau; )</span><span>&sum;<sub>j</sub> exp( sim(v<sub>i</sub>, t<sub>j</sub>) / &tau; )</span></span> &rarr; Zero-Shot Sim = <strong>0.942</strong>
+                                &bull; 2026 Contrastive Cosine Sim: sim(v<sub>i</sub>, t<sub>i</sub>) = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.70rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">v<sub>i</sub> &middot; t<sub>i</sub></span><span>||v<sub>i</sub>|| &middot; ||t<sub>i</sub>||</span></span> = <strong style="color:#166534; font-size:0.88rem;">0.942</strong> (Zero-Shot Direct Latent Match)
                             </div>
                         </div>
                     `;
