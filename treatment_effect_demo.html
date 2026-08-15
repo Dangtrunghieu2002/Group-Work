@@ -957,14 +957,41 @@
                     <!-- Output View Step 3: Potential Outcomes Table -->
                     <div id="k_out_step3" style="display: none;">
                         <table style="font-size: 0.76rem;">
-                            <thead><tr><th>Patient</th><th>Assigned W</th><th>Factual Y</th><th>Counterfactual Y</th></tr></thead>
+                            <thead>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Assigned (W)</th>
+                                    <th>If Treated Y(1)</th>
+                                    <th>If Placebo Y(0)</th>
+                                    <th>Observed Y</th>
+                                </tr>
+                            </thead>
                             <tbody id="k_table_pot_body">
-                                <tr><td>Patient #1</td><td>1 (Drug)</td><td>0 (Survived)</td><td><span class="pill pill-danger">? (Missing)</span></td></tr>
-                                <tr><td>Patient #2</td><td>0 (Placebo)</td><td>1 (Stroke)</td><td><span class="pill pill-danger">? (Missing)</span></td></tr>
+                                <tr>
+                                    <td><strong>Patient #1 (Younger)</strong></td>
+                                    <td>1 (Drug Arm)</td>
+                                    <td><strong style="color:var(--success);">0 (Survived)</strong></td>
+                                    <td><span class="pill pill-danger">? (Lost)</span></td>
+                                    <td><strong>0 (Survived)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Patient #2 (Control)</strong></td>
+                                    <td>0 (Placebo)</td>
+                                    <td><span class="pill pill-danger">? (Lost)</span></td>
+                                    <td><strong style="color:var(--danger);">1 (Stroke)</strong></td>
+                                    <td><strong>1 (Stroke)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Patient #42 (Grandpa An)</strong></td>
+                                    <td>1 (Drug Arm)</td>
+                                    <td><strong style="color:var(--success);">0 (Survived)</strong></td>
+                                    <td><span class="pill pill-danger">? (Lost)</span></td>
+                                    <td><strong>0 (Survived)</strong></td>
+                                </tr>
                             </tbody>
                         </table>
                         <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
-                            💡 <em>Note: The <strong>"?"</strong> represents the unobservable counterfactual outcome in the parallel universe (Neyman-Rubin Causal Dilemma).</em>
+                            💡 <em>Neyman-Rubin Causal Dilemma: For each patient, we can only ever observe either <strong>Y(1)</strong> or <strong>Y(0)</strong>, never both!</em>
                         </div>
                     </div>
 
@@ -2236,64 +2263,81 @@
             const mathCard = document.getElementById('k_formula_card');
             const v3Box = document.getElementById('k_v_step3');
 
+            const p1Bg = (id === 1) ? 'style="background:#eff6ff; font-weight:bold;"' : '';
+            const p2Bg = (id === 2) ? 'style="background:#fff7ed; font-weight:bold;"' : '';
+            const p3Bg = (id === 3) ? 'style="background:#f0fdf4; font-weight:bold;"' : '';
+
+            tbody.innerHTML = `
+                <tr ${p1Bg}>
+                    <td><strong>Patient #1 (Younger)</strong></td>
+                    <td>1 (Drug Arm)</td>
+                    <td><strong style="color:var(--success);">0 (Survived)</strong></td>
+                    <td><span class="pill pill-danger">? (Lost)</span></td>
+                    <td><strong>0 (Survived)</strong></td>
+                </tr>
+                <tr ${p2Bg}>
+                    <td><strong>Patient #2 (Control)</strong></td>
+                    <td>0 (Placebo)</td>
+                    <td><span class="pill pill-danger">? (Lost)</span></td>
+                    <td><strong style="color:var(--danger);">1 (Stroke)</strong></td>
+                    <td><strong>1 (Stroke)</strong></td>
+                </tr>
+                <tr ${p3Bg}>
+                    <td><strong>Patient #42 (Grandpa An)</strong></td>
+                    <td>1 (Drug Arm)</td>
+                    <td><strong style="color:var(--success);">0 (Survived)</strong></td>
+                    <td><span class="pill pill-danger">? (Lost)</span></td>
+                    <td><strong>0 (Survived)</strong></td>
+                </tr>
+            `;
+
             if (id === 1) {
-                tbody.innerHTML = `
-                    <tr style="background:#eff6ff;"><td><strong>Patient #1 (Younger)</strong></td><td>1 (Drug Arm)</td><td><strong style="color:var(--success);">0 (Survived)</strong></td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
-                    <tr><td>Patient #2</td><td>0 (Placebo Arm)</td><td>1 (Stroke)</td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
-                `;
                 mathCard.innerHTML = `
-                    <strong>Neyman-Rubin Observed Outcome:</strong><br>
+                    <strong>Patient #1 Observed Formula:</strong><br>
                     <span class="math-symbol">Y</span><sub>1</sub> = <span class="math-symbol">W</span><sub>1</sub> &middot; <span class="math-symbol">Y</span><sub>1</sub>(1) + (1 &minus; <span class="math-symbol">W</span><sub>1</sub>) &middot; <span class="math-symbol">Y</span><sub>1</sub>(0) = <strong>0 (Survived)</strong><br>
-                    • <strong style="color:var(--success);">Factual:</strong> <span class="math-symbol">W</span><sub>1</sub> = 1 &rarr; <span class="math-symbol">Y</span><sub>1</sub>(1) = 0<br>
-                    • <strong style="color:var(--danger);">Counterfactual:</strong> <span class="math-symbol">Y</span><sub>1</sub>(0) = <strong>? (Lost forever)</strong>
+                    • <strong style="color:var(--success);">Factual Observed Y(1):</strong> 0 (Survived)<br>
+                    • <strong style="color:var(--danger);">Missing Counterfactual Y(0):</strong> <strong>? (Lost in parallel universe)</strong>
                 `;
                 if (v3Box) {
                     v3Box.innerHTML = `
                         <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.6;">
                             <div style="font-weight: bold; color: #1e40af; margin-bottom: 4px;">🌍 Patient #1 Parallel Universe Inspection:</div>
-                            • <strong>Real World (W=1):</strong> Took medication &rarr; <span style="color:#166534; font-weight:bold;">Survived (Y=0)</span>.<br>
-                            • <strong>Parallel World (W=0):</strong> What if Patient #1 did NOT take drug? <strong style="color:#dc2626;">? (Lost Forever!)</strong><br>
-                            👉 <em>Machine learning must predict this missing parallel universe!</em>
+                            • <strong>Real World [W=1]:</strong> Observed potential outcome <strong>Y(1) = 0</strong> (Survived).<br>
+                            • <strong>Parallel World [W=0]:</strong> Unobserved potential outcome <strong>Y(0) = ?</strong> (Lost Forever!).<br>
+                            👉 <em>Machine learning must predict this missing Y(0) to know if medicine truly made the difference.</em>
                         </div>
                     `;
                 }
             } else if (id === 2) {
-                tbody.innerHTML = `
-                    <tr><td>Patient #1</td><td>1 (Drug Arm)</td><td>0 (Survived)</td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
-                    <tr style="background:#fee2e2;"><td><strong>Patient #2 (Placebo Arm)</strong></td><td>0 (Placebo Arm)</td><td><strong style="color:var(--danger);">1 (Stroke)</strong></td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
-                `;
                 mathCard.innerHTML = `
-                    <strong>Neyman-Rubin Observed Outcome:</strong><br>
+                    <strong>Patient #2 Observed Formula:</strong><br>
                     <span class="math-symbol">Y</span><sub>2</sub> = <span class="math-symbol">W</span><sub>2</sub> &middot; <span class="math-symbol">Y</span><sub>2</sub>(1) + (1 &minus; <span class="math-symbol">W</span><sub>2</sub>) &middot; <span class="math-symbol">Y</span><sub>2</sub>(0) = <strong>1 (Stroke)</strong><br>
-                    • <strong style="color:var(--danger);">Factual:</strong> <span class="math-symbol">W</span><sub>2</sub> = 0 &rarr; <span class="math-symbol">Y</span><sub>2</sub>(0) = 1<br>
-                    • <strong style="color:var(--danger);">Counterfactual:</strong> <span class="math-symbol">Y</span><sub>2</sub>(1) = <strong>? (Lost forever)</strong>
+                    • <strong style="color:var(--danger);">Factual Observed Y(0):</strong> 1 (Stroke)<br>
+                    • <strong style="color:var(--danger);">Missing Counterfactual Y(1):</strong> <strong>? (Lost in parallel universe)</strong>
                 `;
                 if (v3Box) {
                     v3Box.innerHTML = `
                         <div style="background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.6;">
                             <div style="font-weight: bold; color: #9a3412; margin-bottom: 4px;">🌍 Patient #2 Parallel Universe Inspection:</div>
-                            • <strong>Real World (W=0):</strong> Received placebo &rarr; <span style="color:#dc2626; font-weight:bold;">Suffered Stroke (Y=1)</span>.<br>
-                            • <strong>Parallel World (W=1):</strong> Would the drug have saved Patient #2? <strong style="color:#dc2626;">? (Lost Forever!)</strong><br>
-                            👉 <em>Machine learning solves this by finding statistical twin patients!</em>
+                            • <strong>Real World [W=0]:</strong> Observed potential outcome <strong>Y(0) = 1</strong> (Stroke).<br>
+                            • <strong>Parallel World [W=1]:</strong> Unobserved potential outcome <strong>Y(1) = ?</strong> (Lost Forever!).<br>
+                            👉 <em>Would the drug have saved Patient #2? AI uses statistical twin patients to answer this!</em>
                         </div>
                     `;
                 }
             } else {
-                tbody.innerHTML = `
-                    <tr style="background:#f0fdf4;"><td><strong>Patient #42 (Grandpa An)</strong></td><td>1 (Treated Arm)</td><td><strong style="color:var(--success);">0 (Survived)</strong></td><td><span class="pill pill-danger">? (Lost Counterfactual)</span></td></tr>
-                `;
                 mathCard.innerHTML = `
-                    <strong>Individual Treatment Effect (ITE):</strong><br>
-                    <span class="math-symbol">ITE</span><sub>42</sub> = <span class="math-symbol">Y</span><sub>42</sub>(0) &minus; <span class="math-symbol">Y</span><sub>42</sub>(1) = <span style="color:var(--danger);">? (Missing)</span> &minus; 0<br>
-                    <em>👉 Impossible to compute directly for a single person &rarr; Machine Learning (CATE) required!</em>
+                    <strong>Patient #42 (Grandpa An) Individual Treatment Effect:</strong><br>
+                    <span class="math-symbol">ITE</span><sub>42</sub> = <span class="math-symbol">Y</span><sub>42</sub>(0) &minus; <span class="math-symbol">Y</span><sub>42</sub>(1) = <span style="color:var(--danger);">? (Missing Y₀)</span> &minus; 0<br>
+                    <em>👉 Because Y(0) is missing, ITE cannot be calculated directly &rarr; CATE ML estimation is required!</em>
                 `;
                 if (v3Box) {
                     v3Box.innerHTML = `
                         <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 10px; font-size: 0.78rem; line-height: 1.6;">
                             <div style="font-weight: bold; color: #166534; margin-bottom: 4px;">👴 Grandpa An (#42) Parallel Universe Inspection:</div>
-                            • <strong>Real World (W=1):</strong> Took drug &rarr; <span style="color:#166534; font-weight:bold;">Survived Healthy (Y=0)</span>.<br>
-                            • <strong>Parallel World (W=0):</strong> High BP (165) means without drug he likely suffered stroke.<br>
-                            👉 <em>Hiếu's T-Learner will estimate this counterfactual benefit at +26.4%!</em>
+                            • <strong>Real World [W=1]:</strong> Observed potential outcome <strong>Y(1) = 0</strong> (Healthy).<br>
+                            • <strong>Parallel World [W=0]:</strong> With SBP 165, missing counterfactual <strong>Y(0)</strong> would likely be Stroke.<br>
+                            👉 <em>T-Learner in Part 2 estimates this exact counterfactual benefit as +26.4%!</em>
                         </div>
                     `;
                 }
