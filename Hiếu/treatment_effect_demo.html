@@ -1975,8 +1975,7 @@
         <script>
 
         // =========================================================================
-        // ANTIGRAVITY UNIFIED PRESENTATION ENGINE — 100% COURSE 3 SUMMARY COMPLIANT
-        // (Khương: BIZ 1 | Hiếu: DEV 1 | Dung: BIZ 2 | Linh: DEV 2)
+        // ANTIGRAVITY HYPER-REACTIVE MULTI-STAGE ENGINE (100% COURSE 3 COMPLIANT)
         // =========================================================================
 
         let currentMember = "overview";
@@ -2076,7 +2075,7 @@
         }
 
         // =========================================================================
-        // 1. KHƯƠNG (BIZ 1) — WEEK 1 (VIDEOS 1–7): CLINICAL RCT & CAUSAL FOUNDATIONS
+        // 1. KHƯƠNG (BIZ 1) — WEEK 1 (VIDEOS 1–7)
         // =========================================================================
         let kAllocMode = 'rct';
         let kActivePatient = 1;
@@ -2174,7 +2173,7 @@
             const mlDesc = document.getElementById("k_ml_desc");
             if (mlDesc) {
                 if (kAllocMode === "rct") {
-                    mlDesc.innerHTML = `<strong>Coin Flip (Clean RCT):</strong> Treatment W is assigned with P(W=1) = 0.50, independent of Age/BP. The backdoor confounding path is severed (X &#8869; W). Standardized Mean Difference (SMD) &lt; 0.10.`;
+                    mlDesc.innerHTML = `<strong>Coin Flip (Clean RCT):</strong> Treatment W is assigned with P(W=1) = 0.50, independent of Age/BP. The backdoor path is severed (X &#8869; W). SMD = 0.02 (Covariates balanced).`;
                 } else {
                     mlDesc.innerHTML = `<strong>Doctor Choice (Biased):</strong> Sicker patients were preferentially prescribed treatment (X &rarr; W). Confounder bias contaminates raw risk differences (SMD explodes to +0.45).`;
                 }
@@ -2566,38 +2565,44 @@
         }
 
         // =========================================================================
-        // 3. DUNG (BIZ 2) — WEEK 2 (VIDEOS 4–10) & WEEK 3 (V3) + CRITICAL REVIEW
+        // 3. DUNG (BIZ 2) — WEEK 2 (VIDEOS 4–10) & CRITICAL ASSESSMENT (PHẦN 4)
         // =========================================================================
         const dReports = {
             1: {
+                title: "Case #01 (Negation Scope)",
                 text: '“Lungs are clear. <span class="hl-negation">No evidence of</span> active <span class="hl-disease">pneumonia</span> or consolidation.”',
                 table: `
-                    <tr><td><strong>Pneumonia</strong></td><td>"No evidence of active pneumonia"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
+                    <tr style="background: #fef2f2; font-weight: bold;"><td><strong>Pneumonia</strong></td><td>"No evidence of active pneumonia"</td><td><span class="pill pill-danger">0 (Negated by NegBio)</span></td></tr>
                     <tr><td><strong>Consolidation</strong></td><td>"No consolidation"</td><td><span class="pill pill-danger">0 (Negated)</span></td></tr>
-                    <tr><td><strong>Cardiomegaly</strong></td><td>Not Mentioned</td><td><span class="pill pill-purple">0 (Absent)</span></td></tr>
+                    <tr><td><strong>Cardiomegaly</strong></td><td>Not Mentioned in Report</td><td><span class="pill pill-purple">0 (Absent)</span></td></tr>
                 `,
-                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">Step 3: NegBio Negation Detection:</strong><br>Label(Pneumonia) = Mention(1) &times; (1 &minus; Negated(1)) = 1 &times; 0 = <strong style="color:#dc2626;">0 (Clean Negative)</strong></div>`
+                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">Step 3: NegBio Negation Dependency Parsing:</strong><br>Label(Pneumonia) = Mention(1) &times; (1 &minus; Negated(1)) = 1 &times; 0 = <strong style="color:#dc2626;">0 (Clean Negative Ground Truth)</strong></div>`
             },
             2: {
+                title: "Case #02 (Direct Positive Mention)",
                 text: '“Chest radiograph reveals prominent <span class="hl-disease">cardiomegaly</span> with mild interstitial <span class="hl-disease">edema</span>.”',
                 table: `
-                    <tr><td><strong>Cardiomegaly</strong></td><td>"Prominent cardiomegaly"</td><td><span class="pill pill-success">1 (Positive)</span></td></tr>
-                    <tr><td><strong>Edema</strong></td><td>"Mild interstitial edema"</td><td><span class="pill pill-success">1 (Positive)</span></td></tr>
-                    <tr><td><strong>Pneumonia</strong></td><td>Not Mentioned</td><td><span class="pill pill-purple">0 (Absent)</span></td></tr>
+                    <tr style="background: #f0fdf4; font-weight: bold;"><td><strong>Cardiomegaly</strong></td><td>"Prominent cardiomegaly"</td><td><span class="pill pill-success">1 (Positive Ground Truth)</span></td></tr>
+                    <tr style="background: #f0fdf4;"><td><strong>Edema</strong></td><td>"Mild interstitial edema"</td><td><span class="pill pill-success">1 (Positive Ground Truth)</span></td></tr>
+                    <tr><td><strong>Pneumonia</strong></td><td>Not Mentioned in Report</td><td><span class="pill pill-purple">0 (Absent)</span></td></tr>
                 `,
-                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">Step 1: Direct Mention Extraction:</strong><br>Label(Cardiomegaly) = Mention(1) &times; (1 &minus; Negated(0)) = 1 &times; 1 = <strong style="color:#166534;">1 (Positive Ground Truth)</strong></div>`
+                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">Step 1: Direct Concept Mention:</strong><br>Label(Cardiomegaly) = Mention(1) &times; (1 &minus; Negated(0)) = 1 &times; 1 = <strong style="color:#166534;">1 (Positive Ground Truth)</strong></div>`
             },
             3: {
+                title: "Case #03 (UMLS / Is-A Synonym Mapping)",
                 text: '“Findings consistent with dense airspace <span class="hl-disease">consolidation</span> in right lung.”',
                 table: `
-                    <tr><td><strong>Pneumonia</strong></td><td>Synonym: "airspace consolidation"</td><td><span class="pill pill-success">1 (UMLS Mapped)</span></td></tr>
-                    <tr><td><strong>Consolidation</strong></td><td>Direct match</td><td><span class="pill pill-success">1 (Positive)</span></td></tr>
+                    <tr style="background: #faf5ff; font-weight: bold;"><td><strong>Pneumonia</strong></td><td>Synonym: "airspace consolidation"</td><td><span class="pill pill-success">1 (UMLS Concept C0032285)</span></td></tr>
+                    <tr style="background: #faf5ff;"><td><strong>Consolidation</strong></td><td>Direct match in text</td><td><span class="pill pill-success">1 (Positive Ground Truth)</span></td></tr>
+                    <tr><td><strong>Cardiomegaly</strong></td><td>Not Mentioned in Report</td><td><span class="pill pill-purple">0 (Absent)</span></td></tr>
                 `,
-                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">Step 2: UMLS / Is-A Concept Mapping:</strong><br>Label(Pneumonia) = OntologyMap("consolidation") = <strong style="color:#166534;">1 (Concept C0032285)</strong></div>`
+                math: `<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;"><strong style="color:#1e40af;">Step 2: UMLS Ontology / Is-A Hierarchy:</strong><br>Label(Pneumonia) = OntologyMap("consolidation") = <strong style="color:#166534;">1 (Mapped to Parent Disease)</strong></div>`
             }
         };
 
+        let dActiveCase = 1;
         let dAvgMode = 'macro';
+        let dCritMode = 1;
 
         function setDungPipelineStep(step) {
             dStep = step;
@@ -2624,7 +2629,7 @@
                 if (v1) v1.style.display = "block";
                 if (v2) v2.style.display = "none";
                 if (b6Title) b6Title.innerText = "🗂️ 6. 3-Step PACS Data Pipeline";
-                setDungReportCase(1);
+                setDungReportCase(dActiveCase);
             } else {
                 if (badge) badge.innerText = "Chapter 2 (Week 2, V8–10 & Phần 4)";
                 if (scTitle) scTitle.innerText = "Multi-Label Evaluation Metrics (F1) & Course 3 Critical Assessment";
@@ -2634,11 +2639,12 @@
                 if (v1) v1.style.display = "none";
                 if (v2) v2.style.display = "block";
                 if (b6Title) b6Title.innerText = "📑 6. Course 3 Critical Assessment";
-                setDungAverageMode('macro');
+                setDungAverageMode(dAvgMode);
             }
         }
 
         function setDungReportCase(caseNum) {
+            dActiveCase = caseNum;
             for (let i = 1; i <= 3; i++) {
                 const b = document.getElementById(`d_btn_rep_${i}`);
                 if (b) b.classList.toggle("active", i === caseNum);
@@ -2672,49 +2678,114 @@
             if (mode === 'macro') {
                 if (formCard) formCard.innerHTML = `
                     <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
-                        <strong style="color: #1e40af;">Macro-Average F1 Formula:</strong><br>
-                        Macro-F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">1</span><span>K</span></span> &sum;<sub>k=1</sub><sup>K</sup> F1<sub>k</sub> = <strong style="color:#166534;">0.842</strong>
+                        <strong style="color: #1e40af;">Macro-Average F1 Formula (Equal Weights):</strong><br>
+                        Macro-F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">1</span><span>K</span></span> &sum;<sub>k=1</sub><sup>K</sup> F1<sub>k</sub> = <strong style="color:#166534; font-size:0.95rem;">0.842</strong>
                         <div style="font-size: 0.74rem; color: #1e40af; margin-top: 4px;">✔ Treats all 14 disease categories equally (prevents rare disease neglect).</div>
                     </div>
                 `;
                 if (mlDesc) mlDesc.innerHTML = `<strong>Macro-Average Evaluation:</strong> Computes F1 separately for each disease category and averages them. Vital in medicine so that rare high-mortality conditions (e.g. Hernia 0.2%) count equally to common ones.`;
+                if (tblBody) {
+                    tblBody.innerHTML = `
+                        <tr style="background: #f0fdf4; border-bottom: 2px solid #86efac; font-weight: bold;">
+                            <td>⭐ <strong>MACRO-AVERAGE (All 14 Diseases Equal)</strong></td>
+                            <td>Equal Weight: <strong>1/14 (7.14% each)</strong></td>
+                            <td><span class="pill pill-success" style="font-size:0.8rem;">Macro-F1 = 0.842</span></td>
+                        </tr>
+                        <tr><td><strong>Pneumonia (Rare ~1.4%)</strong></td><td>Precision: 0.904 | Recall: 0.766</td><td><span class="pill pill-success">F1 = 0.829 (Weight 7.1%)</span></td></tr>
+                        <tr><td><strong>Cardiomegaly (~2.8%)</strong></td><td>Precision: 0.880 | Recall: 0.850</td><td><span class="pill pill-success">F1 = 0.865 (Weight 7.1%)</span></td></tr>
+                        <tr><td><strong>Hernia (Ultra-rare 0.2%)</strong></td><td>Precision: 0.820 | Recall: 0.690</td><td><span class="pill pill-purple">F1 = 0.749 (Weight 7.1%)</span></td></tr>
+                    `;
+                }
             } else {
                 if (formCard) formCard.innerHTML = `
                     <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
-                        <strong style="color: #1e40af;">Micro-Average F1 Formula:</strong><br>
-                        Micro-F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &sum; TP<sub>k</sub></span><span>2 &sum; TP<sub>k</sub> + &sum; FP<sub>k</sub> + &sum; FN<sub>k</sub></span></span> = <strong style="color:#166534;">0.891</strong>
-                        <div style="font-size: 0.74rem; color: #1e40af; margin-top: 4px;">✔ Aggregates global true/false positives across all 100,000 cases.</div>
+                        <strong style="color: #1e40af;">Micro-Average F1 Formula (Case-Weighted):</strong><br>
+                        Micro-F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &sum; TP<sub>k</sub></span><span>2 &sum; TP<sub>k</sub> + &sum; FP<sub>k</sub> + &sum; FN<sub>k</sub></span></span> = <strong style="color:#2563eb; font-size:0.95rem;">0.891</strong>
+                        <div style="font-size: 0.74rem; color: #991b1b; margin-top: 4px;">⚠️ Dominated by frequent diseases (rare disease failure is masked).</div>
                     </div>
                 `;
                 if (mlDesc) mlDesc.innerHTML = `<strong>Micro-Average Evaluation:</strong> Aggregates globally across all instances. Reflects overall diagnostic throughput, but is heavily dominated by frequent diseases.`;
-            }
-
-            if (tblBody) {
-                tblBody.innerHTML = `
-                    <tr><td><strong>Pneumonia (Rare ~1.4%)</strong></td><td>Precision: 0.904 | Recall: 0.766</td><td><span class="pill pill-success">F1 = 0.829</span></td></tr>
-                    <tr><td><strong>Cardiomegaly (~2.8%)</strong></td><td>Precision: 0.880 | Recall: 0.850</td><td><span class="pill pill-success">F1 = 0.865</span></td></tr>
-                    <tr><td><strong>Hernia (Ultra-rare 0.2%)</strong></td><td>Precision: 0.820 | Recall: 0.690</td><td><span class="pill pill-purple">F1 = 0.749</span></td></tr>
-                `;
+                if (tblBody) {
+                    tblBody.innerHTML = `
+                        <tr style="background: #eff6ff; border-bottom: 2px solid #93c5fd; font-weight: bold;">
+                            <td>🌐 <strong>MICRO-AVERAGE (Overall Hospital Throughput)</strong></td>
+                            <td>Aggregated: <strong>100,000 Scans Global</strong></td>
+                            <td><span class="pill pill-purple" style="font-size:0.8rem;">Micro-F1 = 0.891</span></td>
+                        </tr>
+                        <tr><td><strong>Common Conditions (Infiltration, Effusion)</strong></td><td>TP: 18,450 | FP: 2,100 (High Volume)</td><td><span class="pill pill-success">F1 = 0.912 (Dominates 80%)</span></td></tr>
+                        <tr><td><strong>Rare Conditions (Hernia, Nodule)</strong></td><td>TP: 420 | FP: 95 (Low Volume)</td><td><span class="pill pill-danger">F1 = 0.749 (Only 1.5% Weight!)</span></td></tr>
+                    `;
+                }
             }
         }
 
         function setDungCritique(critNum) {
+            dCritMode = critNum;
             const btn1 = document.getElementById("d_btn_crit_1");
             const btn2 = document.getElementById("d_btn_crit_2");
             if (btn1) btn1.classList.toggle("active", critNum === 1);
             if (btn2) btn2.classList.toggle("active", critNum === 2);
 
             const vTxt = document.getElementById("d_crit_v_text");
+            const formCard = document.getElementById("d_formula_card");
+            const tblBody = document.getElementById("d_out_table_body");
+
             if (critNum === 1) {
                 if (vTxt) vTxt.innerHTML = `
                     • <strong>Accuracy Trap:</strong> With 1% disease prevalence, predicting all 0 gives 99% accuracy but misses all sick patients. F1 harmonic mean is mandatory.<br>
                     • <strong>Core Strengths:</strong> 3-week modular logic (Causal &rarr; NLP &rarr; XAI), compact 104-minute video concepts, and rigorous clinical formulation.
                 `;
+                if (formCard) {
+                    formCard.innerHTML = `
+                        <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #fee2e2; border: 1px solid #fca5a5; border-radius: 6px; padding: 8px 10px;">
+                            <strong style="color: #991b1b;">The 99% Accuracy Trap in Medicine:</strong><br>
+                            In 10,000 X-Rays with 1% Pneumonia (100 cases):<br>
+                            Predict All 0 &rarr; <span style="color:#dc2626; font-weight:bold;">Accuracy = 99.0%</span>, but <span style="color:#dc2626; font-weight:bold;">Recall = 0.0%, F1 = 0.000</span> (Kills 100 Patients!).
+                        </div>
+                    `;
+                }
+                if (tblBody) {
+                    tblBody.innerHTML = `
+                        <tr style="background: #fee2e2; font-weight: bold;">
+                            <td>⚠️ <strong>Naive All-Zero Model</strong></td>
+                            <td>Predicts "Healthy" for 100% of scans</td>
+                            <td><span class="pill pill-danger">Acc = 99.0% | F1 = 0.000 (FATAL)</span></td>
+                        </tr>
+                        <tr style="background: #f0fdf4; font-weight: bold;">
+                            <td>✔ <strong>Course 3 F1-Tuned Model</strong></td>
+                            <td>Optimized decision threshold at 0.50</td>
+                            <td><span class="pill pill-success">Acc = 94.2% | F1 = 0.842 (LIFESAVING)</span></td>
+                        </tr>
+                    `;
+                }
             } else {
                 if (vTxt) vTxt.innerHTML = `
                     • <strong>2026 Outdated Tools:</strong> 2018 BERT regex pipelines are superseded by Multimodal Foundation Models (BiomedCLIP) with Zero-Shot alignment.<br>
                     • <strong>Observational Gap:</strong> Course 3 focuses on clean RCTs; real hospital deployment requires propensity score matching & sensitivity analysis for unmeasured confounding.
                 `;
+                if (formCard) {
+                    formCard.innerHTML = `
+                        <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
+                            <strong style="color: #1e40af;">2026 Paradigm Shift: Multimodal Foundation VLM:</strong><br>
+                            Contrastive Loss: <strong>L<sub>InfoNCE</sub></strong> = &minus;log <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.75rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">exp( sim(v<sub>i</sub>, t<sub>i</sub>) / &tau; )</span><span>&sum;<sub>j</sub> exp( sim(v<sub>i</sub>, t<sub>j</sub>) / &tau; )</span></span><br>
+                            ✔ Zero-Shot Cosine Sim = <strong style="color:#166534;">0.942</strong> (No regex labels needed!).
+                        </div>
+                    `;
+                }
+                if (tblBody) {
+                    tblBody.innerHTML = `
+                        <tr>
+                            <td><strong>2020 Course 3 Pipeline</strong></td>
+                            <td>NegBio Rule Regex &rarr; DenseNet121 CNN</td>
+                            <td><span class="pill pill-purple">Two-Stage Error Cascade</span></td>
+                        </tr>
+                        <tr style="background: #f0fdf4; font-weight: bold;">
+                            <td><strong>2026 Foundation Model</strong></td>
+                            <td>BiomedCLIP Text &harr; Image Contrastive Latent Alignment</td>
+                            <td><span class="pill pill-success">Zero-Shot Sim = 0.942</span></td>
+                        </tr>
+                    `;
+                }
             }
         }
 
@@ -2723,12 +2794,14 @@
         // =========================================================================
         const lTexts = {
             1: "Patient diagnosed with MS (Mitral Stenosis) after echocardiogram.",
-            2: "Forxiga (dapagliflozin) reduces blood glucose levels.",
-            3: "Chest X-ray shows dense consolidation in right lower lobe."
+            2: "Forxiga (dapagliflozin) reduces blood glucose levels in diabetes.",
+            3: "Chest X-ray shows dense airspace consolidation in right lower lobe."
         };
 
+        let lActiveCase = 1;
         let lActiveDisease = 'pneumonia';
         let lEmbMode = 'context';
+        let lSanityCheckActive = false;
 
         function setLinhLab(step) {
             lStep = step;
@@ -2787,7 +2860,8 @@
         function runLinhTokenizer() {
             const sel = document.getElementById("l_text_select");
             const rawVal = sel ? sel.value : "1";
-            const rawText = lTexts[rawVal] || lTexts[1];
+            lActiveCase = parseInt(rawVal);
+            const rawText = lTexts[lActiveCase] || lTexts[1];
 
             const inputField = document.getElementById("l_dirty_input");
             if (inputField) inputField.value = rawText;
@@ -2812,11 +2886,15 @@
             if (tokenList) {
                 let badges = `<span class="pill pill-purple">[CLS] (101)</span>`;
                 words.forEach((w, idx) => {
+                    const isSpan = (lActiveCase === 1 && (w === "MS" || w === "Mitral" || w === "Stenosis")) ||
+                                   (lActiveCase === 2 && (w === "reduces" || w === "glucose")) ||
+                                   (lActiveCase === 3 && (w === "dense" || w === "consolidation"));
                     const id = 1000 + (idx * 37) + (w.length * 19);
-                    badges += `<span class="pill pill-success">${w} (${id})</span>`;
+                    const pillClass = isSpan ? (lEmbMode === 'context' ? "pill-success" : "pill-danger") : "pill-purple";
+                    badges += `<span class="pill ${pillClass}">${w} (${id})</span>`;
                 });
                 badges += `<span class="pill pill-purple">[SEP] (102)</span>`;
-                for (let p = 0; p < Math.max(0, 8 - words.length); p++) {
+                for (let p = 0; p < Math.max(0, 7 - words.length); p++) {
                     badges += `<span class="pill pill-warning">[PAD] (0)</span>`;
                 }
                 tokenList.innerHTML = badges;
@@ -2906,10 +2984,10 @@
                 formCard.innerHTML = `
                     <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
                         <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
-                            Permutation Drop &amp; Layer 424 Grad-CAM:
+                            Harmonic F1 &amp; Permutation Drop:
                         </div>
                         <div style="color: #1e3a8a;">
-                            &Delta;C(Age) = C<sub>shuffled</sub> &minus; C<sub>baseline</sub> = 0.5531 &minus; 0.7759 = <strong style="color:#dc2626;">-0.2228</strong>
+                            F1 = <span style="display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:0.78rem;"><span style="border-bottom:1px solid currentColor; padding:0 2px;">2 &times; Precision &times; Recall</span><span>Precision + Recall</span></span> = <strong style="color:#166534;">${f1.toFixed(3)}</strong>
                         </div>
                         <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; margin-top: 4px; color: #7c3aed; font-weight: 800;">
                             L<sub>Grad-CAM</sub><sup>c</sup> = ReLU( &sum;<sub>k</sub> &alpha;<sub>k</sub><sup>c</sup> &middot; A<sup>k</sup> ) &nbsp; [Layer 424]
