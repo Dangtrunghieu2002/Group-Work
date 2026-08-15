@@ -1747,12 +1747,13 @@
                     </div>
 
                     <div id="d_v_step2" style="display: none;">
-                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Medical Ontology Tree Hierarchy:</div>
+                        <div style="font-size: 0.78rem; font-weight: bold; color: var(--primary); margin-bottom: 6px;">Medical Ontology Tree (14-Disease Taxonomy):</div>
                         <div style="background: #f1f5f9; border-radius: 6px; padding: 8px; font-size: 0.76rem; line-height: 1.6;">
-                            └── <strong>Pneumonia (Class #1)</strong><br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;├── <em>is-a:</em> Bronchopneumonia<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;├── <em>synonym:</em> Airspace consolidation<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;└── <em>synonym:</em> Lung infiltrate
+                            ├── <strong>Pneumonia (Class #1)</strong><br>
+                            │&nbsp;&nbsp;&nbsp;&nbsp;├── <em>is-a:</em> Bronchopneumonia<br>
+                            │&nbsp;&nbsp;&nbsp;&nbsp;└── <em>synonym:</em> Airspace consolidation<br>
+                            └── <strong>Infiltration (Class #4)</strong><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;└── <em>canonical match:</em> Lung infiltrate (SNOMED 13645005)
                         </div>
                     </div>
 
@@ -2841,12 +2842,12 @@
 
                 setDungOntologyTerm(1);
                 document.getElementById('d_scen_title').innerHTML = "<strong>Step 2: Synonyms &amp; 'Is-A' Ontologies in Medical Jargon.</strong>";
-                document.getElementById('d_scen_desc').innerText = "Radiologists describe the same disease in 20 different ways. Step 2 maps 'airspace consolidation' and 'bronchopneumonia' to parent Pneumonia label.";
-                document.getElementById('d_nlp_desc').innerHTML = "<strong>Ontology Standardization:</strong><br>Uses medical dictionaries to map diverse clinical terms to canonical disease classes.";
+                document.getElementById('d_scen_desc').innerText = "Radiologists describe findings in varied ways. Step 2 maps 'airspace consolidation' & 'bronchopneumonia' to Pneumonia (Class #1), and 'lung infiltrate' directly to Infiltration (Class #4).";
+                document.getElementById('d_nlp_desc').innerHTML = "<strong>Ontology Standardization:</strong><br>Uses UMLS / SNOMED CT to map synonyms to parent classes and canonical matches to observation targets.";
                 mathCard.innerHTML = `
                     <strong>Ontology Mapping Rule:</strong><br>
-                    <span class="math-symbol">Synonym</span>(<span class="math-symbol">w</span>) &map; <span class="math-symbol">Pneumonia</span><br>
-                    <span class="math-symbol">Child</span>(<span class="math-symbol">Bronchopneumonia</span>) &sube; <span class="math-symbol">Parent</span>(<span class="math-symbol">Pneumonia</span>)
+                    <span class="math-symbol">Synonym</span>("consolidation") &map; <span class="math-symbol">Pneumonia</span> (Class #1)<br>
+                    <span class="math-symbol">Canonical</span>("lung infiltrate") &map; <span class="math-symbol">Infiltration</span> (Class #4)
                 `;
             } else if (step === 3) {
                 b6Title.innerHTML = "🚫 6. NegBio Dependency Parse Tree";
