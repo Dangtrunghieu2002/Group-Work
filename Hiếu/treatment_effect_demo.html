@@ -581,6 +581,57 @@
         .hl-disease { background: #dbeafe; color: #1e40af; font-weight: bold; padding: 2px 5px; border-radius: 4px; }
         .hl-negation { background: #fee2e2; color: #991b1b; font-weight: bold; padding: 2px 5px; border-radius: 4px; }
         .hl-synonym { background: #fef3c7; color: #92400e; font-weight: bold; padding: 2px 5px; border-radius: 4px; }
+
+        /* Presentation Countdown Clock Widget */
+        .timer-widget {
+            background: #ffffff;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 6px 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            text-align: right;
+            min-width: 175px;
+            display: inline-block;
+        }
+
+        .timer-display {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Roboto', monospace;
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #16a34a;
+            transition: color 0.3s ease;
+        }
+
+        .timer-display.warning {
+            color: #d97706 !important;
+        }
+
+        .timer-display.danger {
+            color: #dc2626 !important;
+            animation: timer-pulse 1s infinite alternate;
+        }
+
+        @keyframes timer-pulse {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0.65; transform: scale(1.04); }
+        }
+
+        .timer-control-btn {
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 3px 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            line-height: 1;
+        }
+
+        .timer-control-btn:hover {
+            background: #e2e8f0;
+            transform: scale(1.08);
+        }
     </style>
 </head>
 <body>
@@ -626,7 +677,16 @@
                     <h2 style="font-size: 1.25rem; margin-top: 4px; color: var(--dark);">Group Work Architecture &amp; Course Lab References</h2>
                     <p style="font-size: 0.85rem; color: var(--text-muted);">End-to-End Clinical Translation: Causal Inference (W1) &rarr; Individualized CATE (W1) &rarr; Medical NLP (W2) &rarr; CNN Interpretation (W3)</p>
                 </div>
-                <div style="text-align: right;"><span class="pill pill-purple">Total Time: ~20 Mins Group Deck</span></div>
+                <div class="timer-widget" id="timer_overview_box">
+                    <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
+                        ⏱️ Total Group Timer
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
+                        <span class="timer-display" id="timer_overview_txt">20:00</span>
+                        <button class="timer-control-btn" onclick="toggleTimer('overview')" id="timer_overview_btn" title="Pause / Resume">⏸️</button>
+                        <button class="timer-control-btn" onclick="resetTimer('overview')" title="Reset to 20:00">🔄</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Team Members Grid -->
@@ -732,7 +792,16 @@
                     <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Clinical Trials, Risk Reduction (ARR / NNT) &amp; The Counterfactual Dilemma</h2>
                     <p style="font-size: 0.84rem; color: var(--text-muted);">Core Question: "Does this medicine work for the whole population, and how many lives are saved?"</p>
                 </div>
-                <div style="text-align: right;"><span class="pill pill-success">Presentation Time: ~1.5 Mins</span></div>
+                <div class="timer-widget" id="timer_khuong_box">
+                    <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
+                        ⏱️ Speaker Timer (5 Mins)
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
+                        <span class="timer-display" id="timer_khuong_txt">05:00</span>
+                        <button class="timer-control-btn" onclick="toggleTimer('khuong')" id="timer_khuong_btn" title="Pause / Resume">⏸️</button>
+                        <button class="timer-control-btn" onclick="resetTimer('khuong')" title="Reset to 05:00">🔄</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Pipeline Flow -->
@@ -961,7 +1030,16 @@
                     <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Individualized Treatment Effect (CATE), T-Learner vs S-Learner, Matched Pairs &amp; SHAP</h2>
                     <p style="font-size: 0.84rem; color: var(--text-muted);">Core Question: "Which specific patient benefits most from the medicine, and why?"</p>
                 </div>
-                <div style="text-align: right;"><span class="pill pill-success">Presentation Time: ~2.5 Mins</span></div>
+                <div class="timer-widget" id="timer_hieu_box">
+                    <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
+                        ⏱️ Speaker Timer (5 Mins)
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
+                        <span class="timer-display" id="timer_hieu_txt">05:00</span>
+                        <button class="timer-control-btn" onclick="toggleTimer('hieu')" id="timer_hieu_btn" title="Pause / Resume">⏸️</button>
+                        <button class="timer-control-btn" onclick="resetTimer('hieu')" title="Reset to 05:00">🔄</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Pipeline Flow -->
@@ -1196,7 +1274,16 @@
                     <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Medical NLP (Text Cleaning, BERT) &amp; Vision Interpretation (Permutation, Grad-CAM)</h2>
                     <p style="font-size: 0.84rem; color: var(--text-muted);">Scope: Fully aligned with practical lab notebooks in Week 2 (NLP) and Week 3 (Interpretation).</p>
                 </div>
-                <div style="text-align: right;"><span class="pill pill-purple">Presentation Time: ~2.5 Mins</span></div>
+                <div class="timer-widget" id="timer_linh_box">
+                    <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
+                        ⏱️ Speaker Timer (5 Mins)
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
+                        <span class="timer-display" id="timer_linh_txt">05:00</span>
+                        <button class="timer-control-btn" onclick="toggleTimer('linh')" id="timer_linh_btn" title="Pause / Resume">⏸️</button>
+                        <button class="timer-control-btn" onclick="resetTimer('linh')" title="Reset to 05:00">🔄</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Pipeline Flow for Linh -->
@@ -1406,7 +1493,16 @@
                     <h2 style="font-size: 1.15rem; margin-top: 4px; color: var(--dark);">Automated Medical Labeling, 14-Disease CNN Vision Training &amp; F1 Evaluation</h2>
                     <p style="font-size: 0.84rem; color: var(--text-muted);">Scope: Mining 100,000 text reports to train Multi-Label CNN Classifiers (DenseNet121) and evaluating rare diseases.</p>
                 </div>
-                <div style="text-align: right;"><span class="pill pill-warning">Presentation Time: ~2.0 Mins</span></div>
+                <div class="timer-widget" id="timer_dung_box">
+                    <div style="font-size: 0.68rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px;">
+                        ⏱️ Speaker Timer (5 Mins)
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px;">
+                        <span class="timer-display" id="timer_dung_txt">05:00</span>
+                        <button class="timer-control-btn" onclick="toggleTimer('dung')" id="timer_dung_btn" title="Pause / Resume">⏸️</button>
+                        <button class="timer-control-btn" onclick="resetTimer('dung')" title="Reset to 05:00">🔄</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Fully Interactive Pipeline Flow for Dung -->
@@ -1700,6 +1796,109 @@
 
     <script>
         // ==========================================
+        // 0. COUNTDOWN TIMER ENGINE (5 MINS / SPEAKER)
+        // ==========================================
+        const presenterTimers = {
+            overview: { remaining: 1200, interval: null, running: false, initial: 1200, started: false },
+            khuong:   { remaining: 300,  interval: null, running: false, initial: 300, started: false },
+            hieu:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
+            linh:     { remaining: 300,  interval: null, running: false, initial: 300, started: false },
+            dung:     { remaining: 300,  interval: null, running: false, initial: 300, started: false }
+        };
+
+        function formatTimeDisplay(sec) {
+            const m = Math.floor(sec / 60);
+            const s = sec % 60;
+            return `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+        }
+
+        function updateTimerDisplay(memberKey) {
+            const state = presenterTimers[memberKey];
+            const txtEl = document.getElementById(`timer_${memberKey}_txt`);
+            const btnEl = document.getElementById(`timer_${memberKey}_btn`);
+            if (!txtEl) return;
+
+            if (state.remaining <= 0) {
+                txtEl.innerText = "00:00 ⚠️";
+                txtEl.classList.remove('warning');
+                txtEl.classList.add('danger');
+                if (btnEl) btnEl.innerText = "▶️";
+                return;
+            }
+
+            txtEl.innerText = formatTimeDisplay(state.remaining);
+            if (state.remaining <= 60) {
+                txtEl.classList.remove('warning');
+                txtEl.classList.add('danger');
+            } else if (state.remaining <= 120) {
+                txtEl.classList.remove('danger');
+                txtEl.classList.add('warning');
+            } else {
+                txtEl.classList.remove('warning', 'danger');
+            }
+
+            if (btnEl) {
+                btnEl.innerText = state.running ? "⏸️" : "▶️";
+            }
+        }
+
+        function startTimer(memberKey) {
+            const state = presenterTimers[memberKey];
+            if (!state || state.running) return;
+
+            // Pause other timers
+            Object.keys(presenterTimers).forEach(k => {
+                if (k !== memberKey && presenterTimers[k].running) {
+                    pauseTimer(k);
+                }
+            });
+
+            state.running = true;
+            state.started = true;
+            updateTimerDisplay(memberKey);
+
+            state.interval = setInterval(() => {
+                if (state.remaining > 0) {
+                    state.remaining--;
+                    updateTimerDisplay(memberKey);
+                } else {
+                    pauseTimer(memberKey);
+                    updateTimerDisplay(memberKey);
+                }
+            }, 1000);
+        }
+
+        function pauseTimer(memberKey) {
+            const state = presenterTimers[memberKey];
+            if (!state) return;
+            if (state.interval) {
+                clearInterval(state.interval);
+                state.interval = null;
+            }
+            state.running = false;
+            updateTimerDisplay(memberKey);
+        }
+
+        function toggleTimer(memberKey) {
+            const state = presenterTimers[memberKey];
+            if (!state) return;
+            if (state.running) {
+                pauseTimer(memberKey);
+            } else {
+                startTimer(memberKey);
+            }
+        }
+
+        function resetTimer(memberKey) {
+            const state = presenterTimers[memberKey];
+            if (!state) return;
+            pauseTimer(memberKey);
+            state.remaining = state.initial;
+            updateTimerDisplay(memberKey);
+            startTimer(memberKey);
+        }
+
+        // ==========================================
         // 1. TOP MEMBER NAVIGATION
         // ==========================================
         function switchMember(memberKey) {
@@ -1708,6 +1907,11 @@
 
             document.getElementById('section_' + memberKey).classList.add('active');
             document.getElementById('btn_' + memberKey).classList.add('active');
+
+            // Auto-start countdown clock for this presenter when their name is clicked
+            if (!presenterTimers[memberKey].started || (!presenterTimers[memberKey].running && presenterTimers[memberKey].remaining > 0)) {
+                startTimer(memberKey);
+            }
 
             if (memberKey === 'khuong') setKhuongStep(1);
             if (memberKey === 'hieu') setHieuPipelineStep(1);
@@ -2652,6 +2856,7 @@
 
         // On Load initialization
         window.addEventListener('load', () => {
+            ['overview', 'khuong', 'hieu', 'linh', 'dung'].forEach(k => updateTimerDisplay(k));
             setKhuongStep(1);
             setHieuPipelineStep(1);
             setLinhLab(1);
