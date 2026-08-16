@@ -3119,4 +3119,79 @@
 
     </script>
 </body>
-</html>
+</html
+            <!-- Strategic Defense Card: Why These 3 Datasets? -->
+            <div class="card" style="margin-top: 16px; border: 1.5px solid #3b82f6; background: #ffffff; box-shadow: 0 4px 12px rgba(37,99,235,0.06);">
+                <div class="card-header" style="border-bottom: 1px solid #dbeafe; padding-bottom: 10px; margin-bottom: 12px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.4rem;">💡</span>
+                        <div>
+                            <h3 class="card-title" style="font-size: 1.05rem; color: #1e3a8a;">Strategic Defense: Why Were These 3 Specific Datasets Chosen?</h3>
+                            <div style="font-size: 0.74rem; color: var(--text-muted);">Clinical, Technical &amp; Economic Rationale from AI_For_Medical_Treatment_Course3_Summary.docx</div>
+                        </div>
+                    </div>
+                    <span class="block-badge" style="background:#eff6ff; color:#1e40af; font-weight:800;">DATASET RATIONALE &amp; DEFENSE</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                    <!-- Dataset 1 -->
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #1e40af; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                                <span>🧪</span> 1. Clinical Trial RCT Cohort
+                            </div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: bold; margin-bottom: 6px;">
+                                <code>data/X_data_normalized.csv</code> (Age, SBP, BMI, W, Y)
+                            </div>
+                            <div style="font-size: 0.75rem; color: #334155; line-height: 1.5;">
+                                • <strong>Why RCT over EHR:</strong> Real-world EHR data has severe confounding by indication (sicker patients get drugs). A 50/50 coin flip cuts the backdoor path (SMD &lt; 0.10).<br>
+                                • <strong>Why Covariates:</strong> Non-linear interactions prove why a flat trial average (+14% ARR) fails individual high-risk patients (Grandpa An: +31.0% vs Alex: +2.0%).
+                            </div>
+                        </div>
+                        <div style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed #cbd5e1; font-size: 0.70rem; color: #1e40af; font-weight: bold;">
+                            ✔ Key Metric: C-for-benefit = 0.6342
+                        </div>
+                    </div>
+
+                    <!-- Dataset 2 -->
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #d97706; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                                <span>📄</span> 2. Stanford PACS 100k Reports
+                            </div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: bold; margin-bottom: 6px;">
+                                <code>data/stanford_report_test.csv</code> (100k Unstructured DICOMs)
+                            </div>
+                            <div style="font-size: 0.75rem; color: #334155; line-height: 1.5;">
+                                • <strong>Why Raw Clinical Text:</strong> 80% of hospital data is trapped in free-text clinical notes. Manual radiologist annotation for 100k scans costs &gt;$1,000,000 and 2+ years.<br>
+                                • <strong>Why NegBio &amp; UMLS:</strong> Automated rule-based NLP extracts ground truth with &gt;90% precision, handling medical synonyms, Is-A hierarchies, and negation cues.
+                            </div>
+                        </div>
+                        <div style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed #cbd5e1; font-size: 0.70rem; color: #d97706; font-weight: bold;">
+                            ✔ Key Metric: Macro-F1 = 0.842 vs 99% Trap
+                        </div>
+                    </div>
+
+                    <!-- Dataset 3 -->
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="font-size: 0.82rem; font-weight: 800; color: #7c3aed; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                                <span>🩻</span> 3. NIH ChestX-ray14 Benchmark
+                            </div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: bold; margin-bottom: 6px;">
+                                <code>data/nih_new/train-small.csv</code> (14 Co-Occurring Pathologies)
+                            </div>
+                            <div style="font-size: 0.75rem; color: #334155; line-height: 1.5;">
+                                • <strong>Why 14-Disease Multi-Label:</strong> Real patients often have co-occurring conditions (Pneumonia + Effusion). Binary classification fails in clinical practice.<br>
+                                • <strong>Why 1% Imbalance:</strong> Reflects real hospital epidemiology (Hernia 0.2%, Pneumonia 1.4%), proving why Accuracy (99%) is fatal and Layer 424 Grad-CAM is needed.
+                            </div>
+                        </div>
+                        <div style="margin-top: 8px; padding-top: 6px; border-top: 1px dashed #cbd5e1; font-size: 0.70rem; color: #7c3aed; font-weight: bold;">
+                            ✔ Key Metric: Layer 424 Grad-CAM Localization
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        >

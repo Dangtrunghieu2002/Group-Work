@@ -270,3 +270,11 @@
 | **Q6. If rule labels contain noise, how does the CNN reach 92% F1?** | **Dung / Linh** | *"Big data scale filters out noise. Across 100,000 X-rays, random label errors cancel out, allowing the deep CNN to learn true physical visual disease features."* |
 
 ---
+
+
+### Q7: Why were these 3 specific datasets chosen?
+* **Primary Respondent:** Full Team (Khương, Hiếu, Dung, Linh)
+* **Clinical, Technical & Economic Defense:**
+  1. **Clinical Trial RCT Cohort (`data/X_data_normalized.csv`):** Observational electronic health records suffer from massive *confounding by indication* (doctors selectively give medications to older, sicker patients: $X \to W$). The 50/50 randomized trial coin flip severs the backdoor path ($\text{SMD} < 0.10$), allowing us to isolate true causal Heterogeneous Treatment Effects (CATE).
+  2. **Stanford PACS 100k Radiology Corpus (`data/stanford_report_test.csv`):** Over 80% of hospital clinical knowledge is locked inside unstructured text. Manual labeling of 100,000 scans by certified radiologists costs over **$1,000,000** and takes 2+ years. Automated rule-based NLP (NegBio & UMLS) unlocks this data with >90% precision at zero annotation cost.
+  3. **NIH ChestX-ray14 Multi-Label Benchmark (`data/nih_new/train-small.csv`):** Real respiratory patients frequently have multiple comorbid pathologies (e.g. Pneumonia + Pleural Effusion). NIH ChestX-ray14 captures true 14-disease co-occurrence and severe 1% epidemiological class imbalance, proving why naive Accuracy ($99\%$) fails and why Harmonic F1 and Layer 424 Grad-CAM explainability are clinically required.
