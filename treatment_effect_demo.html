@@ -2172,18 +2172,19 @@
             const nPatients = slN ? parseInt(slN.value) : 1000;
             const rrrVal = slRrr ? parseInt(slRrr.value) / 100 : 0.70;
 
-            if (txtCtrl) txtCtrl.innerText = (pControl * 100).toFixed(1) + "%";
+            const pCtrlPct = parseFloat((pControl * 100).toFixed(1));
+            const pTrtPct = parseFloat((pCtrlPct * (1 - rrrVal)).toFixed(1));
+            const arrPct = parseFloat((pCtrlPct - pTrtPct).toFixed(1));
+            const nntVal = arrPct > 0 ? (100 / arrPct).toFixed(1) : "N/A";
+
+            if (txtCtrl) txtCtrl.innerText = pCtrlPct.toFixed(1) + "%";
             if (txtN) txtN.innerText = nPatients.toLocaleString();
             if (txtRrr) txtRrr.innerText = (rrrVal * 100).toFixed(1) + "%";
 
-            const pTreated = pControl * (1 - rrrVal);
-            const arr = Math.max(0.001, pControl - pTreated);
-            const nnt = 1 / arr;
-
             const dispArr = document.getElementById("k_disp_arr");
             const dispNnt = document.getElementById("k_disp_nnt");
-            if (dispArr) dispArr.innerText = "+" + (arr * 100).toFixed(1) + "%";
-            if (dispNnt) dispNnt.innerText = nnt.toFixed(1);
+            if (dispArr) dispArr.innerText = "+" + arrPct.toFixed(1) + "%";
+            if (dispNnt) dispNnt.innerText = nntVal;
 
             const mlDesc = document.getElementById("k_ml_desc");
             if (mlDesc) {
@@ -2202,10 +2203,10 @@
                             ARR = P(Y=1 | W=0) &minus; P(Y=1 | W=1)
                         </div>
                         <div style="color: #1e3a8a; font-size: 0.86rem; margin-bottom: 6px;">
-                            = ${(pControl*100).toFixed(1)}% &minus; ${(pTreated*100).toFixed(1)}% = <strong style="color: #166534;">+${(arr*100).toFixed(1)}% Risk Drop</strong>
+                            = ${pCtrlPct.toFixed(1)}% &minus; ${pTrtPct.toFixed(1)}% = <strong style="color: #166534;">+${arrPct.toFixed(1)}% Risk Drop</strong>
                         </div>
                         <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; color: #166534; font-weight: 800;">
-                            NNT = 1 / ARR = 1 / ${arr.toFixed(3)} = <strong>${nnt.toFixed(1)} Patients</strong> (RRR = ${(rrrVal*100).toFixed(0)}%)
+                            NNT = 1 / ARR = 100 / ${arrPct.toFixed(1)} = <strong>${nntVal} Patients</strong> (RRR = ${(rrrVal*100).toFixed(0)}%)
                         </div>
                     </div>
                 `;
@@ -2245,14 +2246,14 @@
             }
 
             const subTitle = document.getElementById("k_nnt_sub_title");
-            if (subTitle) subTitle.innerText = `Visualizing NNT = ${nnt.toFixed(1)} Effort (1 Life Saved per ${Math.round(nnt)} Patients):`;
+            if (subTitle) subTitle.innerText = `Visualizing NNT = ${nntVal} Effort (1 Life Saved per ${Math.round(parseFloat(nntVal))} Patients):`;
 
             const footerTxt = document.getElementById("k_nnt_footer_txt");
-            if (footerTxt) footerTxt.innerText = `🟢 1 Patient Saved for every ${nnt.toFixed(1)} Patients Treated.`;
+            if (footerTxt) footerTxt.innerText = `🟢 1 Patient Saved for every ${nntVal} Patients Treated.`;
 
             const grid = document.getElementById("k_nnt_grid_container");
             if (grid) {
-                const total = Math.min(15, Math.max(4, Math.round(nnt)));
+                const total = Math.min(15, Math.max(4, Math.round(parseFloat(nntVal))));
                 let dots = '<div style="background:#d1fae5; border-radius:4px; padding:4px;">🟢</div>';
                 for (let i = 1; i < total - 1; i++) {
                     dots += '<div style="background:#f1f5f9; border-radius:4px; padding:4px;">⚪</div>';
@@ -2490,22 +2491,24 @@
             if (txtSbp) txtSbp.innerText = sbp + " mmHg";
             if (txtBmi) txtBmi.innerText = bmi.toFixed(1) + " kg/m²";
 
-            const baselineRisk = Math.min(0.85, Math.max(0.04, ((age - 30) * 0.007) + ((sbp - 100) * 0.0035) + ((bmi - 20) * 0.005)));
-            const treatedRisk = Math.max(0.02, baselineRisk * 0.45);
-            const trueCATE = baselineRisk - treatedRisk;
-            const shrunkCATE = trueCATE * 0.58;
+            // Compute exact risk values and format consistently to prevent rounding discrepancies
+            const rawBaseline = Math.min(85.0, Math.max(4.0, ((age - 30) * 0.7) + ((sbp - 100) * 0.35) + ((bmi - 20) * 0.5)));
+            const bRiskPct = parseFloat(rawBaseline.toFixed(1));
+            const tRiskPct = parseFloat((bRiskPct * 0.45).toFixed(1));
+            const trueCATEPct = parseFloat((bRiskPct - tRiskPct).toFixed(1));
+            const shrunkCATEPct = parseFloat((trueCATEPct * 0.58).toFixed(1));
 
             const dispCate = document.getElementById("h_disp_cate");
             const dispSCate = document.getElementById("h_disp_s_cate");
-            if (dispCate) dispCate.innerText = "+" + (trueCATE * 100).toFixed(1) + "% Benefit";
-            if (dispSCate) dispSCate.innerText = "+" + (shrunkCATE * 100).toFixed(1) + "%";
+            if (dispCate) dispCate.innerText = "+" + trueCATEPct.toFixed(1) + "% Benefit";
+            if (dispSCate) dispSCate.innerText = "+" + shrunkCATEPct.toFixed(1) + "%";
 
             const mlDesc = document.getElementById("h_ml_desc");
             if (mlDesc) {
                 if (hStep === 1) {
-                    mlDesc.innerHTML = `<strong>T-Learner CATE Prediction:</strong> Trained model estimates &mu;<sub>0</sub>(X) (Untreated Risk = ${(baselineRisk*100).toFixed(1)}%) and &mu;<sub>1</sub>(X) (Treated Risk = ${(treatedRisk*100).toFixed(1)}%). Difference is the true personalized benefit.`;
+                    mlDesc.innerHTML = `<strong>T-Learner CATE Prediction:</strong> Trained model estimates &mu;<sub>0</sub>(X) (Untreated Risk = ${bRiskPct.toFixed(1)}%) and &mu;<sub>1</sub>(X) (Treated Risk = ${tRiskPct.toFixed(1)}%). Difference is the true personalized benefit.`;
                 } else if (hStep === 2) {
-                    mlDesc.innerHTML = `<strong>T-Learner vs S-Learner Trap:</strong> T-Learner uses two specialized models to avoid regularization bias. S-Learner puts treatment into one tree, shrinking benefit by ${( (trueCATE - shrunkCATE)*100 ).toFixed(1)}%.`;
+                    mlDesc.innerHTML = `<strong>T-Learner vs S-Learner Trap:</strong> T-Learner uses two specialized models to avoid regularization bias. S-Learner puts treatment into one tree, shrinking benefit by ${(trueCATEPct - shrunkCATEPct).toFixed(1)}%.`;
                 } else {
                     mlDesc.innerHTML = `<strong>TreeSHAP Decomposition:</strong> Additive feature attribution calculates exact push percentages from SBP, Age, and Baseline drug effect for each patient.`;
                 }
@@ -2519,10 +2522,10 @@
                             CATE(X) = &Eopf;[ Y(0) &minus; Y(1) | X ] = &mu;<sub>0</sub>(X) &minus; &mu;<sub>1</sub>(X)
                         </div>
                         <div style="color: #1e3a8a; font-size: 0.86rem; margin-bottom: 4px;">
-                            CATE(${age}y, ${sbp}mmHg) = ${(baselineRisk*100).toFixed(1)}% &minus; ${(treatedRisk*100).toFixed(1)}% = <strong style="color: #166534;">+${(trueCATE*100).toFixed(1)}% Net Benefit</strong>
+                            CATE(${age}y, ${sbp}mmHg) = ${bRiskPct.toFixed(1)}% &minus; ${tRiskPct.toFixed(1)}% = <strong style="color: #166534;">+${trueCATEPct.toFixed(1)}% Net Benefit</strong>
                         </div>
                         <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; font-size: 0.78rem; color: ${hModelMode === 't' ? '#166534' : '#991b1b'}; font-weight: 800;">
-                            ${hModelMode === 't' ? '✔ T-Learner Active: 100% Unbiased Tree' : '⚠️ S-Learner Active: Shrinkage Bias Collapses Benefit to +' + (shrunkCATE*100).toFixed(1) + '%'}
+                            ${hModelMode === 't' ? '✔ T-Learner Active: 100% Unbiased Tree' : '⚠️ S-Learner Active: Shrinkage Bias Collapses Benefit to +' + shrunkCATEPct.toFixed(1) + '%'}
                         </div>
                     </div>
                 `;
@@ -2532,14 +2535,14 @@
             const barTrt = document.getElementById("h_bar_trt");
             const valCtrl = document.getElementById("h_val_ctrl");
             const valTrt = document.getElementById("h_val_trt");
-            if (barCtrl) barCtrl.style.width = Math.min(100, baselineRisk * 100) + "%";
-            if (barTrt) barTrt.style.width = Math.min(100, treatedRisk * 100) + "%";
-            if (valCtrl) valCtrl.innerText = (baselineRisk * 100).toFixed(1) + "%";
-            if (valTrt) valTrt.innerText = (treatedRisk * 100).toFixed(1) + "%";
+            if (barCtrl) barCtrl.style.width = Math.min(100, bRiskPct) + "%";
+            if (barTrt) barTrt.style.width = Math.min(100, tRiskPct) + "%";
+            if (valCtrl) valCtrl.innerText = bRiskPct.toFixed(1) + "%";
+            if (valTrt) valTrt.innerText = tRiskPct.toFixed(1) + "%";
 
             const badge = document.getElementById("h_prescribe_badge");
             if (badge) {
-                if (trueCATE > 0.15) {
+                if (trueCATEPct > 15.0) {
                     badge.innerHTML = "✔ STRONGLY RECOMMEND IMMEDIATE DRUG PRESCRIPTION (High Priority).";
                     badge.style.background = "#f0fdf4";
                     badge.style.color = "#166534";
