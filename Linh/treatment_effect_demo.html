@@ -2385,7 +2385,7 @@
 
             if (step === 1) {
                 if (badge) badge.innerText = "Chapter 1 (Week 1, V8)";
-                if (scDesc) scDesc.innerText = "Precision CATE profiling: Estimating stroke risk drop conditioned on individual Age, SBP, and BMI.";
+                if (scDesc) scDesc.innerText = "Personalized Medicine (CATE): Instead of giving everyone the same trial average, our AI calculates the exact risk drop for each specific person.";
                 if (in1) in1.style.display = "block";
                 if (in2) in2.style.display = "none";
                 if (in3) in3.style.display = "none";
@@ -2398,7 +2398,7 @@
                 updateHieu();
             } else if (step === 2) {
                 if (badge) badge.innerText = "Chapter 2 (Week 1, V8–9)";
-                if (scDesc) scDesc.innerText = "Architecture Battle: Comparing T-Learner (2 Specialized Trees) against S-Learner (Shrinkage Bias).";
+                if (scDesc) scDesc.innerText = "The 2-Doctor Architecture: Why T-Learner (2 specialized trees) beats S-Learner (1 tree that forgets the medicine).";
                 if (in1) in1.style.display = "none";
                 if (in2) in2.style.display = "block";
                 if (in3) in3.style.display = "none";
@@ -2407,11 +2407,11 @@
                 if (v1) v1.style.display = "none";
                 if (v2) v2.style.display = "block";
                 if (v3) v3.style.display = "none";
-                if (b6Title) b6Title.innerText = "🌲 6. Model Structure Comparison";
+                if (b6Title) b6Title.innerText = "🌲 6. 2-Doctor Model Structure";
                 updateHieuReg();
             } else {
                 if (badge) badge.innerText = "Chapter 3 (Week 1, V10–12 & Week 3, V4–6)";
-                if (scDesc) scDesc.innerText = "Matched Twin Pairs Validation (C=0.6342) and Itemized TreeSHAP Push Receipts.";
+                if (scDesc) scDesc.innerText = "Validation & Explainability: Testing with Clinical Twins (C=0.6342) and printing the Itemized AI Receipt for doctors.";
                 if (in1) in1.style.display = "none";
                 if (in2) in2.style.display = "none";
                 if (in3) in3.style.display = "block";
@@ -2420,7 +2420,7 @@
                 if (v1) v1.style.display = "none";
                 if (v2) v2.style.display = "none";
                 if (v3) v3.style.display = "block";
-                if (b6Title) b6Title.innerText = "🧾 6. TreeSHAP Push Receipt";
+                if (b6Title) b6Title.innerText = "🧾 6. Itemized AI Receipt (TreeSHAP)";
                 resampleHieuPairs();
             }
         }
@@ -2468,16 +2468,16 @@
             const age = slAge ? parseInt(slAge.value) : 70;
 
             const baseDrug = 3.4;
-            const pushSbp = ((sbp - 110) / 80) * 15.2;
-            const pushAge = ((age - 35) / 50) * 7.8;
-            const total = baseDrug + pushSbp + pushAge;
+            const pushSbp = parseFloat((((sbp - 110) / 80) * 15.2).toFixed(1));
+            const pushAge = parseFloat((((age - 35) / 50) * 7.8).toFixed(1));
+            const total = (baseDrug + pushSbp + pushAge).toFixed(1);
 
             const elSbp = document.getElementById("h_shap_sbp_val");
             const elAge = document.getElementById("h_shap_age_val");
             const elSum = document.getElementById("h_shap_sum");
-            if (elSbp) elSbp.innerText = `+${pushSbp.toFixed(1)}%`;
-            if (elAge) elAge.innerText = `+${pushAge.toFixed(1)}%`;
-            if (elSum) elSum.innerText = `+${total.toFixed(1)}% Net Benefit`;
+            if (elSbp) elSbp.innerText = `+${pushSbp}%`;
+            if (elAge) elAge.innerText = `+${pushAge}%`;
+            if (elSum) elSum.innerText = `+${total}% Total Benefit`;
         }
 
         function updateHieu() {
@@ -2492,7 +2492,7 @@
             if (txtSbp) txtSbp.innerText = sbp + " mmHg";
             if (txtBmi) txtBmi.innerText = bmi.toFixed(1) + " kg/m²";
 
-            // Compute exact risk values and format consistently to prevent rounding discrepancies
+            // Compute exact risk values and format consistently
             const rawBaseline = Math.min(85.0, Math.max(4.0, ((age - 30) * 0.7) + ((sbp - 100) * 0.35) + ((bmi - 20) * 0.5)));
             const bRiskPct = parseFloat(rawBaseline.toFixed(1));
             const tRiskPct = parseFloat((bRiskPct * 0.45).toFixed(1));
@@ -2507,11 +2507,11 @@
             const mlDesc = document.getElementById("h_ml_desc");
             if (mlDesc) {
                 if (hStep === 1) {
-                    mlDesc.innerHTML = `<strong>T-Learner CATE Prediction:</strong> Trained model estimates &mu;<sub>0</sub>(X) (Untreated Risk = ${bRiskPct.toFixed(1)}%) and &mu;<sub>1</sub>(X) (Treated Risk = ${tRiskPct.toFixed(1)}%). Difference is the true personalized benefit.`;
+                    mlDesc.innerHTML = `<strong>How CATE Works:</strong> The AI predicts two numbers: Risk without drug (<strong>${bRiskPct.toFixed(1)}%</strong>) and Risk with drug (<strong>${tRiskPct.toFixed(1)}%</strong>). The difference is the patient's personalized benefit (+${trueCATEPct.toFixed(1)}%).`;
                 } else if (hStep === 2) {
-                    mlDesc.innerHTML = `<strong>T-Learner vs S-Learner Trap:</strong> T-Learner uses two specialized models to avoid regularization bias. S-Learner puts treatment into one tree, shrinking benefit by ${(trueCATEPct - shrunkCATEPct).toFixed(1)}%.`;
+                    mlDesc.innerHTML = `<strong>Why 2 Doctors (T-Learner) Beat 1 Tree (S-Learner):</strong> S-Learner puts all data into 1 tree, ignores the medicine, and shrinks the benefit to +${shrunkCATEPct.toFixed(1)}%. T-Learner trains 2 separate trees to give the true +${trueCATEPct.toFixed(1)}% gain.`;
                 } else {
-                    mlDesc.innerHTML = `<strong>TreeSHAP Decomposition:</strong> Additive feature attribution calculates exact push percentages from SBP, Age, and Baseline drug effect for each patient.`;
+                    mlDesc.innerHTML = `<strong>The Itemized AI Receipt (TreeSHAP):</strong> Doctors don't trust black boxes. TreeSHAP breaks down the +${trueCATEPct.toFixed(1)}% benefit into exact pieces: Drug baseline + Blood Pressure bonus + Elderly age bonus.`;
                 }
             }
 
@@ -2520,13 +2520,13 @@
                 formCard.innerHTML = `
                     <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
                         <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
-                            CATE(X) = &Eopf;[ Y(0) &minus; Y(1) | X ] = &mu;<sub>0</sub>(X) &minus; &mu;<sub>1</sub>(X)
+                            Personalized Benefit = Risk Without Drug &minus; Risk With Drug
                         </div>
                         <div style="color: #1e3a8a; font-size: 0.86rem; margin-bottom: 4px;">
                             CATE(${age}y, ${sbp}mmHg) = ${bRiskPct.toFixed(1)}% &minus; ${tRiskPct.toFixed(1)}% = <strong style="color: #166534;">+${trueCATEPct.toFixed(1)}% Net Benefit</strong>
                         </div>
                         <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; font-size: 0.78rem; color: ${hModelMode === 't' ? '#166534' : '#991b1b'}; font-weight: 800;">
-                            ${hModelMode === 't' ? '✔ T-Learner Active: 100% Unbiased Tree' : '⚠️ S-Learner Active: Shrinkage Bias Collapses Benefit to +' + shrunkCATEPct.toFixed(1) + '%'}
+                            ${hModelMode === 't' ? '✔ T-Learner (2 Trees): 100% Unbiased Full Benefit' : '⚠️ S-Learner (1 Tree): Shrinks Benefit Down to +' + shrunkCATEPct.toFixed(1) + '%'}
                         </div>
                     </div>
                 `;
@@ -2544,11 +2544,11 @@
             const badge = document.getElementById("h_prescribe_badge");
             if (badge) {
                 if (trueCATEPct > 15.0) {
-                    badge.innerHTML = "✔ STRONGLY RECOMMEND IMMEDIATE DRUG PRESCRIPTION (High Priority).";
+                    badge.innerHTML = "✔ HIGH BENEFIT: Strongly recommend immediate prescription.";
                     badge.style.background = "#f0fdf4";
                     badge.style.color = "#166534";
                 } else {
-                    badge.innerHTML = "ℹ️ Marginal Gain: Recommend lifestyle modification first.";
+                    badge.innerHTML = "ℹ️ SMALL BENEFIT: Recommend diet and exercise first.";
                     badge.style.background = "#eff6ff";
                     badge.style.color = "#1e40af";
                 }
