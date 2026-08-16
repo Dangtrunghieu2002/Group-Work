@@ -2507,39 +2507,51 @@
             const mlDesc = document.getElementById("h_ml_desc");
             if (mlDesc) {
                 if (hStep === 1) {
-                    mlDesc.innerHTML = `<strong>How CATE Works:</strong> The AI predicts two numbers: Risk without drug (<strong>${bRiskPct.toFixed(1)}%</strong>) and Risk with drug (<strong>${tRiskPct.toFixed(1)}%</strong>). The difference is the patient's personalized benefit (+${trueCATEPct.toFixed(1)}%).`;
+                    mlDesc.innerHTML = `
+                        <div style="line-height: 1.55;">
+                            <strong>How CATE Works (2 Core Risk Formulas):</strong><br>
+                            • <strong>1. Untreated Risk:</strong> μ₀(X) = P(Stroke | W=0, X) = <strong>${bRiskPct.toFixed(1)}%</strong> (Risk from Age, SBP, BMI).<br>
+                            • <strong>2. Treated Risk:</strong> μ₁(X) = P(Stroke | W=1, X) = μ₀(X) &times; 0.45 = <strong>${tRiskPct.toFixed(1)}%</strong> (Risk with drug).<br>
+                            • <strong>3. Net Benefit:</strong> CATE(X) = μ₀(X) &minus; μ₁(X) = <strong>+${trueCATEPct.toFixed(1)}% Risk Drop</strong>.
+                        </div>
+                    `;
                 } else if (hStep === 2) {
-                    mlDesc.innerHTML = `<strong>Why 2 Doctors (T-Learner) Beat 1 Tree (S-Learner):</strong> S-Learner puts all data into 1 tree, ignores the medicine, and shrinks the benefit to +${shrunkCATEPct.toFixed(1)}%. T-Learner trains 2 separate trees to give the true +${trueCATEPct.toFixed(1)}% gain.`;
+                    mlDesc.innerHTML = `
+                        <div style="line-height: 1.55;">
+                            <strong>Why 2 Doctors (T-Learner) Beat 1 Tree (S-Learner):</strong><br>
+                            • <strong>S-Learner (1 Tree):</strong> Tree splits on Age/BP, forgets medicine &rarr; shrinks benefit to +${shrunkCATEPct.toFixed(1)}%.<br>
+                            • <strong>T-Learner (2 Trees):</strong> Doctor 1 (μ₁) &minus; Doctor 2 (μ₀) = true unbiased <strong>+${trueCATEPct.toFixed(1)}%</strong> gain.
+                        </div>
+                    `;
                 } else {
-                    mlDesc.innerHTML = `<strong>The Itemized AI Receipt (TreeSHAP):</strong> Doctors don't trust black boxes. TreeSHAP breaks down the +${trueCATEPct.toFixed(1)}% benefit into exact pieces: Drug baseline + Blood Pressure bonus + Elderly age bonus.`;
+                    mlDesc.innerHTML = `
+                        <div style="line-height: 1.55;">
+                            <strong>The Itemized AI Receipt (TreeSHAP):</strong><br>
+                            • <strong>Formula:</strong> CATE(X) = Base Drug (+3.4%) + SBP Bonus (+15.2%) + Age Bonus (+7.8%) = <strong>+${trueCATEPct.toFixed(1)}%</strong>.
+                        </div>
+                    `;
                 }
             }
 
             const formCard = document.getElementById("h_formula_card");
             if (formCard) {
                 formCard.innerHTML = `
-                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.84rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;">
-                        <div style="color: #1e40af; font-weight: 800; margin-bottom: 2px;">
-                            Personalized Benefit = Risk Without Drug &minus; Risk With Drug
+                    <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; font-size: 0.82rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px; line-height: 1.45;">
+                        <div style="color: #991b1b; font-weight: bold; margin-bottom: 2px;">
+                            1. Untreated Risk: μ₀(X) = P(Y=1 | W=0, X) = <strong>${bRiskPct.toFixed(1)}%</strong>
                         </div>
-                        <div style="color: #1e3a8a; font-size: 0.86rem; margin-bottom: 4px;">
-                            CATE(${age}y, ${sbp}mmHg) = ${bRiskPct.toFixed(1)}% &minus; ${tRiskPct.toFixed(1)}% = <strong style="color: #166534;">+${trueCATEPct.toFixed(1)}% Net Benefit</strong>
+                        <div style="color: #166534; font-weight: bold; margin-bottom: 2px;">
+                            2. Treated Risk: μ₁(X) = P(Y=1 | W=1, X) = ${bRiskPct.toFixed(1)}% &times; 0.45 = <strong>${tRiskPct.toFixed(1)}%</strong>
                         </div>
-                        <div style="border-top: 1px dashed #93c5fd; padding-top: 4px; font-size: 0.78rem; color: ${hModelMode === 't' ? '#166534' : '#991b1b'}; font-weight: 800;">
+                        <div style="border-top: 1px dashed #93c5fd; margin-top: 4px; padding-top: 4px; color: #1e40af; font-weight: 800; font-size: 0.86rem;">
+                            3. CATE(X) = μ₀(X) &minus; μ₁(X) = ${bRiskPct.toFixed(1)}% &minus; ${tRiskPct.toFixed(1)}% = <strong style="color: #166534;">+${trueCATEPct.toFixed(1)}% Net Benefit</strong>
+                        </div>
+                        <div style="margin-top: 4px; font-size: 0.76rem; color: ${hModelMode === 't' ? '#166534' : '#991b1b'}; font-weight: bold;">
                             ${hModelMode === 't' ? '✔ T-Learner (2 Trees): 100% Unbiased Full Benefit' : '⚠️ S-Learner (1 Tree): Shrinks Benefit Down to +' + shrunkCATEPct.toFixed(1) + '%'}
                         </div>
                     </div>
                 `;
             }
-
-            const barCtrl = document.getElementById("h_bar_ctrl");
-            const barTrt = document.getElementById("h_bar_trt");
-            const valCtrl = document.getElementById("h_val_ctrl");
-            const valTrt = document.getElementById("h_val_trt");
-            if (barCtrl) barCtrl.style.width = Math.min(100, bRiskPct) + "%";
-            if (barTrt) barTrt.style.width = Math.min(100, tRiskPct) + "%";
-            if (valCtrl) valCtrl.innerText = bRiskPct.toFixed(1) + "%";
-            if (valTrt) valTrt.innerText = tRiskPct.toFixed(1) + "%";
 
             const badge = document.getElementById("h_prescribe_badge");
             if (badge) {
