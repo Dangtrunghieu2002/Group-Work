@@ -2146,17 +2146,31 @@
             kAllocMode = mode;
             const btnRct = document.getElementById("k_btn_alloc_rct");
             const btnObs = document.getElementById("k_btn_alloc_obs");
+            const slBias = document.getElementById("k_sl_bias");
+            
             if (btnRct) btnRct.classList.toggle("active", mode === "rct");
             if (btnObs) btnObs.classList.toggle("active", mode === "obs");
+            
+            if (slBias) {
+                if (mode === "rct") slBias.value = 0;
+                else if (mode === "obs" && parseInt(slBias.value) === 0) slBias.value = 45;
+            }
             updateKhuong();
         }
 
         function updateKhuongAllocSlider() {
-            const sl = document.getElementById("k_sl_bias");
-            const txt = document.getElementById("k_txt_bias");
-            if (sl && txt) {
-                const val = (parseInt(sl.value) / 100).toFixed(2);
-                txt.innerText = val === "0.00" ? "0.00 (Zero Bias)" : `+${val} (Confounded)`;
+            const slBias = document.getElementById("k_sl_bias");
+            if (slBias) {
+                const val = parseInt(slBias.value);
+                if (val === 0) {
+                    kAllocMode = "rct";
+                } else {
+                    kAllocMode = "obs";
+                }
+                const btnRct = document.getElementById("k_btn_alloc_rct");
+                const btnObs = document.getElementById("k_btn_alloc_obs");
+                if (btnRct) btnRct.classList.toggle("active", kAllocMode === "rct");
+                if (btnObs) btnObs.classList.toggle("active", kAllocMode === "obs");
             }
             updateKhuong();
         }
@@ -2165,13 +2179,28 @@
             const slCtrl = document.getElementById("k_sl_ctrl");
             const slN = document.getElementById("k_sl_n");
             const slRrr = document.getElementById("k_sl_rrr");
+            const slBias = document.getElementById("k_sl_bias");
             const txtCtrl = document.getElementById("k_txt_ctrl");
             const txtN = document.getElementById("k_txt_n");
             const txtRrr = document.getElementById("k_txt_rrr");
+            const txtBias = document.getElementById("k_txt_bias");
 
             const pControl = slCtrl ? parseInt(slCtrl.value) / 100 : 0.20;
             const nPatients = slN ? parseInt(slN.value) : 1000;
             const rrrVal = slRrr ? parseInt(slRrr.value) / 100 : 0.70;
+            const biasRaw = slBias ? parseInt(slBias.value) : 0;
+            const biasVal = parseFloat((biasRaw / 100).toFixed(2));
+
+            // Dynamically sync the Bias text label with the slider value
+            if (txtBias) {
+                if (biasVal === 0.0) {
+                    txtBias.innerText = "0.00 (Unbiased)";
+                    txtBias.style.color = "var(--success)";
+                } else {
+                    txtBias.innerText = `+${biasVal.toFixed(2)} (Confounded!)`;
+                    txtBias.style.color = "var(--danger)";
+                }
+            }
 
             const pCtrlPct = parseFloat((pControl * 100).toFixed(1));
             const pTrtPct = parseFloat((pCtrlPct * (1 - rrrVal)).toFixed(1));
@@ -2189,10 +2218,10 @@
 
             const mlDesc = document.getElementById("k_ml_desc");
             if (mlDesc) {
-                if (kAllocMode === "rct") {
+                if (biasVal === 0.0) {
                     mlDesc.innerHTML = `<strong>Coin Flip (Clean RCT):</strong> Treatment W is assigned with P(W=1) = 0.50, independent of Age/BP. The backdoor path is severed (X &#8869; W). SMD = 0.02 (Covariates balanced).`;
                 } else {
-                    mlDesc.innerHTML = `<strong>Doctor Choice (Biased):</strong> Sicker patients were preferentially prescribed treatment (X &rarr; W). Confounder bias contaminates raw risk differences (SMD explodes to +0.45).`;
+                    mlDesc.innerHTML = `<strong>Doctor Choice (Biased +${biasVal.toFixed(2)}):</strong> Sicker patients were preferentially prescribed treatment (X &rarr; W). Confounder bias contaminates raw risk differences (SMD explodes to +${(0.02 + biasVal).toFixed(2)}).`;
                 }
             }
 
@@ -2215,34 +2244,33 @@
 
             const smdTable = document.getElementById("k_table_smd_body");
             if (smdTable) {
-                if (kAllocMode === "rct") {
+                if (biasVal === 0.0) {
                     smdTable.innerHTML = `
                         <tr><td><strong>Age</strong></td><td>62.1 yrs</td><td>61.9 yrs</td><td><span class="pill pill-success">0.02 (Balanced)</span></td></tr>
                         <tr><td><strong>Systolic BP</strong></td><td>145 mmHg</td><td>144 mmHg</td><td><span class="pill pill-success">0.01 (Balanced)</span></td></tr>
                     `;
                 } else {
+                    const ageSmd = (0.02 + biasVal).toFixed(2);
+                    const sbpSmd = (0.01 + biasVal * 0.95).toFixed(2);
                     smdTable.innerHTML = `
-                        <tr><td><strong>Age</strong></td><td>68.4 yrs</td><td>54.2 yrs</td><td><span class="pill pill-danger">+0.48 (Biased!)</span></td></tr>
-                        <tr><td><strong>Systolic BP</strong></td><td>162 mmHg</td><td>132 mmHg</td><td><span class="pill pill-danger">+0.45 (Biased!)</span></td></tr>
+                        <tr><td><strong>Age</strong></td><td>${(62.1 + biasVal * 14).toFixed(1)} yrs</td><td>${(61.9 - biasVal * 16).toFixed(1)} yrs</td><td><span class="pill pill-danger">+${ageSmd} (Biased!)</span></td></tr>
+                        <tr><td><strong>Systolic BP</strong></td><td>${(145 + biasVal * 35).toFixed(0)} mmHg</td><td>${(144 - biasVal * 25).toFixed(0)} mmHg</td><td><span class="pill pill-danger">+${sbpSmd} (Biased!)</span></td></tr>
                     `;
                 }
             }
 
             const dagStatus = document.getElementById("k_dag_status");
-            const txtBias = document.getElementById("k_txt_bias");
             if (dagStatus) {
-                if (kAllocMode === "rct") {
+                if (biasVal === 0.0) {
                     dagStatus.innerHTML = "✔ Backdoor Confounding path from X to W is <strong>CUT by Coin Toss</strong>!";
                     dagStatus.style.background = "#f0fdf4";
                     dagStatus.style.color = "#166534";
                     dagStatus.style.borderColor = "#86efac";
-                    if (txtBias) txtBias.innerText = "0.00 (Unbiased)";
                 } else {
-                    dagStatus.innerHTML = "⚠️ Warning: Backdoor Path Active! Doctors gave drug to older, sicker patients.";
+                    dagStatus.innerHTML = `⚠️ Warning: Backdoor Path Active (+${biasVal.toFixed(2)})! Doctors gave drug to older, sicker patients.`;
                     dagStatus.style.background = "#fee2e2";
                     dagStatus.style.color = "#991b1b";
                     dagStatus.style.borderColor = "#fca5a5";
-                    if (txtBias) txtBias.innerText = "+0.45 (Confounded!)";
                 }
             }
 
