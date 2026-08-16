@@ -1541,16 +1541,18 @@
                     <div class="card-header"><h3 class="card-title" id="d_block6_title">🗂️ 6. PACS Big Data Pipeline</h3><span class="block-badge badge-workflow" id="d_block6_badge">Data Pipeline</span></div>
                     
                     <div id="d_v_step1" style="display: block;">
-                        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 0.75rem; line-height: 1.5; margin-bottom: 6px;">
-                            <strong>100,000 PACS Pipeline Flow:</strong><br>
-                            [Raw Text] &rarr; [UMLS Synonym Lookup] &rarr; [NegBio Syntactic Parse] &rarr; [Ground Truth Label Matrix {0, 1}<sup>100k&times;14</sup>].
+                        <div style="position: relative; width: 100%; border-radius: 8px; overflow: hidden; border: 1.5px solid #cbd5e1; box-shadow: 0 3px 10px rgba(0,0,0,0.08); margin-bottom: 8px; background: #0f172a;">
+                            <img src="pacs_pipeline.jpg" alt="Clinical Hospital PACS &amp; NegBio NLP Mining Architecture" style="width: 100%; height: auto; display: block; object-fit: cover;">
+                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(15,23,42,0.92)); padding: 6px 8px; color: #f8fafc; font-size: 0.68rem; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+                                <span>PACS EHR &bull; UMLS CUI &bull; NegBio Dependency Tree</span>
+                                <span style="background: #2563eb; color: #fff; padding: 1px 5px; border-radius: 4px; font-size: 0.60rem;">100k Archive</span>
+                            </div>
                         </div>
-                        <div style="background: #f0fdf4; border-left: 3px solid #166534; padding: 6px 8px; font-size: 0.75rem; color: #166534;">
-                            ✔ 100% HIPAA-compliant, $0 cost, automated hospital-scale data mining.
+                        <div style="background: #f0fdf4; border-left: 3px solid #166534; padding: 6px 8px; font-size: 0.72rem; color: #166534; line-height: 1.4;">
+                            ✔ <strong>100,000 PACS Flow:</strong> [Raw Text] &rarr; [UMLS Synonyms] &rarr; [Is-A Hierarchy] &rarr; [NegBio Tree] &rarr; <strong>{0, 1}<sup>100k&times;14</sup> Matrix</strong> ($0 cost, 100% HIPAA).
                         </div>
                     </div>
-
-                    <div id="d_v_step2" style="display: none;">
+                    <div id="d_v_step2"  style="display: none;">
                         <div style="background: #fffbeb; border: 1.5px solid #fde047; border-radius: 6px; padding: 8px; font-size: 0.75rem;">
                             <div style="color: #92400e; font-weight: bold; margin-bottom: 3px;">📑 Course 3 Critical Assessment (Section 4):</div>
                             <div style="color: #78350f; line-height: 1.45;" id="d_crit_v_text">
